@@ -6,6 +6,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import torch
 
+from zscore_normalize import zscore_normalize
 from load_moabb_dataset import load_moabb_dataset
 from bandpass_filter import bandpass_filter
 from experiment_loso import experiment_loso
@@ -19,17 +20,6 @@ if __name__ == "__main__":
     # Search spaces documented in bandpass_filter.py
     FLOW  = 4.0    # uniform float [1.0, 40.0]
     FHIGH = 40.0   # uniform float [8.0, 124.0]
-
-    # ICA config — not part of the model search, fixed preprocessing
-    ICA_CFG = {
-        "n_components":     15,      # int uniform [10, min(n_channels, 30)]
-        "method":           "fastica",
-        "random_state":     42,
-        "highpass_for_ica": 1.0,     # Hz — do not change without good reason
-        # Set to None to use cross-channel ECG reconstruction (no electrode needed)
-        "eog_ch_names":     None,
-        "ecg_ch_names":     None,
-    }
 
     TRAIN_CFG = {
         "epochs":        10,
@@ -48,6 +38,9 @@ if __name__ == "__main__":
     # ── Load (cache-friendly, no filtering) ───────────────────────────────────
     X, y, subject_ids, meta = load_moabb_dataset(DATASET_KEY)
     print(f"Dataset meta: {meta}")
+
+    # --- Zscore Normalize
+    X = zscore_normalize(X, axis=(1,2,3))
 
     # ── Bandpass filter (searchable) ──────────────────────────────────────────
     print(f"\nApplying bandpass filter: {FLOW}–{FHIGH} Hz")
