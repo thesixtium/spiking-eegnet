@@ -13,20 +13,70 @@ from experiment_loso import experiment_loso
 
 if __name__ == "__main__":
 
-    # ── Config ────────────────────────────────────────────────────────────────
-    DATASET_KEY = "BNCI2014_001"
+    # ═══════════════════════════════════════════════════════════════════════════
+    # ALL TUNABLE PARAMETERS — edit here, everything else is wired up below
+    # ═══════════════════════════════════════════════════════════════════════════
 
-    # Filter parameters — searchable in genetic algorithm
-    # Search spaces documented in bandpass_filter.py
-    FLOW  = 4.0    # uniform float [1.0, 40.0]
-    FHIGH = 40.0   # uniform float [8.0, 124.0]
+    # ── Dataset ───────────────────────────────────────────────────────────────
+    DATASET_KEY      = "BNCI2014_001"
+    TEST_SUBJECT_IDX = 0               # which subject to hold out in LOSO
+
+    # ── Preprocessing ─────────────────────────────────────────────────────────
+    FLOW      = 4.0        # float  uniform [1.0,  40.0]  — bandpass low  cutoff (Hz)
+    FHIGH     = 40.0       # float  uniform [8.0, 124.0]  — bandpass high cutoff (Hz); must be > FLOW+2
+    NORM_AXIS = (1, 2, 3)  # (1,2,3) = whole-epoch z-score | (1,3) = per-channel z-score
+
+    # ── Training ──────────────────────────────────────────────────────────────
+    EPOCHS        = 10
+    BATCH_SIZE    = 32
+    LR            = 3e-4
+    N_STEPS_TRAIN = 4    # SNN time-steps during training  (fewer = faster)
+    N_STEPS_EVAL  = 20   # SNN time-steps during eval      (more = stabler spike rate)
+
+    # ── SpikingEEGNet architecture ────────────────────────────────────────────
+    # Filter counts
+    TEMPORAL_FILTERS   = 8    # int   uniform [4,  32]  — temporal conv output channels
+    DEPTH_MULTIPLIER   = 2    # int   uniform [1,   4]  — spatial filters per temporal filter
+    POINTWISE_FILTERS  = 16   # int   uniform [8,  64]  — separable pointwise output channels
+
+    # Filter sizes
+    TEMPORAL_KERNEL_DIV    = 2   # int   uniform [2,  8]  — temporal kernel = num_samples // div
+    SEPARABLE_KERNEL_SIZE  = 16  # int   uniform [4, 32]  — separable depthwise kernel width
+
+    # Pooling
+    POOL1_SIZE = 4   # int   uniform [2, 8]  — avg-pool after Block 1
+    POOL2_SIZE = 4   # int   uniform [2, 8]  — avg-pool after Block 2
+
+    # Regularisation
+    DROPOUT = 0.5    # float uniform [0.10, 0.75]  — applied after each pooling stage
+
+    # SNN dynamics
+    BETA             = 0.95   # float uniform [0.50,  0.99]   — LIF membrane decay rate
+    SPIKE_GRAD_SLOPE = 25.0   # float uniform [5.0,  100.0]  — fast-sigmoid surrogate slope
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # Derived configs (no need to edit below this line)
+    # ═══════════════════════════════════════════════════════════════════════════
 
     TRAIN_CFG = {
-        "epochs":        10,
-        "batch_size":    32,
-        "lr":            3e-4,
-        "n_steps_train": 4,
-        "n_steps_eval":  20,
+        "epochs":        EPOCHS,
+        "batch_size":    BATCH_SIZE,
+        "lr":            LR,
+        "n_steps_train": N_STEPS_TRAIN,
+        "n_steps_eval":  N_STEPS_EVAL,
+    }
+
+    MODEL_CFG = {
+        "temporal_filters":      TEMPORAL_FILTERS,
+        "depth_multiplier":      DEPTH_MULTIPLIER,
+        "pointwise_filters":     POINTWISE_FILTERS,
+        "temporal_kernel_div":   TEMPORAL_KERNEL_DIV,
+        "separable_kernel_size": SEPARABLE_KERNEL_SIZE,
+        "pool1_size":            POOL1_SIZE,
+        "pool2_size":            POOL2_SIZE,
+        "dropout":               DROPOUT,
+        "beta":                  BETA,
+        "spike_grad_slope":      SPIKE_GRAD_SLOPE,
     }
 
     OUTPUT_DIR = Path("results") / DATASET_KEY
@@ -40,7 +90,7 @@ if __name__ == "__main__":
     print(f"Dataset meta: {meta}")
 
     # --- Zscore Normalize
-    X = zscore_normalize(X, axis=(1,2,3))
+    X = zscore_normalize(X, axis=NORM_AXIS)
 
     # ── Bandpass filter (searchable) ──────────────────────────────────────────
     print(f"\nApplying bandpass filter: {FLOW}–{FHIGH} Hz")
@@ -49,13 +99,15 @@ if __name__ == "__main__":
     # ── Experiment ────────────────────────────────────────────────────────────
     hist_loso, acc_loso = experiment_loso(
         X, y, subject_ids, meta, device, TRAIN_CFG,
-        test_subject_idx=0,
+        test_subject_idx=TEST_SUBJECT_IDX,
+        model_kwargs=MODEL_CFG,
     )
 
     # ── Save results ──────────────────────────────────────────────────────────
     results = {
         "dataset":    DATASET_KEY,
         "filter":     {"flow": FLOW, "fhigh": FHIGH},
+        "model_cfg":  MODEL_CFG,
         "meta":       {k: v for k, v in meta.items() if k != "subject_list"},
         "train_cfg":  TRAIN_CFG,
         "loso_subject_0": {

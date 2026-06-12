@@ -5,6 +5,7 @@ from run_training import run_training
 def experiment_loso(
     X, y, subject_ids, meta, device, cfg,
     test_subject_idx: int = 0,
+    model_kwargs: dict = None,
 ):
     """
     Leave-One-Subject-Out: hold out subject `test_subject_idx`, train on rest.
@@ -21,7 +22,7 @@ def experiment_loso(
     train_loader = make_loader(X_tr, y_tr, cfg["batch_size"])
     val_loader   = make_loader(X_te, y_te, cfg["batch_size"], shuffle=False)
 
-    model = build_model(meta, device)
+    model = build_model(meta, device, **(model_kwargs or {}))
     history = run_training(
         model, train_loader, val_loader,
         epochs=cfg["epochs"], lr=cfg["lr"], device=device,
