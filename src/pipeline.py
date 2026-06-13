@@ -1,5 +1,6 @@
 # pipeline.py
 import json
+import csv
 from pathlib import Path
 
 import matplotlib
@@ -15,6 +16,17 @@ from experiment_loso import experiment_loso
 from make_loader import make_loader
 from evaluate import evaluate
 from quantize_model import quantize_model
+
+
+def _log_trial_to_csv(csv_path, row: dict):
+    """Append one trial's results to the CSV, writing the header if the file is new."""
+    csv_path = Path(csv_path)
+    write_header = not csv_path.exists()
+    with open(csv_path, "a", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=list(row.keys()))
+        if write_header:
+            writer.writeheader()
+        writer.writerow(row)
 
 
 def plot_results(OUTPUT_DIR, DATASET_KEY, TEST_SUBJECT_IDX, FLOW, FHIGH,
@@ -170,6 +182,47 @@ def pipeline(
     with open(OUTPUT_DIR / "results.json", "w") as f:
         json.dump(results, f, indent=2)
     print(f"Results saved to {OUTPUT_DIR / 'results.json'}")
+
+    # ── CSV trial log ─────────────────────────────────────────────────────────
+    import datetime
+    csv_row = {
+        "timestamp":            datetime.datetime.now().isoformat(timespec="seconds"),
+        "trial_number":         trial.number if trial is not None else "",
+        # Outputs
+        "acc_loso":             round(acc_loso, 6),
+        "acc_fp32":             round(acc_fp32, 6) if acc_fp32 is not None else "",
+        "acc_q":                round(acc_q,    6) if acc_q    is not None else "",
+        "quant_drop":           round(acc_fp32 - acc_q, 6) if (acc_fp32 is not None and acc_q is not None) else "",
+        # Preprocessing
+        "run_zscore":           RUN_ZSCORE,
+        "run_bandpass":         RUN_BANDPASS,
+        "norm_axis":            str(NORM_AXIS),
+        "flow":                 FLOW,
+        "fhigh":                FHIGH,
+        # Training
+        "lr_exp":               LR_EXP,
+        "lr":                   round(LR, 8),
+        "epochs":               EPOCHS,
+        "batch_size":           BATCH_SIZE,
+        "n_steps_train":        N_STEPS_TRAIN,
+        "n_steps_eval":         N_STEPS_EVAL,
+        # Model
+        "temporal_filters":     TEMPORAL_FILTERS,
+        "depth_multiplier":     DEPTH_MULTIPLIER,
+        "pointwise_filters":    POINTWISE_FILTERS,
+        "temporal_kernel_div":  TEMPORAL_KERNEL_DIV,
+        "separable_kernel_size":SEPARABLE_KERNEL_SIZE,
+        "pool1_size":           POOL1_SIZE,
+        "pool2_size":           POOL2_SIZE,
+        "dropout":              DROPOUT,
+        "beta":                 BETA,
+        "spike_grad_slope":     SPIKE_GRAD_SLOPE,
+        # Quantization
+        "run_quantization":     RUN_QUANTIZATION,
+        "quant_bits":           QUANT_BITS,
+    }
+    _log_trial_to_csv(OUTPUT_DIR / "trials.csv", csv_row)
+    print(f"Trial logged to {OUTPUT_DIR / 'trials.csv'}")
 
     if save_plots:
         plot_results(OUTPUT_DIR, DATASET_KEY, TEST_SUBJECT_IDX, FLOW, FHIGH,

@@ -6,7 +6,7 @@ from pipeline import pipeline
 FIXED = dict(
     DATASET_KEY="BNCI2014_001",
     TEST_SUBJECT_IDX=0,
-    EPOCHS=10,
+    EPOCHS=100,
     BATCH_SIZE=32,
     N_STEPS_TRAIN=4,
     N_STEPS_EVAL=20,
