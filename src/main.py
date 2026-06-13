@@ -36,10 +36,8 @@ def objective(trial):
         POOL2_SIZE            = trial.suggest_int("POOL2_SIZE",            2,   8),
 
         NORM_AXIS        = NORM_AXIS_MAP[trial.suggest_categorical("NORM_AXIS", list(NORM_AXIS_MAP))],
-        RUN_QUANTIZATION = trial.suggest_categorical("RUN_QUANTIZATION", [True, False]),
         RUN_ZSCORE       = trial.suggest_categorical("RUN_ZSCORE",       [True, False]),
         RUN_BANDPASS     = trial.suggest_categorical("RUN_BANDPASS",     [True, False]),
-        QUANT_BITS       = trial.suggest_categorical("QUANT_BITS",       [2, 4, 8, 16]),
     )
 
     return pipeline(**params, **FIXED, trial=trial, save_plots=False)
