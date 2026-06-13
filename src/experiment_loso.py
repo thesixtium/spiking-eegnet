@@ -1,3 +1,4 @@
+# experiment_loso.py
 from make_loader import make_loader
 from build_model import build_model
 from run_training import run_training
@@ -28,6 +29,8 @@ def experiment_loso(
         epochs=cfg["epochs"], lr=cfg["lr"], device=device,
         n_steps_train=cfg["n_steps_train"], n_steps_eval=cfg["n_steps_eval"],
         eval_every_epoch=True,
+        patience=cfg.get("patience"),
+        trial=cfg.get("trial"),
     )
     final_acc = history["bal_acc"][-1]
-    return history, final_acc
+    return history, final_acc, model
