@@ -1,6 +1,7 @@
 # hpo.py
 import optuna
 from optuna.pruners import MedianPruner
+from optuna.samplers import TPESampler
 from pipeline import pipeline
 
 FIXED = dict(
@@ -50,6 +51,7 @@ if __name__ == "__main__":
         storage="sqlite:///optuna_study.db",
         load_if_exists=True,
         pruner=MedianPruner(n_startup_trials=10, n_warmup_steps=3),
+        sampler=TPESampler(n_startup_trials=20, multivariate=True, group=True)
     )
     study.optimize(objective, n_trials=100, n_jobs=1)
 
