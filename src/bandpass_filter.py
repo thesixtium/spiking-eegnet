@@ -39,7 +39,7 @@ def bandpass_filter(
                    The constraint flow < fhigh - 2 (enforced below) prevents
                    degenerate zero-bandwidth configs.
 
-    fhigh  float  uniform [8.0, 120.0]
+    fhigh  float  uniform [44.0, 120.0]
         low=8.0:  Below 8 Hz the passband only covers delta/theta; that may
                   be intentional but 8 Hz is the minimum that still includes
                   alpha (8-12 Hz), which is the dominant BCI-relevant band.

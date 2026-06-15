@@ -23,7 +23,7 @@ NORM_AXIS_MAP = {
 def objective(trial):
     params = dict(
         FLOW             = trial.suggest_float("FLOW",             1.0,  40.0),
-        FHIGH            = trial.suggest_float("FHIGH",            8.0, 120.0),
+        FHIGH            = trial.suggest_float("FHIGH",            44.0, 120.0),
         LR_EXP           = trial.suggest_float("LR_EXP",          -4.5,  -2.0),
         DROPOUT          = trial.suggest_float("DROPOUT",          0.1,   0.75),
         BETA             = trial.suggest_float("BETA",             0.5,   0.99),
@@ -39,7 +39,6 @@ def objective(trial):
 
         NORM_AXIS        = NORM_AXIS_MAP[trial.suggest_categorical("NORM_AXIS", list(NORM_AXIS_MAP))],
         RUN_ZSCORE       = trial.suggest_categorical("RUN_ZSCORE",       [True, False]),
-        RUN_BANDPASS     = trial.suggest_categorical("RUN_BANDPASS",     [True, False]),
     )
 
     return pipeline(**params, **FIXED, trial=trial, save_plots=False)
@@ -75,12 +74,12 @@ def status_callback(study, frozen_trial):
 
 
 if __name__ == "__main__":
-    n_trials = 1000
-    tpe_trails = 100
+    n_trials = 200
+    tpe_trails = 20
 
     study = optuna.create_study(
         direction="maximize",
-        study_name=f"snn_eegnet_{n_trials}_{tpe_trails}",
+        study_name=f"snn_eegnet_v2_{n_trials}_{tpe_trails}",
         storage="sqlite:///optuna_study.db",
         load_if_exists=True,
         pruner=MedianPruner(n_startup_trials=tpe_trails, n_warmup_steps=3),
