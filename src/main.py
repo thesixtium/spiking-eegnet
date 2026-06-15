@@ -1,4 +1,5 @@
 # hpo.py
+import sys
 import optuna
 from optuna.pruners import MedianPruner
 from optuna.samplers import TPESampler
@@ -44,23 +45,64 @@ def objective(trial):
     return pipeline(**params, **FIXED, trial=trial, save_plots=False)
 
 
+def status_callback(study, frozen_trial):
+    """Write current progress to a status file after every trial."""
+    n_completed = len([
+        t for t in study.trials
+        if t.state in (optuna.trial.TrialState.COMPLETE, optuna.trial.TrialState.PRUNED)
+    ])
+    n_total = len(study.trials)
+
+    try:
+        best_value = study.best_value
+        best_number = study.best_trial.number
+    except ValueError:
+        best_value = None
+        best_number = None
+
+    with open("optuna_status.txt", "w") as f:
+        f.write(f"last_trial_number : {frozen_trial.number}\n")
+        f.write(f"last_trial_state  : {frozen_trial.state.name}\n")
+        f.write(f"last_trial_value  : {frozen_trial.value}\n")
+        f.write(f"trials_completed  : {n_completed}\n")
+        f.write(f"trials_total      : {n_total}\n")
+        f.write(f"best_trial_number : {best_number}\n")
+        f.write(f"best_value        : {best_value}\n")
+
+    print(f"[status] trial {frozen_trial.number} done "
+          f"(state={frozen_trial.state.name}, value={frozen_trial.value}) "
+          f"-- {n_completed} completed total")
+
+
 if __name__ == "__main__":
+    n_trials = 1000
+    tpe_trails = 100
+
     study = optuna.create_study(
         direction="maximize",
-        study_name="snn_eegnet",
+        study_name=f"snn_eegnet_{n_trials}_{tpe_trails}",
         storage="sqlite:///optuna_study.db",
         load_if_exists=True,
-        pruner=MedianPruner(n_startup_trials=10, n_warmup_steps=3),
-        sampler=TPESampler(n_startup_trials=20, multivariate=True, group=True)
+        pruner=MedianPruner(n_startup_trials=tpe_trails, n_warmup_steps=3),
+        sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
     )
-    study.optimize(objective, n_trials=100, n_jobs=1)
+
+    # timeout in seconds: stop starting new trials after this long so the
+    # current trial can finish and write results before SLURM kills the job.
+    # 23h leaves ~1h margin under a 24h SLURM time limit.
+    study.optimize(objective, n_trials=n_trials, n_jobs=1,
+                    timeout=23 * 3600, callbacks=[status_callback])
 
     print(f"\nBest trial #{study.best_trial.number}")
     print(f"  Value : {study.best_value:.4f}")
     print(f"  Params: {study.best_params}")
 
-    # Re-run best trial with plots enabled
-    print("\nRe-running best trial to generate plots...")
-    best = dict(study.best_params)
-    best["NORM_AXIS"] = NORM_AXIS_MAP[best["NORM_AXIS"]]
-    pipeline(**best, **FIXED, save_plots=True)
+    # Re-running the best trial with plots happens in a separate
+    # final job (e.g. `python3 main.py --plot-best`), not on every
+    # chained HPO job, since chained jobs each time out before reaching
+    # n_trials and would otherwise re-run this every time.
+    if "--plot-best" in sys.argv:
+        print("\nRe-running best trial to generate plots...")
+        best = dict(study.best_params)
+        best["NORM_AXIS"] = NORM_AXIS_MAP[best["NORM_AXIS"]]
+        pipeline(**best, **FIXED, save_plots=True)

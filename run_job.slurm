@@ -21,6 +21,11 @@ echo "Node     : $SLURMD_NODENAME"
 echo "Started  : $(date)"
 echo "Directory: $(pwd)"
 
+# Record this job's place in the chain (for bug-checking chained submissions)
+echo "job_id    : $SLURM_JOB_ID"  >> chain_status.txt
+echo "started   : $(date)"        >> chain_status.txt
+echo "----"                        >> chain_status.txt
+
 # Put raw MOABB downloads on scratch (fast, auto-cleaned after 5 days)
 export MOABB_DOWNLOAD_DIR=/scratch/${SLURM_JOB_ID}/mne_data
 mkdir -p "$MOABB_DOWNLOAD_DIR"
@@ -55,3 +60,5 @@ python3 src/main.py
 
 echo "Finished : $(date)"
 echo "Exit code: $?"
+echo "finished  : $(date), exit=$?" >> chain_status.txt
+echo "===="                          >> chain_status.txt
