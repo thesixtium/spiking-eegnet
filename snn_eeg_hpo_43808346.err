@@ -1,0 +1,73 @@
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+ERROR: Invalid requirement: 'Binary file requirements.txt matches': Expected end or semicolon (after name and no valid version specifier)
+    Binary file requirements.txt matches
+           ^ (from line 1 of /home/aleksander.berezowsk/requirements_notorch.txt)
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+/home/aleksander.berezowsk/spiking-eegnet/src/main.py:87: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
+/home/aleksander.berezowsk/spiking-eegnet/src/main.py:87: ExperimentalWarning: Argument ``group`` is an experimental feature. The interface can change in the future.
+  sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
+[I 2026-06-14 23:39:13,916] Using an existing study with name 'snn_eegnet_1000_100' instead of creating a new one.
+[I 2026-06-14 23:51:22,132] Trial 27 finished with value: 0.5677083333333334 and parameters: {'FLOW': 23.85742066210004, 'FHIGH': 46.13509013453765, 'LR_EXP': -2.23114425603759, 'DROPOUT': 0.1663699080577194, 'BETA': 0.900622012293151, 'SPIKE_GRAD_SLOPE': 21.968459914177092, 'TEMPORAL_FILTERS': 20, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 48, 'TEMPORAL_KERNEL_DIV': 5, 'SEPARABLE_KERNEL_SIZE': 19, 'POOL1_SIZE': 6, 'POOL2_SIZE': 4, 'NORM_AXIS': 'full', 'RUN_ZSCORE': True, 'RUN_BANDPASS': False}. Best is trial 25 with value: 0.6076388888888888.
+[I 2026-06-15 00:05:26,180] Trial 28 finished with value: 0.23958333333333331 and parameters: {'FLOW': 31.540088079746802, 'FHIGH': 82.75213215887796, 'LR_EXP': -2.197654842861731, 'DROPOUT': 0.3163790517401444, 'BETA': 0.5936696692574883, 'SPIKE_GRAD_SLOPE': 86.14169901237109, 'TEMPORAL_FILTERS': 15, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 47, 'TEMPORAL_KERNEL_DIV': 2, 'SEPARABLE_KERNEL_SIZE': 24, 'POOL1_SIZE': 8, 'POOL2_SIZE': 7, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': True, 'RUN_BANDPASS': True}. Best is trial 25 with value: 0.6076388888888888.
+[I 2026-06-15 00:19:29,482] Trial 29 finished with value: 0.3958333333333333 and parameters: {'FLOW': 19.590088441955146, 'FHIGH': 23.825057313865216, 'LR_EXP': -2.2649847710235993, 'DROPOUT': 0.2501753093486862, 'BETA': 0.8393145640151045, 'SPIKE_GRAD_SLOPE': 56.934186106111234, 'TEMPORAL_FILTERS': 18, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 28, 'TEMPORAL_KERNEL_DIV': 3, 'SEPARABLE_KERNEL_SIZE': 23, 'POOL1_SIZE': 2, 'POOL2_SIZE': 8, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': False, 'RUN_BANDPASS': False}. Best is trial 25 with value: 0.6076388888888888.
+[I 2026-06-15 00:31:58,131] Trial 30 finished with value: 0.5295138888888888 and parameters: {'FLOW': 7.693385900895363, 'FHIGH': 88.22231963150237, 'LR_EXP': -4.15653651746446, 'DROPOUT': 0.46647847209395843, 'BETA': 0.7511226575655281, 'SPIKE_GRAD_SLOPE': 39.432596980917815, 'TEMPORAL_FILTERS': 20, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 35, 'TEMPORAL_KERNEL_DIV': 7, 'SEPARABLE_KERNEL_SIZE': 8, 'POOL1_SIZE': 8, 'POOL2_SIZE': 7, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False, 'RUN_BANDPASS': False}. Best is trial 25 with value: 0.6076388888888888.
+[I 2026-06-15 00:48:50,546] Trial 31 finished with value: 0.46875 and parameters: {'FLOW': 31.728541374702267, 'FHIGH': 60.782414659349655, 'LR_EXP': -4.299820225230446, 'DROPOUT': 0.2789603606565322, 'BETA': 0.9889187225459033, 'SPIKE_GRAD_SLOPE': 98.82129464416647, 'TEMPORAL_FILTERS': 20, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 10, 'TEMPORAL_KERNEL_DIV': 3, 'SEPARABLE_KERNEL_SIZE': 14, 'POOL1_SIZE': 6, 'POOL2_SIZE': 8, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False, 'RUN_BANDPASS': False}. Best is trial 25 with value: 0.6076388888888888.
+[I 2026-06-15 01:01:13,854] Trial 32 finished with value: 0.3784722222222222 and parameters: {'FLOW': 5.383527375659935, 'FHIGH': 100.06534597520877, 'LR_EXP': -2.191147439831311, 'DROPOUT': 0.1859984141036929, 'BETA': 0.7054386384712334, 'SPIKE_GRAD_SLOPE': 55.82615817080673, 'TEMPORAL_FILTERS': 23, 'DEPTH_MULTIPLIER': 1, 'POINTWISE_FILTERS': 37, 'TEMPORAL_KERNEL_DIV': 4, 'SEPARABLE_KERNEL_SIZE': 13, 'POOL1_SIZE': 3, 'POOL2_SIZE': 4, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': False, 'RUN_BANDPASS': False}. Best is trial 25 with value: 0.6076388888888888.
+[I 2026-06-15 01:18:17,605] Trial 33 finished with value: 0.49652777777777773 and parameters: {'FLOW': 10.362225228200334, 'FHIGH': 28.983726365052682, 'LR_EXP': -4.368759696905942, 'DROPOUT': 0.22871521573123763, 'BETA': 0.7270563830489745, 'SPIKE_GRAD_SLOPE': 11.450827695748679, 'TEMPORAL_FILTERS': 27, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 42, 'TEMPORAL_KERNEL_DIV': 7, 'SEPARABLE_KERNEL_SIZE': 27, 'POOL1_SIZE': 7, 'POOL2_SIZE': 4, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': True, 'RUN_BANDPASS': True}. Best is trial 25 with value: 0.6076388888888888.
+[I 2026-06-15 01:38:25,943] Trial 34 finished with value: 0.3975694444444444 and parameters: {'FLOW': 8.723720978693109, 'FHIGH': 103.78380605753891, 'LR_EXP': -2.2662984993213104, 'DROPOUT': 0.7105219325826516, 'BETA': 0.5855797693640419, 'SPIKE_GRAD_SLOPE': 65.95957118993528, 'TEMPORAL_FILTERS': 32, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 57, 'TEMPORAL_KERNEL_DIV': 2, 'SEPARABLE_KERNEL_SIZE': 24, 'POOL1_SIZE': 4, 'POOL2_SIZE': 4, 'NORM_AXIS': 'full', 'RUN_ZSCORE': True, 'RUN_BANDPASS': False}. Best is trial 25 with value: 0.6076388888888888.
+[I 2026-06-15 01:50:29,478] Trial 35 finished with value: 0.4878472222222222 and parameters: {'FLOW': 34.965833695015405, 'FHIGH': 81.74515726649514, 'LR_EXP': -3.3237793597529257, 'DROPOUT': 0.46342817323756624, 'BETA': 0.6952585466854703, 'SPIKE_GRAD_SLOPE': 49.054079520828985, 'TEMPORAL_FILTERS': 9, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 15, 'TEMPORAL_KERNEL_DIV': 2, 'SEPARABLE_KERNEL_SIZE': 18, 'POOL1_SIZE': 8, 'POOL2_SIZE': 3, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': False, 'RUN_BANDPASS': False}. Best is trial 25 with value: 0.6076388888888888.
+[I 2026-06-15 02:02:31,197] Trial 36 finished with value: 0.4340277777777778 and parameters: {'FLOW': 12.217089139581628, 'FHIGH': 93.18069192098596, 'LR_EXP': -2.4476320798096456, 'DROPOUT': 0.6810503128177002, 'BETA': 0.5285871107346469, 'SPIKE_GRAD_SLOPE': 86.28537944954925, 'TEMPORAL_FILTERS': 25, 'DEPTH_MULTIPLIER': 1, 'POINTWISE_FILTERS': 24, 'TEMPORAL_KERNEL_DIV': 6, 'SEPARABLE_KERNEL_SIZE': 26, 'POOL1_SIZE': 2, 'POOL2_SIZE': 6, 'NORM_AXIS': 'full', 'RUN_ZSCORE': True, 'RUN_BANDPASS': False}. Best is trial 25 with value: 0.6076388888888888.
+[I 2026-06-15 02:15:36,949] Trial 37 finished with value: 0.5503472222222222 and parameters: {'FLOW': 11.042996151399992, 'FHIGH': 52.498670826314395, 'LR_EXP': -4.137110146216241, 'DROPOUT': 0.3425938126232545, 'BETA': 0.8340477963811708, 'SPIKE_GRAD_SLOPE': 16.3155900538217, 'TEMPORAL_FILTERS': 15, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 63, 'TEMPORAL_KERNEL_DIV': 3, 'SEPARABLE_KERNEL_SIZE': 11, 'POOL1_SIZE': 4, 'POOL2_SIZE': 8, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': True, 'RUN_BANDPASS': True}. Best is trial 25 with value: 0.6076388888888888.
+[I 2026-06-15 02:30:42,849] Trial 38 finished with value: 0.49652777777777773 and parameters: {'FLOW': 7.126098632790151, 'FHIGH': 83.94466723028731, 'LR_EXP': -4.017167997244021, 'DROPOUT': 0.30170188448423274, 'BETA': 0.7460321767288866, 'SPIKE_GRAD_SLOPE': 66.75130648881742, 'TEMPORAL_FILTERS': 13, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 54, 'TEMPORAL_KERNEL_DIV': 2, 'SEPARABLE_KERNEL_SIZE': 20, 'POOL1_SIZE': 4, 'POOL2_SIZE': 5, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': True, 'RUN_BANDPASS': False}. Best is trial 25 with value: 0.6076388888888888.
+[W 2026-06-15 02:30:46,359] Trial 39 failed with parameters: {'FLOW': 33.16460730401014, 'FHIGH': 14.658154574642074, 'LR_EXP': -3.639764956063926, 'DROPOUT': 0.5743726863092545, 'BETA': 0.9448271753689603, 'SPIKE_GRAD_SLOPE': 11.145213010232146, 'TEMPORAL_FILTERS': 11, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 28, 'TEMPORAL_KERNEL_DIV': 6, 'SEPARABLE_KERNEL_SIZE': 23, 'POOL1_SIZE': 4, 'POOL2_SIZE': 3, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False, 'RUN_BANDPASS': True} because of the following error: AssertionError('fhigh (14.658154574642074) must be at least 2 Hz above flow (33.16460730401014)').
+Traceback (most recent call last):
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/optuna/study/_optimize.py", line 206, in _run_trial
+    value_or_values = func(trial)
+                      ^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/main.py", line 45, in objective
+    return pipeline(**params, **FIXED, trial=trial, save_plots=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/pipeline.py", line 120, in pipeline
+    X = bandpass_filter(X, sfreq=meta["sfreq"], flow=FLOW, fhigh=FHIGH)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/bandpass_filter.py", line 74, in bandpass_filter
+    assert fhigh > flow + 2,    f"fhigh ({fhigh}) must be at least 2 Hz above flow ({flow})"
+           ^^^^^^^^^^^^^^^^
+AssertionError: fhigh (14.658154574642074) must be at least 2 Hz above flow (33.16460730401014)
+[W 2026-06-15 02:30:46,398] Trial 39 failed with value None.
+Traceback (most recent call last):
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/main.py", line 93, in <module>
+    study.optimize(objective, n_trials=n_trials, n_jobs=1,
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/optuna/study/study.py", line 516, in optimize
+    _optimize(
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/optuna/study/_optimize.py", line 68, in _optimize
+    _optimize_sequential(
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/optuna/study/_optimize.py", line 165, in _optimize_sequential
+    frozen_trial_id = _run_trial(study, func, catch)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/optuna/study/_optimize.py", line 263, in _run_trial
+    raise func_err
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/optuna/study/_optimize.py", line 206, in _run_trial
+    value_or_values = func(trial)
+                      ^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/main.py", line 45, in objective
+    return pipeline(**params, **FIXED, trial=trial, save_plots=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/pipeline.py", line 120, in pipeline
+    X = bandpass_filter(X, sfreq=meta["sfreq"], flow=FLOW, fhigh=FHIGH)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/bandpass_filter.py", line 74, in bandpass_filter
+    assert fhigh > flow + 2,    f"fhigh ({fhigh}) must be at least 2 Hz above flow ({flow})"
+           ^^^^^^^^^^^^^^^^
+AssertionError: fhigh (14.658154574642074) must be at least 2 Hz above flow (33.16460730401014)
