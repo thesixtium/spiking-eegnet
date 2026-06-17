@@ -1,2 +1,0 @@
-fractional_bits,integer_bits,format,balanced_accuracy,loss,eval_time_s
-float32,N/A,float32,0.538194,1.279558,0.0
