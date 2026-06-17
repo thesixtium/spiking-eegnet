@@ -1,0 +1,290 @@
+Job ID   : 43961738
+Node     : fg5
+Started  : Wed Jun 17 13:51:57 MDT 2026
+Directory: /home/aleksander.berezowsk/spiking-eegnet
+Requirement already satisfied: setuptools==69.5.1 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (69.5.1)
+Requirement already satisfied: torch==2.4.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (2.4.0)
+Requirement already satisfied: torchvision==0.19.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (0.19.0)
+Requirement already satisfied: torchaudio==2.4.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (2.4.0)
+Requirement already satisfied: torchmetrics in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (1.9.0)
+Requirement already satisfied: filelock in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (3.29.0)
+Requirement already satisfied: typing-extensions>=4.8.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (4.15.0)
+Requirement already satisfied: sympy in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (1.14.0)
+Requirement already satisfied: networkx in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (3.6.1)
+Requirement already satisfied: jinja2 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (3.1.6)
+Requirement already satisfied: fsspec in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (2026.4.0)
+Requirement already satisfied: setuptools in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (69.5.1)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.1.105 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (12.1.105)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.1.105 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (12.1.105)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.1.105 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (12.1.105)
+Requirement already satisfied: nvidia-cudnn-cu12==9.1.0.70 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (9.1.0.70)
+Requirement already satisfied: nvidia-cublas-cu12==12.1.3.1 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (12.1.3.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.0.2.54 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (11.0.2.54)
+Requirement already satisfied: nvidia-curand-cu12==10.3.2.106 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (10.3.2.106)
+Requirement already satisfied: nvidia-cusolver-cu12==11.4.5.107 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (11.4.5.107)
+Requirement already satisfied: nvidia-cusparse-cu12==12.1.0.106 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (12.1.0.106)
+Requirement already satisfied: nvidia-nccl-cu12==2.20.5 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (2.20.5)
+Requirement already satisfied: nvidia-nvtx-cu12==12.1.105 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (12.1.105)
+Requirement already satisfied: triton==3.0.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (3.0.0)
+Requirement already satisfied: numpy in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torchvision==0.19.0) (2.4.6)
+Requirement already satisfied: pillow!=8.3.*,>=5.3.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torchvision==0.19.0) (12.2.0)
+Requirement already satisfied: nvidia-nvjitlink-cu12 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from nvidia-cusolver-cu12==11.4.5.107->torch==2.4.0) (12.9.86)
+Requirement already satisfied: packaging>17.1 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torchmetrics) (26.2)
+Requirement already satisfied: lightning-utilities>=0.15.3 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torchmetrics) (0.15.3)
+Requirement already satisfied: MarkupSafe>=2.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from jinja2->torch==2.4.0) (3.0.3)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from sympy->torch==2.4.0) (1.3.0)
+Requirement already satisfied: optuna in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (4.9.0)
+Requirement already satisfied: snntorch in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (0.9.4)
+Requirement already satisfied: alembic>=1.5.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (1.18.4)
+Requirement already satisfied: colorlog in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (6.10.1)
+Requirement already satisfied: numpy in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (2.4.6)
+Requirement already satisfied: packaging>=20.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (26.2)
+Requirement already satisfied: sqlalchemy>=1.4.2 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (2.0.50)
+Requirement already satisfied: tqdm in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (4.67.3)
+Requirement already satisfied: PyYAML in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (6.0.3)
+Requirement already satisfied: Mako in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from alembic>=1.5.0->optuna) (1.3.12)
+Requirement already satisfied: typing-extensions>=4.12 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from alembic>=1.5.0->optuna) (4.15.0)
+Requirement already satisfied: greenlet>=1 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from sqlalchemy>=1.4.2->optuna) (3.5.1)
+Requirement already satisfied: MarkupSafe>=0.9.2 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from Mako->alembic>=1.5.0->optuna) (3.0.3)
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+Applying bandpass filter: 4.0–40.0 Hz
+
+Training model (float32) …
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 8,916
+  epoch   1/100  loss=1.3945  bal_acc=0.2587
+  epoch   2/100  loss=1.3865  bal_acc=0.2448
+  epoch   3/100  loss=1.3835  bal_acc=0.2674
+  epoch   4/100  loss=1.3713  bal_acc=0.3021
+  epoch   5/100  loss=1.3663  bal_acc=0.3160
+  epoch   6/100  loss=1.3562  bal_acc=0.3003
+  epoch   7/100  loss=1.3481  bal_acc=0.2899
+  epoch   8/100  loss=1.3473  bal_acc=0.3316
+  epoch   9/100  loss=1.3337  bal_acc=0.3247
+  epoch  10/100  loss=1.3286  bal_acc=0.3542
+  epoch  11/100  loss=1.3200  bal_acc=0.3351
+  epoch  12/100  loss=1.3172  bal_acc=0.3142
+  epoch  13/100  loss=1.3151  bal_acc=0.3385
+  epoch  14/100  loss=1.3050  bal_acc=0.3681
+  epoch  15/100  loss=1.2961  bal_acc=0.3472
+  epoch  16/100  loss=1.2957  bal_acc=0.3490
+  epoch  17/100  loss=1.2895  bal_acc=0.3507
+  epoch  18/100  loss=1.2818  bal_acc=0.3594
+  epoch  19/100  loss=1.2789  bal_acc=0.3611
+  epoch  20/100  loss=1.2704  bal_acc=0.3628
+  epoch  21/100  loss=1.2709  bal_acc=0.3594
+  epoch  22/100  loss=1.2622  bal_acc=0.3663
+  epoch  23/100  loss=1.2537  bal_acc=0.3681
+  epoch  24/100  loss=1.2509  bal_acc=0.3507
+  epoch  25/100  loss=1.2460  bal_acc=0.3438
+  epoch  26/100  loss=1.2393  bal_acc=0.3264
+  epoch  27/100  loss=1.2352  bal_acc=0.2969
+  epoch  28/100  loss=1.2276  bal_acc=0.3038
+  epoch  29/100  loss=1.2252  bal_acc=0.3247
+  epoch  30/100  loss=1.2260  bal_acc=0.3594
+  epoch  31/100  loss=1.2182  bal_acc=0.3750
+  epoch  32/100  loss=1.2139  bal_acc=0.3767
+  epoch  33/100  loss=1.2023  bal_acc=0.3733
+  epoch  34/100  loss=1.2040  bal_acc=0.3438
+  epoch  35/100  loss=1.2045  bal_acc=0.3281
+  epoch  36/100  loss=1.1979  bal_acc=0.3056
+  epoch  37/100  loss=1.1888  bal_acc=0.3403
+  epoch  38/100  loss=1.2005  bal_acc=0.3194
+  epoch  39/100  loss=1.1904  bal_acc=0.2812
+  epoch  40/100  loss=1.1923  bal_acc=0.3090
+  epoch  41/100  loss=1.1782  bal_acc=0.2934
+  epoch  42/100  loss=1.1850  bal_acc=0.3281
+  epoch  43/100  loss=1.1769  bal_acc=0.2969
+  epoch  44/100  loss=1.1660  bal_acc=0.3264
+  epoch  45/100  loss=1.1684  bal_acc=0.3142
+  epoch  46/100  loss=1.1709  bal_acc=0.3125
+  epoch  47/100  loss=1.1710  bal_acc=0.3333
+  epoch  48/100  loss=1.1535  bal_acc=0.3542
+  epoch  49/100  loss=1.1485  bal_acc=0.3142
+  epoch  50/100  loss=1.1504  bal_acc=0.3455
+  epoch  51/100  loss=1.1383  bal_acc=0.3038
+  epoch  52/100  loss=1.1394  bal_acc=0.3281
+  epoch  53/100  loss=1.1424  bal_acc=0.2934
+  epoch  54/100  loss=1.1360  bal_acc=0.3264
+  epoch  55/100  loss=1.1189  bal_acc=0.2760
+  epoch  56/100  loss=1.1304  bal_acc=0.3316
+  epoch  57/100  loss=1.1228  bal_acc=0.3160
+  epoch  58/100  loss=1.1179  bal_acc=0.3229
+  epoch  59/100  loss=1.1191  bal_acc=0.4080
+  epoch  60/100  loss=1.1067  bal_acc=0.3542
+  epoch  61/100  loss=1.1074  bal_acc=0.3021
+  epoch  62/100  loss=1.0994  bal_acc=0.2917
+  epoch  63/100  loss=1.1015  bal_acc=0.3142
+  epoch  64/100  loss=1.1018  bal_acc=0.3021
+  epoch  65/100  loss=1.0918  bal_acc=0.3021
+  epoch  66/100  loss=1.0859  bal_acc=0.2951
+  epoch  67/100  loss=1.0822  bal_acc=0.2847
+  epoch  68/100  loss=1.0896  bal_acc=0.3125
+  epoch  69/100  loss=1.0804  bal_acc=0.3750
+  epoch  70/100  loss=1.0786  bal_acc=0.3385
+  epoch  71/100  loss=1.0677  bal_acc=0.3785
+  epoch  72/100  loss=1.0668  bal_acc=0.3872
+  epoch  73/100  loss=1.0748  bal_acc=0.3351
+  epoch  74/100  loss=1.0658  bal_acc=0.3368
+  epoch  75/100  loss=1.0668  bal_acc=0.3438
+  epoch  76/100  loss=1.0506  bal_acc=0.3507
+  epoch  77/100  loss=1.0619  bal_acc=0.3455
+  epoch  78/100  loss=1.0623  bal_acc=0.3472
+  epoch  79/100  loss=1.0504  bal_acc=0.3837
+  epoch  80/100  loss=1.0592  bal_acc=0.3160
+  epoch  81/100  loss=1.0483  bal_acc=0.3108
+  epoch  82/100  loss=1.0537  bal_acc=0.4358
+  epoch  83/100  loss=1.0433  bal_acc=0.4062
+  epoch  84/100  loss=1.0393  bal_acc=0.3750
+  epoch  85/100  loss=1.0422  bal_acc=0.3611
+  epoch  86/100  loss=1.0443  bal_acc=0.4045
+  epoch  87/100  loss=1.0266  bal_acc=0.4184
+  epoch  88/100  loss=1.0443  bal_acc=0.3976
+  epoch  89/100  loss=1.0291  bal_acc=0.3715
+  epoch  90/100  loss=1.0360  bal_acc=0.4010
+  epoch  91/100  loss=1.0324  bal_acc=0.3958
+  epoch  92/100  loss=1.0291  bal_acc=0.3333
+  epoch  93/100  loss=1.0254  bal_acc=0.3906
+  epoch  94/100  loss=1.0241  bal_acc=0.4375
+  epoch  95/100  loss=1.0329  bal_acc=0.4184
+  epoch  96/100  loss=1.0161  bal_acc=0.4948
+  epoch  97/100  loss=1.0193  bal_acc=0.4514
+  epoch  98/100  loss=1.0223  bal_acc=0.4080
+  epoch  99/100  loss=1.0171  bal_acc=0.4062
+  epoch 100/100  loss=1.0079  bal_acc=0.4410
+
+Training complete.  Final balanced accuracy: 0.4410
+Checkpoint saved → results/BNCI2014_001/model.pt
+
+============================================================
+  Starting fixed-point quantization sweep
+============================================================
+
+[QuantAnalysis] Maximum observed value  : 57601.000000
+[QuantAnalysis]   - max input abs       : 6.008301
+[QuantAnalysis]   - max param abs       : 57601.000000
+[QuantAnalysis] Minimum integer bits    : 16
+[QuantAnalysis] Safety margin           : 1 bit(s)
+[QuantAnalysis] Sign bit                : 1 (signed)
+[QuantAnalysis] Selected integer bits   : 18
+
+============================================================
+  Fixed-Point Sweep: Q18.<F>  (F = 64 → 0)
+  Overflow mode  : saturate
+  Rounding mode  : nearest
+  Signed         : True
+  SNN time steps : 20
+  Output dir     : results/BNCI2014_001/quantization
+============================================================
+
+Evaluating float32 baseline …
+  Float32 baseline → acc=0.4410  loss=1.3355
+
+  [  1/65]  Q18.64        acc=0.4444  loss=1.2120  (1.8s)  [2%]
+  [  2/65]  Q18.63        acc=0.4444  loss=1.2120  (1.7s)  [3%]
+  [  3/65]  Q18.62        acc=0.4444  loss=1.2120  (1.7s)  [5%]
+  [  4/65]  Q18.61        acc=0.4444  loss=1.2120  (1.7s)  [6%]
+  [  5/65]  Q18.60        acc=0.4444  loss=1.2120  (1.7s)  [8%]
+  [  6/65]  Q18.59        acc=0.4444  loss=1.2120  (1.7s)  [9%]
+  [  7/65]  Q18.58        acc=0.4444  loss=1.2120  (1.7s)  [11%]
+  [  8/65]  Q18.57        acc=0.4444  loss=1.2120  (1.7s)  [12%]
+  [  9/65]  Q18.56        acc=0.4444  loss=1.2120  (1.7s)  [14%]
+  [ 10/65]  Q18.55        acc=0.4444  loss=1.2120  (1.7s)  [15%]
+  [ 11/65]  Q18.54        acc=0.4444  loss=1.2120  (1.7s)  [17%]
+  [ 12/65]  Q18.53        acc=0.4444  loss=1.2120  (1.7s)  [18%]
+  [ 13/65]  Q18.52        acc=0.4444  loss=1.2120  (1.7s)  [20%]
+  [ 14/65]  Q18.51        acc=0.4444  loss=1.2120  (1.7s)  [22%]
+  [ 15/65]  Q18.50        acc=0.4444  loss=1.2120  (1.7s)  [23%]
+  [ 16/65]  Q18.49        acc=0.4444  loss=1.2120  (1.7s)  [25%]
+  [ 17/65]  Q18.48        acc=0.4444  loss=1.2120  (1.7s)  [26%]
+  [ 18/65]  Q18.47        acc=0.4444  loss=1.2120  (1.7s)  [28%]
+  [ 19/65]  Q18.46        acc=0.4444  loss=1.2120  (1.7s)  [29%]
+  [ 20/65]  Q18.45        acc=0.4444  loss=1.2120  (1.7s)  [31%]
+  [ 21/65]  Q18.44        acc=0.4444  loss=1.2120  (1.7s)  [32%]
+  [ 22/65]  Q18.43        acc=0.4444  loss=1.2120  (1.7s)  [34%]
+  [ 23/65]  Q18.42        acc=0.4444  loss=1.2120  (1.7s)  [35%]
+  [ 24/65]  Q18.41        acc=0.4444  loss=1.2120  (1.7s)  [37%]
+  [ 25/65]  Q18.40        acc=0.4444  loss=1.2120  (1.7s)  [38%]
+  [ 26/65]  Q18.39        acc=0.4444  loss=1.2120  (1.7s)  [40%]
+  [ 27/65]  Q18.38        acc=0.4444  loss=1.2120  (1.7s)  [42%]
+  [ 28/65]  Q18.37        acc=0.4444  loss=1.2120  (1.7s)  [43%]
+  [ 29/65]  Q18.36        acc=0.4444  loss=1.2120  (1.7s)  [45%]
+  [ 30/65]  Q18.35        acc=0.4444  loss=1.2120  (1.7s)  [46%]
+  [ 31/65]  Q18.34        acc=0.4444  loss=1.2120  (1.7s)  [48%]
+  [ 32/65]  Q18.33        acc=0.4444  loss=1.2120  (1.7s)  [49%]
+  [ 33/65]  Q18.32        acc=0.4444  loss=1.2120  (1.7s)  [51%]
+  [ 34/65]  Q18.31        acc=0.4444  loss=1.2120  (1.7s)  [52%]
+  [ 35/65]  Q18.30        acc=0.4444  loss=1.2120  (1.7s)  [54%]
+  [ 36/65]  Q18.29        acc=0.4444  loss=1.2120  (1.7s)  [55%]
+  [ 37/65]  Q18.28        acc=0.4444  loss=1.2120  (1.7s)  [57%]
+  [ 38/65]  Q18.27        acc=0.4444  loss=1.2120  (1.7s)  [58%]
+  [ 39/65]  Q18.26        acc=0.4444  loss=1.2120  (1.7s)  [60%]
+  [ 40/65]  Q18.25        acc=0.4444  loss=1.2120  (1.7s)  [62%]
+  [ 41/65]  Q18.24        acc=0.4444  loss=1.2120  (1.7s)  [63%]
+  [ 42/65]  Q18.23        acc=0.4444  loss=1.2120  (1.7s)  [65%]
+  [ 43/65]  Q18.22        acc=0.4444  loss=1.2120  (1.7s)  [66%]
+  [ 44/65]  Q18.21        acc=0.4444  loss=1.2121  (1.7s)  [68%]
+  [ 45/65]  Q18.20        acc=0.4444  loss=1.2120  (1.7s)  [69%]
+  [ 46/65]  Q18.19        acc=0.4444  loss=1.2120  (1.7s)  [71%]
+  [ 47/65]  Q18.18        acc=0.4462  loss=1.2121  (1.7s)  [72%]
+  [ 48/65]  Q18.17        acc=0.4462  loss=1.2123  (1.7s)  [74%]
+  [ 49/65]  Q18.16        acc=0.4462  loss=1.2123  (1.7s)  [75%]
+  [ 50/65]  Q18.15        acc=0.4427  loss=1.2121  (1.7s)  [77%]
+  [ 51/65]  Q18.14        acc=0.4462  loss=1.2123  (1.7s)  [78%]
+  [ 52/65]  Q18.13        acc=0.4444  loss=1.2122  (1.7s)  [80%]
+  [ 53/65]  Q18.12        acc=0.4479  loss=1.2124  (1.7s)  [82%]
+  [ 54/65]  Q18.11        acc=0.4375  loss=1.2130  (1.7s)  [83%]
+  [ 55/65]  Q18.10        acc=0.4427  loss=1.2148  (1.7s)  [85%]
+  [ 56/65]  Q18.9         acc=0.4444  loss=1.2140  (1.7s)  [86%]
+  [ 57/65]  Q18.8         acc=0.4358  loss=1.2091  (1.7s)  [88%]
+  [ 58/65]  Q18.7         acc=0.4635  loss=1.1887  (1.7s)  [89%]
+  [ 59/65]  Q18.6         acc=0.4722  loss=1.1809  (1.7s)  [91%]
+  [ 60/65]  Q18.5         acc=0.4410  loss=1.2209  (1.7s)  [92%]
+  [ 61/65]  Q18.4         acc=0.3576  loss=1.3370  (1.7s)  [94%]
+  [ 62/65]  Q18.3         acc=0.5278  loss=1.1032  (1.7s)  [95%]
+  [ 63/65]  Q18.2         acc=0.2500  loss=1.6559  (1.7s)  [97%]
+  [ 64/65]  Q18.1         acc=0.2500  loss=1.3863  (1.7s)  [98%]
+  [ 65/65]  Q18.0         acc=0.2500  loss=1.3863  (1.7s)  [100%]
+
+[Sweep] Results saved → results/BNCI2014_001/quantization/quantization_results.csv
+[Sweep] Baseline saved → results/BNCI2014_001/quantization/float_baseline.csv
+
+[Sweep] Generating plots …
+[Plot] Saved → results/BNCI2014_001/quantization/accuracy_vs_fractional_bits.png
+[Plot] Saved → results/BNCI2014_001/quantization/loss_vs_fractional_bits.png
+[Plot] Saved → results/BNCI2014_001/quantization/accuracy_drop_vs_fractional_bits.png
+
+[Sweep] Complete.  Results in results/BNCI2014_001/quantization/
+
+=======================================================
+    F-bits    Accuracy        Loss   Drop pp
+-------------------------------------------------------
+        64      44.44%      1.2120    -0.35pp
+        60      44.44%      1.2120    -0.35pp
+        56      44.44%      1.2120    -0.35pp
+        52      44.44%      1.2120    -0.35pp
+        48      44.44%      1.2120    -0.35pp
+        44      44.44%      1.2120    -0.35pp
+        40      44.44%      1.2120    -0.35pp
+        36      44.44%      1.2120    -0.35pp
+        32      44.44%      1.2120    -0.35pp
+        28      44.44%      1.2120    -0.35pp
+        24      44.44%      1.2120    -0.35pp
+        20      44.44%      1.2120    -0.35pp
+        16      44.62%      1.2123    -0.52pp
+        12      44.79%      1.2124    -0.69pp
+         8      43.58%      1.2091    +0.52pp
+         4      35.76%      1.3370    +8.33pp
+         0      25.00%      1.3863   +19.10pp
+=======================================================
+
+  Minimum fractional bits for <5.0pp accuracy drop: 3
+
+All done.  Results saved to results/BNCI2014_001/quantization/
+Finished : Wed Jun 17 14:06:12 MDT 2026
+Exit code: 0

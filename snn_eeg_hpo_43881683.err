@@ -1,0 +1,199 @@
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+ERROR: Invalid requirement: 'Binary file requirements.txt matches': Expected end or semicolon (after name and no valid version specifier)
+    Binary file requirements.txt matches
+           ^ (from line 1 of /home/aleksander.berezowsk/requirements_notorch.txt)
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+/home/aleksander.berezowsk/spiking-eegnet/src/main.py:86: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
+/home/aleksander.berezowsk/spiking-eegnet/src/main.py:86: ExperimentalWarning: Argument ``group`` is an experimental feature. The interface can change in the future.
+  sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
+[I 2026-06-17 01:32:45,368] Using an existing study with name 'snn_eegnet_v2_200_20' instead of creating a new one.
+[I 2026-06-17 01:33:21,859] Trial 170 pruned. 
+[I 2026-06-17 01:53:07,577] Trial 171 finished with value: 0.546875 and parameters: {'FLOW': 7.848496692925149, 'FHIGH': 107.13284869812065, 'LR_EXP': -2.6242329326990617, 'DROPOUT': 0.5829961447655638, 'BETA': 0.8836972505702091, 'SPIKE_GRAD_SLOPE': 19.060742710064698, 'TEMPORAL_FILTERS': 32, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 40, 'TEMPORAL_KERNEL_DIV': 7, 'SEPARABLE_KERNEL_SIZE': 10, 'POOL1_SIZE': 3, 'POOL2_SIZE': 8, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': True}. Best is trial 21 with value: 0.6302083333333333.
+[I 2026-06-17 01:57:21,890] Trial 172 pruned. 
+[I 2026-06-17 02:11:15,477] Trial 173 finished with value: 0.4878472222222222 and parameters: {'FLOW': 10.031146279594696, 'FHIGH': 52.717088249927855, 'LR_EXP': -2.1667510282900277, 'DROPOUT': 0.3658905113632034, 'BETA': 0.5905986602845623, 'SPIKE_GRAD_SLOPE': 8.561355179271528, 'TEMPORAL_FILTERS': 21, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 28, 'TEMPORAL_KERNEL_DIV': 5, 'SEPARABLE_KERNEL_SIZE': 7, 'POOL1_SIZE': 5, 'POOL2_SIZE': 8, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 21 with value: 0.6302083333333333.
+[I 2026-06-17 02:30:13,224] Trial 174 finished with value: 0.5902777777777778 and parameters: {'FLOW': 1.5040143700173836, 'FHIGH': 77.8481596364644, 'LR_EXP': -2.2902073601781354, 'DROPOUT': 0.5068750956008947, 'BETA': 0.7168950467319838, 'SPIKE_GRAD_SLOPE': 19.329353284790223, 'TEMPORAL_FILTERS': 31, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 23, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 19, 'POOL1_SIZE': 3, 'POOL2_SIZE': 8, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 21 with value: 0.6302083333333333.
+[I 2026-06-17 02:44:44,032] Trial 175 finished with value: 0.5208333333333334 and parameters: {'FLOW': 8.42962969115261, 'FHIGH': 46.71581982100102, 'LR_EXP': -2.6783585245164874, 'DROPOUT': 0.5413209186452344, 'BETA': 0.7251060922351689, 'SPIKE_GRAD_SLOPE': 31.38057210652272, 'TEMPORAL_FILTERS': 21, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 36, 'TEMPORAL_KERNEL_DIV': 4, 'SEPARABLE_KERNEL_SIZE': 11, 'POOL1_SIZE': 5, 'POOL2_SIZE': 5, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': False}. Best is trial 21 with value: 0.6302083333333333.
+[I 2026-06-17 02:45:18,908] Trial 176 pruned. 
+[I 2026-06-17 03:02:13,833] Trial 177 finished with value: 0.5173611111111112 and parameters: {'FLOW': 6.724331116231623, 'FHIGH': 81.32844272353488, 'LR_EXP': -2.8528075276220846, 'DROPOUT': 0.5696951010057121, 'BETA': 0.7070408246272448, 'SPIKE_GRAD_SLOPE': 32.29869143726259, 'TEMPORAL_FILTERS': 30, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 19, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 23, 'POOL1_SIZE': 2, 'POOL2_SIZE': 7, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 21 with value: 0.6302083333333333.
+[I 2026-06-17 03:16:32,884] Trial 178 finished with value: 0.5017361111111112 and parameters: {'FLOW': 6.888558403127506, 'FHIGH': 109.42189343706816, 'LR_EXP': -3.002906793183648, 'DROPOUT': 0.4920906799442156, 'BETA': 0.7925884669724742, 'SPIKE_GRAD_SLOPE': 19.558884941561637, 'TEMPORAL_FILTERS': 27, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 58, 'TEMPORAL_KERNEL_DIV': 6, 'SEPARABLE_KERNEL_SIZE': 14, 'POOL1_SIZE': 6, 'POOL2_SIZE': 8, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': False}. Best is trial 21 with value: 0.6302083333333333.
+[I 2026-06-17 03:17:15,096] Trial 179 pruned. 
+[I 2026-06-17 03:17:50,467] Trial 180 pruned. 
+[I 2026-06-17 03:18:28,891] Trial 181 pruned. 
+[I 2026-06-17 03:18:55,422] Trial 182 pruned. 
+[I 2026-06-17 03:32:39,766] Trial 183 finished with value: 0.6128472222222222 and parameters: {'FLOW': 7.012164027689202, 'FHIGH': 56.43036926206506, 'LR_EXP': -2.2148512897853805, 'DROPOUT': 0.6938336320131333, 'BETA': 0.726058330534307, 'SPIKE_GRAD_SLOPE': 6.519271136183246, 'TEMPORAL_FILTERS': 23, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 46, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 17, 'POOL1_SIZE': 5, 'POOL2_SIZE': 7, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 21 with value: 0.6302083333333333.
+[I 2026-06-17 03:33:16,842] Trial 184 pruned. 
+[I 2026-06-17 03:52:50,729] Trial 185 finished with value: 0.607638888888889 and parameters: {'FLOW': 4.861483168291917, 'FHIGH': 58.95181947890585, 'LR_EXP': -2.4715624520776123, 'DROPOUT': 0.5977768583903099, 'BETA': 0.6888130665657098, 'SPIKE_GRAD_SLOPE': 11.962156762947338, 'TEMPORAL_FILTERS': 32, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 55, 'TEMPORAL_KERNEL_DIV': 7, 'SEPARABLE_KERNEL_SIZE': 11, 'POOL1_SIZE': 5, 'POOL2_SIZE': 6, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 21 with value: 0.6302083333333333.
+[I 2026-06-17 03:53:28,720] Trial 186 pruned. 
+[I 2026-06-17 04:11:49,969] Trial 187 finished with value: 0.546875 and parameters: {'FLOW': 10.803309503556868, 'FHIGH': 65.88153070616174, 'LR_EXP': -2.419863717952759, 'DROPOUT': 0.6125004203965116, 'BETA': 0.7455636034293729, 'SPIKE_GRAD_SLOPE': 9.479107483596527, 'TEMPORAL_FILTERS': 30, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 64, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 11, 'POOL1_SIZE': 6, 'POOL2_SIZE': 7, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 21 with value: 0.6302083333333333.
+[I 2026-06-17 04:31:24,269] Trial 188 finished with value: 0.5902777777777777 and parameters: {'FLOW': 6.879197393470517, 'FHIGH': 76.17121906734172, 'LR_EXP': -3.056321082531439, 'DROPOUT': 0.6135926738225538, 'BETA': 0.6966317379685789, 'SPIKE_GRAD_SLOPE': 8.101058913655262, 'TEMPORAL_FILTERS': 32, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 42, 'TEMPORAL_KERNEL_DIV': 7, 'SEPARABLE_KERNEL_SIZE': 16, 'POOL1_SIZE': 5, 'POOL2_SIZE': 7, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': False}. Best is trial 21 with value: 0.6302083333333333.
+[I 2026-06-17 04:42:07,838] Trial 189 finished with value: 0.5486111111111112 and parameters: {'FLOW': 12.338154909942629, 'FHIGH': 63.58375931364543, 'LR_EXP': -2.544101924546591, 'DROPOUT': 0.6038407357904091, 'BETA': 0.5945152326544876, 'SPIKE_GRAD_SLOPE': 10.408437160303812, 'TEMPORAL_FILTERS': 18, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 43, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 17, 'POOL1_SIZE': 4, 'POOL2_SIZE': 4, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 21 with value: 0.6302083333333333.
+[I 2026-06-17 04:56:56,592] Trial 190 finished with value: 0.53125 and parameters: {'FLOW': 10.876463099776226, 'FHIGH': 54.43156599463084, 'LR_EXP': -2.7004851142383393, 'DROPOUT': 0.7257124647665585, 'BETA': 0.737850080113581, 'SPIKE_GRAD_SLOPE': 16.55383867902803, 'TEMPORAL_FILTERS': 25, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 48, 'TEMPORAL_KERNEL_DIV': 7, 'SEPARABLE_KERNEL_SIZE': 17, 'POOL1_SIZE': 5, 'POOL2_SIZE': 8, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 21 with value: 0.6302083333333333.
+[I 2026-06-17 04:57:31,895] Trial 191 pruned. 
+[I 2026-06-17 05:15:30,484] Trial 192 finished with value: 0.5208333333333334 and parameters: {'FLOW': 1.4548939412917594, 'FHIGH': 70.3700791094573, 'LR_EXP': -2.5520785743778207, 'DROPOUT': 0.5160023718595521, 'BETA': 0.594968338647561, 'SPIKE_GRAD_SLOPE': 15.581642027476791, 'TEMPORAL_FILTERS': 29, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 47, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 14, 'POOL1_SIZE': 4, 'POOL2_SIZE': 7, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': False}. Best is trial 21 with value: 0.6302083333333333.
+[I 2026-06-17 05:16:11,686] Trial 193 pruned. 
+[I 2026-06-17 05:32:02,943] Trial 194 finished with value: 0.5902777777777778 and parameters: {'FLOW': 6.644952895392685, 'FHIGH': 85.621873619766, 'LR_EXP': -2.440652885175507, 'DROPOUT': 0.6467565856317516, 'BETA': 0.7892338690409267, 'SPIKE_GRAD_SLOPE': 17.15823297387971, 'TEMPORAL_FILTERS': 28, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 47, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 18, 'POOL1_SIZE': 4, 'POOL2_SIZE': 6, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 21 with value: 0.6302083333333333.
+[I 2026-06-17 05:51:03,508] Trial 195 finished with value: 0.5625 and parameters: {'FLOW': 2.5990259897682244, 'FHIGH': 81.52119734757332, 'LR_EXP': -2.3932806233552024, 'DROPOUT': 0.6129500625502082, 'BETA': 0.7199078788358552, 'SPIKE_GRAD_SLOPE': 16.908693577211412, 'TEMPORAL_FILTERS': 31, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 27, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 21, 'POOL1_SIZE': 3, 'POOL2_SIZE': 8, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 21 with value: 0.6302083333333333.
+[I 2026-06-17 06:09:18,698] Trial 196 finished with value: 0.5729166666666666 and parameters: {'FLOW': 7.662802490470071, 'FHIGH': 78.79838583927386, 'LR_EXP': -2.1121965879032074, 'DROPOUT': 0.543981873491681, 'BETA': 0.9339916211640562, 'SPIKE_GRAD_SLOPE': 11.574584422231831, 'TEMPORAL_FILTERS': 29, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 63, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 18, 'POOL1_SIZE': 3, 'POOL2_SIZE': 6, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 21 with value: 0.6302083333333333.
+[I 2026-06-17 06:28:14,407] Trial 197 finished with value: 0.6059027777777778 and parameters: {'FLOW': 2.0195048833507565, 'FHIGH': 75.07480024813282, 'LR_EXP': -2.364238285397378, 'DROPOUT': 0.6056978372231117, 'BETA': 0.6329003875355791, 'SPIKE_GRAD_SLOPE': 9.6411656562772, 'TEMPORAL_FILTERS': 32, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 26, 'TEMPORAL_KERNEL_DIV': 4, 'SEPARABLE_KERNEL_SIZE': 29, 'POOL1_SIZE': 8, 'POOL2_SIZE': 5, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 21 with value: 0.6302083333333333.
+[I 2026-06-17 06:28:49,975] Trial 198 pruned. 
+[I 2026-06-17 06:29:30,472] Trial 199 pruned. 
+[I 2026-06-17 06:31:03,667] Trial 200 pruned. 
+[I 2026-06-17 06:31:52,869] Trial 201 pruned. 
+[I 2026-06-17 06:45:25,281] Trial 202 finished with value: 0.640625 and parameters: {'FLOW': 10.112667133318038, 'FHIGH': 100.95511141909851, 'LR_EXP': -2.27764258266437, 'DROPOUT': 0.6922722451980294, 'BETA': 0.8332811122300727, 'SPIKE_GRAD_SLOPE': 21.42616420159176, 'TEMPORAL_FILTERS': 21, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 47, 'TEMPORAL_KERNEL_DIV': 6, 'SEPARABLE_KERNEL_SIZE': 19, 'POOL1_SIZE': 6, 'POOL2_SIZE': 6, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 07:02:47,302] Trial 203 finished with value: 0.560763888888889 and parameters: {'FLOW': 2.0671018500806433, 'FHIGH': 87.66843220823232, 'LR_EXP': -2.514208087938084, 'DROPOUT': 0.6036288226794996, 'BETA': 0.8047929023989836, 'SPIKE_GRAD_SLOPE': 18.957411311115997, 'TEMPORAL_FILTERS': 32, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 49, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 16, 'POOL1_SIZE': 6, 'POOL2_SIZE': 5, 'NORM_AXIS': 'full', 'RUN_ZSCORE': True}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 07:03:22,312] Trial 204 pruned. 
+[I 2026-06-17 07:03:52,055] Trial 205 pruned. 
+[I 2026-06-17 07:24:21,647] Trial 206 finished with value: 0.5677083333333334 and parameters: {'FLOW': 9.892108429535567, 'FHIGH': 72.00876281163605, 'LR_EXP': -2.4364972159261855, 'DROPOUT': 0.38841827552239805, 'BETA': 0.7184004841847489, 'SPIKE_GRAD_SLOPE': 7.891396034401593, 'TEMPORAL_FILTERS': 31, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 29, 'TEMPORAL_KERNEL_DIV': 3, 'SEPARABLE_KERNEL_SIZE': 30, 'POOL1_SIZE': 8, 'POOL2_SIZE': 5, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 07:44:15,380] Trial 207 finished with value: 0.6006944444444444 and parameters: {'FLOW': 7.135647011042777, 'FHIGH': 73.3684848853295, 'LR_EXP': -2.5049223651200143, 'DROPOUT': 0.6291758608760359, 'BETA': 0.539145753898773, 'SPIKE_GRAD_SLOPE': 31.750971691754987, 'TEMPORAL_FILTERS': 32, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 34, 'TEMPORAL_KERNEL_DIV': 6, 'SEPARABLE_KERNEL_SIZE': 32, 'POOL1_SIZE': 8, 'POOL2_SIZE': 8, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': True}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 07:44:57,550] Trial 208 pruned. 
+[I 2026-06-17 07:45:35,525] Trial 209 pruned. 
+[I 2026-06-17 07:46:04,398] Trial 210 pruned. 
+[I 2026-06-17 07:46:37,852] Trial 211 pruned. 
+[I 2026-06-17 08:07:34,856] Trial 212 finished with value: 0.5798611111111112 and parameters: {'FLOW': 7.228032711697407, 'FHIGH': 69.96341524559129, 'LR_EXP': -2.3332715451230888, 'DROPOUT': 0.6857784049586977, 'BETA': 0.5775232591803169, 'SPIKE_GRAD_SLOPE': 27.206441946553262, 'TEMPORAL_FILTERS': 32, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 36, 'TEMPORAL_KERNEL_DIV': 4, 'SEPARABLE_KERNEL_SIZE': 28, 'POOL1_SIZE': 6, 'POOL2_SIZE': 8, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': True}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 08:10:38,995] Trial 213 pruned. 
+[I 2026-06-17 08:25:38,754] Trial 214 finished with value: 0.5694444444444444 and parameters: {'FLOW': 6.877146562118745, 'FHIGH': 85.27719833187639, 'LR_EXP': -2.9080172877857726, 'DROPOUT': 0.5052670640900111, 'BETA': 0.5205180952028917, 'SPIKE_GRAD_SLOPE': 13.959869855920026, 'TEMPORAL_FILTERS': 22, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 43, 'TEMPORAL_KERNEL_DIV': 7, 'SEPARABLE_KERNEL_SIZE': 31, 'POOL1_SIZE': 7, 'POOL2_SIZE': 8, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': True}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 08:38:36,860] Trial 215 finished with value: 0.6093750000000001 and parameters: {'FLOW': 4.910014203708743, 'FHIGH': 90.02740063999342, 'LR_EXP': -2.1258637541298726, 'DROPOUT': 0.5822337101827751, 'BETA': 0.8504870490766487, 'SPIKE_GRAD_SLOPE': 9.364077034132299, 'TEMPORAL_FILTERS': 17, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 36, 'TEMPORAL_KERNEL_DIV': 6, 'SEPARABLE_KERNEL_SIZE': 19, 'POOL1_SIZE': 7, 'POOL2_SIZE': 6, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 08:52:59,611] Trial 216 finished with value: 0.592013888888889 and parameters: {'FLOW': 11.085909861526527, 'FHIGH': 96.66921983195454, 'LR_EXP': -2.9536526250143003, 'DROPOUT': 0.6397584374162173, 'BETA': 0.8104331575966106, 'SPIKE_GRAD_SLOPE': 9.896056933075208, 'TEMPORAL_FILTERS': 26, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 39, 'TEMPORAL_KERNEL_DIV': 5, 'SEPARABLE_KERNEL_SIZE': 14, 'POOL1_SIZE': 6, 'POOL2_SIZE': 3, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 08:53:29,875] Trial 217 pruned. 
+[I 2026-06-17 08:53:57,046] Trial 218 pruned. 
+[I 2026-06-17 09:10:25,270] Trial 219 finished with value: 0.48958333333333337 and parameters: {'FLOW': 8.600632483890482, 'FHIGH': 67.18478645595782, 'LR_EXP': -3.0429719487504743, 'DROPOUT': 0.5811863415666614, 'BETA': 0.6699510931009347, 'SPIKE_GRAD_SLOPE': 12.915021980422694, 'TEMPORAL_FILTERS': 26, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 8, 'TEMPORAL_KERNEL_DIV': 4, 'SEPARABLE_KERNEL_SIZE': 30, 'POOL1_SIZE': 8, 'POOL2_SIZE': 7, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 09:10:59,554] Trial 220 pruned. 
+[I 2026-06-17 09:27:46,774] Trial 221 finished with value: 0.5989583333333333 and parameters: {'FLOW': 10.979157197197368, 'FHIGH': 71.90803057681381, 'LR_EXP': -2.660162785979552, 'DROPOUT': 0.5706849052621412, 'BETA': 0.928924851358319, 'SPIKE_GRAD_SLOPE': 17.128586033152157, 'TEMPORAL_FILTERS': 28, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 40, 'TEMPORAL_KERNEL_DIV': 5, 'SEPARABLE_KERNEL_SIZE': 14, 'POOL1_SIZE': 4, 'POOL2_SIZE': 8, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': False}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 09:42:19,418] Trial 222 finished with value: 0.5659722222222222 and parameters: {'FLOW': 8.210577105132046, 'FHIGH': 90.61232042977268, 'LR_EXP': -2.3933790035541325, 'DROPOUT': 0.5331248524614013, 'BETA': 0.7793591401946697, 'SPIKE_GRAD_SLOPE': 16.768589630426295, 'TEMPORAL_FILTERS': 21, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 55, 'TEMPORAL_KERNEL_DIV': 4, 'SEPARABLE_KERNEL_SIZE': 10, 'POOL1_SIZE': 6, 'POOL2_SIZE': 4, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 09:53:33,586] Trial 223 finished with value: 0.564236111111111 and parameters: {'FLOW': 6.566916490952332, 'FHIGH': 85.94388609656005, 'LR_EXP': -2.206128079385258, 'DROPOUT': 0.5126587253918664, 'BETA': 0.8603864563479934, 'SPIKE_GRAD_SLOPE': 15.557667727370738, 'TEMPORAL_FILTERS': 23, 'DEPTH_MULTIPLIER': 1, 'POINTWISE_FILTERS': 42, 'TEMPORAL_KERNEL_DIV': 7, 'SEPARABLE_KERNEL_SIZE': 19, 'POOL1_SIZE': 6, 'POOL2_SIZE': 2, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 09:54:12,977] Trial 224 pruned. 
+[I 2026-06-17 09:54:48,429] Trial 225 pruned. 
+[I 2026-06-17 09:55:29,375] Trial 226 pruned. 
+[I 2026-06-17 10:11:55,813] Trial 227 finished with value: 0.6163194444444444 and parameters: {'FLOW': 3.0657603530306696, 'FHIGH': 62.73321712729576, 'LR_EXP': -2.9201083601244453, 'DROPOUT': 0.636969339580159, 'BETA': 0.8509178484863674, 'SPIKE_GRAD_SLOPE': 10.511455431515952, 'TEMPORAL_FILTERS': 26, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 32, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 20, 'POOL1_SIZE': 5, 'POOL2_SIZE': 5, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': False}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 10:12:28,496] Trial 228 pruned. 
+[I 2026-06-17 10:12:56,446] Trial 229 pruned. 
+[I 2026-06-17 10:14:10,356] Trial 230 pruned. 
+[I 2026-06-17 10:31:40,379] Trial 231 finished with value: 0.53125 and parameters: {'FLOW': 6.512307965367553, 'FHIGH': 83.40824290350591, 'LR_EXP': -2.3597049227973153, 'DROPOUT': 0.44611700619117634, 'BETA': 0.9026846142438794, 'SPIKE_GRAD_SLOPE': 30.81824774997698, 'TEMPORAL_FILTERS': 28, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 30, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 15, 'POOL1_SIZE': 3, 'POOL2_SIZE': 8, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': False}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 10:32:04,065] Trial 232 pruned. 
+[I 2026-06-17 10:32:40,049] Trial 233 pruned. 
+[I 2026-06-17 10:33:20,423] Trial 234 pruned. 
+[I 2026-06-17 10:33:55,193] Trial 235 pruned. 
+[I 2026-06-17 10:34:23,364] Trial 236 pruned. 
+[I 2026-06-17 10:54:25,348] Trial 237 finished with value: 0.5434027777777778 and parameters: {'FLOW': 5.188901884727421, 'FHIGH': 68.05508307768172, 'LR_EXP': -2.302786364408017, 'DROPOUT': 0.5237178112196657, 'BETA': 0.6685611224828886, 'SPIKE_GRAD_SLOPE': 7.903086722471022, 'TEMPORAL_FILTERS': 32, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 11, 'TEMPORAL_KERNEL_DIV': 5, 'SEPARABLE_KERNEL_SIZE': 32, 'POOL1_SIZE': 7, 'POOL2_SIZE': 6, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 11:10:02,959] Trial 238 finished with value: 0.5729166666666666 and parameters: {'FLOW': 11.265994368914528, 'FHIGH': 68.62636596530267, 'LR_EXP': -3.0708234706583593, 'DROPOUT': 0.6037078846195466, 'BETA': 0.856805348464142, 'SPIKE_GRAD_SLOPE': 18.686482050065838, 'TEMPORAL_FILTERS': 26, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 45, 'TEMPORAL_KERNEL_DIV': 6, 'SEPARABLE_KERNEL_SIZE': 16, 'POOL1_SIZE': 3, 'POOL2_SIZE': 7, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': False}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 11:10:44,403] Trial 239 pruned. 
+[I 2026-06-17 11:25:05,393] Trial 240 finished with value: 0.611111111111111 and parameters: {'FLOW': 9.922103885772747, 'FHIGH': 64.3537607710766, 'LR_EXP': -2.8228239331246026, 'DROPOUT': 0.620783822490924, 'BETA': 0.8137579006570163, 'SPIKE_GRAD_SLOPE': 18.10289322623739, 'TEMPORAL_FILTERS': 25, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 31, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 8, 'POOL1_SIZE': 7, 'POOL2_SIZE': 5, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': False}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 11:25:45,522] Trial 241 pruned. 
+[I 2026-06-17 11:26:26,710] Trial 242 pruned. 
+[I 2026-06-17 11:27:06,149] Trial 243 pruned. 
+[I 2026-06-17 11:27:33,041] Trial 244 pruned. 
+[I 2026-06-17 11:40:19,912] Trial 245 finished with value: 0.607638888888889 and parameters: {'FLOW': 9.12458234611046, 'FHIGH': 59.5591509085233, 'LR_EXP': -2.3058544363081572, 'DROPOUT': 0.650770772387745, 'BETA': 0.8680325695487219, 'SPIKE_GRAD_SLOPE': 13.510459327851152, 'TEMPORAL_FILTERS': 21, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 26, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 6, 'POOL1_SIZE': 7, 'POOL2_SIZE': 5, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': False}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 11:40:51,488] Trial 246 pruned. 
+[I 2026-06-17 11:56:01,582] Trial 247 finished with value: 0.5677083333333334 and parameters: {'FLOW': 8.794105289832435, 'FHIGH': 82.17164793401328, 'LR_EXP': -2.173766019571064, 'DROPOUT': 0.6963222046096915, 'BETA': 0.8693485758661695, 'SPIKE_GRAD_SLOPE': 18.040688871880878, 'TEMPORAL_FILTERS': 27, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 46, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 17, 'POOL1_SIZE': 6, 'POOL2_SIZE': 6, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 11:56:40,077] Trial 248 pruned. 
+[I 2026-06-17 12:15:56,456] Trial 249 finished with value: 0.5260416666666667 and parameters: {'FLOW': 10.057247293345155, 'FHIGH': 60.72370498870541, 'LR_EXP': -2.0778499923661773, 'DROPOUT': 0.3677610494442772, 'BETA': 0.5652005711965907, 'SPIKE_GRAD_SLOPE': 44.31062710950591, 'TEMPORAL_FILTERS': 31, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 50, 'TEMPORAL_KERNEL_DIV': 6, 'SEPARABLE_KERNEL_SIZE': 31, 'POOL1_SIZE': 7, 'POOL2_SIZE': 7, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': True}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 12:16:30,236] Trial 250 pruned. 
+[I 2026-06-17 12:33:00,478] Trial 251 finished with value: 0.5295138888888888 and parameters: {'FLOW': 10.373334708742401, 'FHIGH': 77.62761519838054, 'LR_EXP': -2.387697125535689, 'DROPOUT': 0.562271527746267, 'BETA': 0.525170965316927, 'SPIKE_GRAD_SLOPE': 47.39114002228922, 'TEMPORAL_FILTERS': 23, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 29, 'TEMPORAL_KERNEL_DIV': 4, 'SEPARABLE_KERNEL_SIZE': 26, 'POOL1_SIZE': 8, 'POOL2_SIZE': 7, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': True}. Best is trial 202 with value: 0.640625.
+[I 2026-06-17 12:34:25,716] Trial 252 pruned. 
+[I 2026-06-17 12:34:54,409] Trial 253 pruned. 
+[W 2026-06-17 12:35:02,210] Trial 254 failed with parameters: {'FLOW': 14.113507627213258, 'FHIGH': 81.26860867327791, 'LR_EXP': -2.369654401234631, 'DROPOUT': 0.28849432189591, 'BETA': 0.6119159338553751, 'SPIKE_GRAD_SLOPE': 37.02222745193535, 'TEMPORAL_FILTERS': 31, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 40, 'TEMPORAL_KERNEL_DIV': 5, 'SEPARABLE_KERNEL_SIZE': 10, 'POOL1_SIZE': 6, 'POOL2_SIZE': 8, 'NORM_AXIS': 'full', 'RUN_ZSCORE': True} because of the following error: OutOfMemoryError('CUDA out of memory. Tried to allocate 84.00 MiB. GPU 0 has a total capacity of 15.77 GiB of which 58.19 MiB is free. Including non-PyTorch memory, this process has 15.71 GiB memory in use. Of the allocated memory 14.76 GiB is allocated by PyTorch, and 582.88 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)').
+Traceback (most recent call last):
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/optuna/study/_optimize.py", line 206, in _run_trial
+    value_or_values = func(trial)
+                      ^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/main.py", line 44, in objective
+    return pipeline(**params, **FIXED, trial=trial, save_plots=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/pipeline.py", line 122, in pipeline
+    hist_loso, acc_loso, trained_model = experiment_loso(
+                                         ^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/experiment_loso.py", line 27, in experiment_loso
+    history = run_training(
+              ^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/run_training.py", line 45, in run_training
+    loss = train_one_epoch(model, train_loader, optimizer, criterion, device, n_steps_train)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/train_one_epoch.py", line 7, in train_one_epoch
+    spk = model(xb, num_steps=n_steps)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/spiking_eegnet.py", line 222, in forward
+    spk1, mem1 = self.lif1(cur, mem1)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/snntorch/_neurons/leaky.py", line 209, in forward
+    self.reset = self.mem_reset(self.mem)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/snntorch/_neurons/neurons.py", line 106, in mem_reset
+    reset = self.spike_grad(mem_shift).clone().detach()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 84.00 MiB. GPU 0 has a total capacity of 15.77 GiB of which 58.19 MiB is free. Including non-PyTorch memory, this process has 15.71 GiB memory in use. Of the allocated memory 14.76 GiB is allocated by PyTorch, and 582.88 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[W 2026-06-17 12:35:02,271] Trial 254 failed with value None.
+Traceback (most recent call last):
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/main.py", line 92, in <module>
+    study.optimize(objective, n_trials=n_trials, n_jobs=1,
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/optuna/study/study.py", line 516, in optimize
+    _optimize(
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/optuna/study/_optimize.py", line 68, in _optimize
+    _optimize_sequential(
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/optuna/study/_optimize.py", line 165, in _optimize_sequential
+    frozen_trial_id = _run_trial(study, func, catch)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/optuna/study/_optimize.py", line 263, in _run_trial
+    raise func_err
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/optuna/study/_optimize.py", line 206, in _run_trial
+    value_or_values = func(trial)
+                      ^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/main.py", line 44, in objective
+    return pipeline(**params, **FIXED, trial=trial, save_plots=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/pipeline.py", line 122, in pipeline
+    hist_loso, acc_loso, trained_model = experiment_loso(
+                                         ^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/experiment_loso.py", line 27, in experiment_loso
+    history = run_training(
+              ^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/run_training.py", line 45, in run_training
+    loss = train_one_epoch(model, train_loader, optimizer, criterion, device, n_steps_train)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/train_one_epoch.py", line 7, in train_one_epoch
+    spk = model(xb, num_steps=n_steps)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/spiking_eegnet.py", line 222, in forward
+    spk1, mem1 = self.lif1(cur, mem1)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/snntorch/_neurons/leaky.py", line 209, in forward
+    self.reset = self.mem_reset(self.mem)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/snntorch/_neurons/neurons.py", line 106, in mem_reset
+    reset = self.spike_grad(mem_shift).clone().detach()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 84.00 MiB. GPU 0 has a total capacity of 15.77 GiB of which 58.19 MiB is free. Including non-PyTorch memory, this process has 15.71 GiB memory in use. Of the allocated memory 14.76 GiB is allocated by PyTorch, and 582.88 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
