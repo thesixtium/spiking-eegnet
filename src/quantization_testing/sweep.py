@@ -24,6 +24,7 @@ from .config import QuantConfig
 from .quantizer import FixedPointQuantizer, determine_integer_bits
 from .evaluator import evaluate_quantized
 from .plotting import generate_all_plots
+from .model_analysis import analyse_model
 
 
 def run_quantization_sweep(
@@ -69,6 +70,11 @@ def run_quantization_sweep(
     output_dir.mkdir(parents=True, exist_ok=True)
 
     model.eval()
+
+    # ── Step 0: Model weight analysis ────────────────────────────────────────
+    analysis_dir = output_dir / "model_analysis"
+    if cfg.run_model_analysis:
+        analyse_model(model, output_dir=analysis_dir, verbose=True)
 
     # ── Step 1: Auto integer-bit selection ───────────────────────────────────
     integer_bits = determine_integer_bits(train_loader, model, cfg, device)

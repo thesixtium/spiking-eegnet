@@ -68,6 +68,13 @@ class QuantConfig:
     frac_bits_step: int = 1
     n_steps_eval: int = 20
 
+    run_model_analysis: bool = True
+    """
+    If True, run the full model weight analysis (architecture summary,
+    per-layer stats, outlier report, and plots) before the quantization sweep.
+    Set to False to skip on subsequent runs when you already have the reports.
+    """
+
     @property
     def frac_bits_range(self) -> list[int]:
         """Return the list of fractional-bit values to sweep, high → low."""
