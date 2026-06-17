@@ -184,13 +184,61 @@ def determine_integer_bits(
                 break
             max_input_abs = max(max_input_abs, xb.abs().max().item())
 
-    # Scan model parameters (weights, biases, BN running stats)
+    # Scan model parameters (weights, biases, BN gamma/beta)
     max_param_abs = 0.0
     for name, param in model.named_parameters():
-        max_param_abs = max(max_param_abs, param.data.abs().max().item())
+        val = param.data.abs().max().item()
+        max_param_abs = max(max_param_abs, val)
+        print(f"  [DEBUG param] {name:<50} max={val:.6f}  shape={tuple(param.shape)}")
+
+    # Scan buffers — but ONLY the ones that are actually quantized at runtime.
+    #
+    # Excluded buffer patterns and why:
+    #
+    #   "mem"                  — LIF membrane potentials.  These are runtime
+    #                            state re-initialised to 0 at the start of every
+    #                            forward pass (init_leaky()).  Whatever value they
+    #                            hold after the last training step is meaningless
+    #                            for fixed-point range analysis.
+    #
+    #   "running_var"          — Raw BatchNorm variance.  It is never quantized
+    #                            directly; _bn_params() converts it to
+    #                            1/sqrt(running_var + eps) before quantizing.
+    #                            The raw variance can exceed 1 and would
+    #                            artificially inflate the integer-bit estimate.
+    #
+    #   "num_batches_tracked"  — Scalar training counter, not used in inference.
+    #
+    #   "threshold"            — LIF spike threshold, always 1.0.  Already
+    #                            representable in any reasonable format and
+    #                            hardcoded in the evaluator.
+    #
+    #   "graded_spikes_factor" — Always 1.0, same reasoning as threshold.
+    #
+    #   "beta"                 — LIF leak factor (≤1.0 by definition).
+    #                            Quantized separately via a scalar tensor in the
+    #                            evaluator; well within any reasonable range.
+    #
+    # What IS included:
+    #   "running_mean"         — Used directly in _bn_params() shift calculation.
+    #                            Typically small but worth scanning.
+    #
+    _SKIP_BUFFER_PATTERNS = {
+        "mem",
+        "running_var",
+        "num_batches_tracked",
+        "threshold",
+        "graded_spikes_factor",
+        "beta",
+    }
+
     for name, buf in model.named_buffers():
-        # Buffers include BN running_mean, running_var, num_batches_tracked
-        val = buf.abs().max().item()
+        skip = any(pat in name for pat in _SKIP_BUFFER_PATTERNS)
+        val  = buf.abs().max().item()
+        print(f"  [DEBUG buf]  {name:<50} max={val:.6f}  shape={tuple(buf.shape)}"
+              f"{'  <-- SKIPPED' if skip else '  <-- included'}")
+        if skip:
+            continue
         max_param_abs = max(max_param_abs, val)
 
     max_abs = max(max_input_abs, max_param_abs)
