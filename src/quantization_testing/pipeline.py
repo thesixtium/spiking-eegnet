@@ -1,0 +1,185 @@
+# src/quantization_testing/pipeline.py
+"""
+Pipeline — identical to the original src/pipeline.py except:
+
+1. Imports come from src/ siblings (added to sys.path at the bottom of
+   this file's import block), not via relative .. imports.
+2. Optional RUN_QUANT_SWEEP parameter triggers the post-training fixed-point
+   sweep without any retraining.
+"""
+
+import json
+import csv
+import sys
+from pathlib import Path
+
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+import torch
+
+# ── Add src/ to path so sibling project modules are importable ──────────────
+_SRC_DIR = Path(__file__).resolve().parent.parent
+if str(_SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(_SRC_DIR))
+
+from zscore_normalize import zscore_normalize
+from load_moabb_dataset import load_moabb_dataset
+from bandpass_filter import bandpass_filter
+from experiment_loso import experiment_loso
+from make_loader import make_loader
+from evaluate import evaluate
+
+
+def _log_trial_to_csv(csv_path, row: dict):
+    csv_path = Path(csv_path)
+    write_header = not csv_path.exists()
+    with open(csv_path, "a", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=list(row.keys()))
+        if write_header:
+            writer.writeheader()
+        writer.writerow(row)
+
+
+def plot_results(OUTPUT_DIR, DATASET_KEY, TEST_SUBJECT_IDX, FLOW, FHIGH,
+                 hist_loso, meta):
+    chance     = 1 / meta["n_classes"]
+    epochs_run = range(1, len(hist_loso["loss"]) + 1)
+
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(8, 6), sharex=True)
+    ax1.plot(epochs_run, hist_loso["loss"], color="steelblue", linewidth=1.8)
+    ax1.set_ylabel("Cross-Entropy Loss")
+    ax1.set_title(f"{DATASET_KEY} — LOSO (Subject {TEST_SUBJECT_IDX} held out) | {FLOW}–{FHIGH} Hz")
+    ax1.grid(alpha=0.3)
+    ax2.plot(epochs_run, hist_loso["bal_acc"], color="darkorange", linewidth=1.8)
+    ax2.axhline(chance, color="grey", linestyle="--", linewidth=1, label=f"Chance ({chance:.2f})")
+    ax2.set_ylabel("Balanced Accuracy")
+    ax2.set_xlabel("Epoch")
+    ax2.set_ylim(0, 1)
+    ax2.legend()
+    ax2.grid(alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(OUTPUT_DIR / "loso_curves.png", dpi=150)
+    plt.close(fig)
+    print(f"Plot saved to {OUTPUT_DIR / 'loso_curves.png'}")
+
+
+def pipeline(
+    FLOW=4.0, FHIGH=40.0, LR_EXP=-3.52,
+    DROPOUT=0.5, BETA=0.95, SPIKE_GRAD_SLOPE=25.0,
+    TEMPORAL_FILTERS=8, DEPTH_MULTIPLIER=2, POINTWISE_FILTERS=16,
+    TEMPORAL_KERNEL_DIV=2, SEPARABLE_KERNEL_SIZE=16,
+    POOL1_SIZE=4, POOL2_SIZE=4,
+    NORM_AXIS=(1, 2, 3), RUN_ZSCORE=True, RUN_BANDPASS=True,
+    DATASET_KEY="BNCI2014_001", TEST_SUBJECT_IDX=0,
+    EPOCHS=10, BATCH_SIZE=32, N_STEPS_TRAIN=4, N_STEPS_EVAL=20,
+    EARLY_STOPPING_PATIENCE=None,
+    trial=None, save_plots=False,
+    # ── post-training quantization sweep ─────────────────────────────────────
+    RUN_QUANT_SWEEP=False,
+    QUANT_FRAC_BITS_START=64,
+    QUANT_FRAC_BITS_END=0,
+    QUANT_FRAC_BITS_STEP=1,
+    QUANT_SAFETY_MARGIN=1,
+):
+    LR = 10 ** LR_EXP
+
+    TRAIN_CFG = {
+        "epochs": EPOCHS, "batch_size": BATCH_SIZE, "lr": LR,
+        "n_steps_train": N_STEPS_TRAIN, "n_steps_eval": N_STEPS_EVAL,
+        "patience": EARLY_STOPPING_PATIENCE, "trial": trial,
+    }
+    MODEL_CFG = {
+        "temporal_filters": TEMPORAL_FILTERS, "depth_multiplier": DEPTH_MULTIPLIER,
+        "pointwise_filters": POINTWISE_FILTERS, "temporal_kernel_div": TEMPORAL_KERNEL_DIV,
+        "separable_kernel_size": SEPARABLE_KERNEL_SIZE, "pool1_size": POOL1_SIZE,
+        "pool2_size": POOL2_SIZE, "dropout": DROPOUT, "beta": BETA,
+        "spike_grad_slope": SPIKE_GRAD_SLOPE,
+    }
+
+    OUTPUT_DIR = Path("results") / DATASET_KEY
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"Device: {device}")
+
+    X, y, subject_ids, meta = load_moabb_dataset(DATASET_KEY)
+    print(f"Dataset meta: {meta}")
+
+    if RUN_ZSCORE:
+        X = zscore_normalize(X, axis=NORM_AXIS)
+    if RUN_BANDPASS:
+        print(f"\nApplying bandpass filter: {FLOW}–{FHIGH} Hz")
+        X = bandpass_filter(X, sfreq=meta["sfreq"], flow=FLOW, fhigh=FHIGH)
+
+    hist_loso, acc_loso, trained_model = experiment_loso(
+        X, y, subject_ids, meta, device, TRAIN_CFG,
+        test_subject_idx=TEST_SUBJECT_IDX,
+        model_kwargs=MODEL_CFG,
+    )
+
+    results = {
+        "dataset": DATASET_KEY, "filter": {"flow": FLOW, "fhigh": FHIGH},
+        "model_cfg": MODEL_CFG,
+        "meta": {k: v for k, v in meta.items() if k != "subject_list"},
+        "train_cfg": {k: v for k, v in TRAIN_CFG.items() if k != "trial"},
+        "loso_subject_0": {"history": hist_loso, "final_bal_acc": acc_loso},
+    }
+    with open(OUTPUT_DIR / "results.json", "w") as f:
+        json.dump(results, f, indent=2)
+    print(f"Results saved to {OUTPUT_DIR / 'results.json'}")
+
+    import datetime
+    csv_row = {
+        "timestamp": datetime.datetime.now().isoformat(timespec="seconds"),
+        "trial_number": trial.number if trial is not None else "",
+        "acc_loso": round(acc_loso, 6),
+        "run_zscore": RUN_ZSCORE, "run_bandpass": RUN_BANDPASS,
+        "norm_axis": str(NORM_AXIS), "flow": FLOW, "fhigh": FHIGH,
+        "lr_exp": LR_EXP, "lr": round(LR, 8),
+        "epochs": EPOCHS, "batch_size": BATCH_SIZE,
+        "n_steps_train": N_STEPS_TRAIN, "n_steps_eval": N_STEPS_EVAL,
+        "temporal_filters": TEMPORAL_FILTERS, "depth_multiplier": DEPTH_MULTIPLIER,
+        "pointwise_filters": POINTWISE_FILTERS, "temporal_kernel_div": TEMPORAL_KERNEL_DIV,
+        "separable_kernel_size": SEPARABLE_KERNEL_SIZE,
+        "pool1_size": POOL1_SIZE, "pool2_size": POOL2_SIZE,
+        "dropout": DROPOUT, "beta": BETA, "spike_grad_slope": SPIKE_GRAD_SLOPE,
+    }
+    _log_trial_to_csv(OUTPUT_DIR / "trials.csv", csv_row)
+    print(f"Trial logged to {OUTPUT_DIR / 'trials.csv'}")
+
+    if save_plots:
+        plot_results(OUTPUT_DIR, DATASET_KEY, TEST_SUBJECT_IDX, FLOW, FHIGH,
+                     hist_loso, meta)
+
+    # ── Post-training quantization sweep ──────────────────────────────────────
+    if RUN_QUANT_SWEEP:
+        from .sweep import run_quantization_sweep
+        from .config import QuantConfig
+
+        quant_cfg = QuantConfig(
+            signed             = True,
+            overflow           = "saturate",
+            rounding           = "nearest",
+            safety_margin_bits = QUANT_SAFETY_MARGIN,
+            frac_bits_start    = QUANT_FRAC_BITS_START,
+            frac_bits_end      = QUANT_FRAC_BITS_END,
+            frac_bits_step     = QUANT_FRAC_BITS_STEP,
+            n_steps_eval       = N_STEPS_EVAL,
+        )
+
+        test_mask  = subject_ids == TEST_SUBJECT_IDX
+        train_mask = ~test_mask
+        train_loader = make_loader(X[train_mask], y[train_mask], BATCH_SIZE)
+        val_loader   = make_loader(X[test_mask],  y[test_mask],  BATCH_SIZE, shuffle=False)
+
+        run_quantization_sweep(
+            model        = trained_model,
+            train_loader = train_loader,
+            val_loader   = val_loader,
+            device       = device,
+            output_dir   = OUTPUT_DIR / "quantization",
+            cfg          = quant_cfg,
+        )
+
+    return acc_loso
