@@ -7,11 +7,12 @@ from pipeline import pipeline
 
 FIXED = dict(
     DATASET_KEY="BNCI2014_001",
-    TEST_SUBJECT_IDX=0,
     EPOCHS=100,
     BATCH_SIZE=32,
     N_STEPS_TRAIN=4,
     N_STEPS_EVAL=20,
+    RUN_ZSCORE=False,   # always disabled
+    RUN_BANDPASS=True,  # always enabled
 )
 
 NORM_AXIS_MAP = {
@@ -38,7 +39,6 @@ def objective(trial):
         POOL2_SIZE            = trial.suggest_int("POOL2_SIZE",            2,   8),
 
         NORM_AXIS        = NORM_AXIS_MAP[trial.suggest_categorical("NORM_AXIS", list(NORM_AXIS_MAP))],
-        RUN_ZSCORE       = trial.suggest_categorical("RUN_ZSCORE",       [True, False]),
     )
 
     return pipeline(**params, **FIXED, trial=trial, save_plots=False)
@@ -82,6 +82,9 @@ if __name__ == "__main__":
         study_name=f"snn_eegnet_v2_{n_trials}_{tpe_trails}",
         storage="sqlite:///optuna_study.db",
         load_if_exists=True,
+        # n_warmup_steps is now in units of SUBJECTS (since pruning is
+        # evaluated once per subject for true LOSO), not epochs:
+        # a trial won't be pruned until at least 3 subjects have finished.
         pruner=MedianPruner(n_startup_trials=tpe_trails, n_warmup_steps=3),
         sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
     )
