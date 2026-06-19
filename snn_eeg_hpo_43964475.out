@@ -1,0 +1,3389 @@
+Job ID   : 43964475
+Node     : fg1
+Started  : Thu Jun 18 12:27:40 MDT 2026
+Directory: /home/aleksander.berezowsk/spiking-eegnet
+Requirement already satisfied: setuptools==69.5.1 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (69.5.1)
+Requirement already satisfied: torch==2.4.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (2.4.0)
+Requirement already satisfied: torchvision==0.19.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (0.19.0)
+Requirement already satisfied: torchaudio==2.4.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (2.4.0)
+Requirement already satisfied: torchmetrics in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (1.9.0)
+Requirement already satisfied: filelock in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (3.29.0)
+Requirement already satisfied: typing-extensions>=4.8.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (4.15.0)
+Requirement already satisfied: sympy in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (1.14.0)
+Requirement already satisfied: networkx in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (3.6.1)
+Requirement already satisfied: jinja2 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (3.1.6)
+Requirement already satisfied: fsspec in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (2026.4.0)
+Requirement already satisfied: setuptools in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (69.5.1)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.1.105 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (12.1.105)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.1.105 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (12.1.105)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.1.105 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (12.1.105)
+Requirement already satisfied: nvidia-cudnn-cu12==9.1.0.70 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (9.1.0.70)
+Requirement already satisfied: nvidia-cublas-cu12==12.1.3.1 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (12.1.3.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.0.2.54 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (11.0.2.54)
+Requirement already satisfied: nvidia-curand-cu12==10.3.2.106 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (10.3.2.106)
+Requirement already satisfied: nvidia-cusolver-cu12==11.4.5.107 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (11.4.5.107)
+Requirement already satisfied: nvidia-cusparse-cu12==12.1.0.106 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (12.1.0.106)
+Requirement already satisfied: nvidia-nccl-cu12==2.20.5 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (2.20.5)
+Requirement already satisfied: nvidia-nvtx-cu12==12.1.105 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (12.1.105)
+Requirement already satisfied: triton==3.0.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (3.0.0)
+Requirement already satisfied: numpy in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torchvision==0.19.0) (2.4.6)
+Requirement already satisfied: pillow!=8.3.*,>=5.3.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torchvision==0.19.0) (12.2.0)
+Requirement already satisfied: nvidia-nvjitlink-cu12 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from nvidia-cusolver-cu12==11.4.5.107->torch==2.4.0) (12.9.86)
+Requirement already satisfied: packaging>17.1 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torchmetrics) (26.2)
+Requirement already satisfied: lightning-utilities>=0.15.3 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torchmetrics) (0.15.3)
+Requirement already satisfied: MarkupSafe>=2.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from jinja2->torch==2.4.0) (3.0.3)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from sympy->torch==2.4.0) (1.3.0)
+Requirement already satisfied: optuna in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (4.9.0)
+Requirement already satisfied: snntorch in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (0.9.4)
+Requirement already satisfied: alembic>=1.5.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (1.18.4)
+Requirement already satisfied: colorlog in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (6.10.1)
+Requirement already satisfied: numpy in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (2.4.6)
+Requirement already satisfied: packaging>=20.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (26.2)
+Requirement already satisfied: sqlalchemy>=1.4.2 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (2.0.50)
+Requirement already satisfied: tqdm in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (4.67.3)
+Requirement already satisfied: PyYAML in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (6.0.3)
+Requirement already satisfied: Mako in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from alembic>=1.5.0->optuna) (1.3.12)
+Requirement already satisfied: typing-extensions>=4.12 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from alembic>=1.5.0->optuna) (4.15.0)
+Requirement already satisfied: greenlet>=1 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from sqlalchemy>=1.4.2->optuna) (3.5.1)
+Requirement already satisfied: MarkupSafe>=0.9.2 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from Mako->alembic>=1.5.0->optuna) (3.0.3)
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 4.255234867347642–104.58767230162803 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 15,692
+  epoch   1/100  loss=1.3870  bal_acc=0.3733
+  epoch   2/100  loss=1.3775  bal_acc=0.3542
+  epoch   3/100  loss=1.3654  bal_acc=0.3698  [pruned by Optuna at epoch 3]
+[status] trial 528 done (state=PRUNED, value=0.36979166666666663) -- 523 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 9.211083161053322–64.24417307113053 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 17,572
+  epoch   1/100  loss=1.3978  bal_acc=0.3681
+  epoch   2/100  loss=1.3138  bal_acc=0.4132
+  epoch   3/100  loss=1.2621  bal_acc=0.4774  [pruned by Optuna at epoch 3]
+[status] trial 529 done (state=PRUNED, value=0.4774305555555556) -- 524 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 12.986454261653083–96.779585024636 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 18,563
+  epoch   1/100  loss=1.4059  bal_acc=0.2639
+  epoch   2/100  loss=1.3739  bal_acc=0.3646
+  epoch   3/100  loss=1.3447  bal_acc=0.3160  [pruned by Optuna at epoch 3]
+[status] trial 530 done (state=PRUNED, value=0.3159722222222222) -- 525 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 3.1404965887271254–73.96146739471 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 12,240
+  epoch   1/100  loss=1.3701  bal_acc=0.4444
+  epoch   2/100  loss=1.2949  bal_acc=0.4861
+  epoch   3/100  loss=1.2301  bal_acc=0.4931  [pruned by Optuna at epoch 3]
+[status] trial 531 done (state=PRUNED, value=0.4930555555555556) -- 526 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 1.5251368983083449–66.31865571594905 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 13,126
+  epoch   1/100  loss=1.3874  bal_acc=0.3524
+  epoch   2/100  loss=1.3618  bal_acc=0.4097
+  epoch   3/100  loss=1.3373  bal_acc=0.3455  [pruned by Optuna at epoch 3]
+[status] trial 532 done (state=PRUNED, value=0.34548611111111116) -- 527 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 19.686597259262605–97.5656062406316 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 22,274
+  epoch   1/100  loss=1.4086  bal_acc=0.2604
+  epoch   2/100  loss=1.3788  bal_acc=0.2986
+  epoch   3/100  loss=1.3621  bal_acc=0.3108  [pruned by Optuna at epoch 3]
+[status] trial 533 done (state=PRUNED, value=0.3107638888888889) -- 528 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 5.901723845586294–75.02559255648805 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 5,954
+  epoch   1/100  loss=1.3562  bal_acc=0.4410
+  epoch   2/100  loss=1.2444  bal_acc=0.5260
+  epoch   3/100  loss=1.1828  bal_acc=0.5122
+  epoch   4/100  loss=1.1319  bal_acc=0.4983
+  epoch   5/100  loss=1.1212  bal_acc=0.5486
+  epoch   6/100  loss=1.0936  bal_acc=0.5885
+  epoch   7/100  loss=1.0852  bal_acc=0.5851
+  epoch   8/100  loss=1.0741  bal_acc=0.5885
+  epoch   9/100  loss=1.0470  bal_acc=0.5278
+  epoch  10/100  loss=1.0403  bal_acc=0.6059
+  epoch  11/100  loss=1.0350  bal_acc=0.6024
+  epoch  12/100  loss=1.0196  bal_acc=0.5938
+  epoch  13/100  loss=1.0078  bal_acc=0.6181
+  epoch  14/100  loss=1.0044  bal_acc=0.5660
+  epoch  15/100  loss=0.9994  bal_acc=0.6111
+  epoch  16/100  loss=0.9882  bal_acc=0.6111
+  epoch  17/100  loss=0.9914  bal_acc=0.5851
+  epoch  18/100  loss=0.9729  bal_acc=0.4844
+  epoch  19/100  loss=0.9682  bal_acc=0.5729
+  epoch  20/100  loss=0.9572  bal_acc=0.5503
+  epoch  21/100  loss=0.9659  bal_acc=0.5938
+  epoch  22/100  loss=0.9576  bal_acc=0.5955
+  epoch  23/100  loss=0.9529  bal_acc=0.5729
+  epoch  24/100  loss=0.9559  bal_acc=0.5625
+  epoch  25/100  loss=0.9512  bal_acc=0.5938
+  epoch  26/100  loss=0.9492  bal_acc=0.6267
+  epoch  27/100  loss=0.9401  bal_acc=0.6372
+  epoch  28/100  loss=0.9328  bal_acc=0.5747
+  epoch  29/100  loss=0.9346  bal_acc=0.5590
+  epoch  30/100  loss=0.9336  bal_acc=0.5781
+  epoch  31/100  loss=0.9262  bal_acc=0.6024
+  epoch  32/100  loss=0.9256  bal_acc=0.6024
+  epoch  33/100  loss=0.9290  bal_acc=0.6406
+  epoch  34/100  loss=0.9193  bal_acc=0.6337
+  epoch  35/100  loss=0.9157  bal_acc=0.6319
+  epoch  36/100  loss=0.9268  bal_acc=0.6406
+  epoch  37/100  loss=0.9182  bal_acc=0.5833
+  epoch  38/100  loss=0.9219  bal_acc=0.5920
+  epoch  39/100  loss=0.9079  bal_acc=0.5990
+  epoch  40/100  loss=0.9183  bal_acc=0.5833
+  epoch  41/100  loss=0.9093  bal_acc=0.6198
+  epoch  42/100  loss=0.9087  bal_acc=0.5347
+  epoch  43/100  loss=0.9073  bal_acc=0.6354
+  epoch  44/100  loss=0.9170  bal_acc=0.6146
+  epoch  45/100  loss=0.9058  bal_acc=0.6233
+  epoch  46/100  loss=0.8891  bal_acc=0.6215
+  epoch  47/100  loss=0.8962  bal_acc=0.5747
+  epoch  48/100  loss=0.8912  bal_acc=0.5972
+  epoch  49/100  loss=0.8882  bal_acc=0.5920
+  epoch  50/100  loss=0.8980  bal_acc=0.5938
+  epoch  51/100  loss=0.8851  bal_acc=0.6146
+  epoch  52/100  loss=0.8906  bal_acc=0.6389
+  epoch  53/100  loss=0.8914  bal_acc=0.6198
+  epoch  54/100  loss=0.9005  bal_acc=0.6198
+  epoch  55/100  loss=0.8896  bal_acc=0.5590
+  epoch  56/100  loss=0.8809  bal_acc=0.6233
+  epoch  57/100  loss=0.8721  bal_acc=0.5382
+  epoch  58/100  loss=0.8692  bal_acc=0.5660
+  epoch  59/100  loss=0.8827  bal_acc=0.5538
+  epoch  60/100  loss=0.8728  bal_acc=0.5417
+  epoch  61/100  loss=0.8711  bal_acc=0.5694
+  epoch  62/100  loss=0.8794  bal_acc=0.5330
+  epoch  63/100  loss=0.8734  bal_acc=0.5990
+  epoch  64/100  loss=0.8709  bal_acc=0.4635
+  epoch  65/100  loss=0.8697  bal_acc=0.5799
+  epoch  66/100  loss=0.8720  bal_acc=0.6094
+  epoch  67/100  loss=0.8679  bal_acc=0.5955
+  epoch  68/100  loss=0.8654  bal_acc=0.5486
+  epoch  69/100  loss=0.8654  bal_acc=0.6042
+  epoch  70/100  loss=0.8621  bal_acc=0.6076
+  epoch  71/100  loss=0.8589  bal_acc=0.5833
+  epoch  72/100  loss=0.8574  bal_acc=0.5972
+  epoch  73/100  loss=0.8631  bal_acc=0.5729
+  epoch  74/100  loss=0.8663  bal_acc=0.6111
+  epoch  75/100  loss=0.8444  bal_acc=0.6059
+  epoch  76/100  loss=0.8649  bal_acc=0.6198
+  epoch  77/100  loss=0.8496  bal_acc=0.5556
+  epoch  78/100  loss=0.8489  bal_acc=0.5781
+  epoch  79/100  loss=0.8515  bal_acc=0.5764
+  epoch  80/100  loss=0.8537  bal_acc=0.5694
+  epoch  81/100  loss=0.8376  bal_acc=0.5799
+  epoch  82/100  loss=0.8468  bal_acc=0.5868
+  epoch  83/100  loss=0.8358  bal_acc=0.5747
+  epoch  84/100  loss=0.8414  bal_acc=0.5694
+  epoch  85/100  loss=0.8481  bal_acc=0.5955
+  epoch  86/100  loss=0.8498  bal_acc=0.6111
+  epoch  87/100  loss=0.8495  bal_acc=0.5642
+  epoch  88/100  loss=0.8436  bal_acc=0.5990
+  epoch  89/100  loss=0.8292  bal_acc=0.5833
+  epoch  90/100  loss=0.8333  bal_acc=0.5955
+  epoch  91/100  loss=0.8396  bal_acc=0.5677
+  epoch  92/100  loss=0.8234  bal_acc=0.5503
+  epoch  93/100  loss=0.8430  bal_acc=0.5677
+  epoch  94/100  loss=0.8494  bal_acc=0.4549
+  epoch  95/100  loss=0.8466  bal_acc=0.5035
+  epoch  96/100  loss=0.8417  bal_acc=0.6042
+  epoch  97/100  loss=0.8410  bal_acc=0.5920
+  epoch  98/100  loss=0.8360  bal_acc=0.5885
+  epoch  99/100  loss=0.8203  bal_acc=0.5226
+  epoch 100/100  loss=0.8401  bal_acc=0.6024
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 534 done (state=COMPLETE, value=0.6024305555555556) -- 529 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 3.399040956523143–59.22866137780253 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 12,064
+  epoch   1/100  loss=1.4187  bal_acc=0.2812
+  epoch   2/100  loss=1.3669  bal_acc=0.3125
+  epoch   3/100  loss=1.3441  bal_acc=0.3507  [pruned by Optuna at epoch 3]
+[status] trial 535 done (state=PRUNED, value=0.3506944444444444) -- 530 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 8.7816453476768–93.11017529934276 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 10,252
+  epoch   1/100  loss=1.3863  bal_acc=0.4670
+  epoch   2/100  loss=1.3459  bal_acc=0.4514
+  epoch   3/100  loss=1.2839  bal_acc=0.5139
+  epoch   4/100  loss=1.2401  bal_acc=0.5694
+  epoch   5/100  loss=1.2089  bal_acc=0.5486
+  epoch   6/100  loss=1.1837  bal_acc=0.4844
+  epoch   7/100  loss=1.1580  bal_acc=0.4306
+  epoch   8/100  loss=1.1444  bal_acc=0.4705
+  epoch   9/100  loss=1.1347  bal_acc=0.3941
+  epoch  10/100  loss=1.1212  bal_acc=0.5399
+  epoch  11/100  loss=1.0952  bal_acc=0.5017
+  epoch  12/100  loss=1.0951  bal_acc=0.4878
+  epoch  13/100  loss=1.0854  bal_acc=0.4618
+  epoch  14/100  loss=1.0707  bal_acc=0.6233
+  epoch  15/100  loss=1.0524  bal_acc=0.4948
+  epoch  16/100  loss=1.0546  bal_acc=0.4844
+  epoch  17/100  loss=1.0613  bal_acc=0.5260
+  epoch  18/100  loss=1.0330  bal_acc=0.3785
+  epoch  19/100  loss=1.0213  bal_acc=0.5990
+  epoch  20/100  loss=1.0117  bal_acc=0.6094
+  epoch  21/100  loss=1.0176  bal_acc=0.5139
+  epoch  22/100  loss=1.0155  bal_acc=0.6441
+  epoch  23/100  loss=0.9992  bal_acc=0.4774
+  epoch  24/100  loss=0.9967  bal_acc=0.6476
+  epoch  25/100  loss=0.9969  bal_acc=0.6285
+  epoch  26/100  loss=0.9971  bal_acc=0.6476
+  epoch  27/100  loss=0.9852  bal_acc=0.6493
+  epoch  28/100  loss=0.9740  bal_acc=0.6510
+  epoch  29/100  loss=0.9760  bal_acc=0.4792
+  epoch  30/100  loss=0.9746  bal_acc=0.5816
+  epoch  31/100  loss=0.9729  bal_acc=0.5608
+  epoch  32/100  loss=0.9681  bal_acc=0.5729
+  epoch  33/100  loss=0.9565  bal_acc=0.6493
+  epoch  34/100  loss=0.9611  bal_acc=0.5625
+  epoch  35/100  loss=0.9576  bal_acc=0.5781
+  epoch  36/100  loss=0.9473  bal_acc=0.5833
+  epoch  37/100  loss=0.9416  bal_acc=0.5156
+  epoch  38/100  loss=0.9458  bal_acc=0.5729
+  epoch  39/100  loss=0.9512  bal_acc=0.6354
+  epoch  40/100  loss=0.9396  bal_acc=0.6580
+  epoch  41/100  loss=0.9434  bal_acc=0.5417
+  epoch  42/100  loss=0.9382  bal_acc=0.6007
+  epoch  43/100  loss=0.9275  bal_acc=0.5903
+  epoch  44/100  loss=0.9216  bal_acc=0.6493
+  epoch  45/100  loss=0.9268  bal_acc=0.5920
+  epoch  46/100  loss=0.9351  bal_acc=0.6372
+  epoch  47/100  loss=0.9217  bal_acc=0.5312
+  epoch  48/100  loss=0.9094  bal_acc=0.6042
+  epoch  49/100  loss=0.9137  bal_acc=0.5712
+  epoch  50/100  loss=0.9113  bal_acc=0.5087
+  epoch  51/100  loss=0.8996  bal_acc=0.5833
+  epoch  52/100  loss=0.9010  bal_acc=0.5729
+  epoch  53/100  loss=0.8978  bal_acc=0.6146
+  epoch  54/100  loss=0.9138  bal_acc=0.5521
+  epoch  55/100  loss=0.8911  bal_acc=0.5903
+  epoch  56/100  loss=0.8873  bal_acc=0.5833
+  epoch  57/100  loss=0.8955  bal_acc=0.5990
+  epoch  58/100  loss=0.8903  bal_acc=0.6024
+  epoch  59/100  loss=0.9082  bal_acc=0.6128
+  epoch  60/100  loss=0.8950  bal_acc=0.4965
+  epoch  61/100  loss=0.8797  bal_acc=0.5799
+  epoch  62/100  loss=0.8895  bal_acc=0.5538
+  epoch  63/100  loss=0.8952  bal_acc=0.5139
+  epoch  64/100  loss=0.8723  bal_acc=0.6094
+  epoch  65/100  loss=0.8821  bal_acc=0.6128
+  epoch  66/100  loss=0.8948  bal_acc=0.5833
+  epoch  67/100  loss=0.8827  bal_acc=0.6042
+  epoch  68/100  loss=0.8881  bal_acc=0.5625
+  epoch  69/100  loss=0.8651  bal_acc=0.5816
+  epoch  70/100  loss=0.8689  bal_acc=0.5764
+  epoch  71/100  loss=0.8777  bal_acc=0.6111
+  epoch  72/100  loss=0.8551  bal_acc=0.6163
+  epoch  73/100  loss=0.8646  bal_acc=0.5955
+  epoch  74/100  loss=0.8747  bal_acc=0.5590
+  epoch  75/100  loss=0.8553  bal_acc=0.5694
+  epoch  76/100  loss=0.8596  bal_acc=0.5503
+  epoch  77/100  loss=0.8660  bal_acc=0.5035
+  epoch  78/100  loss=0.8651  bal_acc=0.6111
+  epoch  79/100  loss=0.8614  bal_acc=0.5104
+  epoch  80/100  loss=0.8515  bal_acc=0.6354
+  epoch  81/100  loss=0.8613  bal_acc=0.6389
+  epoch  82/100  loss=0.8564  bal_acc=0.6406
+  epoch  83/100  loss=0.8469  bal_acc=0.5833
+  epoch  84/100  loss=0.8463  bal_acc=0.6302
+  epoch  85/100  loss=0.8441  bal_acc=0.6458
+  epoch  86/100  loss=0.8445  bal_acc=0.6302
+  epoch  87/100  loss=0.8341  bal_acc=0.6198
+  epoch  88/100  loss=0.8489  bal_acc=0.6146
+  epoch  89/100  loss=0.8425  bal_acc=0.5642
+  epoch  90/100  loss=0.8459  bal_acc=0.5938
+  epoch  91/100  loss=0.8385  bal_acc=0.6372
+  epoch  92/100  loss=0.8246  bal_acc=0.6076
+  epoch  93/100  loss=0.8317  bal_acc=0.5608
+  epoch  94/100  loss=0.8338  bal_acc=0.6233
+  epoch  95/100  loss=0.8382  bal_acc=0.5503
+  epoch  96/100  loss=0.8281  bal_acc=0.6163
+  epoch  97/100  loss=0.8490  bal_acc=0.4844
+  epoch  98/100  loss=0.8456  bal_acc=0.5486
+  epoch  99/100  loss=0.8332  bal_acc=0.6042
+  epoch 100/100  loss=0.8391  bal_acc=0.5747
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 536 done (state=COMPLETE, value=0.5746527777777778) -- 531 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 7.99211494958241–53.1586110680621 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 9,609
+  epoch   1/100  loss=1.3514  bal_acc=0.5000
+  epoch   2/100  loss=1.2350  bal_acc=0.4705
+  epoch   3/100  loss=1.1812  bal_acc=0.5174
+  epoch   4/100  loss=1.1546  bal_acc=0.5972
+  epoch   5/100  loss=1.1262  bal_acc=0.5035
+  epoch   6/100  loss=1.0902  bal_acc=0.4740
+  epoch   7/100  loss=1.0852  bal_acc=0.5017
+  epoch   8/100  loss=1.0582  bal_acc=0.5017
+  epoch   9/100  loss=1.0313  bal_acc=0.6042
+  epoch  10/100  loss=1.0241  bal_acc=0.6215
+  epoch  11/100  loss=1.0046  bal_acc=0.6267
+  epoch  12/100  loss=1.0153  bal_acc=0.5990
+  epoch  13/100  loss=0.9940  bal_acc=0.6094
+  epoch  14/100  loss=0.9813  bal_acc=0.6059
+  epoch  15/100  loss=0.9687  bal_acc=0.6250
+  epoch  16/100  loss=0.9666  bal_acc=0.5087
+  epoch  17/100  loss=0.9643  bal_acc=0.5955
+  epoch  18/100  loss=0.9607  bal_acc=0.5955
+  epoch  19/100  loss=0.9582  bal_acc=0.5764
+  epoch  20/100  loss=0.9487  bal_acc=0.5312
+  epoch  21/100  loss=0.9394  bal_acc=0.6024
+  epoch  22/100  loss=0.9400  bal_acc=0.5816
+  epoch  23/100  loss=0.9331  bal_acc=0.5729
+  epoch  24/100  loss=0.9306  bal_acc=0.6094
+  epoch  25/100  loss=0.9286  bal_acc=0.6076
+  epoch  26/100  loss=0.9113  bal_acc=0.5920
+  epoch  27/100  loss=0.8960  bal_acc=0.4878
+  epoch  28/100  loss=0.9142  bal_acc=0.6094
+  epoch  29/100  loss=0.9071  bal_acc=0.5885
+  epoch  30/100  loss=0.9044  bal_acc=0.5799
+  epoch  31/100  loss=0.9028  bal_acc=0.5087
+  epoch  32/100  loss=0.8911  bal_acc=0.6146
+  epoch  33/100  loss=0.8738  bal_acc=0.5573
+  epoch  34/100  loss=0.8727  bal_acc=0.6094
+  epoch  35/100  loss=0.8629  bal_acc=0.6198
+  epoch  36/100  loss=0.8718  bal_acc=0.6024
+  epoch  37/100  loss=0.8671  bal_acc=0.6128
+  epoch  38/100  loss=0.8714  bal_acc=0.6059
+  epoch  39/100  loss=0.8763  bal_acc=0.6389
+  epoch  40/100  loss=0.8685  bal_acc=0.6372
+  epoch  41/100  loss=0.8534  bal_acc=0.5833
+  epoch  42/100  loss=0.8437  bal_acc=0.6111
+  epoch  43/100  loss=0.8412  bal_acc=0.5903
+  epoch  44/100  loss=0.8484  bal_acc=0.6250
+  epoch  45/100  loss=0.8644  bal_acc=0.4983
+  epoch  46/100  loss=0.8373  bal_acc=0.5330
+  epoch  47/100  loss=0.8438  bal_acc=0.5677
+  epoch  48/100  loss=0.8415  bal_acc=0.5573
+  epoch  49/100  loss=0.8490  bal_acc=0.5747
+  epoch  50/100  loss=0.8286  bal_acc=0.5938
+  epoch  51/100  loss=0.8346  bal_acc=0.5590
+  epoch  52/100  loss=0.8225  bal_acc=0.6163
+  epoch  53/100  loss=0.8276  bal_acc=0.5885
+  epoch  54/100  loss=0.8342  bal_acc=0.5972
+  epoch  55/100  loss=0.8145  bal_acc=0.6076
+  epoch  56/100  loss=0.8233  bal_acc=0.5764
+  epoch  57/100  loss=0.8067  bal_acc=0.5938
+  epoch  58/100  loss=0.8240  bal_acc=0.5990
+  epoch  59/100  loss=0.8087  bal_acc=0.6111
+  epoch  60/100  loss=0.8107  bal_acc=0.6198
+  epoch  61/100  loss=0.8255  bal_acc=0.6250
+  epoch  62/100  loss=0.7876  bal_acc=0.5729
+  epoch  63/100  loss=0.8005  bal_acc=0.5486
+  epoch  64/100  loss=0.8202  bal_acc=0.5885
+  epoch  65/100  loss=0.7913  bal_acc=0.5990
+  epoch  66/100  loss=0.8017  bal_acc=0.6024
+  epoch  67/100  loss=0.7881  bal_acc=0.6094
+  epoch  68/100  loss=0.7915  bal_acc=0.6059
+  epoch  69/100  loss=0.8003  bal_acc=0.6233
+  epoch  70/100  loss=0.7816  bal_acc=0.6076
+  epoch  71/100  loss=0.7962  bal_acc=0.5799
+  epoch  72/100  loss=0.7965  bal_acc=0.6285
+  epoch  73/100  loss=0.7962  bal_acc=0.6042
+  epoch  74/100  loss=0.7929  bal_acc=0.6128
+  epoch  75/100  loss=0.7849  bal_acc=0.6233
+  epoch  76/100  loss=0.7898  bal_acc=0.6372
+  epoch  77/100  loss=0.8065  bal_acc=0.5833
+  epoch  78/100  loss=0.7758  bal_acc=0.5608
+  epoch  79/100  loss=0.7765  bal_acc=0.6250
+  epoch  80/100  loss=0.7834  bal_acc=0.5972
+  epoch  81/100  loss=0.7673  bal_acc=0.6267
+  epoch  82/100  loss=0.7726  bal_acc=0.6250
+  epoch  83/100  loss=0.7766  bal_acc=0.6406
+  epoch  84/100  loss=0.7613  bal_acc=0.6233
+  epoch  85/100  loss=0.7912  bal_acc=0.6007
+  epoch  86/100  loss=0.7823  bal_acc=0.6285
+  epoch  87/100  loss=0.7651  bal_acc=0.6285
+  epoch  88/100  loss=0.7635  bal_acc=0.6181
+  epoch  89/100  loss=0.7759  bal_acc=0.6250
+  epoch  90/100  loss=0.7605  bal_acc=0.5885
+  epoch  91/100  loss=0.7866  bal_acc=0.6111
+  epoch  92/100  loss=0.7771  bal_acc=0.6181
+  epoch  93/100  loss=0.7650  bal_acc=0.5729
+  epoch  94/100  loss=0.7737  bal_acc=0.6181
+  epoch  95/100  loss=0.7738  bal_acc=0.5903
+  epoch  96/100  loss=0.7607  bal_acc=0.5920
+  epoch  97/100  loss=0.7773  bal_acc=0.6406
+  epoch  98/100  loss=0.7601  bal_acc=0.5920
+  epoch  99/100  loss=0.7531  bal_acc=0.6076
+  epoch 100/100  loss=0.7520  bal_acc=0.6302
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 537 done (state=COMPLETE, value=0.6302083333333333) -- 532 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 1.5683829196465027–49.24518127861873 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 9,271
+  epoch   1/100  loss=1.3863  bal_acc=0.3125
+  epoch   2/100  loss=1.3631  bal_acc=0.3420
+  epoch   3/100  loss=1.3278  bal_acc=0.3750  [pruned by Optuna at epoch 3]
+[status] trial 538 done (state=PRUNED, value=0.375) -- 533 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 10.716056869140502–109.56681843491103 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 16,404
+  epoch   1/100  loss=1.4189  bal_acc=0.4288
+  epoch   2/100  loss=1.3399  bal_acc=0.4601
+  epoch   3/100  loss=1.2915  bal_acc=0.4080  [pruned by Optuna at epoch 3]
+[status] trial 539 done (state=PRUNED, value=0.40798611111111116) -- 534 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 9.838858463483065–62.318700663280744 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 11,535
+  epoch   1/100  loss=1.3583  bal_acc=0.4618
+  epoch   2/100  loss=1.2404  bal_acc=0.5174
+  epoch   3/100  loss=1.2023  bal_acc=0.4306
+  epoch   4/100  loss=1.1702  bal_acc=0.5312
+  epoch   5/100  loss=1.1575  bal_acc=0.5365
+  epoch   6/100  loss=1.1375  bal_acc=0.5521
+  epoch   7/100  loss=1.1114  bal_acc=0.5972
+  epoch   8/100  loss=1.0971  bal_acc=0.5312
+  epoch   9/100  loss=1.0984  bal_acc=0.5399
+  epoch  10/100  loss=1.0702  bal_acc=0.5174
+  epoch  11/100  loss=1.0636  bal_acc=0.5955
+  epoch  12/100  loss=1.0594  bal_acc=0.4618
+  epoch  13/100  loss=1.0316  bal_acc=0.5451
+  epoch  14/100  loss=1.0367  bal_acc=0.5417
+  epoch  15/100  loss=1.0247  bal_acc=0.6024
+  epoch  16/100  loss=1.0198  bal_acc=0.4896
+  epoch  17/100  loss=1.0208  bal_acc=0.4757
+  epoch  18/100  loss=1.0069  bal_acc=0.5382
+  epoch  19/100  loss=0.9874  bal_acc=0.6042
+  epoch  20/100  loss=0.9897  bal_acc=0.5382
+  epoch  21/100  loss=0.9887  bal_acc=0.3993
+  epoch  22/100  loss=0.9795  bal_acc=0.4809
+  epoch  23/100  loss=0.9807  bal_acc=0.5017
+  epoch  24/100  loss=0.9695  bal_acc=0.6146
+  epoch  25/100  loss=0.9569  bal_acc=0.5590
+  epoch  26/100  loss=0.9450  bal_acc=0.5868
+  epoch  27/100  loss=0.9395  bal_acc=0.5434
+  epoch  28/100  loss=0.9553  bal_acc=0.5677
+  epoch  29/100  loss=0.9457  bal_acc=0.4618
+  epoch  30/100  loss=0.9304  bal_acc=0.5469
+  epoch  31/100  loss=0.9429  bal_acc=0.6042
+  epoch  32/100  loss=0.9270  bal_acc=0.5729
+  epoch  33/100  loss=0.9311  bal_acc=0.5608
+  epoch  34/100  loss=0.9271  bal_acc=0.4618
+  epoch  35/100  loss=0.9144  bal_acc=0.5434
+  epoch  36/100  loss=0.9269  bal_acc=0.5538
+  epoch  37/100  loss=0.9034  bal_acc=0.5625
+  epoch  38/100  loss=0.9302  bal_acc=0.4601
+  epoch  39/100  loss=0.9147  bal_acc=0.5660
+  epoch  40/100  loss=0.8916  bal_acc=0.5538
+  epoch  41/100  loss=0.8979  bal_acc=0.3264
+  epoch  42/100  loss=0.9001  bal_acc=0.6146
+  epoch  43/100  loss=0.9005  bal_acc=0.5417
+  epoch  44/100  loss=0.8944  bal_acc=0.6285
+  epoch  45/100  loss=0.9032  bal_acc=0.5920
+  epoch  46/100  loss=0.8745  bal_acc=0.5938
+  epoch  47/100  loss=0.8869  bal_acc=0.6076
+  epoch  48/100  loss=0.8747  bal_acc=0.5729
+  epoch  49/100  loss=0.8514  bal_acc=0.5781
+  epoch  50/100  loss=0.8799  bal_acc=0.6146
+  epoch  51/100  loss=0.8476  bal_acc=0.6128
+  epoch  52/100  loss=0.8664  bal_acc=0.5851
+  epoch  53/100  loss=0.8548  bal_acc=0.5399
+  epoch  54/100  loss=0.8591  bal_acc=0.6181
+  epoch  55/100  loss=0.8673  bal_acc=0.6337
+  epoch  56/100  loss=0.8534  bal_acc=0.6128
+  epoch  57/100  loss=0.8551  bal_acc=0.6146
+  epoch  58/100  loss=0.8463  bal_acc=0.6250
+  epoch  59/100  loss=0.8559  bal_acc=0.6354
+  epoch  60/100  loss=0.8521  bal_acc=0.6076
+  epoch  61/100  loss=0.8454  bal_acc=0.6337
+  epoch  62/100  loss=0.8229  bal_acc=0.5556
+  epoch  63/100  loss=0.8497  bal_acc=0.6128
+  epoch  64/100  loss=0.8271  bal_acc=0.6076
+  epoch  65/100  loss=0.8383  bal_acc=0.5330
+  epoch  66/100  loss=0.8170  bal_acc=0.5868
+  epoch  67/100  loss=0.8343  bal_acc=0.5747
+  epoch  68/100  loss=0.8273  bal_acc=0.6267
+  epoch  69/100  loss=0.8360  bal_acc=0.5278
+  epoch  70/100  loss=0.8324  bal_acc=0.5972
+  epoch  71/100  loss=0.8145  bal_acc=0.5920
+  epoch  72/100  loss=0.8205  bal_acc=0.5799
+  epoch  73/100  loss=0.8343  bal_acc=0.5434
+  epoch  74/100  loss=0.8418  bal_acc=0.5330
+  epoch  75/100  loss=0.8234  bal_acc=0.5608
+  epoch  76/100  loss=0.8251  bal_acc=0.5972
+  epoch  77/100  loss=0.8163  bal_acc=0.6128
+  epoch  78/100  loss=0.8451  bal_acc=0.6198
+  epoch  79/100  loss=0.8304  bal_acc=0.6302
+  epoch  80/100  loss=0.8252  bal_acc=0.5972
+  epoch  81/100  loss=0.8260  bal_acc=0.5833
+  epoch  82/100  loss=0.8427  bal_acc=0.4740
+  epoch  83/100  loss=0.8288  bal_acc=0.5868
+  epoch  84/100  loss=0.8240  bal_acc=0.5156
+  epoch  85/100  loss=0.8157  bal_acc=0.5816
+  epoch  86/100  loss=0.8234  bal_acc=0.6076
+  epoch  87/100  loss=0.8119  bal_acc=0.5938
+  epoch  88/100  loss=0.8264  bal_acc=0.5764
+  epoch  89/100  loss=0.8068  bal_acc=0.6007
+  epoch  90/100  loss=0.8162  bal_acc=0.5747
+  epoch  91/100  loss=0.7974  bal_acc=0.5712
+  epoch  92/100  loss=0.8128  bal_acc=0.5764
+  epoch  93/100  loss=0.8151  bal_acc=0.5382
+  epoch  94/100  loss=0.7951  bal_acc=0.5104
+  epoch  95/100  loss=0.7880  bal_acc=0.5764
+  epoch  96/100  loss=0.8128  bal_acc=0.5816
+  epoch  97/100  loss=0.7981  bal_acc=0.5365
+  epoch  98/100  loss=0.8209  bal_acc=0.5781
+  epoch  99/100  loss=0.8037  bal_acc=0.5642
+  epoch 100/100  loss=0.8125  bal_acc=0.5399
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 540 done (state=COMPLETE, value=0.5399305555555556) -- 535 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 4.221103890501963–97.61863187737491 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 14,068
+  epoch   1/100  loss=1.4219  bal_acc=0.2795
+  epoch   2/100  loss=1.3968  bal_acc=0.3316
+  epoch   3/100  loss=1.3862  bal_acc=0.3611  [pruned by Optuna at epoch 3]
+[status] trial 541 done (state=PRUNED, value=0.3611111111111111) -- 536 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 10.495071030007237–54.19478082709955 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 12,159
+  epoch   1/100  loss=1.3984  bal_acc=0.4653
+  epoch   2/100  loss=1.3260  bal_acc=0.4514
+  epoch   3/100  loss=1.2822  bal_acc=0.5920
+  epoch   4/100  loss=1.2600  bal_acc=0.5521
+  epoch   5/100  loss=1.2179  bal_acc=0.4497
+  epoch   6/100  loss=1.2110  bal_acc=0.5590
+  epoch   7/100  loss=1.1885  bal_acc=0.4531
+  epoch   8/100  loss=1.1727  bal_acc=0.6059
+  epoch   9/100  loss=1.1652  bal_acc=0.5156
+  epoch  10/100  loss=1.1823  bal_acc=0.5191
+  epoch  11/100  loss=1.1570  bal_acc=0.5139
+  epoch  12/100  loss=1.1547  bal_acc=0.5330
+  epoch  13/100  loss=1.1365  bal_acc=0.5729
+  epoch  14/100  loss=1.1336  bal_acc=0.5729
+  epoch  15/100  loss=1.1331  bal_acc=0.5434
+  epoch  16/100  loss=1.1170  bal_acc=0.2847
+  epoch  17/100  loss=1.1195  bal_acc=0.3733
+  epoch  18/100  loss=1.1279  bal_acc=0.5017
+  epoch  19/100  loss=1.0985  bal_acc=0.4497
+  epoch  20/100  loss=1.1206  bal_acc=0.5174
+  epoch  21/100  loss=1.0990  bal_acc=0.5486
+  epoch  22/100  loss=1.0833  bal_acc=0.5191
+  epoch  23/100  loss=1.0767  bal_acc=0.6285
+  epoch  24/100  loss=1.0844  bal_acc=0.6337
+  epoch  25/100  loss=1.0747  bal_acc=0.5833
+  epoch  26/100  loss=1.0724  bal_acc=0.5781
+  epoch  27/100  loss=1.0849  bal_acc=0.5295
+  epoch  28/100  loss=1.0491  bal_acc=0.4861
+  epoch  29/100  loss=1.0472  bal_acc=0.5764
+  epoch  30/100  loss=1.0592  bal_acc=0.3542
+  epoch  31/100  loss=1.0461  bal_acc=0.5538
+  epoch  32/100  loss=1.0394  bal_acc=0.5191
+  epoch  33/100  loss=1.0348  bal_acc=0.5590
+  epoch  34/100  loss=1.0490  bal_acc=0.5729
+  epoch  35/100  loss=1.0387  bal_acc=0.6181
+  epoch  36/100  loss=1.0435  bal_acc=0.4983
+  epoch  37/100  loss=1.0365  bal_acc=0.6510
+  epoch  38/100  loss=1.0196  bal_acc=0.5764
+  epoch  39/100  loss=1.0267  bal_acc=0.4913
+  epoch  40/100  loss=1.0210  bal_acc=0.5660
+  epoch  41/100  loss=1.0192  bal_acc=0.5104
+  epoch  42/100  loss=1.0275  bal_acc=0.4983
+  epoch  43/100  loss=1.0125  bal_acc=0.5920
+  epoch  44/100  loss=0.9932  bal_acc=0.5729
+  epoch  45/100  loss=1.0094  bal_acc=0.5868
+  epoch  46/100  loss=1.0064  bal_acc=0.5799
+  epoch  47/100  loss=1.0206  bal_acc=0.6267
+  epoch  48/100  loss=0.9980  bal_acc=0.4670
+  epoch  49/100  loss=1.0084  bal_acc=0.6181
+  epoch  50/100  loss=1.0233  bal_acc=0.5955
+  epoch  51/100  loss=1.0057  bal_acc=0.5712
+  epoch  52/100  loss=0.9937  bal_acc=0.6024
+  epoch  53/100  loss=0.9969  bal_acc=0.6111
+  epoch  54/100  loss=0.9969  bal_acc=0.6389
+  epoch  55/100  loss=0.9724  bal_acc=0.5278
+  epoch  56/100  loss=1.0009  bal_acc=0.5972
+  epoch  57/100  loss=1.0050  bal_acc=0.5972
+  epoch  58/100  loss=0.9783  bal_acc=0.5833
+  epoch  59/100  loss=0.9733  bal_acc=0.5955
+  epoch  60/100  loss=0.9850  bal_acc=0.5660
+  epoch  61/100  loss=0.9863  bal_acc=0.5521
+  epoch  62/100  loss=0.9985  bal_acc=0.5955
+  epoch  63/100  loss=0.9887  bal_acc=0.5156
+  epoch  64/100  loss=0.9742  bal_acc=0.6267
+  epoch  65/100  loss=0.9708  bal_acc=0.6146
+  epoch  66/100  loss=0.9952  bal_acc=0.5816
+  epoch  67/100  loss=1.0058  bal_acc=0.5885
+  epoch  68/100  loss=0.9900  bal_acc=0.6181
+  epoch  69/100  loss=0.9592  bal_acc=0.5833
+  epoch  70/100  loss=0.9917  bal_acc=0.5990
+  epoch  71/100  loss=0.9568  bal_acc=0.6146
+  epoch  72/100  loss=0.9674  bal_acc=0.5885
+  epoch  73/100  loss=0.9764  bal_acc=0.5955
+  epoch  74/100  loss=0.9711  bal_acc=0.5660
+  epoch  75/100  loss=0.9520  bal_acc=0.6233
+  epoch  76/100  loss=0.9561  bal_acc=0.5868
+  epoch  77/100  loss=0.9652  bal_acc=0.6181
+  epoch  78/100  loss=0.9582  bal_acc=0.5920
+  epoch  79/100  loss=0.9520  bal_acc=0.6163
+  epoch  80/100  loss=0.9632  bal_acc=0.5590
+  epoch  81/100  loss=0.9544  bal_acc=0.6198
+  epoch  82/100  loss=0.9441  bal_acc=0.6233
+  epoch  83/100  loss=0.9654  bal_acc=0.6163
+  epoch  84/100  loss=0.9531  bal_acc=0.6562
+  epoch  85/100  loss=0.9527  bal_acc=0.5625
+  epoch  86/100  loss=0.9413  bal_acc=0.6233
+  epoch  87/100  loss=0.9608  bal_acc=0.6267
+  epoch  88/100  loss=0.9810  bal_acc=0.6146
+  epoch  89/100  loss=0.9380  bal_acc=0.6406
+  epoch  90/100  loss=0.9766  bal_acc=0.5747
+  epoch  91/100  loss=0.9615  bal_acc=0.5590
+  epoch  92/100  loss=0.9522  bal_acc=0.5851
+  epoch  93/100  loss=0.9595  bal_acc=0.6181
+  epoch  94/100  loss=0.9397  bal_acc=0.5833
+  epoch  95/100  loss=0.9505  bal_acc=0.4948
+  epoch  96/100  loss=0.9450  bal_acc=0.6146
+  epoch  97/100  loss=0.9226  bal_acc=0.6094
+  epoch  98/100  loss=0.9758  bal_acc=0.5399
+  epoch  99/100  loss=0.9428  bal_acc=0.6111
+  epoch 100/100  loss=0.9644  bal_acc=0.6042
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 542 done (state=COMPLETE, value=0.6041666666666666) -- 537 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 12.288680552314082–48.70018066053097 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 7,519
+  epoch   1/100  loss=1.3825  bal_acc=0.2986
+  epoch   2/100  loss=1.3355  bal_acc=0.4306
+  epoch   3/100  loss=1.3044  bal_acc=0.4965  [pruned by Optuna at epoch 3]
+[status] trial 543 done (state=PRUNED, value=0.4965277777777778) -- 538 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 7.921660969401528–83.14069453945858 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 14,174
+  epoch   1/100  loss=1.3569  bal_acc=0.5295
+  epoch   2/100  loss=1.1959  bal_acc=0.4635
+  epoch   3/100  loss=1.1243  bal_acc=0.5573
+  epoch   4/100  loss=1.0896  bal_acc=0.3264
+  epoch   5/100  loss=1.0589  bal_acc=0.5017
+  epoch   6/100  loss=1.0349  bal_acc=0.3785
+  epoch   7/100  loss=1.0138  bal_acc=0.3750
+  epoch   8/100  loss=0.9852  bal_acc=0.3576
+  epoch   9/100  loss=0.9648  bal_acc=0.5191
+  epoch  10/100  loss=0.9557  bal_acc=0.5694
+  epoch  11/100  loss=0.9281  bal_acc=0.5399
+  epoch  12/100  loss=0.9161  bal_acc=0.5538
+  epoch  13/100  loss=0.9001  bal_acc=0.5747
+  epoch  14/100  loss=0.8813  bal_acc=0.3368
+  epoch  15/100  loss=0.8702  bal_acc=0.6042
+  epoch  16/100  loss=0.8608  bal_acc=0.6111
+  epoch  17/100  loss=0.8491  bal_acc=0.6198
+  epoch  18/100  loss=0.8282  bal_acc=0.6059
+  epoch  19/100  loss=0.8191  bal_acc=0.4931
+  epoch  20/100  loss=0.8131  bal_acc=0.6337
+  epoch  21/100  loss=0.7997  bal_acc=0.5938
+  epoch  22/100  loss=0.7885  bal_acc=0.5799
+  epoch  23/100  loss=0.7656  bal_acc=0.5729
+  epoch  24/100  loss=0.7666  bal_acc=0.4028
+  epoch  25/100  loss=0.7443  bal_acc=0.4705
+  epoch  26/100  loss=0.7408  bal_acc=0.6128
+  epoch  27/100  loss=0.7310  bal_acc=0.6146
+  epoch  28/100  loss=0.7356  bal_acc=0.5764
+  epoch  29/100  loss=0.7267  bal_acc=0.5938
+  epoch  30/100  loss=0.7147  bal_acc=0.5712
+  epoch  31/100  loss=0.7138  bal_acc=0.5538
+  epoch  32/100  loss=0.7242  bal_acc=0.5833
+  epoch  33/100  loss=0.6910  bal_acc=0.6111
+  epoch  34/100  loss=0.6796  bal_acc=0.5573
+  epoch  35/100  loss=0.6814  bal_acc=0.5260
+  epoch  36/100  loss=0.6657  bal_acc=0.6076
+  epoch  37/100  loss=0.6666  bal_acc=0.5330
+  epoch  38/100  loss=0.6584  bal_acc=0.5191
+  epoch  39/100  loss=0.6489  bal_acc=0.5538
+  epoch  40/100  loss=0.6603  bal_acc=0.4965
+  epoch  41/100  loss=0.6291  bal_acc=0.5417
+  epoch  42/100  loss=0.6388  bal_acc=0.6128
+  epoch  43/100  loss=0.6267  bal_acc=0.5764
+  epoch  44/100  loss=0.6461  bal_acc=0.5642
+  epoch  45/100  loss=0.6250  bal_acc=0.6024
+  epoch  46/100  loss=0.6340  bal_acc=0.6094
+  epoch  47/100  loss=0.6134  bal_acc=0.5521
+  epoch  48/100  loss=0.6180  bal_acc=0.5694
+  epoch  49/100  loss=0.5981  bal_acc=0.6007
+  epoch  50/100  loss=0.6020  bal_acc=0.5365
+  epoch  51/100  loss=0.5990  bal_acc=0.5799
+  epoch  52/100  loss=0.6039  bal_acc=0.5156
+  epoch  53/100  loss=0.6051  bal_acc=0.5694
+  epoch  54/100  loss=0.6010  bal_acc=0.5625
+  epoch  55/100  loss=0.5800  bal_acc=0.5885
+  epoch  56/100  loss=0.5770  bal_acc=0.5451
+  epoch  57/100  loss=0.5733  bal_acc=0.5503
+  epoch  58/100  loss=0.5770  bal_acc=0.5417
+  epoch  59/100  loss=0.5751  bal_acc=0.5226
+  epoch  60/100  loss=0.5590  bal_acc=0.5747
+  epoch  61/100  loss=0.5877  bal_acc=0.5868
+  epoch  62/100  loss=0.5582  bal_acc=0.5521
+  epoch  63/100  loss=0.5460  bal_acc=0.5382
+  epoch  64/100  loss=0.5528  bal_acc=0.5295
+  epoch  65/100  loss=0.5601  bal_acc=0.4861
+  epoch  66/100  loss=0.5547  bal_acc=0.5399
+  epoch  67/100  loss=0.5618  bal_acc=0.5382
+  epoch  68/100  loss=0.5741  bal_acc=0.5417
+  epoch  69/100  loss=0.5316  bal_acc=0.4688
+  epoch  70/100  loss=0.5412  bal_acc=0.5122
+  epoch  71/100  loss=0.5481  bal_acc=0.5660
+  epoch  72/100  loss=0.5306  bal_acc=0.6128
+  epoch  73/100  loss=0.5529  bal_acc=0.5938
+  epoch  74/100  loss=0.5605  bal_acc=0.5833
+  epoch  75/100  loss=0.5653  bal_acc=0.5590
+  epoch  76/100  loss=0.5347  bal_acc=0.5174
+  epoch  77/100  loss=0.5509  bal_acc=0.5990
+  epoch  78/100  loss=0.5447  bal_acc=0.5747
+  epoch  79/100  loss=0.5504  bal_acc=0.5278
+  epoch  80/100  loss=0.5438  bal_acc=0.5625
+  epoch  81/100  loss=0.5307  bal_acc=0.5781
+  epoch  82/100  loss=0.5261  bal_acc=0.5660
+  epoch  83/100  loss=0.5339  bal_acc=0.6007
+  epoch  84/100  loss=0.5138  bal_acc=0.5556
+  epoch  85/100  loss=0.5250  bal_acc=0.5868
+  epoch  86/100  loss=0.5000  bal_acc=0.5868
+  epoch  87/100  loss=0.4997  bal_acc=0.5642
+  epoch  88/100  loss=0.5102  bal_acc=0.5191
+  epoch  89/100  loss=0.5215  bal_acc=0.4635
+  epoch  90/100  loss=0.5196  bal_acc=0.4931
+  epoch  91/100  loss=0.5031  bal_acc=0.5069
+  epoch  92/100  loss=0.5280  bal_acc=0.5104
+  epoch  93/100  loss=0.5109  bal_acc=0.5781
+  epoch  94/100  loss=0.5043  bal_acc=0.6076
+  epoch  95/100  loss=0.5083  bal_acc=0.5573
+  epoch  96/100  loss=0.4982  bal_acc=0.5660
+  epoch  97/100  loss=0.4855  bal_acc=0.5677
+  epoch  98/100  loss=0.4844  bal_acc=0.5608
+  epoch  99/100  loss=0.4904  bal_acc=0.6059
+  epoch 100/100  loss=0.4818  bal_acc=0.5677
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 544 done (state=COMPLETE, value=0.5677083333333334) -- 539 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 1.9021763651373695–82.37479216710658 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 16,250
+  epoch   1/100  loss=1.4043  bal_acc=0.3212
+  epoch   2/100  loss=1.3273  bal_acc=0.4497
+  epoch   3/100  loss=1.2500  bal_acc=0.4896  [pruned by Optuna at epoch 3]
+[status] trial 545 done (state=PRUNED, value=0.4895833333333333) -- 540 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 9.003845984080474–66.5450265160297 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 9,512
+  epoch   1/100  loss=1.3739  bal_acc=0.4358
+  epoch   2/100  loss=1.2897  bal_acc=0.4497
+  epoch   3/100  loss=1.2452  bal_acc=0.4826  [pruned by Optuna at epoch 3]
+[status] trial 546 done (state=PRUNED, value=0.48263888888888884) -- 541 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 2.92052831674002–62.29906446338694 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 4,635
+  epoch   1/100  loss=1.3629  bal_acc=0.4497
+  epoch   2/100  loss=1.2795  bal_acc=0.4983
+  epoch   3/100  loss=1.2044  bal_acc=0.5712
+  epoch   4/100  loss=1.1699  bal_acc=0.5434
+  epoch   5/100  loss=1.1560  bal_acc=0.5972
+  epoch   6/100  loss=1.1263  bal_acc=0.5764
+  epoch   7/100  loss=1.1232  bal_acc=0.5642
+  epoch   8/100  loss=1.1142  bal_acc=0.5677
+  epoch   9/100  loss=1.0971  bal_acc=0.5764
+  epoch  10/100  loss=1.0840  bal_acc=0.5087
+  epoch  11/100  loss=1.0646  bal_acc=0.5955
+  epoch  12/100  loss=1.0496  bal_acc=0.5191
+  epoch  13/100  loss=1.0549  bal_acc=0.5278
+  epoch  14/100  loss=1.0406  bal_acc=0.4740
+  epoch  15/100  loss=1.0210  bal_acc=0.5017
+  epoch  16/100  loss=1.0206  bal_acc=0.4792
+  epoch  17/100  loss=1.0167  bal_acc=0.5747
+  epoch  18/100  loss=1.0075  bal_acc=0.4792
+  epoch  19/100  loss=1.0102  bal_acc=0.5972
+  epoch  20/100  loss=1.0015  bal_acc=0.5868
+  epoch  21/100  loss=1.0068  bal_acc=0.5990
+  epoch  22/100  loss=0.9834  bal_acc=0.6632
+  epoch  23/100  loss=0.9765  bal_acc=0.6007
+  epoch  24/100  loss=0.9712  bal_acc=0.5712
+  epoch  25/100  loss=0.9777  bal_acc=0.5833
+  epoch  26/100  loss=0.9805  bal_acc=0.5556
+  epoch  27/100  loss=0.9668  bal_acc=0.5781
+  epoch  28/100  loss=0.9651  bal_acc=0.5677
+  epoch  29/100  loss=0.9566  bal_acc=0.5781
+  epoch  30/100  loss=0.9594  bal_acc=0.4896
+  epoch  31/100  loss=0.9581  bal_acc=0.5677
+  epoch  32/100  loss=0.9507  bal_acc=0.5503
+  epoch  33/100  loss=0.9572  bal_acc=0.5365
+  epoch  34/100  loss=0.9368  bal_acc=0.5608
+  epoch  35/100  loss=0.9373  bal_acc=0.6042
+  epoch  36/100  loss=0.9312  bal_acc=0.5816
+  epoch  37/100  loss=0.9289  bal_acc=0.5712
+  epoch  38/100  loss=0.9424  bal_acc=0.6146
+  epoch  39/100  loss=0.9293  bal_acc=0.5434
+  epoch  40/100  loss=0.9435  bal_acc=0.6059
+  epoch  41/100  loss=0.9263  bal_acc=0.6128
+  epoch  42/100  loss=0.9286  bal_acc=0.5712
+  epoch  43/100  loss=0.9158  bal_acc=0.6007
+  epoch  44/100  loss=0.9130  bal_acc=0.5642
+  epoch  45/100  loss=0.9191  bal_acc=0.5781
+  epoch  46/100  loss=0.9341  bal_acc=0.5295
+  epoch  47/100  loss=0.9303  bal_acc=0.5208
+  epoch  48/100  loss=0.8886  bal_acc=0.5035
+  epoch  49/100  loss=0.9036  bal_acc=0.5156
+  epoch  50/100  loss=0.9146  bal_acc=0.5764
+  epoch  51/100  loss=0.9112  bal_acc=0.5486
+  epoch  52/100  loss=0.9013  bal_acc=0.5712
+  epoch  53/100  loss=0.9170  bal_acc=0.5451
+  epoch  54/100  loss=0.9099  bal_acc=0.6094
+  epoch  55/100  loss=0.9078  bal_acc=0.5538
+  epoch  56/100  loss=0.9100  bal_acc=0.5764
+  epoch  57/100  loss=0.9059  bal_acc=0.4948
+  epoch  58/100  loss=0.9086  bal_acc=0.5590
+  epoch  59/100  loss=0.9019  bal_acc=0.5017
+  epoch  60/100  loss=0.8979  bal_acc=0.5469
+  epoch  61/100  loss=0.9062  bal_acc=0.6042
+  epoch  62/100  loss=0.8910  bal_acc=0.5868
+  epoch  63/100  loss=0.8814  bal_acc=0.5399
+  epoch  64/100  loss=0.9082  bal_acc=0.5278
+  epoch  65/100  loss=0.8838  bal_acc=0.6128
+  epoch  66/100  loss=0.9118  bal_acc=0.5417
+  epoch  67/100  loss=0.8866  bal_acc=0.5399
+  epoch  68/100  loss=0.8956  bal_acc=0.5087
+  epoch  69/100  loss=0.8871  bal_acc=0.5781
+  epoch  70/100  loss=0.8749  bal_acc=0.5816
+  epoch  71/100  loss=0.8703  bal_acc=0.5365
+  epoch  72/100  loss=0.8884  bal_acc=0.4531
+  epoch  73/100  loss=0.8833  bal_acc=0.5538
+  epoch  74/100  loss=0.8834  bal_acc=0.5017
+  epoch  75/100  loss=0.8821  bal_acc=0.5642
+  epoch  76/100  loss=0.8681  bal_acc=0.5243
+  epoch  77/100  loss=0.8662  bal_acc=0.5608
+  epoch  78/100  loss=0.8864  bal_acc=0.5139
+  epoch  79/100  loss=0.8649  bal_acc=0.5521
+  epoch  80/100  loss=0.8748  bal_acc=0.5799
+  epoch  81/100  loss=0.8792  bal_acc=0.5677
+  epoch  82/100  loss=0.8938  bal_acc=0.5538
+  epoch  83/100  loss=0.8802  bal_acc=0.5625
+  epoch  84/100  loss=0.8706  bal_acc=0.5069
+  epoch  85/100  loss=0.8806  bal_acc=0.5052
+  epoch  86/100  loss=0.8757  bal_acc=0.5747
+  epoch  87/100  loss=0.8574  bal_acc=0.5729
+  epoch  88/100  loss=0.8638  bal_acc=0.5677
+  epoch  89/100  loss=0.8585  bal_acc=0.4653
+  epoch  90/100  loss=0.8631  bal_acc=0.5295
+  epoch  91/100  loss=0.8603  bal_acc=0.5833
+  epoch  92/100  loss=0.8797  bal_acc=0.5243
+  epoch  93/100  loss=0.8673  bal_acc=0.5399
+  epoch  94/100  loss=0.8773  bal_acc=0.5903
+  epoch  95/100  loss=0.8761  bal_acc=0.5642
+  epoch  96/100  loss=0.8604  bal_acc=0.5469
+  epoch  97/100  loss=0.8754  bal_acc=0.5729
+  epoch  98/100  loss=0.8423  bal_acc=0.5608
+  epoch  99/100  loss=0.8734  bal_acc=0.5521
+  epoch 100/100  loss=0.8691  bal_acc=0.5920
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 547 done (state=COMPLETE, value=0.5920138888888888) -- 542 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 1.6841739322975484–65.13258589806333 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 13,834
+  epoch   1/100  loss=1.3750  bal_acc=0.4444
+  epoch   2/100  loss=1.2768  bal_acc=0.4375
+  epoch   3/100  loss=1.2420  bal_acc=0.4583  [pruned by Optuna at epoch 3]
+[status] trial 548 done (state=PRUNED, value=0.4583333333333333) -- 543 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 16.770669848188717–83.25380363873445 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 12,449
+  epoch   1/100  loss=1.4019  bal_acc=0.2760
+  epoch   2/100  loss=1.3893  bal_acc=0.2569
+  epoch   3/100  loss=1.3730  bal_acc=0.2535  [pruned by Optuna at epoch 3]
+[status] trial 549 done (state=PRUNED, value=0.2534722222222222) -- 544 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 10.385509085390208–69.20696892906356 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 26,874
+  epoch   1/100  loss=1.3887  bal_acc=0.4635
+  epoch   2/100  loss=1.3472  bal_acc=0.4722
+  epoch   3/100  loss=1.2711  bal_acc=0.5312
+  epoch   4/100  loss=1.1965  bal_acc=0.4931
+  epoch   5/100  loss=1.1458  bal_acc=0.4809
+  epoch   6/100  loss=1.1087  bal_acc=0.6059
+  epoch   7/100  loss=1.0783  bal_acc=0.5729
+  epoch   8/100  loss=1.0602  bal_acc=0.5833
+  epoch   9/100  loss=1.0375  bal_acc=0.5503
+  epoch  10/100  loss=1.0134  bal_acc=0.5833
+  epoch  11/100  loss=0.9915  bal_acc=0.5990
+  epoch  12/100  loss=0.9704  bal_acc=0.5521
+  epoch  13/100  loss=0.9399  bal_acc=0.6094
+  epoch  14/100  loss=0.9420  bal_acc=0.5833
+  epoch  15/100  loss=0.9297  bal_acc=0.5816
+  epoch  16/100  loss=0.8870  bal_acc=0.5868
+  epoch  17/100  loss=0.8787  bal_acc=0.5608
+  epoch  18/100  loss=0.8540  bal_acc=0.6319
+  epoch  19/100  loss=0.8487  bal_acc=0.5938
+  epoch  20/100  loss=0.8315  bal_acc=0.5747
+  epoch  21/100  loss=0.8297  bal_acc=0.5104
+  epoch  22/100  loss=0.8214  bal_acc=0.5625
+  epoch  23/100  loss=0.8000  bal_acc=0.5903
+  epoch  24/100  loss=0.7943  bal_acc=0.5017
+  epoch  25/100  loss=0.7750  bal_acc=0.5382
+  epoch  26/100  loss=0.7749  bal_acc=0.5851
+  epoch  27/100  loss=0.7478  bal_acc=0.5382
+  epoch  28/100  loss=0.7509  bal_acc=0.5868
+  epoch  29/100  loss=0.7549  bal_acc=0.5538
+  epoch  30/100  loss=0.7250  bal_acc=0.5816
+  epoch  31/100  loss=0.7300  bal_acc=0.5972
+  epoch  32/100  loss=0.7070  bal_acc=0.6181
+  epoch  33/100  loss=0.6988  bal_acc=0.5156
+  epoch  34/100  loss=0.7045  bal_acc=0.5781
+  epoch  35/100  loss=0.7043  bal_acc=0.5521
+  epoch  36/100  loss=0.6830  bal_acc=0.5590
+  epoch  37/100  loss=0.6709  bal_acc=0.5955
+  epoch  38/100  loss=0.6744  bal_acc=0.6059
+  epoch  39/100  loss=0.6577  bal_acc=0.5903
+  epoch  40/100  loss=0.6559  bal_acc=0.6076
+  epoch  41/100  loss=0.6437  bal_acc=0.5868
+  epoch  42/100  loss=0.6414  bal_acc=0.6007
+  epoch  43/100  loss=0.6334  bal_acc=0.5365
+  epoch  44/100  loss=0.6165  bal_acc=0.5382
+  epoch  45/100  loss=0.6192  bal_acc=0.5538
+  epoch  46/100  loss=0.6215  bal_acc=0.5347
+  epoch  47/100  loss=0.6132  bal_acc=0.5382
+  epoch  48/100  loss=0.6027  bal_acc=0.5712
+  epoch  49/100  loss=0.5929  bal_acc=0.5764
+  epoch  50/100  loss=0.5945  bal_acc=0.5816
+  epoch  51/100  loss=0.5982  bal_acc=0.5521
+  epoch  52/100  loss=0.5827  bal_acc=0.5573
+  epoch  53/100  loss=0.5697  bal_acc=0.5347
+  epoch  54/100  loss=0.5737  bal_acc=0.5573
+  epoch  55/100  loss=0.5606  bal_acc=0.5104
+  epoch  56/100  loss=0.5631  bal_acc=0.5243
+  epoch  57/100  loss=0.5668  bal_acc=0.5955
+  epoch  58/100  loss=0.5632  bal_acc=0.5729
+  epoch  59/100  loss=0.5388  bal_acc=0.5330
+  epoch  60/100  loss=0.5402  bal_acc=0.5451
+  epoch  61/100  loss=0.5455  bal_acc=0.5816
+  epoch  62/100  loss=0.5347  bal_acc=0.5694
+  epoch  63/100  loss=0.5367  bal_acc=0.5608
+  epoch  64/100  loss=0.5224  bal_acc=0.5868
+  epoch  65/100  loss=0.5266  bal_acc=0.5747
+  epoch  66/100  loss=0.5415  bal_acc=0.5486
+  epoch  67/100  loss=0.4937  bal_acc=0.5556
+  epoch  68/100  loss=0.5250  bal_acc=0.5799
+  epoch  69/100  loss=0.5059  bal_acc=0.5330
+  epoch  70/100  loss=0.5070  bal_acc=0.5694
+  epoch  71/100  loss=0.4995  bal_acc=0.5295
+  epoch  72/100  loss=0.4969  bal_acc=0.4983
+  epoch  73/100  loss=0.4878  bal_acc=0.5139
+  epoch  74/100  loss=0.4947  bal_acc=0.5312
+  epoch  75/100  loss=0.4865  bal_acc=0.5399
+  epoch  76/100  loss=0.5012  bal_acc=0.5521
+  epoch  77/100  loss=0.4865  bal_acc=0.5938
+  epoch  78/100  loss=0.4904  bal_acc=0.5556
+  epoch  79/100  loss=0.4900  bal_acc=0.5556
+  epoch  80/100  loss=0.4701  bal_acc=0.5573
+  epoch  81/100  loss=0.4752  bal_acc=0.5347
+  epoch  82/100  loss=0.4629  bal_acc=0.5417
+  epoch  83/100  loss=0.4697  bal_acc=0.5677
+  epoch  84/100  loss=0.4620  bal_acc=0.5660
+  epoch  85/100  loss=0.4615  bal_acc=0.5382
+  epoch  86/100  loss=0.4710  bal_acc=0.5590
+  epoch  87/100  loss=0.4579  bal_acc=0.5799
+  epoch  88/100  loss=0.4558  bal_acc=0.5226
+  epoch  89/100  loss=0.4552  bal_acc=0.5625
+  epoch  90/100  loss=0.4552  bal_acc=0.5538
+  epoch  91/100  loss=0.4499  bal_acc=0.5417
+  epoch  92/100  loss=0.4430  bal_acc=0.5226
+  epoch  93/100  loss=0.4630  bal_acc=0.5174
+  epoch  94/100  loss=0.4361  bal_acc=0.5330
+  epoch  95/100  loss=0.4379  bal_acc=0.5087
+  epoch  96/100  loss=0.4458  bal_acc=0.5660
+  epoch  97/100  loss=0.4321  bal_acc=0.5399
+  epoch  98/100  loss=0.4276  bal_acc=0.5382
+  epoch  99/100  loss=0.4324  bal_acc=0.5174
+  epoch 100/100  loss=0.4186  bal_acc=0.5226
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 550 done (state=COMPLETE, value=0.5225694444444444) -- 545 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 5.384710935996869–87.86044279891824 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 9,949
+  epoch   1/100  loss=1.3666  bal_acc=0.5260
+  epoch   2/100  loss=1.2160  bal_acc=0.5226
+  epoch   3/100  loss=1.1739  bal_acc=0.4392
+  epoch   4/100  loss=1.1215  bal_acc=0.5990
+  epoch   5/100  loss=1.0963  bal_acc=0.3646
+  epoch   6/100  loss=1.0501  bal_acc=0.5972
+  epoch   7/100  loss=1.0424  bal_acc=0.6267
+  epoch   8/100  loss=1.0234  bal_acc=0.4132
+  epoch   9/100  loss=1.0141  bal_acc=0.5903
+  epoch  10/100  loss=0.9880  bal_acc=0.5191
+  epoch  11/100  loss=0.9720  bal_acc=0.5365
+  epoch  12/100  loss=0.9742  bal_acc=0.5156
+  epoch  13/100  loss=0.9645  bal_acc=0.5660
+  epoch  14/100  loss=0.9522  bal_acc=0.6007
+  epoch  15/100  loss=0.9407  bal_acc=0.5903
+  epoch  16/100  loss=0.9114  bal_acc=0.5747
+  epoch  17/100  loss=0.9170  bal_acc=0.5174
+  epoch  18/100  loss=0.8911  bal_acc=0.4774
+  epoch  19/100  loss=0.8814  bal_acc=0.5660
+  epoch  20/100  loss=0.8899  bal_acc=0.4913
+  epoch  21/100  loss=0.8853  bal_acc=0.5955
+  epoch  22/100  loss=0.8827  bal_acc=0.6198
+  epoch  23/100  loss=0.8652  bal_acc=0.5694
+  epoch  24/100  loss=0.8532  bal_acc=0.4444
+  epoch  25/100  loss=0.8393  bal_acc=0.5122
+  epoch  26/100  loss=0.8495  bal_acc=0.6406
+  epoch  27/100  loss=0.8537  bal_acc=0.3385
+  epoch  28/100  loss=0.8060  bal_acc=0.5451
+  epoch  29/100  loss=0.8237  bal_acc=0.5903
+  epoch  30/100  loss=0.8246  bal_acc=0.5712
+  epoch  31/100  loss=0.8032  bal_acc=0.6285
+  epoch  32/100  loss=0.8294  bal_acc=0.4653
+  epoch  33/100  loss=0.8301  bal_acc=0.4392
+  epoch  34/100  loss=0.8156  bal_acc=0.5608
+  epoch  35/100  loss=0.8184  bal_acc=0.4705
+  epoch  36/100  loss=0.8080  bal_acc=0.5382
+  epoch  37/100  loss=0.7923  bal_acc=0.5556
+  epoch  38/100  loss=0.7828  bal_acc=0.5799
+  epoch  39/100  loss=0.7996  bal_acc=0.5486
+  epoch  40/100  loss=0.7878  bal_acc=0.5260
+  epoch  41/100  loss=0.7794  bal_acc=0.4618
+  epoch  42/100  loss=0.7797  bal_acc=0.5694
+  epoch  43/100  loss=0.7733  bal_acc=0.5799
+  epoch  44/100  loss=0.7754  bal_acc=0.5260
+  epoch  45/100  loss=0.7817  bal_acc=0.4653
+  epoch  46/100  loss=0.7660  bal_acc=0.5000
+  epoch  47/100  loss=0.7464  bal_acc=0.4219
+  epoch  48/100  loss=0.7549  bal_acc=0.5660
+  epoch  49/100  loss=0.7552  bal_acc=0.4583
+  epoch  50/100  loss=0.7633  bal_acc=0.4948
+  epoch  51/100  loss=0.7560  bal_acc=0.5729
+  epoch  52/100  loss=0.7480  bal_acc=0.4479
+  epoch  53/100  loss=0.7564  bal_acc=0.5556
+  epoch  54/100  loss=0.7458  bal_acc=0.5139
+  epoch  55/100  loss=0.7585  bal_acc=0.5521
+  epoch  56/100  loss=0.7285  bal_acc=0.5625
+  epoch  57/100  loss=0.7418  bal_acc=0.4045
+  epoch  58/100  loss=0.7478  bal_acc=0.6007
+  epoch  59/100  loss=0.7414  bal_acc=0.5260
+  epoch  60/100  loss=0.7166  bal_acc=0.6024
+  epoch  61/100  loss=0.7266  bal_acc=0.6076
+  epoch  62/100  loss=0.7255  bal_acc=0.4861
+  epoch  63/100  loss=0.7029  bal_acc=0.5938
+  epoch  64/100  loss=0.7222  bal_acc=0.5885
+  epoch  65/100  loss=0.7140  bal_acc=0.6042
+  epoch  66/100  loss=0.7283  bal_acc=0.5747
+  epoch  67/100  loss=0.6949  bal_acc=0.6024
+  epoch  68/100  loss=0.7182  bal_acc=0.4896
+  epoch  69/100  loss=0.7199  bal_acc=0.5625
+  epoch  70/100  loss=0.6887  bal_acc=0.5000
+  epoch  71/100  loss=0.7195  bal_acc=0.4601
+  epoch  72/100  loss=0.6911  bal_acc=0.6042
+  epoch  73/100  loss=0.6960  bal_acc=0.5816
+  epoch  74/100  loss=0.6952  bal_acc=0.5417
+  epoch  75/100  loss=0.6812  bal_acc=0.5608
+  epoch  76/100  loss=0.6836  bal_acc=0.4757
+  epoch  77/100  loss=0.7043  bal_acc=0.5295
+  epoch  78/100  loss=0.6913  bal_acc=0.4340
+  epoch  79/100  loss=0.7104  bal_acc=0.4792
+  epoch  80/100  loss=0.6822  bal_acc=0.5885
+  epoch  81/100  loss=0.6912  bal_acc=0.5312
+  epoch  82/100  loss=0.6905  bal_acc=0.5816
+  epoch  83/100  loss=0.6935  bal_acc=0.5764
+  epoch  84/100  loss=0.6900  bal_acc=0.5642
+  epoch  85/100  loss=0.6811  bal_acc=0.5833
+  epoch  86/100  loss=0.6829  bal_acc=0.5712
+  epoch  87/100  loss=0.6610  bal_acc=0.5625
+  epoch  88/100  loss=0.6698  bal_acc=0.3351
+  epoch  89/100  loss=0.6554  bal_acc=0.5885
+  epoch  90/100  loss=0.6891  bal_acc=0.5503
+  epoch  91/100  loss=0.6943  bal_acc=0.4132
+  epoch  92/100  loss=0.6736  bal_acc=0.5764
+  epoch  93/100  loss=0.6642  bal_acc=0.5590
+  epoch  94/100  loss=0.6771  bal_acc=0.5538
+  epoch  95/100  loss=0.6929  bal_acc=0.4618
+  epoch  96/100  loss=0.6794  bal_acc=0.5868
+  epoch  97/100  loss=0.6598  bal_acc=0.3559
+  epoch  98/100  loss=0.6703  bal_acc=0.5816
+  epoch  99/100  loss=0.6696  bal_acc=0.5486
+  epoch 100/100  loss=0.7011  bal_acc=0.4201
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 551 done (state=COMPLETE, value=0.42013888888888895) -- 546 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 3.444926881812127–97.81157347915745 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 11,453
+  epoch   1/100  loss=1.3914  bal_acc=0.2674
+  epoch   2/100  loss=1.3798  bal_acc=0.3681
+  epoch   3/100  loss=1.3711  bal_acc=0.4028  [pruned by Optuna at epoch 3]
+[status] trial 552 done (state=PRUNED, value=0.4027777777777778) -- 547 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 9.03636486765599–48.39970234786524 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 14,660
+  epoch   1/100  loss=1.3476  bal_acc=0.5191
+  epoch   2/100  loss=1.2458  bal_acc=0.5625
+  epoch   3/100  loss=1.1931  bal_acc=0.5747
+  epoch   4/100  loss=1.1642  bal_acc=0.5295
+  epoch   5/100  loss=1.1330  bal_acc=0.5503
+  epoch   6/100  loss=1.1220  bal_acc=0.5885
+  epoch   7/100  loss=1.1079  bal_acc=0.4323
+  epoch   8/100  loss=1.0876  bal_acc=0.4618
+  epoch   9/100  loss=1.0981  bal_acc=0.4635
+  epoch  10/100  loss=1.1058  bal_acc=0.5208
+  epoch  11/100  loss=1.0988  bal_acc=0.4740
+  epoch  12/100  loss=1.0722  bal_acc=0.4722
+  epoch  13/100  loss=1.0618  bal_acc=0.4861
+  epoch  14/100  loss=1.0612  bal_acc=0.4878
+  epoch  15/100  loss=1.0420  bal_acc=0.5312
+  epoch  16/100  loss=1.0396  bal_acc=0.5365
+  epoch  17/100  loss=1.0488  bal_acc=0.4618
+  epoch  18/100  loss=1.0267  bal_acc=0.5139
+  epoch  19/100  loss=1.0327  bal_acc=0.5729
+  epoch  20/100  loss=1.0200  bal_acc=0.5330
+  epoch  21/100  loss=1.0204  bal_acc=0.5712
+  epoch  22/100  loss=1.0029  bal_acc=0.5486
+  epoch  23/100  loss=1.0106  bal_acc=0.5017
+  epoch  24/100  loss=1.0374  bal_acc=0.5955
+  epoch  25/100  loss=1.0236  bal_acc=0.6111
+  epoch  26/100  loss=1.0236  bal_acc=0.5660
+  epoch  27/100  loss=1.0269  bal_acc=0.5938
+  epoch  28/100  loss=1.0186  bal_acc=0.4549
+  epoch  29/100  loss=1.0059  bal_acc=0.5590
+  epoch  30/100  loss=1.0139  bal_acc=0.5938
+  epoch  31/100  loss=1.0091  bal_acc=0.4965
+  epoch  32/100  loss=0.9943  bal_acc=0.6111
+  epoch  33/100  loss=0.9768  bal_acc=0.5451
+  epoch  34/100  loss=0.9772  bal_acc=0.5278
+  epoch  35/100  loss=0.9773  bal_acc=0.5556
+  epoch  36/100  loss=0.9920  bal_acc=0.5660
+  epoch  37/100  loss=0.9835  bal_acc=0.5677
+  epoch  38/100  loss=0.9745  bal_acc=0.5747
+  epoch  39/100  loss=0.9828  bal_acc=0.4740
+  epoch  40/100  loss=0.9874  bal_acc=0.4965
+  epoch  41/100  loss=0.9718  bal_acc=0.5278
+  epoch  42/100  loss=0.9656  bal_acc=0.5087
+  epoch  43/100  loss=0.9729  bal_acc=0.4878
+  epoch  44/100  loss=0.9833  bal_acc=0.5174
+  epoch  45/100  loss=0.9870  bal_acc=0.5017
+  epoch  46/100  loss=0.9568  bal_acc=0.5538
+  epoch  47/100  loss=0.9598  bal_acc=0.5052
+  epoch  48/100  loss=0.9607  bal_acc=0.5660
+  epoch  49/100  loss=0.9603  bal_acc=0.5625
+  epoch  50/100  loss=0.9763  bal_acc=0.5747
+  epoch  51/100  loss=0.9551  bal_acc=0.5868
+  epoch  52/100  loss=0.9523  bal_acc=0.6128
+  epoch  53/100  loss=0.9423  bal_acc=0.5382
+  epoch  54/100  loss=0.9365  bal_acc=0.5799
+  epoch  55/100  loss=0.9333  bal_acc=0.5764
+  epoch  56/100  loss=0.9259  bal_acc=0.5885
+  epoch  57/100  loss=0.9458  bal_acc=0.5885
+  epoch  58/100  loss=0.9245  bal_acc=0.5208
+  epoch  59/100  loss=0.9515  bal_acc=0.5694
+  epoch  60/100  loss=0.9402  bal_acc=0.5556
+  epoch  61/100  loss=0.9336  bal_acc=0.5781
+  epoch  62/100  loss=0.9507  bal_acc=0.5660
+  epoch  63/100  loss=0.9448  bal_acc=0.5625
+  epoch  64/100  loss=0.9447  bal_acc=0.4983
+  epoch  65/100  loss=0.9503  bal_acc=0.4809
+  epoch  66/100  loss=0.9145  bal_acc=0.5486
+  epoch  67/100  loss=0.9335  bal_acc=0.5399
+  epoch  68/100  loss=0.9453  bal_acc=0.4757
+  epoch  69/100  loss=0.9245  bal_acc=0.5677
+  epoch  70/100  loss=0.9162  bal_acc=0.5521
+  epoch  71/100  loss=0.9203  bal_acc=0.5608
+  epoch  72/100  loss=0.9350  bal_acc=0.5590
+  epoch  73/100  loss=0.9811  bal_acc=0.5451
+  epoch  74/100  loss=0.9508  bal_acc=0.5069
+  epoch  75/100  loss=0.9295  bal_acc=0.5538
+  epoch  76/100  loss=0.9464  bal_acc=0.5694
+  epoch  77/100  loss=0.9260  bal_acc=0.5868
+  epoch  78/100  loss=0.9331  bal_acc=0.5069
+  epoch  79/100  loss=0.9350  bal_acc=0.4462
+  epoch  80/100  loss=0.9285  bal_acc=0.5660
+  epoch  81/100  loss=0.9271  bal_acc=0.5260
+  epoch  82/100  loss=0.9360  bal_acc=0.5764
+  epoch  83/100  loss=0.9236  bal_acc=0.5590
+  epoch  84/100  loss=0.9386  bal_acc=0.5278
+  epoch  85/100  loss=0.9189  bal_acc=0.5312
+  epoch  86/100  loss=0.9132  bal_acc=0.5799
+  epoch  87/100  loss=0.9023  bal_acc=0.5747
+  epoch  88/100  loss=0.9107  bal_acc=0.5712
+  epoch  89/100  loss=0.9128  bal_acc=0.5677
+  epoch  90/100  loss=0.9306  bal_acc=0.5955
+  epoch  91/100  loss=0.9000  bal_acc=0.5903
+  epoch  92/100  loss=0.8986  bal_acc=0.5538
+  epoch  93/100  loss=0.9095  bal_acc=0.5851
+  epoch  94/100  loss=0.9032  bal_acc=0.5764
+  epoch  95/100  loss=0.9004  bal_acc=0.5260
+  epoch  96/100  loss=0.9132  bal_acc=0.5226
+  epoch  97/100  loss=0.9117  bal_acc=0.5191
+  epoch  98/100  loss=0.9162  bal_acc=0.5122
+  epoch  99/100  loss=0.8995  bal_acc=0.5417
+  epoch 100/100  loss=0.8880  bal_acc=0.4948
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 553 done (state=COMPLETE, value=0.4947916666666667) -- 548 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 11.693006428627257–67.66634420657658 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 9,708
+  epoch   1/100  loss=1.4016  bal_acc=0.3003
+  epoch   2/100  loss=1.3562  bal_acc=0.3542
+  epoch   3/100  loss=1.3016  bal_acc=0.4653  [pruned by Optuna at epoch 3]
+[status] trial 554 done (state=PRUNED, value=0.4652777777777778) -- 549 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 3.586161220425587–49.35502370387183 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 9,320
+  epoch   1/100  loss=1.3769  bal_acc=0.4479
+  epoch   2/100  loss=1.3038  bal_acc=0.5260
+  epoch   3/100  loss=1.2185  bal_acc=0.5556
+  epoch   4/100  loss=1.1631  bal_acc=0.5156
+  epoch   5/100  loss=1.1407  bal_acc=0.5677
+  epoch   6/100  loss=1.1095  bal_acc=0.6198
+  epoch   7/100  loss=1.0838  bal_acc=0.5538
+  epoch   8/100  loss=1.0630  bal_acc=0.6076
+  epoch   9/100  loss=1.0514  bal_acc=0.5521
+  epoch  10/100  loss=1.0338  bal_acc=0.6285
+  epoch  11/100  loss=1.0254  bal_acc=0.5920
+  epoch  12/100  loss=1.0070  bal_acc=0.5122
+  epoch  13/100  loss=1.0025  bal_acc=0.5920
+  epoch  14/100  loss=0.9895  bal_acc=0.4618
+  epoch  15/100  loss=0.9833  bal_acc=0.5851
+  epoch  16/100  loss=0.9847  bal_acc=0.5486
+  epoch  17/100  loss=0.9613  bal_acc=0.5938
+  epoch  18/100  loss=0.9661  bal_acc=0.5677
+  epoch  19/100  loss=0.9533  bal_acc=0.5434
+  epoch  20/100  loss=0.9335  bal_acc=0.6024
+  epoch  21/100  loss=0.9278  bal_acc=0.5625
+  epoch  22/100  loss=0.9431  bal_acc=0.6146
+  epoch  23/100  loss=0.9296  bal_acc=0.5069
+  epoch  24/100  loss=0.9240  bal_acc=0.4844
+  epoch  25/100  loss=0.9123  bal_acc=0.5399
+  epoch  26/100  loss=0.9030  bal_acc=0.5799
+  epoch  27/100  loss=0.9053  bal_acc=0.5295
+  epoch  28/100  loss=0.8965  bal_acc=0.5833
+  epoch  29/100  loss=0.8986  bal_acc=0.5382
+  epoch  30/100  loss=0.8876  bal_acc=0.5035
+  epoch  31/100  loss=0.8866  bal_acc=0.5330
+  epoch  32/100  loss=0.8792  bal_acc=0.5764
+  epoch  33/100  loss=0.8731  bal_acc=0.5260
+  epoch  34/100  loss=0.8660  bal_acc=0.5538
+  epoch  35/100  loss=0.8697  bal_acc=0.5278
+  epoch  36/100  loss=0.8630  bal_acc=0.5521
+  epoch  37/100  loss=0.8633  bal_acc=0.5469
+  epoch  38/100  loss=0.8553  bal_acc=0.5573
+  epoch  39/100  loss=0.8556  bal_acc=0.5556
+  epoch  40/100  loss=0.8536  bal_acc=0.5417
+  epoch  41/100  loss=0.8455  bal_acc=0.5191
+  epoch  42/100  loss=0.8449  bal_acc=0.5781
+  epoch  43/100  loss=0.8415  bal_acc=0.5382
+  epoch  44/100  loss=0.8464  bal_acc=0.5712
+  epoch  45/100  loss=0.8343  bal_acc=0.5104
+  epoch  46/100  loss=0.8402  bal_acc=0.5122
+  epoch  47/100  loss=0.8606  bal_acc=0.5347
+  epoch  48/100  loss=0.8288  bal_acc=0.5747
+  epoch  49/100  loss=0.8255  bal_acc=0.5312
+  epoch  50/100  loss=0.8143  bal_acc=0.5712
+  epoch  51/100  loss=0.8257  bal_acc=0.5122
+  epoch  52/100  loss=0.8257  bal_acc=0.5312
+  epoch  53/100  loss=0.8200  bal_acc=0.5833
+  epoch  54/100  loss=0.8160  bal_acc=0.5972
+  epoch  55/100  loss=0.8129  bal_acc=0.5868
+  epoch  56/100  loss=0.8053  bal_acc=0.5660
+  epoch  57/100  loss=0.8124  bal_acc=0.5712
+  epoch  58/100  loss=0.7938  bal_acc=0.5608
+  epoch  59/100  loss=0.7943  bal_acc=0.5938
+  epoch  60/100  loss=0.8064  bal_acc=0.5278
+  epoch  61/100  loss=0.8105  bal_acc=0.5972
+  epoch  62/100  loss=0.8157  bal_acc=0.5226
+  epoch  63/100  loss=0.8024  bal_acc=0.5590
+  epoch  64/100  loss=0.7937  bal_acc=0.5451
+  epoch  65/100  loss=0.7869  bal_acc=0.5799
+  epoch  66/100  loss=0.7967  bal_acc=0.5243
+  epoch  67/100  loss=0.7924  bal_acc=0.5191
+  epoch  68/100  loss=0.7849  bal_acc=0.5469
+  epoch  69/100  loss=0.7847  bal_acc=0.5243
+  epoch  70/100  loss=0.7879  bal_acc=0.5642
+  epoch  71/100  loss=0.7674  bal_acc=0.5521
+  epoch  72/100  loss=0.7748  bal_acc=0.5833
+  epoch  73/100  loss=0.7814  bal_acc=0.5590
+  epoch  74/100  loss=0.7716  bal_acc=0.5694
+  epoch  75/100  loss=0.7849  bal_acc=0.5625
+  epoch  76/100  loss=0.7909  bal_acc=0.5556
+  epoch  77/100  loss=0.7832  bal_acc=0.5174
+  epoch  78/100  loss=0.7878  bal_acc=0.5521
+  epoch  79/100  loss=0.7691  bal_acc=0.5503
+  epoch  80/100  loss=0.7785  bal_acc=0.5365
+  epoch  81/100  loss=0.7715  bal_acc=0.5347
+  epoch  82/100  loss=0.7647  bal_acc=0.5278
+  epoch  83/100  loss=0.7659  bal_acc=0.5538
+  epoch  84/100  loss=0.7794  bal_acc=0.5538
+  epoch  85/100  loss=0.7710  bal_acc=0.5069
+  epoch  86/100  loss=0.7609  bal_acc=0.5608
+  epoch  87/100  loss=0.7689  bal_acc=0.5521
+  epoch  88/100  loss=0.7476  bal_acc=0.5590
+  epoch  89/100  loss=0.7594  bal_acc=0.5469
+  epoch  90/100  loss=0.7520  bal_acc=0.5503
+  epoch  91/100  loss=0.7549  bal_acc=0.5712
+  epoch  92/100  loss=0.7414  bal_acc=0.5590
+  epoch  93/100  loss=0.7545  bal_acc=0.5625
+  epoch  94/100  loss=0.7528  bal_acc=0.5903
+  epoch  95/100  loss=0.7639  bal_acc=0.5451
+  epoch  96/100  loss=0.7548  bal_acc=0.5851
+  epoch  97/100  loss=0.7547  bal_acc=0.5799
+  epoch  98/100  loss=0.7397  bal_acc=0.5521
+  epoch  99/100  loss=0.7528  bal_acc=0.5799
+  epoch 100/100  loss=0.7453  bal_acc=0.5747
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 555 done (state=COMPLETE, value=0.5746527777777778) -- 550 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 21.980596124609875–52.788399111621736 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 16,310
+  epoch   1/100  loss=1.4176  bal_acc=0.2882
+  epoch   2/100  loss=1.3900  bal_acc=0.3125
+  epoch   3/100  loss=1.3587  bal_acc=0.2951  [pruned by Optuna at epoch 3]
+[status] trial 556 done (state=PRUNED, value=0.2951388888888889) -- 551 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 4.5060955175483–72.72963440278966 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 24,914
+  epoch   1/100  loss=1.3913  bal_acc=0.2760
+  epoch   2/100  loss=1.3864  bal_acc=0.4080
+  epoch   3/100  loss=1.3793  bal_acc=0.3993  [pruned by Optuna at epoch 3]
+[status] trial 557 done (state=PRUNED, value=0.3993055555555555) -- 552 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 20.998778943773118–101.28292415128749 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 12,756
+  epoch   1/100  loss=1.4176  bal_acc=0.2674
+  epoch   2/100  loss=1.4110  bal_acc=0.2413
+  epoch   3/100  loss=1.4074  bal_acc=0.2587  [pruned by Optuna at epoch 3]
+[status] trial 558 done (state=PRUNED, value=0.2586805555555555) -- 553 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 8.06315794762706–106.96479912826689 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 18,300
+  epoch   1/100  loss=1.4043  bal_acc=0.4132
+  epoch   2/100  loss=1.2562  bal_acc=0.5365
+  epoch   3/100  loss=1.1924  bal_acc=0.5243
+  epoch   4/100  loss=1.1535  bal_acc=0.5330
+  epoch   5/100  loss=1.1313  bal_acc=0.5781
+  epoch   6/100  loss=1.0999  bal_acc=0.4774
+  epoch   7/100  loss=1.0957  bal_acc=0.4861
+  epoch   8/100  loss=1.0778  bal_acc=0.5191
+  epoch   9/100  loss=1.0492  bal_acc=0.3976
+  epoch  10/100  loss=1.0521  bal_acc=0.4288
+  epoch  11/100  loss=1.0226  bal_acc=0.5295
+  epoch  12/100  loss=1.0079  bal_acc=0.6163
+  epoch  13/100  loss=1.0136  bal_acc=0.5712
+  epoch  14/100  loss=0.9794  bal_acc=0.5208
+  epoch  15/100  loss=1.0055  bal_acc=0.4115
+  epoch  16/100  loss=0.9707  bal_acc=0.5191
+  epoch  17/100  loss=0.9698  bal_acc=0.5434
+  epoch  18/100  loss=0.9454  bal_acc=0.5903
+  epoch  19/100  loss=0.9424  bal_acc=0.5556
+  epoch  20/100  loss=0.9547  bal_acc=0.6163
+  epoch  21/100  loss=0.9321  bal_acc=0.5955
+  epoch  22/100  loss=0.9186  bal_acc=0.5920
+  epoch  23/100  loss=0.9027  bal_acc=0.5747
+  epoch  24/100  loss=0.9017  bal_acc=0.5972
+  epoch  25/100  loss=0.8934  bal_acc=0.4635
+  epoch  26/100  loss=0.8926  bal_acc=0.4653
+  epoch  27/100  loss=0.8938  bal_acc=0.5503
+  epoch  28/100  loss=0.8659  bal_acc=0.5260
+  epoch  29/100  loss=0.8539  bal_acc=0.5382
+  epoch  30/100  loss=0.8862  bal_acc=0.5451
+  epoch  31/100  loss=0.8781  bal_acc=0.5920
+  epoch  32/100  loss=0.8754  bal_acc=0.5312
+  epoch  33/100  loss=0.8461  bal_acc=0.6059
+  epoch  34/100  loss=0.8295  bal_acc=0.5677
+  epoch  35/100  loss=0.8505  bal_acc=0.5799
+  epoch  36/100  loss=0.8442  bal_acc=0.5972
+  epoch  37/100  loss=0.8291  bal_acc=0.6111
+  epoch  38/100  loss=0.8237  bal_acc=0.6111
+  epoch  39/100  loss=0.8422  bal_acc=0.5938
+  epoch  40/100  loss=0.8275  bal_acc=0.5625
+  epoch  41/100  loss=0.8334  bal_acc=0.5608
+  epoch  42/100  loss=0.8068  bal_acc=0.5816
+  epoch  43/100  loss=0.8295  bal_acc=0.5017
+  epoch  44/100  loss=0.8025  bal_acc=0.5972
+  epoch  45/100  loss=0.8225  bal_acc=0.6094
+  epoch  46/100  loss=0.7938  bal_acc=0.4826
+  epoch  47/100  loss=0.8058  bal_acc=0.5694
+  epoch  48/100  loss=0.8240  bal_acc=0.5868
+  epoch  49/100  loss=0.7987  bal_acc=0.5330
+  epoch  50/100  loss=0.8141  bal_acc=0.5729
+  epoch  51/100  loss=0.8064  bal_acc=0.5712
+  epoch  52/100  loss=0.8145  bal_acc=0.6042
+  epoch  53/100  loss=0.7917  bal_acc=0.5417
+  epoch  54/100  loss=0.7734  bal_acc=0.6111
+  epoch  55/100  loss=0.8007  bal_acc=0.5938
+  epoch  56/100  loss=0.7982  bal_acc=0.6111
+  epoch  57/100  loss=0.7664  bal_acc=0.5833
+  epoch  58/100  loss=0.7749  bal_acc=0.5747
+  epoch  59/100  loss=0.7465  bal_acc=0.5747
+  epoch  60/100  loss=0.7640  bal_acc=0.5920
+  epoch  61/100  loss=0.7696  bal_acc=0.5243
+  epoch  62/100  loss=0.7664  bal_acc=0.5747
+  epoch  63/100  loss=0.7578  bal_acc=0.6181
+  epoch  64/100  loss=0.7609  bal_acc=0.6042
+  epoch  65/100  loss=0.7717  bal_acc=0.5538
+  epoch  66/100  loss=0.7566  bal_acc=0.5521
+  epoch  67/100  loss=0.7611  bal_acc=0.5938
+  epoch  68/100  loss=0.7246  bal_acc=0.5990
+  epoch  69/100  loss=0.7438  bal_acc=0.5781
+  epoch  70/100  loss=0.7413  bal_acc=0.5903
+  epoch  71/100  loss=0.7641  bal_acc=0.5538
+  epoch  72/100  loss=0.7559  bal_acc=0.6198
+  epoch  73/100  loss=0.7211  bal_acc=0.5833
+  epoch  74/100  loss=0.7403  bal_acc=0.5712
+  epoch  75/100  loss=0.7379  bal_acc=0.5625
+  epoch  76/100  loss=0.7366  bal_acc=0.5503
+  epoch  77/100  loss=0.7408  bal_acc=0.5920
+  epoch  78/100  loss=0.7193  bal_acc=0.5469
+  epoch  79/100  loss=0.7277  bal_acc=0.5625
+  epoch  80/100  loss=0.7512  bal_acc=0.5764
+  epoch  81/100  loss=0.7127  bal_acc=0.6059
+  epoch  82/100  loss=0.7030  bal_acc=0.5747
+  epoch  83/100  loss=0.7130  bal_acc=0.5260
+  epoch  84/100  loss=0.7097  bal_acc=0.5174
+  epoch  85/100  loss=0.7379  bal_acc=0.5451
+  epoch  86/100  loss=0.7186  bal_acc=0.5035
+  epoch  87/100  loss=0.7269  bal_acc=0.5278
+  epoch  88/100  loss=0.7127  bal_acc=0.5938
+  epoch  89/100  loss=0.6943  bal_acc=0.5608
+  epoch  90/100  loss=0.7090  bal_acc=0.4444
+  epoch  91/100  loss=0.6918  bal_acc=0.4861
+  epoch  92/100  loss=0.7088  bal_acc=0.5677
+  epoch  93/100  loss=0.6944  bal_acc=0.5660
+  epoch  94/100  loss=0.7055  bal_acc=0.5503
+  epoch  95/100  loss=0.7053  bal_acc=0.5694
+  epoch  96/100  loss=0.7007  bal_acc=0.5451
+  epoch  97/100  loss=0.6896  bal_acc=0.5851
+  epoch  98/100  loss=0.6979  bal_acc=0.5764
+  epoch  99/100  loss=0.6674  bal_acc=0.5764
+  epoch 100/100  loss=0.7035  bal_acc=0.5469
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 559 done (state=COMPLETE, value=0.546875) -- 554 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 8.908850480103187–113.46530453349637 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 17,084
+  epoch   1/100  loss=1.3462  bal_acc=0.4965
+  epoch   2/100  loss=1.2360  bal_acc=0.5399
+  epoch   3/100  loss=1.1962  bal_acc=0.5816
+  epoch   4/100  loss=1.1616  bal_acc=0.5590
+  epoch   5/100  loss=1.1414  bal_acc=0.5781
+  epoch   6/100  loss=1.1211  bal_acc=0.5990
+  epoch   7/100  loss=1.0954  bal_acc=0.5955
+  epoch   8/100  loss=1.0926  bal_acc=0.5677
+  epoch   9/100  loss=1.0647  bal_acc=0.5955
+  epoch  10/100  loss=1.0620  bal_acc=0.5382
+  epoch  11/100  loss=1.0548  bal_acc=0.6319
+  epoch  12/100  loss=1.0289  bal_acc=0.6076
+  epoch  13/100  loss=1.0190  bal_acc=0.4774
+  epoch  14/100  loss=1.0165  bal_acc=0.5503
+  epoch  15/100  loss=1.0143  bal_acc=0.6007
+  epoch  16/100  loss=0.9973  bal_acc=0.5729
+  epoch  17/100  loss=0.9895  bal_acc=0.6285
+  epoch  18/100  loss=0.9781  bal_acc=0.6111
+  epoch  19/100  loss=0.9730  bal_acc=0.6562
+  epoch  20/100  loss=0.9684  bal_acc=0.6024
+  epoch  21/100  loss=0.9473  bal_acc=0.6250
+  epoch  22/100  loss=0.9552  bal_acc=0.6163
+  epoch  23/100  loss=0.9588  bal_acc=0.6076
+  epoch  24/100  loss=0.9356  bal_acc=0.5660
+  epoch  25/100  loss=0.9439  bal_acc=0.6354
+  epoch  26/100  loss=0.9338  bal_acc=0.6198
+  epoch  27/100  loss=0.9293  bal_acc=0.6389
+  epoch  28/100  loss=0.9310  bal_acc=0.6128
+  epoch  29/100  loss=0.8979  bal_acc=0.5972
+  epoch  30/100  loss=0.9012  bal_acc=0.6059
+  epoch  31/100  loss=0.8871  bal_acc=0.5972
+  epoch  32/100  loss=0.9296  bal_acc=0.6198
+  epoch  33/100  loss=0.8906  bal_acc=0.6198
+  epoch  34/100  loss=0.8972  bal_acc=0.6007
+  epoch  35/100  loss=0.8876  bal_acc=0.6198
+  epoch  36/100  loss=0.8944  bal_acc=0.6354
+  epoch  37/100  loss=0.8890  bal_acc=0.6163
+  epoch  38/100  loss=0.8858  bal_acc=0.6024
+  epoch  39/100  loss=0.8711  bal_acc=0.6181
+  epoch  40/100  loss=0.8672  bal_acc=0.6319
+  epoch  41/100  loss=0.8630  bal_acc=0.6076
+  epoch  42/100  loss=0.8576  bal_acc=0.6250
+  epoch  43/100  loss=0.8583  bal_acc=0.6059
+  epoch  44/100  loss=0.8662  bal_acc=0.6233
+  epoch  45/100  loss=0.8523  bal_acc=0.6198
+  epoch  46/100  loss=0.8426  bal_acc=0.6042
+  epoch  47/100  loss=0.8501  bal_acc=0.5990
+  epoch  48/100  loss=0.8382  bal_acc=0.6007
+  epoch  49/100  loss=0.8483  bal_acc=0.5868
+  epoch  50/100  loss=0.8372  bal_acc=0.6181
+  epoch  51/100  loss=0.8549  bal_acc=0.6059
+  epoch  52/100  loss=0.8373  bal_acc=0.6163
+  epoch  53/100  loss=0.8392  bal_acc=0.5972
+  epoch  54/100  loss=0.8158  bal_acc=0.6233
+  epoch  55/100  loss=0.8374  bal_acc=0.6285
+  epoch  56/100  loss=0.8365  bal_acc=0.5990
+  epoch  57/100  loss=0.8245  bal_acc=0.5920
+  epoch  58/100  loss=0.8201  bal_acc=0.6059
+  epoch  59/100  loss=0.8183  bal_acc=0.6042
+  epoch  60/100  loss=0.8122  bal_acc=0.6146
+  epoch  61/100  loss=0.8168  bal_acc=0.6302
+  epoch  62/100  loss=0.8055  bal_acc=0.6198
+  epoch  63/100  loss=0.8073  bal_acc=0.6042
+  epoch  64/100  loss=0.8202  bal_acc=0.6076
+  epoch  65/100  loss=0.8037  bal_acc=0.5590
+  epoch  66/100  loss=0.8221  bal_acc=0.6163
+  epoch  67/100  loss=0.7857  bal_acc=0.6059
+  epoch  68/100  loss=0.7951  bal_acc=0.5955
+  epoch  69/100  loss=0.8129  bal_acc=0.5955
+  epoch  70/100  loss=0.7886  bal_acc=0.6198
+  epoch  71/100  loss=0.8001  bal_acc=0.6372
+  epoch  72/100  loss=0.7946  bal_acc=0.5920
+  epoch  73/100  loss=0.7948  bal_acc=0.6059
+  epoch  74/100  loss=0.7946  bal_acc=0.6024
+  epoch  75/100  loss=0.7765  bal_acc=0.5938
+  epoch  76/100  loss=0.7745  bal_acc=0.5938
+  epoch  77/100  loss=0.7725  bal_acc=0.6163
+  epoch  78/100  loss=0.7967  bal_acc=0.6042
+  epoch  79/100  loss=0.7735  bal_acc=0.6198
+  epoch  80/100  loss=0.7998  bal_acc=0.5920
+  epoch  81/100  loss=0.7802  bal_acc=0.5938
+  epoch  82/100  loss=0.7845  bal_acc=0.6024
+  epoch  83/100  loss=0.7795  bal_acc=0.6094
+  epoch  84/100  loss=0.7788  bal_acc=0.5833
+  epoch  85/100  loss=0.7779  bal_acc=0.5781
+  epoch  86/100  loss=0.7683  bal_acc=0.6111
+  epoch  87/100  loss=0.7868  bal_acc=0.6146
+  epoch  88/100  loss=0.7690  bal_acc=0.6042
+  epoch  89/100  loss=0.7592  bal_acc=0.5851
+  epoch  90/100  loss=0.7764  bal_acc=0.6181
+  epoch  91/100  loss=0.7480  bal_acc=0.5851
+  epoch  92/100  loss=0.7631  bal_acc=0.6007
+  epoch  93/100  loss=0.7728  bal_acc=0.6042
+  epoch  94/100  loss=0.7618  bal_acc=0.6215
+  epoch  95/100  loss=0.7543  bal_acc=0.5833
+  epoch  96/100  loss=0.7420  bal_acc=0.6215
+  epoch  97/100  loss=0.7577  bal_acc=0.6111
+  epoch  98/100  loss=0.7602  bal_acc=0.5729
+  epoch  99/100  loss=0.7557  bal_acc=0.5781
+  epoch 100/100  loss=0.7431  bal_acc=0.6215
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 560 done (state=COMPLETE, value=0.6215277777777778) -- 555 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 10.4783949794238–101.72512182454909 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 14,192
+  epoch   1/100  loss=1.3871  bal_acc=0.2656
+  epoch   2/100  loss=1.3855  bal_acc=0.3906
+  epoch   3/100  loss=1.3794  bal_acc=0.4132  [pruned by Optuna at epoch 3]
+[status] trial 561 done (state=PRUNED, value=0.4131944444444444) -- 556 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 16.8406065480688–70.20455510990912 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 7,699
+  epoch   1/100  loss=1.3932  bal_acc=0.2691
+  epoch   2/100  loss=1.3676  bal_acc=0.2743
+  epoch   3/100  loss=1.3376  bal_acc=0.3038  [pruned by Optuna at epoch 3]
+[status] trial 562 done (state=PRUNED, value=0.3038194444444444) -- 557 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 15.414022689349164–112.29492533185922 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 12,493
+  epoch   1/100  loss=1.3981  bal_acc=0.2465
+  epoch   2/100  loss=1.3748  bal_acc=0.3194
+  epoch   3/100  loss=1.3620  bal_acc=0.2934  [pruned by Optuna at epoch 3]
+[status] trial 563 done (state=PRUNED, value=0.2934027777777778) -- 558 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 11.883407939497–114.8514157078522 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 13,369
+  epoch   1/100  loss=1.3895  bal_acc=0.3681
+  epoch   2/100  loss=1.3484  bal_acc=0.4288
+  epoch   3/100  loss=1.2789  bal_acc=0.5174
+  epoch   4/100  loss=1.2378  bal_acc=0.4861
+  epoch   5/100  loss=1.1918  bal_acc=0.5990
+  epoch   6/100  loss=1.1678  bal_acc=0.5608
+  epoch   7/100  loss=1.1468  bal_acc=0.5833
+  epoch   8/100  loss=1.1332  bal_acc=0.4618
+  epoch   9/100  loss=1.0985  bal_acc=0.5938
+  epoch  10/100  loss=1.0853  bal_acc=0.6267
+  epoch  11/100  loss=1.0675  bal_acc=0.5104
+  epoch  12/100  loss=1.0462  bal_acc=0.5104
+  epoch  13/100  loss=1.0394  bal_acc=0.5764
+  epoch  14/100  loss=1.0294  bal_acc=0.4497
+  epoch  15/100  loss=1.0209  bal_acc=0.5642
+  epoch  16/100  loss=0.9903  bal_acc=0.5434
+  epoch  17/100  loss=0.9793  bal_acc=0.4809
+  epoch  18/100  loss=0.9803  bal_acc=0.5747
+  epoch  19/100  loss=0.9732  bal_acc=0.5781
+  epoch  20/100  loss=0.9535  bal_acc=0.6372
+  epoch  21/100  loss=0.9398  bal_acc=0.5938
+  epoch  22/100  loss=0.9450  bal_acc=0.5642
+  epoch  23/100  loss=0.9409  bal_acc=0.5521
+  epoch  24/100  loss=0.9262  bal_acc=0.5365
+  epoch  25/100  loss=0.9301  bal_acc=0.5521
+  epoch  26/100  loss=0.9063  bal_acc=0.6076
+  epoch  27/100  loss=0.9210  bal_acc=0.5955
+  epoch  28/100  loss=0.8893  bal_acc=0.5347
+  epoch  29/100  loss=0.8885  bal_acc=0.6059
+  epoch  30/100  loss=0.8897  bal_acc=0.5208
+  epoch  31/100  loss=0.8802  bal_acc=0.5851
+  epoch  32/100  loss=0.8772  bal_acc=0.5174
+  epoch  33/100  loss=0.8675  bal_acc=0.6146
+  epoch  34/100  loss=0.8523  bal_acc=0.5729
+  epoch  35/100  loss=0.8409  bal_acc=0.6163
+  epoch  36/100  loss=0.8462  bal_acc=0.4740
+  epoch  37/100  loss=0.8416  bal_acc=0.4601
+  epoch  38/100  loss=0.8385  bal_acc=0.5712
+  epoch  39/100  loss=0.8379  bal_acc=0.5000
+  epoch  40/100  loss=0.8310  bal_acc=0.6059
+  epoch  41/100  loss=0.8180  bal_acc=0.5069
+  epoch  42/100  loss=0.8155  bal_acc=0.5330
+  epoch  43/100  loss=0.8199  bal_acc=0.6128
+  epoch  44/100  loss=0.8052  bal_acc=0.5677
+  epoch  45/100  loss=0.8062  bal_acc=0.5903
+  epoch  46/100  loss=0.8025  bal_acc=0.5729
+  epoch  47/100  loss=0.8056  bal_acc=0.6024
+  epoch  48/100  loss=0.7937  bal_acc=0.6094
+  epoch  49/100  loss=0.7926  bal_acc=0.5712
+  epoch  50/100  loss=0.7820  bal_acc=0.6285
+  epoch  51/100  loss=0.7659  bal_acc=0.6267
+  epoch  52/100  loss=0.7934  bal_acc=0.6042
+  epoch  53/100  loss=0.7658  bal_acc=0.5972
+  epoch  54/100  loss=0.7750  bal_acc=0.6562
+  epoch  55/100  loss=0.7731  bal_acc=0.5885
+  epoch  56/100  loss=0.7837  bal_acc=0.5920
+  epoch  57/100  loss=0.7713  bal_acc=0.6250
+  epoch  58/100  loss=0.7533  bal_acc=0.6198
+  epoch  59/100  loss=0.7499  bal_acc=0.5712
+  epoch  60/100  loss=0.7561  bal_acc=0.5677
+  epoch  61/100  loss=0.7344  bal_acc=0.5903
+  epoch  62/100  loss=0.7430  bal_acc=0.5799
+  epoch  63/100  loss=0.7317  bal_acc=0.5642
+  epoch  64/100  loss=0.7389  bal_acc=0.6476
+  epoch  65/100  loss=0.7421  bal_acc=0.5885
+  epoch  66/100  loss=0.7398  bal_acc=0.6250
+  epoch  67/100  loss=0.7270  bal_acc=0.5885
+  epoch  68/100  loss=0.7341  bal_acc=0.6181
+  epoch  69/100  loss=0.7196  bal_acc=0.6059
+  epoch  70/100  loss=0.7232  bal_acc=0.5851
+  epoch  71/100  loss=0.7172  bal_acc=0.6059
+  epoch  72/100  loss=0.7345  bal_acc=0.6198
+  epoch  73/100  loss=0.7228  bal_acc=0.5972
+  epoch  74/100  loss=0.7157  bal_acc=0.5903
+  epoch  75/100  loss=0.7069  bal_acc=0.5642
+  epoch  76/100  loss=0.7122  bal_acc=0.6389
+  epoch  77/100  loss=0.7026  bal_acc=0.5920
+  epoch  78/100  loss=0.7101  bal_acc=0.6042
+  epoch  79/100  loss=0.7097  bal_acc=0.5903
+  epoch  80/100  loss=0.7006  bal_acc=0.6198
+  epoch  81/100  loss=0.7145  bal_acc=0.6198
+  epoch  82/100  loss=0.7048  bal_acc=0.5399
+  epoch  83/100  loss=0.7057  bal_acc=0.5851
+  epoch  84/100  loss=0.7052  bal_acc=0.5729
+  epoch  85/100  loss=0.7009  bal_acc=0.5868
+  epoch  86/100  loss=0.7082  bal_acc=0.5260
+  epoch  87/100  loss=0.7008  bal_acc=0.6163
+  epoch  88/100  loss=0.6821  bal_acc=0.6337
+  epoch  89/100  loss=0.6849  bal_acc=0.6094
+  epoch  90/100  loss=0.6935  bal_acc=0.6042
+  epoch  91/100  loss=0.7079  bal_acc=0.6181
+  epoch  92/100  loss=0.6998  bal_acc=0.6094
+  epoch  93/100  loss=0.6852  bal_acc=0.6250
+  epoch  94/100  loss=0.6857  bal_acc=0.6250
+  epoch  95/100  loss=0.6837  bal_acc=0.6163
+  epoch  96/100  loss=0.6880  bal_acc=0.6424
+  epoch  97/100  loss=0.6798  bal_acc=0.6146
+  epoch  98/100  loss=0.6766  bal_acc=0.6007
+  epoch  99/100  loss=0.6922  bal_acc=0.5764
+  epoch 100/100  loss=0.6805  bal_acc=0.6007
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 564 done (state=COMPLETE, value=0.6006944444444444) -- 559 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 8.846515319781023–60.39430555909181 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 3,266
+  epoch   1/100  loss=1.3945  bal_acc=0.3611
+  epoch   2/100  loss=1.3597  bal_acc=0.4115
+  epoch   3/100  loss=1.3508  bal_acc=0.3924  [pruned by Optuna at epoch 3]
+[status] trial 565 done (state=PRUNED, value=0.39236111111111116) -- 560 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 4.940471635686252–70.0103321929311 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 23,296
+  epoch   1/100  loss=1.3645  bal_acc=0.4306
+  epoch   2/100  loss=1.2761  bal_acc=0.5139
+  epoch   3/100  loss=1.2257  bal_acc=0.4948
+  epoch   4/100  loss=1.1858  bal_acc=0.5017
+  epoch   5/100  loss=1.1391  bal_acc=0.4792  [pruned by Optuna at epoch 5]
+[status] trial 566 done (state=PRUNED, value=0.4791666666666667) -- 561 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 1.3793941283920002–92.84407354196614 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 14,584
+  epoch   1/100  loss=1.3971  bal_acc=0.3073
+  epoch   2/100  loss=1.3532  bal_acc=0.3403
+  epoch   3/100  loss=1.3169  bal_acc=0.4045  [pruned by Optuna at epoch 3]
+[status] trial 567 done (state=PRUNED, value=0.40451388888888884) -- 562 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 7.225745210080548–74.72155722485618 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 16,168
+  epoch   1/100  loss=1.3760  bal_acc=0.4757
+  epoch   2/100  loss=1.2361  bal_acc=0.5191
+  epoch   3/100  loss=1.1477  bal_acc=0.5312
+  epoch   4/100  loss=1.0962  bal_acc=0.5538
+  epoch   5/100  loss=1.0764  bal_acc=0.5625
+  epoch   6/100  loss=1.0399  bal_acc=0.4323
+  epoch   7/100  loss=1.0351  bal_acc=0.4653
+  epoch   8/100  loss=1.0078  bal_acc=0.5538
+  epoch   9/100  loss=0.9996  bal_acc=0.5208
+  epoch  10/100  loss=0.9747  bal_acc=0.5955
+  epoch  11/100  loss=0.9639  bal_acc=0.5712
+  epoch  12/100  loss=0.9476  bal_acc=0.5990
+  epoch  13/100  loss=0.9364  bal_acc=0.6111
+  epoch  14/100  loss=0.9425  bal_acc=0.6181
+  epoch  15/100  loss=0.9145  bal_acc=0.6146
+  epoch  16/100  loss=0.9087  bal_acc=0.6250
+  epoch  17/100  loss=0.8900  bal_acc=0.6424
+  epoch  18/100  loss=0.8992  bal_acc=0.6094
+  epoch  19/100  loss=0.8769  bal_acc=0.5729
+  epoch  20/100  loss=0.8716  bal_acc=0.6337
+  epoch  21/100  loss=0.8836  bal_acc=0.5156
+  epoch  22/100  loss=0.8596  bal_acc=0.5677
+  epoch  23/100  loss=0.8559  bal_acc=0.6372
+  epoch  24/100  loss=0.8586  bal_acc=0.6146
+  epoch  25/100  loss=0.8381  bal_acc=0.5712
+  epoch  26/100  loss=0.8277  bal_acc=0.5590
+  epoch  27/100  loss=0.8265  bal_acc=0.5920
+  epoch  28/100  loss=0.8004  bal_acc=0.5747
+  epoch  29/100  loss=0.8233  bal_acc=0.5521
+  epoch  30/100  loss=0.8061  bal_acc=0.5712
+  epoch  31/100  loss=0.7937  bal_acc=0.6076
+  epoch  32/100  loss=0.8055  bal_acc=0.5851
+  epoch  33/100  loss=0.7951  bal_acc=0.5469
+  epoch  34/100  loss=0.7904  bal_acc=0.5469
+  epoch  35/100  loss=0.7830  bal_acc=0.5521
+  epoch  36/100  loss=0.7774  bal_acc=0.5382
+  epoch  37/100  loss=0.7704  bal_acc=0.5608
+  epoch  38/100  loss=0.7576  bal_acc=0.5938
+  epoch  39/100  loss=0.7696  bal_acc=0.5521
+  epoch  40/100  loss=0.7512  bal_acc=0.5990
+  epoch  41/100  loss=0.7396  bal_acc=0.5799
+  epoch  42/100  loss=0.7515  bal_acc=0.5972
+  epoch  43/100  loss=0.7430  bal_acc=0.5608
+  epoch  44/100  loss=0.7180  bal_acc=0.5486
+  epoch  45/100  loss=0.7511  bal_acc=0.5747
+  epoch  46/100  loss=0.7373  bal_acc=0.5729
+  epoch  47/100  loss=0.7246  bal_acc=0.5781
+  epoch  48/100  loss=0.7311  bal_acc=0.5816
+  epoch  49/100  loss=0.7191  bal_acc=0.5712
+  epoch  50/100  loss=0.7355  bal_acc=0.5087
+  epoch  51/100  loss=0.7206  bal_acc=0.5538
+  epoch  52/100  loss=0.6979  bal_acc=0.5833
+  epoch  53/100  loss=0.7062  bal_acc=0.5087
+  epoch  54/100  loss=0.7294  bal_acc=0.5608
+  epoch  55/100  loss=0.7082  bal_acc=0.5903
+  epoch  56/100  loss=0.6922  bal_acc=0.5347
+  epoch  57/100  loss=0.6832  bal_acc=0.5313
+  epoch  58/100  loss=0.7011  bal_acc=0.5469
+  epoch  59/100  loss=0.6991  bal_acc=0.5590
+  epoch  60/100  loss=0.7147  bal_acc=0.5799
+  epoch  61/100  loss=0.6923  bal_acc=0.5417
+  epoch  62/100  loss=0.6900  bal_acc=0.5347
+  epoch  63/100  loss=0.6682  bal_acc=0.5625
+  epoch  64/100  loss=0.6755  bal_acc=0.5920
+  epoch  65/100  loss=0.6786  bal_acc=0.5035
+  epoch  66/100  loss=0.6879  bal_acc=0.5000
+  epoch  67/100  loss=0.6912  bal_acc=0.5417
+  epoch  68/100  loss=0.6745  bal_acc=0.5799
+  epoch  69/100  loss=0.6785  bal_acc=0.5278
+  epoch  70/100  loss=0.6633  bal_acc=0.5556
+  epoch  71/100  loss=0.6662  bal_acc=0.5573
+  epoch  72/100  loss=0.6777  bal_acc=0.5556
+  epoch  73/100  loss=0.6517  bal_acc=0.5885
+  epoch  74/100  loss=0.6676  bal_acc=0.5556
+  epoch  75/100  loss=0.6533  bal_acc=0.5712
+  epoch  76/100  loss=0.6683  bal_acc=0.5382
+  epoch  77/100  loss=0.6605  bal_acc=0.5972
+  epoch  78/100  loss=0.6689  bal_acc=0.5521
+  epoch  79/100  loss=0.6733  bal_acc=0.5573
+  epoch  80/100  loss=0.6439  bal_acc=0.5486
+  epoch  81/100  loss=0.6593  bal_acc=0.5660
+  epoch  82/100  loss=0.6437  bal_acc=0.5677
+  epoch  83/100  loss=0.6529  bal_acc=0.5503
+  epoch  84/100  loss=0.6417  bal_acc=0.5521
+  epoch  85/100  loss=0.6418  bal_acc=0.5451
+  epoch  86/100  loss=0.6499  bal_acc=0.5903
+  epoch  87/100  loss=0.6215  bal_acc=0.5521
+  epoch  88/100  loss=0.6375  bal_acc=0.5399
+  epoch  89/100  loss=0.6533  bal_acc=0.5278
+  epoch  90/100  loss=0.6359  bal_acc=0.5365
+  epoch  91/100  loss=0.6279  bal_acc=0.5556
+  epoch  92/100  loss=0.6221  bal_acc=0.5469
+  epoch  93/100  loss=0.6187  bal_acc=0.5729
+  epoch  94/100  loss=0.6257  bal_acc=0.5503
+  epoch  95/100  loss=0.6494  bal_acc=0.5382
+  epoch  96/100  loss=0.6394  bal_acc=0.5295
+  epoch  97/100  loss=0.6297  bal_acc=0.5417
+  epoch  98/100  loss=0.6161  bal_acc=0.5330
+  epoch  99/100  loss=0.6286  bal_acc=0.5156
+  epoch 100/100  loss=0.6280  bal_acc=0.5278
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 568 done (state=COMPLETE, value=0.5277777777777778) -- 563 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 10.815040021803231–93.48205268183311 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 16,400
+  epoch   1/100  loss=1.3962  bal_acc=0.3559
+  epoch   2/100  loss=1.3460  bal_acc=0.4062
+  epoch   3/100  loss=1.3138  bal_acc=0.4931  [pruned by Optuna at epoch 3]
+[status] trial 569 done (state=PRUNED, value=0.4930555555555556) -- 564 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 3.4097555081306563–72.76808052253325 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 14,130
+  epoch   1/100  loss=1.4359  bal_acc=0.2795
+  epoch   2/100  loss=1.4047  bal_acc=0.2812
+  epoch   3/100  loss=1.3837  bal_acc=0.3264  [pruned by Optuna at epoch 3]
+[status] trial 570 done (state=PRUNED, value=0.3263888888888889) -- 565 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 9.533747507029888–74.82501020333586 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 13,372
+  epoch   1/100  loss=1.4030  bal_acc=0.4253
+  epoch   2/100  loss=1.3111  bal_acc=0.4306
+  epoch   3/100  loss=1.2676  bal_acc=0.5017  [pruned by Optuna at epoch 3]
+[status] trial 571 done (state=PRUNED, value=0.5017361111111112) -- 566 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 16.368091488536038–103.5684383960177 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 20,274
+  epoch   1/100  loss=1.4361  bal_acc=0.2292
+  epoch   2/100  loss=1.3882  bal_acc=0.2847
+  epoch   3/100  loss=1.3792  bal_acc=0.2708  [pruned by Optuna at epoch 3]
+[status] trial 572 done (state=PRUNED, value=0.2708333333333333) -- 567 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 4.208755478445108–90.73894919028078 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 19,486
+  epoch   1/100  loss=1.3964  bal_acc=0.4670
+  epoch   2/100  loss=1.2947  bal_acc=0.5174
+  epoch   3/100  loss=1.2486  bal_acc=0.4792
+  epoch   4/100  loss=1.2197  bal_acc=0.5017
+  epoch   5/100  loss=1.1936  bal_acc=0.5017  [pruned by Optuna at epoch 5]
+[status] trial 573 done (state=PRUNED, value=0.5017361111111112) -- 568 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 5.571992879589628–53.853788762306316 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 4,918
+  epoch   1/100  loss=1.3642  bal_acc=0.4670
+  epoch   2/100  loss=1.2593  bal_acc=0.5052
+  epoch   3/100  loss=1.2175  bal_acc=0.4861  [pruned by Optuna at epoch 3]
+[status] trial 574 done (state=PRUNED, value=0.48611111111111116) -- 569 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 1.3109903509037535–50.47331291246485 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 5,934
+  epoch   1/100  loss=1.4023  bal_acc=0.3090
+  epoch   2/100  loss=1.3862  bal_acc=0.3021
+  epoch   3/100  loss=1.3703  bal_acc=0.3559  [pruned by Optuna at epoch 3]
+[status] trial 575 done (state=PRUNED, value=0.3559027777777778) -- 570 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 16.373067694932637–63.50962314436472 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 12,762
+  epoch   1/100  loss=1.4725  bal_acc=0.2552
+  epoch   2/100  loss=1.3977  bal_acc=0.2795
+  epoch   3/100  loss=1.3888  bal_acc=0.2622  [pruned by Optuna at epoch 3]
+[status] trial 576 done (state=PRUNED, value=0.2621527777777778) -- 571 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 3.4264596871838737–67.15436265405503 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 7,957
+  epoch   1/100  loss=1.3752  bal_acc=0.3819
+  epoch   2/100  loss=1.2858  bal_acc=0.4826
+  epoch   3/100  loss=1.2240  bal_acc=0.4844  [pruned by Optuna at epoch 3]
+[status] trial 577 done (state=PRUNED, value=0.484375) -- 572 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 7.118727912123526–53.22005939215977 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 12,984
+  epoch   1/100  loss=1.3798  bal_acc=0.4705
+  epoch   2/100  loss=1.2554  bal_acc=0.4392
+  epoch   3/100  loss=1.2030  bal_acc=0.4861  [pruned by Optuna at epoch 3]
+[status] trial 578 done (state=PRUNED, value=0.4861111111111111) -- 573 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 7.735437857158594–46.69401567048996 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 10,010
+  epoch   1/100  loss=1.3869  bal_acc=0.3750
+  epoch   2/100  loss=1.3663  bal_acc=0.4201
+  epoch   3/100  loss=1.3233  bal_acc=0.4497  [pruned by Optuna at epoch 3]
+[status] trial 579 done (state=PRUNED, value=0.4496527777777778) -- 574 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 5.312469763965609–105.16831856131556 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 18,164
+  epoch   1/100  loss=1.3957  bal_acc=0.4201
+  epoch   2/100  loss=1.2888  bal_acc=0.5608
+  epoch   3/100  loss=1.2575  bal_acc=0.4913
+  epoch   4/100  loss=1.2078  bal_acc=0.5226
+  epoch   5/100  loss=1.1833  bal_acc=0.5781
+  epoch   6/100  loss=1.1716  bal_acc=0.5122
+  epoch   7/100  loss=1.1450  bal_acc=0.4740
+  epoch   8/100  loss=1.1278  bal_acc=0.5868
+  epoch   9/100  loss=1.0997  bal_acc=0.5260
+  epoch  10/100  loss=1.0870  bal_acc=0.4271
+  epoch  11/100  loss=1.0787  bal_acc=0.4826
+  epoch  12/100  loss=1.0635  bal_acc=0.5642
+  epoch  13/100  loss=1.0669  bal_acc=0.4201
+  epoch  14/100  loss=1.0472  bal_acc=0.5538
+  epoch  15/100  loss=1.0340  bal_acc=0.5990
+  epoch  16/100  loss=1.0304  bal_acc=0.6024
+  epoch  17/100  loss=1.0082  bal_acc=0.5642
+  epoch  18/100  loss=1.0066  bal_acc=0.4826
+  epoch  19/100  loss=1.0040  bal_acc=0.5017
+  epoch  20/100  loss=1.0222  bal_acc=0.4844
+  epoch  21/100  loss=1.0058  bal_acc=0.5434
+  epoch  22/100  loss=0.9882  bal_acc=0.4045
+  epoch  23/100  loss=0.9935  bal_acc=0.5365
+  epoch  24/100  loss=0.9907  bal_acc=0.5469
+  epoch  25/100  loss=0.9794  bal_acc=0.4983
+  epoch  26/100  loss=0.9756  bal_acc=0.5503
+  epoch  27/100  loss=0.9743  bal_acc=0.5868
+  epoch  28/100  loss=0.9732  bal_acc=0.5694
+  epoch  29/100  loss=0.9598  bal_acc=0.5486
+  epoch  30/100  loss=0.9593  bal_acc=0.5677
+  epoch  31/100  loss=0.9795  bal_acc=0.5625
+  epoch  32/100  loss=0.9622  bal_acc=0.5625
+  epoch  33/100  loss=0.9412  bal_acc=0.4497
+  epoch  34/100  loss=0.9514  bal_acc=0.5503
+  epoch  35/100  loss=0.9616  bal_acc=0.5729
+  epoch  36/100  loss=0.9335  bal_acc=0.5573
+  epoch  37/100  loss=0.9250  bal_acc=0.5625
+  epoch  38/100  loss=0.9381  bal_acc=0.4375
+  epoch  39/100  loss=0.9300  bal_acc=0.5191
+  epoch  40/100  loss=0.9118  bal_acc=0.5642
+  epoch  41/100  loss=0.9275  bal_acc=0.5694
+  epoch  42/100  loss=0.9200  bal_acc=0.5955
+  epoch  43/100  loss=0.9260  bal_acc=0.4913
+  epoch  44/100  loss=0.9101  bal_acc=0.5035
+  epoch  45/100  loss=0.9003  bal_acc=0.6007
+  epoch  46/100  loss=0.9150  bal_acc=0.5608
+  epoch  47/100  loss=0.9077  bal_acc=0.4809
+  epoch  48/100  loss=0.8964  bal_acc=0.5486
+  epoch  49/100  loss=0.8864  bal_acc=0.5747
+  epoch  50/100  loss=0.8717  bal_acc=0.5191
+  epoch  51/100  loss=0.8807  bal_acc=0.5382
+  epoch  52/100  loss=0.8812  bal_acc=0.5851
+  epoch  53/100  loss=0.8845  bal_acc=0.5365
+  epoch  54/100  loss=0.8921  bal_acc=0.5747
+  epoch  55/100  loss=0.8871  bal_acc=0.5625
+  epoch  56/100  loss=0.8727  bal_acc=0.5451
+  epoch  57/100  loss=0.8689  bal_acc=0.5712
+  epoch  58/100  loss=0.8656  bal_acc=0.5799
+  epoch  59/100  loss=0.8683  bal_acc=0.5382
+  epoch  60/100  loss=0.8693  bal_acc=0.6007
+  epoch  61/100  loss=0.8522  bal_acc=0.5851
+  epoch  62/100  loss=0.8605  bal_acc=0.5816
+  epoch  63/100  loss=0.8738  bal_acc=0.5729
+  epoch  64/100  loss=0.8546  bal_acc=0.5486
+  epoch  65/100  loss=0.8475  bal_acc=0.5885
+  epoch  66/100  loss=0.8494  bal_acc=0.5920
+  epoch  67/100  loss=0.8568  bal_acc=0.5903
+  epoch  68/100  loss=0.8441  bal_acc=0.5885
+  epoch  69/100  loss=0.8380  bal_acc=0.5573
+  epoch  70/100  loss=0.8594  bal_acc=0.5660
+  epoch  71/100  loss=0.8420  bal_acc=0.5590
+  epoch  72/100  loss=0.8547  bal_acc=0.5556
+  epoch  73/100  loss=0.8446  bal_acc=0.5764
+  epoch  74/100  loss=0.8343  bal_acc=0.5747
+  epoch  75/100  loss=0.8371  bal_acc=0.5712
+  epoch  76/100  loss=0.8170  bal_acc=0.6042
+  epoch  77/100  loss=0.8328  bal_acc=0.5122
+  epoch  78/100  loss=0.8301  bal_acc=0.6076
+  epoch  79/100  loss=0.8507  bal_acc=0.5660
+  epoch  80/100  loss=0.8277  bal_acc=0.5972
+  epoch  81/100  loss=0.8068  bal_acc=0.5278
+  epoch  82/100  loss=0.8389  bal_acc=0.5312
+  epoch  83/100  loss=0.8223  bal_acc=0.5191
+  epoch  84/100  loss=0.8219  bal_acc=0.5694
+  epoch  85/100  loss=0.8287  bal_acc=0.5816
+  epoch  86/100  loss=0.8177  bal_acc=0.5712
+  epoch  87/100  loss=0.8163  bal_acc=0.6128
+  epoch  88/100  loss=0.8102  bal_acc=0.5764
+  epoch  89/100  loss=0.8099  bal_acc=0.6042
+  epoch  90/100  loss=0.8199  bal_acc=0.5938
+  epoch  91/100  loss=0.7956  bal_acc=0.5903
+  epoch  92/100  loss=0.7922  bal_acc=0.5938
+  epoch  93/100  loss=0.7975  bal_acc=0.5486
+  epoch  94/100  loss=0.8103  bal_acc=0.5330
+  epoch  95/100  loss=0.8003  bal_acc=0.5712
+  epoch  96/100  loss=0.7750  bal_acc=0.5590
+  epoch  97/100  loss=0.7933  bal_acc=0.5451
+  epoch  98/100  loss=0.7880  bal_acc=0.5816
+  epoch  99/100  loss=0.7780  bal_acc=0.5556
+  epoch 100/100  loss=0.8191  bal_acc=0.5556
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 580 done (state=COMPLETE, value=0.5555555555555556) -- 575 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 10.87747018563872–111.25840502220638 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 19,500
+  epoch   1/100  loss=1.4238  bal_acc=0.2535
+  epoch   2/100  loss=1.3438  bal_acc=0.4375
+  epoch   3/100  loss=1.2982  bal_acc=0.4826  [pruned by Optuna at epoch 3]
+[status] trial 581 done (state=PRUNED, value=0.48263888888888884) -- 576 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 2.637112905216389–52.24100587338218 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 13,275
+  epoch   1/100  loss=1.4074  bal_acc=0.2986
+  epoch   2/100  loss=1.3487  bal_acc=0.4045
+  epoch   3/100  loss=1.2863  bal_acc=0.4497  [pruned by Optuna at epoch 3]
+[status] trial 582 done (state=PRUNED, value=0.4496527777777778) -- 577 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 9.9214569144552–78.48625239572175 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 10,345
+  epoch   1/100  loss=1.3504  bal_acc=0.4792
+  epoch   2/100  loss=1.2133  bal_acc=0.4201
+  epoch   3/100  loss=1.1565  bal_acc=0.4288  [pruned by Optuna at epoch 3]
+[status] trial 583 done (state=PRUNED, value=0.4288194444444444) -- 578 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 3.2076070955729605–82.18711184280448 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 17,544
+  epoch   1/100  loss=1.3946  bal_acc=0.2656
+  epoch   2/100  loss=1.3843  bal_acc=0.3142
+  epoch   3/100  loss=1.3786  bal_acc=0.3299  [pruned by Optuna at epoch 3]
+[status] trial 584 done (state=PRUNED, value=0.3298611111111111) -- 579 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 3.33322299010461–92.3822282088141 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 13,593
+  epoch   1/100  loss=1.3884  bal_acc=0.3316
+  epoch   2/100  loss=1.3419  bal_acc=0.4323
+  epoch   3/100  loss=1.2948  bal_acc=0.5017  [pruned by Optuna at epoch 3]
+[status] trial 585 done (state=PRUNED, value=0.501736111111111) -- 580 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 1.6582460205366116–54.37177316081559 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 17,170
+  epoch   1/100  loss=1.3873  bal_acc=0.2743
+  epoch   2/100  loss=1.3744  bal_acc=0.3385
+  epoch   3/100  loss=1.3598  bal_acc=0.3403  [pruned by Optuna at epoch 3]
+[status] trial 586 done (state=PRUNED, value=0.3402777777777778) -- 581 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 1.7653399176086442–63.57525987922851 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 29,712
+  epoch   1/100  loss=1.4143  bal_acc=0.3906
+  epoch   2/100  loss=1.3066  bal_acc=0.4045
+  epoch   3/100  loss=1.2003  bal_acc=0.4792  [pruned by Optuna at epoch 3]
+[status] trial 587 done (state=PRUNED, value=0.47916666666666674) -- 582 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 11.873124290903291–51.33564986314957 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 27,010
+  epoch   1/100  loss=1.5228  bal_acc=0.2517
+  epoch   2/100  loss=1.3967  bal_acc=0.3090
+  epoch   3/100  loss=1.3806  bal_acc=0.3090  [pruned by Optuna at epoch 3]
+[status] trial 588 done (state=PRUNED, value=0.3090277777777778) -- 583 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 15.660754036272827–86.83685564772765 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 19,722
+  epoch   1/100  loss=1.3859  bal_acc=0.2795
+  epoch   2/100  loss=1.3558  bal_acc=0.3194
+  epoch   3/100  loss=1.3370  bal_acc=0.2691  [pruned by Optuna at epoch 3]
+[status] trial 589 done (state=PRUNED, value=0.2690972222222222) -- 584 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 8.59705000940467–57.727097358057016 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 17,823
+  epoch   1/100  loss=1.3969  bal_acc=0.4253
+  epoch   2/100  loss=1.3182  bal_acc=0.4340
+  epoch   3/100  loss=1.2568  bal_acc=0.4705  [pruned by Optuna at epoch 3]
+[status] trial 590 done (state=PRUNED, value=0.47048611111111105) -- 585 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 16.02753715539702–105.10425349260265 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 18,746
+  epoch   1/100  loss=1.4211  bal_acc=0.3090
+  epoch   2/100  loss=1.3836  bal_acc=0.2830
+  epoch   3/100  loss=1.3738  bal_acc=0.2743  [pruned by Optuna at epoch 3]
+[status] trial 591 done (state=PRUNED, value=0.2743055555555555) -- 586 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 9.651765015975986–93.71388881982271 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 23,729
+  epoch   1/100  loss=1.3893  bal_acc=0.4201
+  epoch   2/100  loss=1.3694  bal_acc=0.4358
+  epoch   3/100  loss=1.3438  bal_acc=0.4497  [pruned by Optuna at epoch 3]
+[status] trial 592 done (state=PRUNED, value=0.4496527777777778) -- 587 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 11.045505569466096–102.2756843806812 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 16,234
+  epoch   1/100  loss=1.3832  bal_acc=0.4844
+  epoch   2/100  loss=1.2789  bal_acc=0.5781
+  epoch   3/100  loss=1.2116  bal_acc=0.5399
+  epoch   4/100  loss=1.1645  bal_acc=0.5712
+  epoch   5/100  loss=1.1326  bal_acc=0.5312
+  epoch   6/100  loss=1.1337  bal_acc=0.5868
+  epoch   7/100  loss=1.1114  bal_acc=0.5625
+  epoch   8/100  loss=1.0815  bal_acc=0.4931
+  epoch   9/100  loss=1.0603  bal_acc=0.5347
+  epoch  10/100  loss=1.0509  bal_acc=0.6285
+  epoch  11/100  loss=1.0227  bal_acc=0.5330
+  epoch  12/100  loss=1.0147  bal_acc=0.5885
+  epoch  13/100  loss=1.0093  bal_acc=0.5833
+  epoch  14/100  loss=0.9964  bal_acc=0.6111
+  epoch  15/100  loss=0.9792  bal_acc=0.5799
+  epoch  16/100  loss=0.9602  bal_acc=0.6632
+  epoch  17/100  loss=0.9453  bal_acc=0.6406
+  epoch  18/100  loss=0.9574  bal_acc=0.6302
+  epoch  19/100  loss=0.9369  bal_acc=0.6250
+  epoch  20/100  loss=0.9242  bal_acc=0.6111
+  epoch  21/100  loss=0.9102  bal_acc=0.5486
+  epoch  22/100  loss=0.9100  bal_acc=0.6128
+  epoch  23/100  loss=0.9151  bal_acc=0.5625
+  epoch  24/100  loss=0.8834  bal_acc=0.6094
+  epoch  25/100  loss=0.8685  bal_acc=0.6233
+  epoch  26/100  loss=0.8522  bal_acc=0.6510
+  epoch  27/100  loss=0.8653  bal_acc=0.6024
+  epoch  28/100  loss=0.8581  bal_acc=0.5868
+  epoch  29/100  loss=0.8541  bal_acc=0.5677
+  epoch  30/100  loss=0.8597  bal_acc=0.6285
+  epoch  31/100  loss=0.8349  bal_acc=0.5972
+  epoch  32/100  loss=0.8321  bal_acc=0.5208
+  epoch  33/100  loss=0.8333  bal_acc=0.6198
+  epoch  34/100  loss=0.8287  bal_acc=0.5851
+  epoch  35/100  loss=0.8211  bal_acc=0.6354
+  epoch  36/100  loss=0.8025  bal_acc=0.6042
+  epoch  37/100  loss=0.8117  bal_acc=0.5226
+  epoch  38/100  loss=0.7962  bal_acc=0.5920
+  epoch  39/100  loss=0.8009  bal_acc=0.5608
+  epoch  40/100  loss=0.7854  bal_acc=0.5833
+  epoch  41/100  loss=0.7885  bal_acc=0.6007
+  epoch  42/100  loss=0.7906  bal_acc=0.5799
+  epoch  43/100  loss=0.7690  bal_acc=0.6042
+  epoch  44/100  loss=0.7703  bal_acc=0.5990
+  epoch  45/100  loss=0.7663  bal_acc=0.6198
+  epoch  46/100  loss=0.7577  bal_acc=0.5660
+  epoch  47/100  loss=0.7505  bal_acc=0.5885
+  epoch  48/100  loss=0.7694  bal_acc=0.6059
+  epoch  49/100  loss=0.7645  bal_acc=0.6163
+  epoch  50/100  loss=0.7462  bal_acc=0.5295
+  epoch  51/100  loss=0.7517  bal_acc=0.5938
+  epoch  52/100  loss=0.7357  bal_acc=0.6059
+  epoch  53/100  loss=0.7434  bal_acc=0.6198
+  epoch  54/100  loss=0.7305  bal_acc=0.5625
+  epoch  55/100  loss=0.7475  bal_acc=0.6024
+  epoch  56/100  loss=0.7390  bal_acc=0.5868
+  epoch  57/100  loss=0.7326  bal_acc=0.5781
+  epoch  58/100  loss=0.7314  bal_acc=0.6076
+  epoch  59/100  loss=0.7151  bal_acc=0.6024
+  epoch  60/100  loss=0.7272  bal_acc=0.6458
+  epoch  61/100  loss=0.7155  bal_acc=0.6163
+  epoch  62/100  loss=0.7165  bal_acc=0.6441
+  epoch  63/100  loss=0.7018  bal_acc=0.5955
+  epoch  64/100  loss=0.7086  bal_acc=0.5990
+  epoch  65/100  loss=0.6868  bal_acc=0.6354
+  epoch  66/100  loss=0.6838  bal_acc=0.5903
+  epoch  67/100  loss=0.7199  bal_acc=0.5781
+  epoch  68/100  loss=0.6941  bal_acc=0.6042
+  epoch  69/100  loss=0.6926  bal_acc=0.6181
+  epoch  70/100  loss=0.6809  bal_acc=0.6215
+  epoch  71/100  loss=0.6865  bal_acc=0.6198
+  epoch  72/100  loss=0.6869  bal_acc=0.6076
+  epoch  73/100  loss=0.6747  bal_acc=0.5851
+  epoch  74/100  loss=0.6984  bal_acc=0.5833
+  epoch  75/100  loss=0.6846  bal_acc=0.5312
+  epoch  76/100  loss=0.7014  bal_acc=0.5938
+  epoch  77/100  loss=0.6697  bal_acc=0.5799
+  epoch  78/100  loss=0.6848  bal_acc=0.5938
+  epoch  79/100  loss=0.6676  bal_acc=0.6042
+  epoch  80/100  loss=0.6685  bal_acc=0.6198
+  epoch  81/100  loss=0.6555  bal_acc=0.4948
+  epoch  82/100  loss=0.6642  bal_acc=0.5851
+  epoch  83/100  loss=0.6738  bal_acc=0.5729
+  epoch  84/100  loss=0.6692  bal_acc=0.5799
+  epoch  85/100  loss=0.6527  bal_acc=0.5000
+  epoch  86/100  loss=0.6723  bal_acc=0.5868
+  epoch  87/100  loss=0.6622  bal_acc=0.6007
+  epoch  88/100  loss=0.6466  bal_acc=0.6128
+  epoch  89/100  loss=0.6403  bal_acc=0.6076
+  epoch  90/100  loss=0.6533  bal_acc=0.4601
+  epoch  91/100  loss=0.6544  bal_acc=0.5382
+  epoch  92/100  loss=0.6520  bal_acc=0.5625
+  epoch  93/100  loss=0.6579  bal_acc=0.6024
+  epoch  94/100  loss=0.6388  bal_acc=0.6267
+  epoch  95/100  loss=0.6344  bal_acc=0.6146
+  epoch  96/100  loss=0.6549  bal_acc=0.6007
+  epoch  97/100  loss=0.6435  bal_acc=0.5920
+  epoch  98/100  loss=0.6386  bal_acc=0.5590
+  epoch  99/100  loss=0.6287  bal_acc=0.5851
+  epoch 100/100  loss=0.6193  bal_acc=0.5816
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 593 done (state=COMPLETE, value=0.5815972222222222) -- 588 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 11.991836894292993–118.53462543910227 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 17,962
+  epoch   1/100  loss=1.3779  bal_acc=0.4497
+  epoch   2/100  loss=1.3074  bal_acc=0.4896
+  epoch   3/100  loss=1.2230  bal_acc=0.4722  [pruned by Optuna at epoch 3]
+[status] trial 594 done (state=PRUNED, value=0.4722222222222222) -- 589 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 7.001538832812075–46.04891291499385 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 4,472
+  epoch   1/100  loss=1.3910  bal_acc=0.3750
+  epoch   2/100  loss=1.3619  bal_acc=0.4219
+  epoch   3/100  loss=1.3279  bal_acc=0.4201  [pruned by Optuna at epoch 3]
+[status] trial 595 done (state=PRUNED, value=0.4201388888888889) -- 590 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 12.344091576279792–75.97493241154099 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 16,747
+  epoch   1/100  loss=1.3918  bal_acc=0.3316
+  epoch   2/100  loss=1.3734  bal_acc=0.4236
+  epoch   3/100  loss=1.3411  bal_acc=0.4635  [pruned by Optuna at epoch 3]
+[status] trial 596 done (state=PRUNED, value=0.46354166666666674) -- 591 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 19.951295644291186–108.98097922691755 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 12,104
+  epoch   1/100  loss=1.4260  bal_acc=0.2674
+  epoch   2/100  loss=1.4069  bal_acc=0.2500
+  epoch   3/100  loss=1.3909  bal_acc=0.2674  [pruned by Optuna at epoch 3]
+[status] trial 597 done (state=PRUNED, value=0.2673611111111111) -- 592 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 4.962582856819175–59.59198034230407 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 8,898
+  epoch   1/100  loss=1.3839  bal_acc=0.3472
+  epoch   2/100  loss=1.3418  bal_acc=0.4653
+  epoch   3/100  loss=1.2668  bal_acc=0.4983  [pruned by Optuna at epoch 3]
+[status] trial 598 done (state=PRUNED, value=0.4982638888888889) -- 593 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 1.077917263204328–115.1051990555115 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 11,092
+  epoch   1/100  loss=1.3898  bal_acc=0.3125
+  epoch   2/100  loss=1.3412  bal_acc=0.3316
+  epoch   3/100  loss=1.3052  bal_acc=0.3177  [pruned by Optuna at epoch 3]
+[status] trial 599 done (state=PRUNED, value=0.31770833333333337) -- 594 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 7.042654630654225–116.50612666131133 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 18,648
+  epoch   1/100  loss=1.4284  bal_acc=0.3229
+  epoch   2/100  loss=1.3855  bal_acc=0.3455
+  epoch   3/100  loss=1.3455  bal_acc=0.4219  [pruned by Optuna at epoch 3]
+[status] trial 600 done (state=PRUNED, value=0.421875) -- 595 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 3.3089229303530647–110.95105725914456 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 22,064
+  epoch   1/100  loss=1.3929  bal_acc=0.3247
+  epoch   2/100  loss=1.3794  bal_acc=0.3993
+  epoch   3/100  loss=1.3717  bal_acc=0.4045  [pruned by Optuna at epoch 3]
+[status] trial 601 done (state=PRUNED, value=0.40451388888888895) -- 596 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 12.216344743152964–88.5763001237373 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 17,720
+  epoch   1/100  loss=1.4181  bal_acc=0.3958
+  epoch   2/100  loss=1.3590  bal_acc=0.4097
+  epoch   3/100  loss=1.3255  bal_acc=0.4201  [pruned by Optuna at epoch 3]
+[status] trial 602 done (state=PRUNED, value=0.4201388888888889) -- 597 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 10.98617537140501–49.32942128910684 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 14,566
+  epoch   1/100  loss=1.3848  bal_acc=0.3229
+  epoch   2/100  loss=1.3431  bal_acc=0.4566
+  epoch   3/100  loss=1.2966  bal_acc=0.4757  [pruned by Optuna at epoch 3]
+[status] trial 603 done (state=PRUNED, value=0.4756944444444444) -- 598 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 3.084842941664762–71.11024061245584 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 17,615
+  epoch   1/100  loss=1.3869  bal_acc=0.3333
+  epoch   2/100  loss=1.3531  bal_acc=0.4566
+  epoch   3/100  loss=1.2899  bal_acc=0.4896  [pruned by Optuna at epoch 3]
+[status] trial 604 done (state=PRUNED, value=0.4895833333333333) -- 599 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 6.579301731570668–51.12141023499828 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 20,410
+  epoch   1/100  loss=1.3775  bal_acc=0.4601
+  epoch   2/100  loss=1.2880  bal_acc=0.5174
+  epoch   3/100  loss=1.2133  bal_acc=0.5382
+  epoch   4/100  loss=1.1542  bal_acc=0.6111
+  epoch   5/100  loss=1.1142  bal_acc=0.5174
+  epoch   6/100  loss=1.0897  bal_acc=0.5521
+  epoch   7/100  loss=1.0760  bal_acc=0.5226
+  epoch   8/100  loss=1.0497  bal_acc=0.5608
+  epoch   9/100  loss=1.0310  bal_acc=0.5399
+  epoch  10/100  loss=1.0097  bal_acc=0.5781
+  epoch  11/100  loss=0.9952  bal_acc=0.5712
+  epoch  12/100  loss=0.9915  bal_acc=0.5764
+  epoch  13/100  loss=0.9802  bal_acc=0.5938
+  epoch  14/100  loss=0.9620  bal_acc=0.5677
+  epoch  15/100  loss=0.9530  bal_acc=0.5938
+  epoch  16/100  loss=0.9382  bal_acc=0.5330
+  epoch  17/100  loss=0.9302  bal_acc=0.5747
+  epoch  18/100  loss=0.9239  bal_acc=0.5694
+  epoch  19/100  loss=0.9114  bal_acc=0.5642
+  epoch  20/100  loss=0.9198  bal_acc=0.5764
+  epoch  21/100  loss=0.9137  bal_acc=0.5608
+  epoch  22/100  loss=0.8875  bal_acc=0.5312
+  epoch  23/100  loss=0.8827  bal_acc=0.5451
+  epoch  24/100  loss=0.8738  bal_acc=0.5156
+  epoch  25/100  loss=0.8749  bal_acc=0.5642
+  epoch  26/100  loss=0.8646  bal_acc=0.5660
+  epoch  27/100  loss=0.8668  bal_acc=0.5660
+  epoch  28/100  loss=0.8529  bal_acc=0.5764
+  epoch  29/100  loss=0.8484  bal_acc=0.5625
+  epoch  30/100  loss=0.8384  bal_acc=0.6059
+  epoch  31/100  loss=0.8371  bal_acc=0.5816
+  epoch  32/100  loss=0.8463  bal_acc=0.5312
+  epoch  33/100  loss=0.8254  bal_acc=0.5729
+  epoch  34/100  loss=0.8171  bal_acc=0.5538
+  epoch  35/100  loss=0.8039  bal_acc=0.5712
+  epoch  36/100  loss=0.8056  bal_acc=0.5399
+  epoch  37/100  loss=0.7988  bal_acc=0.5642
+  epoch  38/100  loss=0.8109  bal_acc=0.5521
+  epoch  39/100  loss=0.8101  bal_acc=0.5538
+  epoch  40/100  loss=0.7967  bal_acc=0.5469
+  epoch  41/100  loss=0.7739  bal_acc=0.5712
+  epoch  42/100  loss=0.7895  bal_acc=0.5625
+  epoch  43/100  loss=0.7796  bal_acc=0.5642
+  epoch  44/100  loss=0.7946  bal_acc=0.5590
+  epoch  45/100  loss=0.7742  bal_acc=0.5885
+  epoch  46/100  loss=0.7586  bal_acc=0.5590
+  epoch  47/100  loss=0.7620  bal_acc=0.5938
+  epoch  48/100  loss=0.7565  bal_acc=0.5747
+  epoch  49/100  loss=0.7579  bal_acc=0.5694
+  epoch  50/100  loss=0.7516  bal_acc=0.5573
+  epoch  51/100  loss=0.7587  bal_acc=0.5365
+  epoch  52/100  loss=0.7547  bal_acc=0.5625
+  epoch  53/100  loss=0.7334  bal_acc=0.5538
+  epoch  54/100  loss=0.7234  bal_acc=0.5694
+  epoch  55/100  loss=0.7285  bal_acc=0.5712
+  epoch  56/100  loss=0.7373  bal_acc=0.5938
+  epoch  57/100  loss=0.7229  bal_acc=0.5556
+  epoch  58/100  loss=0.7150  bal_acc=0.5816
+  epoch  59/100  loss=0.7248  bal_acc=0.5851
+  epoch  60/100  loss=0.7168  bal_acc=0.5660
+  epoch  61/100  loss=0.7296  bal_acc=0.5781
+  epoch  62/100  loss=0.6998  bal_acc=0.5833
+  epoch  63/100  loss=0.7161  bal_acc=0.5642
+  epoch  64/100  loss=0.6957  bal_acc=0.5747
+  epoch  65/100  loss=0.7159  bal_acc=0.5868
+  epoch  66/100  loss=0.7018  bal_acc=0.6042
+  epoch  67/100  loss=0.6912  bal_acc=0.5729
+  epoch  68/100  loss=0.6974  bal_acc=0.5642
+  epoch  69/100  loss=0.6970  bal_acc=0.5747
+  epoch  70/100  loss=0.6825  bal_acc=0.5556
+  epoch  71/100  loss=0.6984  bal_acc=0.6007
+  epoch  72/100  loss=0.7017  bal_acc=0.5747
+  epoch  73/100  loss=0.6929  bal_acc=0.5451
+  epoch  74/100  loss=0.6721  bal_acc=0.5729
+  epoch  75/100  loss=0.6883  bal_acc=0.5781
+  epoch  76/100  loss=0.6810  bal_acc=0.5521
+  epoch  77/100  loss=0.6673  bal_acc=0.5660
+  epoch  78/100  loss=0.6750  bal_acc=0.5434
+  epoch  79/100  loss=0.6718  bal_acc=0.5521
+  epoch  80/100  loss=0.6802  bal_acc=0.5781
+  epoch  81/100  loss=0.6679  bal_acc=0.5764
+  epoch  82/100  loss=0.6661  bal_acc=0.5799
+  epoch  83/100  loss=0.6763  bal_acc=0.5625
+  epoch  84/100  loss=0.6609  bal_acc=0.5556
+  epoch  85/100  loss=0.6558  bal_acc=0.5330
+  epoch  86/100  loss=0.6588  bal_acc=0.5538
+  epoch  87/100  loss=0.6554  bal_acc=0.5278
+  epoch  88/100  loss=0.6558  bal_acc=0.5521
+  epoch  89/100  loss=0.6673  bal_acc=0.5677
+  epoch  90/100  loss=0.6477  bal_acc=0.5521
+  epoch  91/100  loss=0.6565  bal_acc=0.5903
+  epoch  92/100  loss=0.6424  bal_acc=0.5694
+  epoch  93/100  loss=0.6481  bal_acc=0.5625
+  epoch  94/100  loss=0.6743  bal_acc=0.5573
+  epoch  95/100  loss=0.6612  bal_acc=0.5486
+  epoch  96/100  loss=0.6591  bal_acc=0.5833
+  epoch  97/100  loss=0.6353  bal_acc=0.5590
+  epoch  98/100  loss=0.6331  bal_acc=0.5642
+  epoch  99/100  loss=0.6354  bal_acc=0.5295
+  epoch 100/100  loss=0.6415  bal_acc=0.5538
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 605 done (state=COMPLETE, value=0.5538194444444445) -- 600 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 4.99581318334573–70.67225002989524 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 10,388
+  epoch   1/100  loss=1.4093  bal_acc=0.3229
+  epoch   2/100  loss=1.3605  bal_acc=0.4479
+  epoch   3/100  loss=1.3125  bal_acc=0.4844  [pruned by Optuna at epoch 3]
+[status] trial 606 done (state=PRUNED, value=0.484375) -- 601 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 2.7093901608243507–100.56775349805235 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 12,476
+  epoch   1/100  loss=1.3919  bal_acc=0.3177
+  epoch   2/100  loss=1.3338  bal_acc=0.4896
+  epoch   3/100  loss=1.2824  bal_acc=0.4965  [pruned by Optuna at epoch 3]
+[status] trial 607 done (state=PRUNED, value=0.4965277777777778) -- 602 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 5.268532105234749–68.21061562716524 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 8,168
+  epoch   1/100  loss=1.3569  bal_acc=0.4844
+  epoch   2/100  loss=1.2405  bal_acc=0.5295
+  epoch   3/100  loss=1.1965  bal_acc=0.5069
+  epoch   4/100  loss=1.1786  bal_acc=0.4340
+  epoch   5/100  loss=1.1201  bal_acc=0.4097
+  epoch   6/100  loss=1.1133  bal_acc=0.5052
+  epoch   7/100  loss=1.0943  bal_acc=0.4479
+  epoch   8/100  loss=1.0740  bal_acc=0.5486
+  epoch   9/100  loss=1.0590  bal_acc=0.4601
+  epoch  10/100  loss=1.0630  bal_acc=0.5833
+  epoch  11/100  loss=1.0471  bal_acc=0.5920
+  epoch  12/100  loss=1.0392  bal_acc=0.4618
+  epoch  13/100  loss=1.0278  bal_acc=0.5469
+  epoch  14/100  loss=1.0205  bal_acc=0.5330
+  epoch  15/100  loss=1.0050  bal_acc=0.4826
+  epoch  16/100  loss=1.0167  bal_acc=0.5608
+  epoch  17/100  loss=1.0107  bal_acc=0.5451
+  epoch  18/100  loss=1.0069  bal_acc=0.5712
+  epoch  19/100  loss=0.9944  bal_acc=0.6094
+  epoch  20/100  loss=0.9954  bal_acc=0.6163
+  epoch  21/100  loss=0.9997  bal_acc=0.5868
+  epoch  22/100  loss=0.9828  bal_acc=0.6146
+  epoch  23/100  loss=0.9922  bal_acc=0.5833
+  epoch  24/100  loss=0.9723  bal_acc=0.5903
+  epoch  25/100  loss=0.9745  bal_acc=0.3941
+  epoch  26/100  loss=0.9777  bal_acc=0.6181
+  epoch  27/100  loss=0.9750  bal_acc=0.5764
+  epoch  28/100  loss=0.9619  bal_acc=0.5365
+  epoch  29/100  loss=0.9515  bal_acc=0.5486
+  epoch  30/100  loss=0.9666  bal_acc=0.5851
+  epoch  31/100  loss=0.9523  bal_acc=0.5503
+  epoch  32/100  loss=0.9622  bal_acc=0.5868
+  epoch  33/100  loss=0.9576  bal_acc=0.5260
+  epoch  34/100  loss=0.9527  bal_acc=0.5382
+  epoch  35/100  loss=0.9453  bal_acc=0.5312
+  epoch  36/100  loss=0.9505  bal_acc=0.5799
+  epoch  37/100  loss=0.9522  bal_acc=0.5226
+  epoch  38/100  loss=0.9487  bal_acc=0.5521
+  epoch  39/100  loss=0.9306  bal_acc=0.5868
+  epoch  40/100  loss=0.9305  bal_acc=0.6094
+  epoch  41/100  loss=0.9353  bal_acc=0.5608
+  epoch  42/100  loss=0.9340  bal_acc=0.5799
+  epoch  43/100  loss=0.9383  bal_acc=0.5903
+  epoch  44/100  loss=0.9182  bal_acc=0.5712
+  epoch  45/100  loss=0.9171  bal_acc=0.5625
+  epoch  46/100  loss=0.9440  bal_acc=0.5747
+  epoch  47/100  loss=0.9056  bal_acc=0.5885
+  epoch  48/100  loss=0.8963  bal_acc=0.5851
+  epoch  49/100  loss=0.9092  bal_acc=0.5469
+  epoch  50/100  loss=0.8971  bal_acc=0.5521
+  epoch  51/100  loss=0.9089  bal_acc=0.5938
+  epoch  52/100  loss=0.9115  bal_acc=0.5677
+  epoch  53/100  loss=0.9191  bal_acc=0.5938
+  epoch  54/100  loss=0.9041  bal_acc=0.5833
+  epoch  55/100  loss=0.9117  bal_acc=0.6198
+  epoch  56/100  loss=0.8990  bal_acc=0.5990
+  epoch  57/100  loss=0.9004  bal_acc=0.4757
+  epoch  58/100  loss=0.9147  bal_acc=0.6337
+  epoch  59/100  loss=0.9069  bal_acc=0.5972
+  epoch  60/100  loss=0.8971  bal_acc=0.5312
+  epoch  61/100  loss=0.8796  bal_acc=0.4635
+  epoch  62/100  loss=0.8845  bal_acc=0.5278
+  epoch  63/100  loss=0.8863  bal_acc=0.5260
+  epoch  64/100  loss=0.8893  bal_acc=0.5729
+  epoch  65/100  loss=0.8809  bal_acc=0.5816
+  epoch  66/100  loss=0.8740  bal_acc=0.5191
+  epoch  67/100  loss=0.8839  bal_acc=0.5608
+  epoch  68/100  loss=0.8935  bal_acc=0.5660
+  epoch  69/100  loss=0.8952  bal_acc=0.6111
+  epoch  70/100  loss=0.8908  bal_acc=0.5122
+  epoch  71/100  loss=0.9013  bal_acc=0.5660
+  epoch  72/100  loss=0.8856  bal_acc=0.4670
+  epoch  73/100  loss=0.8781  bal_acc=0.5851
+  epoch  74/100  loss=0.8778  bal_acc=0.5538
+  epoch  75/100  loss=0.8702  bal_acc=0.5799
+  epoch  76/100  loss=0.8698  bal_acc=0.5851
+  epoch  77/100  loss=0.8616  bal_acc=0.6042
+  epoch  78/100  loss=0.8438  bal_acc=0.5677
+  epoch  79/100  loss=0.8551  bal_acc=0.6267
+  epoch  80/100  loss=0.8477  bal_acc=0.5868
+  epoch  81/100  loss=0.8563  bal_acc=0.5972
+  epoch  82/100  loss=0.8461  bal_acc=0.5747
+  epoch  83/100  loss=0.8707  bal_acc=0.6076
+  epoch  84/100  loss=0.8597  bal_acc=0.5712
+  epoch  85/100  loss=0.8575  bal_acc=0.5781
+  epoch  86/100  loss=0.8573  bal_acc=0.5816
+  epoch  87/100  loss=0.8580  bal_acc=0.5556
+  epoch  88/100  loss=0.8495  bal_acc=0.5833
+  epoch  89/100  loss=0.8348  bal_acc=0.5903
+  epoch  90/100  loss=0.8438  bal_acc=0.5608
+  epoch  91/100  loss=0.8672  bal_acc=0.5747
+  epoch  92/100  loss=0.8360  bal_acc=0.5712
+  epoch  93/100  loss=0.8391  bal_acc=0.5833
+  epoch  94/100  loss=0.8234  bal_acc=0.4948
+  epoch  95/100  loss=0.8508  bal_acc=0.5677
+  epoch  96/100  loss=0.8476  bal_acc=0.5903
+  epoch  97/100  loss=0.8524  bal_acc=0.5937
+  epoch  98/100  loss=0.8592  bal_acc=0.5851
+  epoch  99/100  loss=0.8379  bal_acc=0.5729
+  epoch 100/100  loss=0.8591  bal_acc=0.5937
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 608 done (state=COMPLETE, value=0.5937499999999999) -- 603 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 1.8842965074116822–50.89020614973823 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 13,698
+  epoch   1/100  loss=1.3910  bal_acc=0.3247
+  epoch   2/100  loss=1.3719  bal_acc=0.3628
+  epoch   3/100  loss=1.3447  bal_acc=0.4080  [pruned by Optuna at epoch 3]
+[status] trial 609 done (state=PRUNED, value=0.40798611111111105) -- 604 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 10.978539126730409–109.74949506400061 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 19,366
+  epoch   1/100  loss=1.3704  bal_acc=0.4080
+  epoch   2/100  loss=1.2526  bal_acc=0.5260
+  epoch   3/100  loss=1.1862  bal_acc=0.5885
+  epoch   4/100  loss=1.1323  bal_acc=0.5747
+  epoch   5/100  loss=1.1053  bal_acc=0.4410
+  epoch   6/100  loss=1.0836  bal_acc=0.4514
+  epoch   7/100  loss=1.0589  bal_acc=0.6128
+  epoch   8/100  loss=1.0392  bal_acc=0.4688
+  epoch   9/100  loss=1.0044  bal_acc=0.6267
+  epoch  10/100  loss=0.9762  bal_acc=0.4757
+  epoch  11/100  loss=0.9619  bal_acc=0.5938
+  epoch  12/100  loss=0.9454  bal_acc=0.5156
+  epoch  13/100  loss=0.9240  bal_acc=0.5729
+  epoch  14/100  loss=0.9265  bal_acc=0.5382
+  epoch  15/100  loss=0.8926  bal_acc=0.5851
+  epoch  16/100  loss=0.8843  bal_acc=0.6146
+  epoch  17/100  loss=0.8841  bal_acc=0.4514
+  epoch  18/100  loss=0.8656  bal_acc=0.5521
+  epoch  19/100  loss=0.8435  bal_acc=0.5833
+  epoch  20/100  loss=0.8340  bal_acc=0.5538
+  epoch  21/100  loss=0.8312  bal_acc=0.5747
+  epoch  22/100  loss=0.8114  bal_acc=0.5521
+  epoch  23/100  loss=0.7807  bal_acc=0.6111
+  epoch  24/100  loss=0.7943  bal_acc=0.5642
+  epoch  25/100  loss=0.7829  bal_acc=0.5885
+  epoch  26/100  loss=0.7619  bal_acc=0.5312
+  epoch  27/100  loss=0.7739  bal_acc=0.5747
+  epoch  28/100  loss=0.7551  bal_acc=0.5330
+  epoch  29/100  loss=0.7404  bal_acc=0.5035
+  epoch  30/100  loss=0.7358  bal_acc=0.5590
+  epoch  31/100  loss=0.7249  bal_acc=0.5312
+  epoch  32/100  loss=0.7315  bal_acc=0.5608
+  epoch  33/100  loss=0.7249  bal_acc=0.5781
+  epoch  34/100  loss=0.7120  bal_acc=0.5174
+  epoch  35/100  loss=0.7084  bal_acc=0.5677
+  epoch  36/100  loss=0.6986  bal_acc=0.5729
+  epoch  37/100  loss=0.7072  bal_acc=0.5556
+  epoch  38/100  loss=0.6854  bal_acc=0.5434
+  epoch  39/100  loss=0.6954  bal_acc=0.5677
+  epoch  40/100  loss=0.6754  bal_acc=0.5781
+  epoch  41/100  loss=0.6648  bal_acc=0.5868
+  epoch  42/100  loss=0.6636  bal_acc=0.5677
+  epoch  43/100  loss=0.6658  bal_acc=0.6042
+  epoch  44/100  loss=0.6597  bal_acc=0.5781
+  epoch  45/100  loss=0.6565  bal_acc=0.5625
+  epoch  46/100  loss=0.6524  bal_acc=0.5486
+  epoch  47/100  loss=0.6406  bal_acc=0.5434
+  epoch  48/100  loss=0.6318  bal_acc=0.5625
+  epoch  49/100  loss=0.6414  bal_acc=0.5625
+  epoch  50/100  loss=0.6296  bal_acc=0.5799
+  epoch  51/100  loss=0.6245  bal_acc=0.5885
+  epoch  52/100  loss=0.6198  bal_acc=0.5590
+  epoch  53/100  loss=0.6367  bal_acc=0.5469
+  epoch  54/100  loss=0.6115  bal_acc=0.5260
+  epoch  55/100  loss=0.6108  bal_acc=0.5451
+  epoch  56/100  loss=0.6098  bal_acc=0.5764
+  epoch  57/100  loss=0.6187  bal_acc=0.5521
+  epoch  58/100  loss=0.6032  bal_acc=0.5556
+  epoch  59/100  loss=0.6057  bal_acc=0.5590
+  epoch  60/100  loss=0.6088  bal_acc=0.5694
+  epoch  61/100  loss=0.5753  bal_acc=0.5660
+  epoch  62/100  loss=0.5743  bal_acc=0.5764
+  epoch  63/100  loss=0.5921  bal_acc=0.5625
+  epoch  64/100  loss=0.5819  bal_acc=0.5833
+  epoch  65/100  loss=0.5763  bal_acc=0.5694
+  epoch  66/100  loss=0.5846  bal_acc=0.5764
+  epoch  67/100  loss=0.5814  bal_acc=0.5625
+  epoch  68/100  loss=0.5638  bal_acc=0.5590
+  epoch  69/100  loss=0.5654  bal_acc=0.5590
+  epoch  70/100  loss=0.5450  bal_acc=0.5174
+  epoch  71/100  loss=0.5705  bal_acc=0.5590
+  epoch  72/100  loss=0.5603  bal_acc=0.5573
+  epoch  73/100  loss=0.5594  bal_acc=0.5642
+  epoch  74/100  loss=0.5542  bal_acc=0.5625
+  epoch  75/100  loss=0.5549  bal_acc=0.5538
+  epoch  76/100  loss=0.5406  bal_acc=0.5677
+  epoch  77/100  loss=0.5299  bal_acc=0.5660
+  epoch  78/100  loss=0.5617  bal_acc=0.5851
+  epoch  79/100  loss=0.5293  bal_acc=0.5712
+  epoch  80/100  loss=0.5391  bal_acc=0.5712
+  epoch  81/100  loss=0.5483  bal_acc=0.5955
+  epoch  82/100  loss=0.5430  bal_acc=0.5764
+  epoch  83/100  loss=0.5289  bal_acc=0.5764
+  epoch  84/100  loss=0.5350  bal_acc=0.5747
+  epoch  85/100  loss=0.5507  bal_acc=0.5816
+  epoch  86/100  loss=0.5410  bal_acc=0.5694
+  epoch  87/100  loss=0.5249  bal_acc=0.5729
+  epoch  88/100  loss=0.5247  bal_acc=0.5590
+  epoch  89/100  loss=0.5270  bal_acc=0.5590
+  epoch  90/100  loss=0.5085  bal_acc=0.5486
+  epoch  91/100  loss=0.5320  bal_acc=0.5833
+  epoch  92/100  loss=0.5112  bal_acc=0.5972
+  epoch  93/100  loss=0.5174  bal_acc=0.5660
+  epoch  94/100  loss=0.5135  bal_acc=0.5399
+  epoch  95/100  loss=0.5091  bal_acc=0.5486
+  epoch  96/100  loss=0.5135  bal_acc=0.5538
+  epoch  97/100  loss=0.4901  bal_acc=0.5590
+  epoch  98/100  loss=0.4979  bal_acc=0.5451
+  epoch  99/100  loss=0.5067  bal_acc=0.5347
+  epoch 100/100  loss=0.5099  bal_acc=0.5486
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 610 done (state=COMPLETE, value=0.548611111111111) -- 605 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 7.069554982386022–90.80513374818098 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 24,190
+  epoch   1/100  loss=1.3877  bal_acc=0.3628
+  epoch   2/100  loss=1.3685  bal_acc=0.4358
+  epoch   3/100  loss=1.3375  bal_acc=0.4444  [pruned by Optuna at epoch 3]
+[status] trial 611 done (state=PRUNED, value=0.4444444444444444) -- 606 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 2.1267704078984666–107.16557926452347 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 16,232
+  epoch   1/100  loss=1.4183  bal_acc=0.4062
+  epoch   2/100  loss=1.3196  bal_acc=0.4583
+  epoch   3/100  loss=1.2629  bal_acc=0.3872  [pruned by Optuna at epoch 3]
+[status] trial 612 done (state=PRUNED, value=0.3871527777777778) -- 607 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 1.7284397458401708–85.46521309502842 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 17,812
+  epoch   1/100  loss=1.3820  bal_acc=0.3299
+  epoch   2/100  loss=1.3583  bal_acc=0.3872
+  epoch   3/100  loss=1.3133  bal_acc=0.4340  [pruned by Optuna at epoch 3]
+[status] trial 613 done (state=PRUNED, value=0.4340277777777778) -- 608 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 6.364115352231842–45.63287016386668 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 12,285
+  epoch   1/100  loss=1.3557  bal_acc=0.4722
+  epoch   2/100  loss=1.1869  bal_acc=0.5694
+  epoch   3/100  loss=1.1381  bal_acc=0.4826
+  epoch   4/100  loss=1.0938  bal_acc=0.5000
+  epoch   5/100  loss=1.0771  bal_acc=0.4566
+  epoch   6/100  loss=1.0386  bal_acc=0.5330
+  epoch   7/100  loss=1.0233  bal_acc=0.5451
+  epoch   8/100  loss=1.0226  bal_acc=0.6441
+  epoch   9/100  loss=0.9877  bal_acc=0.5816
+  epoch  10/100  loss=0.9819  bal_acc=0.5226
+  epoch  11/100  loss=0.9597  bal_acc=0.5677
+  epoch  12/100  loss=0.9508  bal_acc=0.4861
+  epoch  13/100  loss=0.9311  bal_acc=0.4948
+  epoch  14/100  loss=0.9091  bal_acc=0.5833
+  epoch  15/100  loss=0.9126  bal_acc=0.5955
+  epoch  16/100  loss=0.9042  bal_acc=0.5694
+  epoch  17/100  loss=0.8961  bal_acc=0.5990
+  epoch  18/100  loss=0.8980  bal_acc=0.5955
+  epoch  19/100  loss=0.8590  bal_acc=0.5590
+  epoch  20/100  loss=0.8714  bal_acc=0.5226
+  epoch  21/100  loss=0.8559  bal_acc=0.6181
+  epoch  22/100  loss=0.8513  bal_acc=0.6146
+  epoch  23/100  loss=0.8455  bal_acc=0.5920
+  epoch  24/100  loss=0.8484  bal_acc=0.5955
+  epoch  25/100  loss=0.8311  bal_acc=0.6007
+  epoch  26/100  loss=0.8303  bal_acc=0.6302
+  epoch  27/100  loss=0.8171  bal_acc=0.5660
+  epoch  28/100  loss=0.8137  bal_acc=0.5521
+  epoch  29/100  loss=0.8067  bal_acc=0.5469
+  epoch  30/100  loss=0.8153  bal_acc=0.5556
+  epoch  31/100  loss=0.7998  bal_acc=0.5729
+  epoch  32/100  loss=0.7914  bal_acc=0.5642
+  epoch  33/100  loss=0.7898  bal_acc=0.5972
+  epoch  34/100  loss=0.8038  bal_acc=0.5781
+  epoch  35/100  loss=0.7968  bal_acc=0.6128
+  epoch  36/100  loss=0.7879  bal_acc=0.6372
+  epoch  37/100  loss=0.7931  bal_acc=0.6094
+  epoch  38/100  loss=0.7582  bal_acc=0.6076
+  epoch  39/100  loss=0.7899  bal_acc=0.6233
+  epoch  40/100  loss=0.7773  bal_acc=0.5868
+  epoch  41/100  loss=0.7608  bal_acc=0.6528
+  epoch  42/100  loss=0.7405  bal_acc=0.6146
+  epoch  43/100  loss=0.7698  bal_acc=0.6076
+  epoch  44/100  loss=0.7452  bal_acc=0.5799
+  epoch  45/100  loss=0.7441  bal_acc=0.6007
+  epoch  46/100  loss=0.7420  bal_acc=0.6267
+  epoch  47/100  loss=0.7400  bal_acc=0.6215
+  epoch  48/100  loss=0.7330  bal_acc=0.6319
+  epoch  49/100  loss=0.7333  bal_acc=0.6302
+  epoch  50/100  loss=0.7294  bal_acc=0.6042
+  epoch  51/100  loss=0.7470  bal_acc=0.5868
+  epoch  52/100  loss=0.7376  bal_acc=0.5903
+  epoch  53/100  loss=0.7328  bal_acc=0.5816
+  epoch  54/100  loss=0.7225  bal_acc=0.6076
+  epoch  55/100  loss=0.7242  bal_acc=0.6163
+  epoch  56/100  loss=0.7182  bal_acc=0.6059
+  epoch  57/100  loss=0.6901  bal_acc=0.5938
+  epoch  58/100  loss=0.7114  bal_acc=0.6024
+  epoch  59/100  loss=0.6995  bal_acc=0.5226
+  epoch  60/100  loss=0.7129  bal_acc=0.6128
+  epoch  61/100  loss=0.7151  bal_acc=0.5486
+  epoch  62/100  loss=0.7012  bal_acc=0.5764
+  epoch  63/100  loss=0.6996  bal_acc=0.5764
+  epoch  64/100  loss=0.6947  bal_acc=0.5764
+  epoch  65/100  loss=0.7013  bal_acc=0.6059
+  epoch  66/100  loss=0.6755  bal_acc=0.5747
+  epoch  67/100  loss=0.6782  bal_acc=0.6042
+  epoch  68/100  loss=0.7140  bal_acc=0.5573
+  epoch  69/100  loss=0.6776  bal_acc=0.5781
+  epoch  70/100  loss=0.6871  bal_acc=0.5677
+  epoch  71/100  loss=0.6928  bal_acc=0.5833
+  epoch  72/100  loss=0.6823  bal_acc=0.5365
+  epoch  73/100  loss=0.6693  bal_acc=0.5729
+  epoch  74/100  loss=0.6739  bal_acc=0.5590
+  epoch  75/100  loss=0.6551  bal_acc=0.5833
+  epoch  76/100  loss=0.6646  bal_acc=0.5799
+  epoch  77/100  loss=0.6652  bal_acc=0.5990
+  epoch  78/100  loss=0.6500  bal_acc=0.5764
+  epoch  79/100  loss=0.6823  bal_acc=0.5590
+  epoch  80/100  loss=0.6837  bal_acc=0.5660
+  epoch  81/100  loss=0.6738  bal_acc=0.5903
+  epoch  82/100  loss=0.6555  bal_acc=0.5764
+  epoch  83/100  loss=0.6603  bal_acc=0.6146
+  epoch  84/100  loss=0.6618  bal_acc=0.6181
+  epoch  85/100  loss=0.6540  bal_acc=0.6076
+  epoch  86/100  loss=0.6599  bal_acc=0.5972
+  epoch  87/100  loss=0.6637  bal_acc=0.5781
+  epoch  88/100  loss=0.6532  bal_acc=0.5677
+  epoch  89/100  loss=0.6413  bal_acc=0.5660
+  epoch  90/100  loss=0.6296  bal_acc=0.5938
+  epoch  91/100  loss=0.6390  bal_acc=0.5608
+  epoch  92/100  loss=0.6384  bal_acc=0.5885
+  epoch  93/100  loss=0.6472  bal_acc=0.5781
+  epoch  94/100  loss=0.6389  bal_acc=0.5799
+  epoch  95/100  loss=0.6528  bal_acc=0.5833
+  epoch  96/100  loss=0.6195  bal_acc=0.5608
+  epoch  97/100  loss=0.6397  bal_acc=0.5399
+  epoch  98/100  loss=0.6517  bal_acc=0.5694
+  epoch  99/100  loss=0.6444  bal_acc=0.5417
+  epoch 100/100  loss=0.6535  bal_acc=0.5608
+Results saved to results/BNCI2014_001/results.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 614 done (state=COMPLETE, value=0.560763888888889) -- 609 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 15.320427927931961–84.09821259887532 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 20,234
+  epoch   1/100  loss=1.4050  bal_acc=0.2674
+  epoch   2/100  loss=1.3724  bal_acc=0.2986
+  epoch   3/100  loss=1.3389  bal_acc=0.3646  [pruned by Optuna at epoch 3]
+[status] trial 615 done (state=PRUNED, value=0.36458333333333337) -- 610 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 18.49860137178848–70.03255731985237 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 16,800
+  epoch   1/100  loss=1.3933  bal_acc=0.2552
+  epoch   2/100  loss=1.3911  bal_acc=0.2899
+  epoch   3/100  loss=1.3893  bal_acc=0.2760  [pruned by Optuna at epoch 3]
+[status] trial 616 done (state=PRUNED, value=0.2760416666666667) -- 611 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+Applying bandpass filter: 3.8457160584912238–98.0450854716902 Hz
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 19,000
+Finished : Thu Jun 18 18:26:16 MDT 2026
+Exit code: 0

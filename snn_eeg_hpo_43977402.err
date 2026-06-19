@@ -1,0 +1,89 @@
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+ERROR: Invalid requirement: 'Binary file requirements.txt matches': Expected end or semicolon (after name and no valid version specifier)
+    Binary file requirements.txt matches
+           ^ (from line 1 of /home/aleksander.berezowsk/requirements_notorch.txt)
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+/home/aleksander.berezowsk/spiking-eegnet/src/main.py:86: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
+/home/aleksander.berezowsk/spiking-eegnet/src/main.py:86: ExperimentalWarning: Argument ``group`` is an experimental feature. The interface can change in the future.
+  sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
+[I 2026-06-19 06:17:07,180] Using an existing study with name 'snn_eegnet_v2_200_20' instead of creating a new one.
+[I 2026-06-19 06:17:56,491] Trial 827 pruned. 
+[I 2026-06-19 06:18:35,587] Trial 828 pruned. 
+[I 2026-06-19 06:19:09,185] Trial 829 pruned. 
+[I 2026-06-19 06:19:49,980] Trial 830 pruned. 
+[I 2026-06-19 06:20:26,851] Trial 831 pruned. 
+[I 2026-06-19 06:20:59,357] Trial 832 pruned. 
+[I 2026-06-19 06:21:40,070] Trial 833 pruned. 
+[I 2026-06-19 06:22:26,976] Trial 834 pruned. 
+[I 2026-06-19 06:22:59,289] Trial 835 pruned. 
+[I 2026-06-19 06:23:40,487] Trial 836 pruned. 
+[I 2026-06-19 06:24:21,177] Trial 837 pruned. 
+[I 2026-06-19 06:24:53,303] Trial 838 pruned. 
+[I 2026-06-19 06:25:33,354] Trial 839 pruned. 
+[I 2026-06-19 06:26:03,908] Trial 840 pruned. 
+[I 2026-06-19 06:26:42,800] Trial 841 pruned. 
+[I 2026-06-19 06:27:26,269] Trial 842 pruned. 
+[I 2026-06-19 06:28:02,769] Trial 843 pruned. 
+[I 2026-06-19 06:28:40,934] Trial 844 pruned. 
+[I 2026-06-19 06:29:21,244] Trial 845 pruned. 
+[I 2026-06-19 06:29:49,952] Trial 846 pruned. 
+[I 2026-06-19 06:47:19,397] Trial 847 finished with value: 0.5642361111111112 and parameters: {'FLOW': 6.9812891744526295, 'FHIGH': 102.34857974275734, 'LR_EXP': -2.204339414138925, 'DROPOUT': 0.5382688901688393, 'BETA': 0.8451562732206747, 'SPIKE_GRAD_SLOPE': 6.118272331239, 'TEMPORAL_FILTERS': 27, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 25, 'TEMPORAL_KERNEL_DIV': 6, 'SEPARABLE_KERNEL_SIZE': 9, 'POOL1_SIZE': 8, 'POOL2_SIZE': 6, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 461 with value: 0.6545138888888888.
+[I 2026-06-19 06:47:56,332] Trial 848 pruned. 
+[I 2026-06-19 06:48:33,415] Trial 849 pruned. 
+[I 2026-06-19 06:59:15,883] Trial 850 finished with value: 0.6128472222222222 and parameters: {'FLOW': 8.150748672341011, 'FHIGH': 49.018492481929925, 'LR_EXP': -2.489296990758338, 'DROPOUT': 0.5368202373461956, 'BETA': 0.9704805335459472, 'SPIKE_GRAD_SLOPE': 25.545607822812354, 'TEMPORAL_FILTERS': 15, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 13, 'TEMPORAL_KERNEL_DIV': 7, 'SEPARABLE_KERNEL_SIZE': 16, 'POOL1_SIZE': 7, 'POOL2_SIZE': 8, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 461 with value: 0.6545138888888888.
+[I 2026-06-19 06:59:46,297] Trial 851 pruned. 
+[I 2026-06-19 07:00:15,771] Trial 852 pruned. 
+[I 2026-06-19 07:00:36,988] Trial 853 pruned. 
+[I 2026-06-19 07:01:10,909] Trial 854 pruned. 
+[I 2026-06-19 07:17:14,818] Trial 855 finished with value: 0.6024305555555556 and parameters: {'FLOW': 8.76226849113749, 'FHIGH': 110.32342536553432, 'LR_EXP': -2.4807933939553597, 'DROPOUT': 0.7122850521493986, 'BETA': 0.7738548162775606, 'SPIKE_GRAD_SLOPE': 10.397899107315814, 'TEMPORAL_FILTERS': 29, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 17, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 4, 'POOL1_SIZE': 7, 'POOL2_SIZE': 5, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 461 with value: 0.6545138888888888.
+[I 2026-06-19 07:32:36,731] Trial 856 finished with value: 0.5538194444444444 and parameters: {'FLOW': 4.173237728116966, 'FHIGH': 66.08190857924286, 'LR_EXP': -2.6527646752033127, 'DROPOUT': 0.6113701773387998, 'BETA': 0.7702368733174814, 'SPIKE_GRAD_SLOPE': 6.866102227682745, 'TEMPORAL_FILTERS': 26, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 21, 'TEMPORAL_KERNEL_DIV': 7, 'SEPARABLE_KERNEL_SIZE': 30, 'POOL1_SIZE': 3, 'POOL2_SIZE': 4, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': False}. Best is trial 461 with value: 0.6545138888888888.
+[I 2026-06-19 07:45:49,269] Trial 857 finished with value: 0.5295138888888888 and parameters: {'FLOW': 9.256640247112346, 'FHIGH': 59.109525386646425, 'LR_EXP': -2.1413693569781564, 'DROPOUT': 0.5837452938716547, 'BETA': 0.8039225805112056, 'SPIKE_GRAD_SLOPE': 57.07320627054656, 'TEMPORAL_FILTERS': 21, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 17, 'TEMPORAL_KERNEL_DIV': 7, 'SEPARABLE_KERNEL_SIZE': 20, 'POOL1_SIZE': 6, 'POOL2_SIZE': 8, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 461 with value: 0.6545138888888888.
+[I 2026-06-19 07:46:16,666] Trial 858 pruned. 
+[I 2026-06-19 07:59:33,334] Trial 859 finished with value: 0.5989583333333334 and parameters: {'FLOW': 6.967950238290182, 'FHIGH': 118.12626703696479, 'LR_EXP': -2.4056462462203774, 'DROPOUT': 0.7009194210776554, 'BETA': 0.7826962627703102, 'SPIKE_GRAD_SLOPE': 9.92845094697067, 'TEMPORAL_FILTERS': 21, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 60, 'TEMPORAL_KERNEL_DIV': 7, 'SEPARABLE_KERNEL_SIZE': 22, 'POOL1_SIZE': 6, 'POOL2_SIZE': 5, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': False}. Best is trial 461 with value: 0.6545138888888888.
+[I 2026-06-19 08:00:02,294] Trial 860 pruned. 
+[I 2026-06-19 08:00:28,001] Trial 861 pruned. 
+[I 2026-06-19 08:16:55,306] Trial 862 finished with value: 0.546875 and parameters: {'FLOW': 5.71859835840335, 'FHIGH': 116.35437316852472, 'LR_EXP': -3.1218133563476833, 'DROPOUT': 0.460616767299222, 'BETA': 0.7351071977620963, 'SPIKE_GRAD_SLOPE': 26.250768632679332, 'TEMPORAL_FILTERS': 26, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 43, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 21, 'POOL1_SIZE': 6, 'POOL2_SIZE': 7, 'NORM_AXIS': 'no_channel', 'RUN_ZSCORE': True}. Best is trial 461 with value: 0.6545138888888888.
+[I 2026-06-19 08:17:17,054] Trial 863 pruned. 
+[I 2026-06-19 08:32:45,721] Trial 864 finished with value: 0.5642361111111112 and parameters: {'FLOW': 5.359794859387696, 'FHIGH': 82.79247175327596, 'LR_EXP': -2.692235361622135, 'DROPOUT': 0.41894256871366115, 'BETA': 0.6481631898644313, 'SPIKE_GRAD_SLOPE': 5.127007599668104, 'TEMPORAL_FILTERS': 26, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 25, 'TEMPORAL_KERNEL_DIV': 6, 'SEPARABLE_KERNEL_SIZE': 24, 'POOL1_SIZE': 7, 'POOL2_SIZE': 8, 'NORM_AXIS': 'full', 'RUN_ZSCORE': True}. Best is trial 461 with value: 0.6545138888888888.
+[I 2026-06-19 08:33:21,142] Trial 865 pruned. 
+[I 2026-06-19 08:33:43,778] Trial 866 pruned. 
+[I 2026-06-19 08:34:16,222] Trial 867 pruned. 
+[I 2026-06-19 08:34:57,231] Trial 868 pruned. 
+[I 2026-06-19 08:35:32,722] Trial 869 pruned. 
+[I 2026-06-19 08:47:04,102] Trial 870 finished with value: 0.592013888888889 and parameters: {'FLOW': 4.259476843245739, 'FHIGH': 108.29032738273509, 'LR_EXP': -2.147969309828356, 'DROPOUT': 0.614941672482154, 'BETA': 0.9386202514688743, 'SPIKE_GRAD_SLOPE': 8.08739873166864, 'TEMPORAL_FILTERS': 14, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 43, 'TEMPORAL_KERNEL_DIV': 6, 'SEPARABLE_KERNEL_SIZE': 25, 'POOL1_SIZE': 7, 'POOL2_SIZE': 7, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 461 with value: 0.6545138888888888.
+[I 2026-06-19 08:47:40,881] Trial 871 pruned. 
+[I 2026-06-19 08:48:10,512] Trial 872 pruned. 
+[I 2026-06-19 08:48:45,996] Trial 873 pruned. 
+[I 2026-06-19 08:49:09,329] Trial 874 pruned. 
+[I 2026-06-19 08:49:30,742] Trial 875 pruned. 
+[I 2026-06-19 09:07:01,892] Trial 876 finished with value: 0.5972222222222222 and parameters: {'FLOW': 10.306598255807183, 'FHIGH': 100.32913425417456, 'LR_EXP': -2.198395644058885, 'DROPOUT': 0.6259120648396843, 'BETA': 0.6368370285558542, 'SPIKE_GRAD_SLOPE': 16.930271483553327, 'TEMPORAL_FILTERS': 28, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 27, 'TEMPORAL_KERNEL_DIV': 7, 'SEPARABLE_KERNEL_SIZE': 13, 'POOL1_SIZE': 7, 'POOL2_SIZE': 8, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 461 with value: 0.6545138888888888.
+[I 2026-06-19 09:07:23,071] Trial 877 pruned. 
+[I 2026-06-19 09:07:57,344] Trial 878 pruned. 
+[I 2026-06-19 09:08:24,817] Trial 879 pruned. 
+[I 2026-06-19 09:08:57,500] Trial 880 pruned. 
+[I 2026-06-19 09:09:33,229] Trial 881 pruned. 
+[I 2026-06-19 09:10:12,082] Trial 882 pruned. 
+[I 2026-06-19 09:10:42,396] Trial 883 pruned. 
+[I 2026-06-19 09:11:22,907] Trial 884 pruned. 
+[I 2026-06-19 09:11:54,139] Trial 885 pruned. 
+[I 2026-06-19 09:12:23,496] Trial 886 pruned. 
+[I 2026-06-19 09:12:56,290] Trial 887 pruned. 
+[I 2026-06-19 09:13:21,098] Trial 888 pruned. 
+[I 2026-06-19 09:13:46,428] Trial 889 pruned. 
+[I 2026-06-19 09:14:26,388] Trial 890 pruned. 
+[I 2026-06-19 09:15:00,970] Trial 891 pruned. 
+[I 2026-06-19 09:24:01,186] Trial 892 finished with value: 0.5659722222222222 and parameters: {'FLOW': 9.53266139533578, 'FHIGH': 67.11083365837668, 'LR_EXP': -2.1502573439652704, 'DROPOUT': 0.4551820304104572, 'BETA': 0.9474515612868889, 'SPIKE_GRAD_SLOPE': 7.471198887681821, 'TEMPORAL_FILTERS': 10, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 16, 'TEMPORAL_KERNEL_DIV': 6, 'SEPARABLE_KERNEL_SIZE': 16, 'POOL1_SIZE': 8, 'POOL2_SIZE': 8, 'NORM_AXIS': 'full', 'RUN_ZSCORE': False}. Best is trial 461 with value: 0.6545138888888888.
+[I 2026-06-19 09:24:34,268] Trial 893 pruned. 
+[I 2026-06-19 09:25:11,281] Trial 894 pruned. 
+slurmstepd: error: *** JOB 43977402 ON fg1 CANCELLED AT 2026-06-19T09:34:26 ***
