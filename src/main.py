@@ -22,12 +22,12 @@ NORM_AXIS_MAP = {
 
 def objective(trial):
     params = dict(
-        FLOW             = trial.suggest_float("FLOW",             1.0,  40.0),
-        FHIGH            = trial.suggest_float("FHIGH",            44.0, 120.0),
+        FLOW             = trial.suggest_float("FLOW",             1.0,  20.0),
+        FHIGH            = trial.suggest_float("FHIGH",            24.0, 120.0),
         LR_EXP           = trial.suggest_float("LR_EXP",          -4.5,  -2.0),
         DROPOUT          = trial.suggest_float("DROPOUT",          0.1,   0.75),
         BETA             = trial.suggest_float("BETA",             0.5,   0.99),
-        SPIKE_GRAD_SLOPE = trial.suggest_float("SPIKE_GRAD_SLOPE", 5.0, 100.0),
+        SPIKE_GRAD_SLOPE = trial.suggest_float("SPIKE_GRAD_SLOPE", 0.1, 60.0),
 
         TEMPORAL_FILTERS      = trial.suggest_int("TEMPORAL_FILTERS",      4,  32),
         DEPTH_MULTIPLIER      = trial.suggest_int("DEPTH_MULTIPLIER",      1,   4),

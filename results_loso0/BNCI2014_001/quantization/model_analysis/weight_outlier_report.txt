@@ -1,0 +1,53 @@
+======================================================================
+  Weight Outlier Report  (threshold = 3.0σ)
+======================================================================
+
+  Top 20 tensors by maximum |weight|:
+  Rank  Tensor name                                         |max|       std  shape
+  ----------------------------------------------------------------------------------
+     1  lif1.mem                                         63.08731   7.36612  (32, 8, 22, 1002)
+     2  lif3.mem                                         53.12890   6.23202  (32, 16, 1, 251)
+     3  lif2.mem                                         46.57390   7.42440  (32, 16, 1, 1002)
+     4  temporal_conv.1.running_var                       2.39544   0.42343  (8,)
+     5  depthwise_conv.1.weight                           1.26293   0.10469  (16,)
+     6  separable_pointwise.1.weight                      1.11480   0.03969  (16,)
+     7  temporal_conv.1.weight                            1.08437   0.07692  (8,)
+     8  lif2.threshold                                    1.00000   0.00000  ()
+     9  lif1.threshold                                    1.00000   0.00000  ()
+    10  lif1.graded_spikes_factor                         1.00000   0.00000  ()
+    11  lif2.graded_spikes_factor                         1.00000   0.00000  ()
+    12  lif3.graded_spikes_factor                         1.00000   0.00000  ()
+    13  lif3.threshold                                    1.00000   0.00000  ()
+    14  lif2.beta                                         0.95000   0.00000  ()
+    15  lif1.beta                                         0.95000   0.00000  ()
+    16  lif3.beta                                         0.95000   0.00000  ()
+    17  separable_pointwise.0.weight                      0.43308   0.14503  (16, 16, 1, 1)
+    18  depthwise_conv.0.weight                           0.37058   0.13163  (16, 1, 22, 1)
+    19  depthwise_conv.1.running_mean                     0.35772   0.16787  (16,)
+    20  separable_depthwise.weight                        0.31277   0.14500  (16, 1, 1, 16)
+
+  Layers where > 1% of weights are >3.0σ outliers:
+  Tensor name                                      out%   out_count     abs_max
+  ----------------------------------------------------------------------------
+  separable_pointwise.1.bias                      6.25%           1     0.12837
+  lif2.mem                                        1.76%       9,054    46.57390
+  lif3.mem                                        1.75%       2,254    53.12890
+  lif1.mem                                        1.30%      73,237    63.08731
+
+  BatchNorm running statistics (can be large → drives integer bit width):
+  Tensor name                                           min         max     abs_max
+  --------------------------------------------------------------------------------
+  temporal_conv.1.running_var                       1.19368     2.39544     2.39544
+  depthwise_conv.1.running_mean                    -0.31078     0.35772     0.35772
+  separable_pointwise.1.running_mean               -0.22674     0.24078     0.24078
+  depthwise_conv.1.running_var                      0.02108     0.21887     0.21887
+  separable_pointwise.1.running_var                 0.01200     0.03064     0.03064
+  temporal_conv.1.running_mean                     -0.00125     0.00070     0.00125
+
+  Likely drivers of large integer-bit requirement
+  (tensors with |max| >= 50% of global max = 63.08731):
+    • lif1.mem  |max|=63.08731  (100.0% of global max)
+    • lif3.mem  |max|=53.12890  (84.2% of global max)
+    • lif2.mem  |max|=46.57390  (73.8% of global max)
+
+======================================================================

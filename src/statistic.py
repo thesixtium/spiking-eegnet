@@ -533,7 +533,7 @@ def write_recommendations(df, df_analysis, target, numeric_cols, categorical_col
 
 
 def main():
-    csv_path = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\ajrbe\Documents\Git\spiking-eegnet\results_noresampler\BNCI2014_001\trials.csv"
+    csv_path = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\ajrbe\Documents\Git\spiking-eegnet\results_loso0\BNCI2014_001\trials.csv"
     out_dir = sys.argv[2] if len(sys.argv) > 2 else "trial_analysis_output"
     top_n = int(sys.argv[3]) if len(sys.argv) > 3 else 10
     os.makedirs(out_dir, exist_ok=True)
