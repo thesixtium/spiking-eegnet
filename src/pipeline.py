@@ -18,14 +18,27 @@ from evaluate import evaluate
 
 
 def _log_trial_to_csv(csv_path, row: dict):
-    """Append one trial's results to the CSV, writing the header if the file is new."""
+    """Append one trial's results to the CSV, writing the header if the file is new.
+
+    Uses an exclusive fcntl flock so that multiple SLURM jobs writing to the
+    same shared CSV cannot interleave rows or produce a corrupted header.
+    The lock file is separate from the CSV so the CSV itself stays clean.
+    """
+    import fcntl
     csv_path = Path(csv_path)
-    write_header = not csv_path.exists()
-    with open(csv_path, "a", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=list(row.keys()))
-        if write_header:
-            writer.writeheader()
-        writer.writerow(row)
+    lock_path = csv_path.with_suffix(".csv.lock")
+
+    with open(lock_path, "w") as lock_fh:
+        fcntl.flock(lock_fh, fcntl.LOCK_EX)   # blocks until we own the lock
+        try:
+            write_header = not csv_path.exists()
+            with open(csv_path, "a", newline="") as f:
+                writer = csv.DictWriter(f, fieldnames=list(row.keys()))
+                if write_header:
+                    writer.writeheader()
+                writer.writerow(row)
+        finally:
+            fcntl.flock(lock_fh, fcntl.LOCK_UN)
 
 
 def plot_results(OUTPUT_DIR, DATASET_KEY, FLOW, FHIGH, histories, accs, meta):
@@ -143,9 +156,11 @@ def pipeline(
             "histories": {str(k): v for k, v in histories.items()},
         },
     }
-    with open(OUTPUT_DIR / "results.json", "w") as f:
+    trial_tag = trial.number if trial is not None else "notrial"
+    results_path = OUTPUT_DIR / f"results_trial_{trial_tag}.json"
+    with open(results_path, "w") as f:
         json.dump(results, f, indent=2)
-    print(f"Results saved to {OUTPUT_DIR / 'results.json'}")
+    print(f"Results saved to {results_path}")
 
     # ── CSV trial log ─────────────────────────────────────────────────────────
     import datetime

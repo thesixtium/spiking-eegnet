@@ -26,8 +26,10 @@ echo "job_id    : $SLURM_JOB_ID"  >> chain_status.txt
 echo "started   : $(date)"        >> chain_status.txt
 echo "----"                        >> chain_status.txt
 
-# Put raw MOABB downloads on scratch (fast, auto-cleaned after 5 days)
-export MOABB_DOWNLOAD_DIR=/scratch/${SLURM_JOB_ID}/mne_data
+# Shared persistent MOABB download cache -- all parallel jobs reuse the same
+# data instead of each job re-downloading to its own /scratch/${SLURM_JOB_ID}.
+# MOABB itself is safe to read from concurrently once the data is on disk.
+export MOABB_DOWNLOAD_DIR=/scratch/mne_data
 mkdir -p "$MOABB_DOWNLOAD_DIR"
 
 # Cache preprocessed arrays somewhere persistent across jobs
