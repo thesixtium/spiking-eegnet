@@ -19,3 +19,5 @@ ERROR: Invalid requirement: 'Binary file requirements.txt matches': Expected end
 /home/aleksander.berezowsk/spiking-eegnet/src/main.py:89: ExperimentalWarning: Argument ``group`` is an experimental feature. The interface can change in the future.
   sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
 [I 2026-06-22 12:36:19,258] Using an existing study with name 'snn_eegnet_v2_200_20' instead of creating a new one.
+[I 2026-06-22 15:35:53,476] Trial 131 finished with value: 0.447145061728395 and parameters: {'FLOW': 2.918911780758889, 'FHIGH': 61.156281969496625, 'LR_EXP': -2.4742422622567117, 'DROPOUT': 0.39654907162664865, 'BETA': 0.7680590062769413, 'SPIKE_GRAD_SLOPE': 3.784959841372003, 'TEMPORAL_FILTERS': 31, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 57, 'TEMPORAL_KERNEL_DIV': 4, 'SEPARABLE_KERNEL_SIZE': 10, 'POOL1_SIZE': 5, 'POOL2_SIZE': 5, 'NORM_AXIS': 'no_channel'}. Best is trial 77 with value: 0.4922839506172839.
+slurmstepd: error: *** JOB 44069094 ON fg5 CANCELLED AT 2026-06-22T16:56:54 ***
