@@ -1,0 +1,30 @@
+mkdir: cannot create directory ‘/scratch/mne_data’: Permission denied
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+ERROR: Invalid requirement: 'Binary file requirements.txt matches': Expected end or semicolon (after name and no valid version specifier)
+    Binary file requirements.txt matches
+           ^ (from line 1 of /home/aleksander.berezowsk/requirements_notorch.txt)
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+/home/aleksander.berezowsk/spiking-eegnet/src/main.py:89: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
+/home/aleksander.berezowsk/spiking-eegnet/src/main.py:89: ExperimentalWarning: Argument ``group`` is an experimental feature. The interface can change in the future.
+  sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
+[I 2026-06-21 12:59:03,155] Using an existing study with name 'snn_eegnet_v2_200_20' instead of creating a new one.
+[I 2026-06-21 15:16:08,626] Trial 89 finished with value: 0.435570987654321 and parameters: {'FLOW': 4.979155569342851, 'FHIGH': 107.81262106141995, 'LR_EXP': -2.9927234935555656, 'DROPOUT': 0.7485814646507819, 'BETA': 0.7185025373677638, 'SPIKE_GRAD_SLOPE': 11.825071565801258, 'TEMPORAL_FILTERS': 23, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 51, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 12, 'POOL1_SIZE': 2, 'POOL2_SIZE': 3, 'NORM_AXIS': 'full'}. Best is trial 77 with value: 0.4922839506172839.
+[I 2026-06-21 17:04:28,347] Trial 95 finished with value: 0.4421296296296296 and parameters: {'FLOW': 5.116228232846366, 'FHIGH': 117.92113976176033, 'LR_EXP': -3.9266930317258217, 'DROPOUT': 0.4950790544487902, 'BETA': 0.5855515151533763, 'SPIKE_GRAD_SLOPE': 20.883908860718584, 'TEMPORAL_FILTERS': 17, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 56, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 10, 'POOL1_SIZE': 5, 'POOL2_SIZE': 5, 'NORM_AXIS': 'no_channel'}. Best is trial 77 with value: 0.4922839506172839.
+[I 2026-06-21 19:37:34,642] Trial 98 finished with value: 0.4459876543209877 and parameters: {'FLOW': 3.8619512488223577, 'FHIGH': 104.44292079887418, 'LR_EXP': -3.020741612646977, 'DROPOUT': 0.3997978028731384, 'BETA': 0.5021425352401951, 'SPIKE_GRAD_SLOPE': 12.02569304863039, 'TEMPORAL_FILTERS': 27, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 46, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 7, 'POOL1_SIZE': 2, 'POOL2_SIZE': 8, 'NORM_AXIS': 'full'}. Best is trial 77 with value: 0.4922839506172839.
+[I 2026-06-21 22:21:21,089] Trial 102 finished with value: 0.43094135802469136 and parameters: {'FLOW': 4.0270561856197675, 'FHIGH': 105.58756692216113, 'LR_EXP': -3.2836809633681123, 'DROPOUT': 0.2928839932096486, 'BETA': 0.6977750335655972, 'SPIKE_GRAD_SLOPE': 42.50332159997259, 'TEMPORAL_FILTERS': 30, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 48, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 5, 'POOL1_SIZE': 3, 'POOL2_SIZE': 8, 'NORM_AXIS': 'no_channel'}. Best is trial 77 with value: 0.4922839506172839.
+[I 2026-06-22 00:08:22,728] Trial 107 finished with value: 0.48148148148148145 and parameters: {'FLOW': 1.1428128634003207, 'FHIGH': 48.57704286043656, 'LR_EXP': -2.7842668605541006, 'DROPOUT': 0.3950047102183442, 'BETA': 0.6816057316654323, 'SPIKE_GRAD_SLOPE': 8.037347126866091, 'TEMPORAL_FILTERS': 21, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 10, 'TEMPORAL_KERNEL_DIV': 6, 'SEPARABLE_KERNEL_SIZE': 4, 'POOL1_SIZE': 7, 'POOL2_SIZE': 5, 'NORM_AXIS': 'no_channel'}. Best is trial 77 with value: 0.4922839506172839.
+[I 2026-06-22 02:07:49,198] Trial 110 finished with value: 0.4538966049382716 and parameters: {'FLOW': 1.4424206184542603, 'FHIGH': 47.397020936391485, 'LR_EXP': -2.087052040675431, 'DROPOUT': 0.4075674431690401, 'BETA': 0.5655096474112287, 'SPIKE_GRAD_SLOPE': 11.345851368860183, 'TEMPORAL_FILTERS': 25, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 18, 'TEMPORAL_KERNEL_DIV': 6, 'SEPARABLE_KERNEL_SIZE': 9, 'POOL1_SIZE': 6, 'POOL2_SIZE': 5, 'NORM_AXIS': 'no_channel'}. Best is trial 77 with value: 0.4922839506172839.
+[I 2026-06-22 03:42:39,061] Trial 114 finished with value: 0.4633487654320988 and parameters: {'FLOW': 3.598913216210873, 'FHIGH': 47.19091405925607, 'LR_EXP': -3.137917892581033, 'DROPOUT': 0.4881654160419031, 'BETA': 0.8602741732829036, 'SPIKE_GRAD_SLOPE': 4.799125535328051, 'TEMPORAL_FILTERS': 19, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 9, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 5, 'POOL1_SIZE': 8, 'POOL2_SIZE': 4, 'NORM_AXIS': 'no_channel'}. Best is trial 77 with value: 0.4922839506172839.
+[I 2026-06-22 05:25:02,820] Trial 116 finished with value: 0.41242283950617287 and parameters: {'FLOW': 3.652280734005582, 'FHIGH': 25.221526027456974, 'LR_EXP': -2.4781025090860984, 'DROPOUT': 0.26316153615320026, 'BETA': 0.7099668991112417, 'SPIKE_GRAD_SLOPE': 9.461823201897698, 'TEMPORAL_FILTERS': 14, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 31, 'TEMPORAL_KERNEL_DIV': 4, 'SEPARABLE_KERNEL_SIZE': 6, 'POOL1_SIZE': 6, 'POOL2_SIZE': 6, 'NORM_AXIS': 'no_channel'}. Best is trial 77 with value: 0.4922839506172839.
+[I 2026-06-22 08:32:41,993] Trial 120 finished with value: 0.46913580246913583 and parameters: {'FLOW': 1.6123471070510857, 'FHIGH': 57.72567104330484, 'LR_EXP': -3.034405350900956, 'DROPOUT': 0.2112968949908104, 'BETA': 0.6870253752211342, 'SPIKE_GRAD_SLOPE': 10.907305117550989, 'TEMPORAL_FILTERS': 28, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 52, 'TEMPORAL_KERNEL_DIV': 3, 'SEPARABLE_KERNEL_SIZE': 12, 'POOL1_SIZE': 3, 'POOL2_SIZE': 7, 'NORM_AXIS': 'no_channel'}. Best is trial 77 with value: 0.4922839506172839.
