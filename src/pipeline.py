@@ -70,8 +70,8 @@ def plot_results(OUTPUT_DIR, DATASET_KEY, FLOW, FHIGH, histories, accs, meta):
 
 def pipeline(
     # Continuous Float
-    FLOW=4.0,               # uniform float [1.0, 40.0]
-    FHIGH=40.0,             # uniform float [8.0, 120.0]
+    FLOW=4.0,               # uniform float [1.0, 5.0]
+    FHIGH=40.0,             # uniform float [10.0, 120.0]
     LR_EXP=-3.52,           # uniform float [-4.5, -2.0]
     DROPOUT=0.5,            # uniform float [0.1, 0.75]
     BETA=0.95,              # uniform float [0.5, 0.99]
@@ -85,18 +85,19 @@ def pipeline(
     SEPARABLE_KERNEL_SIZE=16,  # uniform int [4, 32]
     POOL1_SIZE=4,              # uniform int [2, 8]
     POOL2_SIZE=4,              # uniform int [2, 8]
+    N_STEPS_TRAIN=4,           # uniform int [4, 16]
+    N_STEPS_EVAL=20,           # uniform int [4, 32]
 
-    # Discrete
-    NORM_AXIS=(1, 2, 3),    # [(1,2,3), (1,3)]
-    RUN_ZSCORE=False,       # always disabled for the Optuna study
-    RUN_BANDPASS=True,      # always enabled for the Optuna study
+    # Discrete / Categorical
+    READOUT_MODE="spk_mean",  # categorical: spk_mean | spk_last | spk_sum | mem_last
+    NORM_AXIS=(1, 3),         # fixed to (1,3) — not a search parameter
+    RUN_ZSCORE=False,         # always disabled for the Optuna study
+    RUN_BANDPASS=True,        # always enabled for the Optuna study
 
     # Experiment Parameters
     DATASET_KEY="BNCI2014_001",
     EPOCHS=10,
     BATCH_SIZE=32,
-    N_STEPS_TRAIN=4,
-    N_STEPS_EVAL=20,
     EARLY_STOPPING_PATIENCE=None,
 
     # Optuna
@@ -108,6 +109,7 @@ def pipeline(
     TRAIN_CFG = {
         "epochs": EPOCHS, "batch_size": BATCH_SIZE, "lr": LR,
         "n_steps_train": N_STEPS_TRAIN, "n_steps_eval": N_STEPS_EVAL,
+        "readout_mode": READOUT_MODE,
         "patience": EARLY_STOPPING_PATIENCE,
         # NOTE: trial is intentionally left out here. Per-epoch pruning
         # inside run_training() is disabled for true LOSO; pruning is
@@ -183,6 +185,7 @@ def pipeline(
         "batch_size":           BATCH_SIZE,
         "n_steps_train":        N_STEPS_TRAIN,
         "n_steps_eval":         N_STEPS_EVAL,
+        "readout_mode":         READOUT_MODE,
         # Model
         "temporal_filters":     TEMPORAL_FILTERS,
         "depth_multiplier":     DEPTH_MULTIPLIER,

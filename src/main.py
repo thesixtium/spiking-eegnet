@@ -7,29 +7,29 @@ from pipeline import pipeline
 
 FIXED = dict(
     DATASET_KEY="BNCI2014_001",
-    EPOCHS=100,
+    EPOCHS=300,
     BATCH_SIZE=32,
-    N_STEPS_TRAIN=4,
-    N_STEPS_EVAL=20,
+    NORM_AXIS=(1, 3),   # fixed — (1,3) consistently outperforms (1,2,3)
     RUN_ZSCORE=False,   # always disabled
     RUN_BANDPASS=True,  # always enabled
 )
 
-NORM_AXIS_MAP = {
-    "full":       (1, 2, 3),
-    "no_channel": (1, 3),
-}
-
 
 def objective(trial):
     params = dict(
-        FLOW             = trial.suggest_float("FLOW",             1.0,  20.0),
-        FHIGH            = trial.suggest_float("FHIGH",            24.0, 120.0),
+        # --- Bandpass ---
+        FLOW             = trial.suggest_float("FLOW",             1.0,   5.0),   # narrowed from [1,40]
+        FHIGH            = trial.suggest_float("FHIGH",           10.0, 120.0),   # narrowed lower bound
+
+        # --- Optimiser ---
         LR_EXP           = trial.suggest_float("LR_EXP",          -4.5,  -2.0),
         DROPOUT          = trial.suggest_float("DROPOUT",          0.1,   0.75),
-        BETA             = trial.suggest_float("BETA",             0.5,   0.99),
-        SPIKE_GRAD_SLOPE = trial.suggest_float("SPIKE_GRAD_SLOPE", 0.1, 60.0),
 
+        # --- SNN dynamics ---
+        BETA             = trial.suggest_float("BETA",             0.5,   0.99),
+        SPIKE_GRAD_SLOPE = trial.suggest_float("SPIKE_GRAD_SLOPE", 0.01,  60.0),
+
+        # --- Architecture ---
         TEMPORAL_FILTERS      = trial.suggest_int("TEMPORAL_FILTERS",      4,  32),
         DEPTH_MULTIPLIER      = trial.suggest_int("DEPTH_MULTIPLIER",      1,   4),
         POINTWISE_FILTERS     = trial.suggest_int("POINTWISE_FILTERS",     8,  64),
@@ -38,7 +38,15 @@ def objective(trial):
         POOL1_SIZE            = trial.suggest_int("POOL1_SIZE",            2,   8),
         POOL2_SIZE            = trial.suggest_int("POOL2_SIZE",            2,   8),
 
-        NORM_AXIS        = NORM_AXIS_MAP[trial.suggest_categorical("NORM_AXIS", list(NORM_AXIS_MAP))],
+        # --- SNN temporal resolution ---
+        N_STEPS_TRAIN    = trial.suggest_int("N_STEPS_TRAIN",  4, 16),
+        N_STEPS_EVAL     = trial.suggest_int("N_STEPS_EVAL",   4, 32),
+
+        # --- Output aggregation ---
+        READOUT_MODE     = trial.suggest_categorical(
+                               "READOUT_MODE",
+                               ["spk_mean", "spk_last", "spk_sum", "mem_last"]
+                           ),
     )
 
     return pipeline(**params, **FIXED, trial=trial, save_plots=False)
@@ -79,7 +87,7 @@ if __name__ == "__main__":
 
     study = optuna.create_study(
         direction="maximize",
-        study_name=f"snn_eegnet_v2_{n_trials}_{tpe_trails}",
+        study_name=f"snn_eegnet_v3_{n_trials}_{tpe_trails}",
         storage="sqlite:///optuna_study.db",
         load_if_exists=True,
         # n_warmup_steps is now in units of SUBJECTS (since pruning is
@@ -106,5 +114,6 @@ if __name__ == "__main__":
     if "--plot-best" in sys.argv:
         print("\nRe-running best trial to generate plots...")
         best = dict(study.best_params)
-        best["NORM_AXIS"] = NORM_AXIS_MAP[best["NORM_AXIS"]]
+        # NORM_AXIS is fixed in FIXED, not in best_params — no remapping needed.
+        # READOUT_MODE is already a string in best_params.
         pipeline(**best, **FIXED, save_plots=True)

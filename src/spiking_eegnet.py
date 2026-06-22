@@ -210,12 +210,23 @@ class SpikingEEGNet(nn.Module):
             x = self.pool2(x)
             return x.flatten(1).shape[1]
 
+    def get_mem_flat_size(self):
+        """Flat size of mem3 after pool2, used for membrane-readout classifier sizing."""
+        with torch.no_grad():
+            # mem3 has same spatial shape as the conv output before pool2
+            # We can derive it from the classifier input size since both
+            # go through the same pool2 → flatten path.
+            # The classifier is already built on this size, so just return
+            # classifier.in_features.
+            return self.classifier.in_features
+
     def forward(self, x: torch.Tensor, num_steps: int = 1):
         mem1 = self.lif1.init_leaky()
         mem2 = self.lif2.init_leaky()
         mem3 = self.lif3.init_leaky()
 
         spk_out_steps = []
+        mem_out_steps = []
 
         for _ in range(num_steps):
             cur = self.temporal_conv(x)
@@ -236,5 +247,8 @@ class SpikingEEGNet(nn.Module):
 
             out = self.classifier(cur.flatten(1))
             spk_out_steps.append(out)
+            mem_out_steps.append(mem3)
 
-        return torch.stack(spk_out_steps)  # (num_steps, batch, num_classes)
+        # spk: (num_steps, batch, num_classes)
+        # mem: (num_steps, batch, pointwise_filters, 1, time_after_pool2)
+        return torch.stack(spk_out_steps), torch.stack(mem_out_steps)
