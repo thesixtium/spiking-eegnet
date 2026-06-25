@@ -7,7 +7,7 @@ from pipeline import pipeline
 
 FIXED = dict(
     DATASET_KEY="BNCI2014_001",
-    EPOCHS=300,
+    EPOCHS=50,
     BATCH_SIZE=32,
     NORM_AXIS=(1, 3),   # fixed — (1,3) consistently outperforms (1,2,3)
     RUN_ZSCORE=False,   # always disabled
