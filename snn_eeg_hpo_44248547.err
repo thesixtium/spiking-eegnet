@@ -1,0 +1,23 @@
+mkdir: cannot create directory ‘/scratch/mne_data’: Permission denied
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+ERROR: Invalid requirement: 'Binary file requirements.txt matches': Expected end or semicolon (after name and no valid version specifier)
+    Binary file requirements.txt matches
+           ^ (from line 1 of /home/aleksander.berezowsk/requirements_notorch.txt)
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+/home/aleksander.berezowsk/spiking-eegnet/src/main.py:97: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
+/home/aleksander.berezowsk/spiking-eegnet/src/main.py:97: ExperimentalWarning: Argument ``group`` is an experimental feature. The interface can change in the future.
+  sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
+[I 2026-06-24 03:27:05,460] Using an existing study with name 'snn_eegnet_v3_200_20' instead of creating a new one.
+[I 2026-06-24 17:23:11,244] Trial 17 finished with value: 0.41782407407407407 and parameters: {'FLOW': 2.717772356657277, 'FHIGH': 45.092991236016786, 'LR_EXP': -4.308526784166381, 'DROPOUT': 0.2599201004614299, 'BETA': 0.812002123576911, 'SPIKE_GRAD_SLOPE': 39.54618308966107, 'TEMPORAL_FILTERS': 13, 'DEPTH_MULTIPLIER': 1, 'POINTWISE_FILTERS': 56, 'TEMPORAL_KERNEL_DIV': 2, 'SEPARABLE_KERNEL_SIZE': 24, 'POOL1_SIZE': 6, 'POOL2_SIZE': 7, 'N_STEPS_TRAIN': 12, 'N_STEPS_EVAL': 13, 'READOUT_MODE': 'spk_sum'}. Best is trial 14 with value: 0.4521604938271605.
+slurmstepd: error: *** JOB 44248547 ON fg6 CANCELLED AT 2026-06-24T21:00:53 ***
