@@ -1,0 +1,27 @@
+mkdir: cannot create directory ‘/scratch/mne_data’: Permission denied
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+ERROR: Invalid requirement: 'Binary file requirements.txt matches': Expected end or semicolon (after name and no valid version specifier)
+    Binary file requirements.txt matches
+           ^ (from line 1 of /home/aleksander.berezowsk/requirements_notorch.txt)
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+/home/aleksander.berezowsk/spiking-eegnet/src/main.py:97: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
+/home/aleksander.berezowsk/spiking-eegnet/src/main.py:97: ExperimentalWarning: Argument ``group`` is an experimental feature. The interface can change in the future.
+  sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
+[I 2026-06-28 13:11:05,925] Using an existing study with name 'snn_eegnet_v3_200_20' instead of creating a new one.
+[I 2026-06-28 16:56:46,259] Trial 69 finished with value: 0.4278549382716049 and parameters: {'FLOW': 1.885907206507052, 'FHIGH': 107.45390462675662, 'LR_EXP': -2.093147163895866, 'DROPOUT': 0.13178224329579644, 'BETA': 0.8440772924477288, 'SPIKE_GRAD_SLOPE': 32.52438741738364, 'TEMPORAL_FILTERS': 26, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 43, 'TEMPORAL_KERNEL_DIV': 7, 'SEPARABLE_KERNEL_SIZE': 22, 'POOL1_SIZE': 3, 'POOL2_SIZE': 5, 'N_STEPS_TRAIN': 15, 'N_STEPS_EVAL': 32, 'READOUT_MODE': 'spk_mean'}. Best is trial 63 with value: 0.4920910493827161.
+[I 2026-06-28 19:56:55,509] Trial 76 finished with value: 0.4567901234567901 and parameters: {'FLOW': 3.570835308550708, 'FHIGH': 79.36600376493458, 'LR_EXP': -3.889467034579868, 'DROPOUT': 0.3792794204985038, 'BETA': 0.9120136770507159, 'SPIKE_GRAD_SLOPE': 44.34952935545728, 'TEMPORAL_FILTERS': 31, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 36, 'TEMPORAL_KERNEL_DIV': 7, 'SEPARABLE_KERNEL_SIZE': 22, 'POOL1_SIZE': 4, 'POOL2_SIZE': 6, 'N_STEPS_TRAIN': 11, 'N_STEPS_EVAL': 11, 'READOUT_MODE': 'mem_last'}. Best is trial 63 with value: 0.4920910493827161.
+[I 2026-06-28 23:28:33,173] Trial 79 finished with value: 0.4513888888888889 and parameters: {'FLOW': 3.0688737613364983, 'FHIGH': 76.81056881519368, 'LR_EXP': -2.842207790797978, 'DROPOUT': 0.43835689050290594, 'BETA': 0.8493708335891034, 'SPIKE_GRAD_SLOPE': 46.69848203358931, 'TEMPORAL_FILTERS': 25, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 30, 'TEMPORAL_KERNEL_DIV': 7, 'SEPARABLE_KERNEL_SIZE': 28, 'POOL1_SIZE': 7, 'POOL2_SIZE': 6, 'N_STEPS_TRAIN': 14, 'N_STEPS_EVAL': 7, 'READOUT_MODE': 'spk_mean'}. Best is trial 63 with value: 0.4920910493827161.
+[I 2026-06-29 03:44:39,175] Trial 82 finished with value: 0.4670138888888889 and parameters: {'FLOW': 1.3040821219815621, 'FHIGH': 70.49327925582834, 'LR_EXP': -3.4415233520279487, 'DROPOUT': 0.29341064699594566, 'BETA': 0.9891885696808289, 'SPIKE_GRAD_SLOPE': 30.18634582038208, 'TEMPORAL_FILTERS': 27, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 22, 'TEMPORAL_KERNEL_DIV': 4, 'SEPARABLE_KERNEL_SIZE': 28, 'POOL1_SIZE': 2, 'POOL2_SIZE': 7, 'N_STEPS_TRAIN': 14, 'N_STEPS_EVAL': 21, 'READOUT_MODE': 'spk_sum'}. Best is trial 63 with value: 0.4920910493827161.
+[I 2026-06-29 07:09:24,458] Trial 87 finished with value: 0.4477237654320988 and parameters: {'FLOW': 2.613800942818532, 'FHIGH': 90.47758178031646, 'LR_EXP': -3.6145525185473892, 'DROPOUT': 0.1350165181963317, 'BETA': 0.9270821863912644, 'SPIKE_GRAD_SLOPE': 20.102376818617856, 'TEMPORAL_FILTERS': 17, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 10, 'TEMPORAL_KERNEL_DIV': 5, 'SEPARABLE_KERNEL_SIZE': 23, 'POOL1_SIZE': 4, 'POOL2_SIZE': 5, 'N_STEPS_TRAIN': 16, 'N_STEPS_EVAL': 30, 'READOUT_MODE': 'spk_mean'}. Best is trial 63 with value: 0.4920910493827161.
+slurmstepd: error: *** JOB 44259647 ON fg6 CANCELLED AT 2026-06-29T11:14:21 ***
