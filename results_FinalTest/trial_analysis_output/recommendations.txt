@@ -1,0 +1,131 @@
+======================================================================
+HYPERPARAMETER TRIAL ANALYSIS - RECOMMENDATIONS
+======================================================================
+
+Total trials analyzed: 101
+Best Mean Balanced Accuracy: 0.4921  (trial index 60)
+Median Mean Balanced Accuracy: 0.4576
+Worst Mean Balanced Accuracy: 0.3108
+
+----------------------------------------------------------------------
+TOP 10 TRIALS
+----------------------------------------------------------------------
+ trial_number  mean_bal_acc     flow      fhigh       lr  n_steps_train  n_steps_eval  temporal_filters  depth_multiplier  pointwise_filters  temporal_kernel_div  separable_kernel_size  pool1_size  pool2_size  dropout     beta  spike_grad_slope  run_zscore  run_bandpass norm_axis readout_mode
+           63      0.492091 1.847171  96.228394 0.001504             14            28                27                 3                 32                    7                     29           5           6 0.156423 0.957883         26.553831       False          True    (1, 3)     spk_mean
+           61      0.491127 2.632485  75.499431 0.000577             12            12                29                 4                 36                    7                     29           5           5 0.354562 0.859510         43.421733       False          True    (1, 3)     spk_mean
+           98      0.490934 1.129743  78.028786 0.001202             16            32                27                 2                 21                    6                     28           3           8 0.307838 0.906185         16.135226       False          True    (1, 3)     spk_last
+           53      0.489005 1.979466  60.964357 0.000665             11            16                26                 3                 36                    6                     29           7           5 0.235829 0.931624         36.755700       False          True    (1, 3)     spk_mean
+           11      0.487076 1.009703 107.449166 0.001442             15            25                25                 2                 17                    8                     18           4           5 0.477578 0.682755         45.465754       False          True    (1, 3)      spk_sum
+           47      0.486304 1.166876  67.806332 0.001920              8            30                31                 1                 13                    7                     27           8           3 0.380814 0.839086         14.425500       False          True    (1, 3)     spk_mean
+           75      0.484182 1.253905  77.760946 0.000652             15            27                26                 3                 26                    6                     27           3           8 0.257905 0.927607         33.821243       False          True    (1, 3)     spk_mean
+           95      0.483603 1.221834  88.482326 0.001114             16            32                26                 2                 27                    6                     25           4           8 0.424922 0.873897         25.567721       False          True    (1, 3)     spk_last
+           56      0.483218 1.335266  36.417515 0.003163              8            19                30                 2                 29                    6                     28           7           5 0.110873 0.957110          7.194602       False          True    (1, 3)     spk_mean
+           74      0.482832 1.994777 103.844669 0.000664             15            26                27                 4                 20                    5                     29           4           5 0.184245 0.988840         31.464222       False          True    (1, 3)     spk_mean
+
+----------------------------------------------------------------------
+CORRELATION WITH Mean Balanced Accuracy (sorted by |r|)
+----------------------------------------------------------------------
+  Number of Temporal Filters          r = +0.491  (strong, higher is better)
+  Separable Kernel Size               r = +0.463  (strong, higher is better)
+  Bandpass Frequency Low (Hz)         r = -0.363  (moderate, lower is better)
+  Dropout Rate                        r = -0.330  (moderate, lower is better)
+  LIF Decay Rate (Beta)               r = +0.245  (moderate, higher is better)
+  Number of Training Time Steps       r = +0.219  (moderate, higher is better)
+  Number of Evaluation Time Steps     r = +0.202  (moderate, higher is better)
+  Spike Gradient Slope                r = -0.186  (weak, lower is better)
+  Temporal Kernel Divisor             r = +0.186  (weak, higher is better)
+  Number of Pointwise Filters         r = -0.175  (weak, lower is better)
+  Bandpass Frequency High (Hz)        r = +0.092  (weak, higher is better)
+  Pooling Layer 1 Size                r = -0.077  (weak, lower is better)
+  Pooling Layer 2 Size                r = -0.032  (weak, lower is better)
+  Learning Rate                       r = -0.031  (weak, lower is better)
+  Depth Multiplier                    r = +0.002  (weak, higher is better)
+
+----------------------------------------------------------------------
+RANDOM FOREST PERMUTATION IMPORTANCE (non-linear effects)
+----------------------------------------------------------------------
+  Learning Rate                       importance = +0.5180
+  Bandpass Frequency Low (Hz)         importance = +0.1396
+  Separable Kernel Size               importance = +0.1082
+  Number of Temporal Filters          importance = +0.0853
+  Number of Evaluation Time Steps     importance = +0.0425
+  Number of Training Time Steps       importance = +0.0363
+  Dropout Rate                        importance = +0.0300
+  LIF Decay Rate (Beta)               importance = +0.0172
+  Temporal Kernel Divisor             importance = +0.0158
+  Number of Pointwise Filters         importance = +0.0151
+
+Note: importance can pick up non-linear / interaction effects that
+the linear correlation above misses. Compare both rankings -- params
+that rank high in importance but low in |r| likely have a 'sweet spot'
+in the middle of their range rather than a monotonic relationship.
+
+----------------------------------------------------------------------
+SUGGESTED SEARCH SPACE FOR A FOLLOW-UP STUDY
+(based on the 10 top trials' parameter values)
+----------------------------------------------------------------------
+  Bandpass Frequency Low (Hz)         top trials span [1.01, 2.632] -> try [1, 6.532]  (full range was [1, 40])   [FLAG: top trials cluster near the LOWER bound -- consider extending range downward]
+  Bandpass Frequency High (Hz)        top trials span [36.42, 107.4] -> try [25.22, 118.6]  (full range was [8, 120])
+  Number of Temporal Filters          top trials span [25, 31] -> try [25, 31]  (full range was [4, 32])   [FLAG: top trials cluster near the UPPER bound -- consider extending range upward]
+  Depth Multiplier                    top trials span [1, 4] -> try [1, 4]  (full range was [1, 4])   [FLAG: top trials span nearly the FULL range -- param may not matter much]
+  Number of Pointwise Filters         top trials span [13, 36] -> try [13, 36]  (full range was [8, 64])
+  Temporal Kernel Divisor             top trials span [5, 8] -> try [5, 8]  (full range was [2, 8])   [FLAG: top trials cluster near the UPPER bound -- consider extending range upward]
+  Separable Kernel Size               top trials span [18, 29] -> try [18, 29]  (full range was [4, 32])
+  Pooling Layer 1 Size                top trials span [3, 8] -> try [3, 8]  (full range was [2, 8])   [FLAG: top trials cluster near the UPPER bound -- consider extending range upward]
+  Pooling Layer 2 Size                top trials span [3, 8] -> try [3, 8]  (full range was [2, 8])   [FLAG: top trials cluster near the UPPER bound -- consider extending range upward]
+  Dropout Rate                        top trials span [0.1109, 0.4776] -> try [0.1, 0.5426]  (full range was [0.1, 0.75])   [FLAG: top trials cluster near the LOWER bound -- consider extending range downward]
+  LIF Decay Rate (Beta)               top trials span [0.6828, 0.9888] -> try [0.6338, 0.99]  (full range was [0.5, 0.99])   [FLAG: top trials cluster near the UPPER bound -- consider extending range upward]
+  Spike Gradient Slope                top trials span [7.195, 45.47] -> try [5, 54.97]  (full range was [5, 100])   [FLAG: top trials cluster near the LOWER bound -- consider extending range downward]
+
+----------------------------------------------------------------------
+CATEGORICAL / BOOLEAN PARAMETERS
+----------------------------------------------------------------------
+  Z-Score Normalization Enabled:
+      False                mean=0.4490  median=0.4576  n=101
+      -> best on average: Z-Score Normalization Enabled = False
+
+  Bandpass Filtering Enabled:
+      True                 mean=0.4490  median=0.4576  n=101
+      -> best on average: Bandpass Filtering Enabled = True
+
+  Normalization Axis:
+      (1, 3)               mean=0.4490  median=0.4576  n=101
+      -> best on average: Normalization Axis = (1, 3)
+
+  Readout Mode:
+      Spike (Mean)         mean=0.4563  median=0.4593  n=49
+      Spike (Sum)          mean=0.4466  median=0.4535  n=19
+      Spike (Last Step)    mean=0.4460  median=0.4612  n=19
+      Membrane (Last Step) mean=0.4306  median=0.4447  n=14
+      -> best on average: Readout Mode = Spike (Mean)
+
+----------------------------------------------------------------------
+CONSTANT COLUMNS (no variance across trials, excluded from analysis)
+----------------------------------------------------------------------
+  N Subjects = 9
+  Epochs = 50
+  Batch Size = 32
+
+----------------------------------------------------------------------
+GENERAL IDEAS TO PUSH ACCURACY HIGHER
+----------------------------------------------------------------------
+  1. Re-run the HPO study with the narrowed ranges above -- this
+     concentrates the search budget near where good trials already live.
+  2. If Bandpass Filtering Enabled or Z-Score Normalization Enabled shows a
+     clear winner above but was rarely sampled in this run, increase
+     TPESampler n_startup_trials / prior_weight so both branches (and their
+     conditional flow/fhigh params) get explored.
+  3. If Number of Training Time Steps was constant, consider trying more
+     steps for the current best config -- accuracy may not have converged.
+  4. Look at LIF Decay Rate (Beta) and Spike Gradient Slope together
+     (SNN-specific dynamics): a poor combination can silently cripple
+     gradient flow through LIF layers even when other hyperparameters
+     look fine.
+  5. Consider averaging accuracy across MULTIPLE held-out subjects (not
+     just subject 0) for the top few configs -- a config that wins on one
+     held-out subject may not generalize; this also reduces noise in the
+     objective that the sampler is optimizing against.
+  6. If Pooling Layer 1 Size * Pooling Layer 2 Size is large relative to
+     num_samples, the separable conv may be operating on very few time
+     steps -- check the 'time_after_pool2' assertion margin for the
+     current best trial.
