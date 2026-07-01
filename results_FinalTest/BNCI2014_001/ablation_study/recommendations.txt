@@ -1,0 +1,59 @@
+======================================================================
+PER-SUBJECT + ABLATION STUDY — SUMMARY
+======================================================================
+
+----------------------------------------------------------------------
+PER-SUBJECT PERFORMANCE
+----------------------------------------------------------------------
+  Mean balanced accuracy : 0.4927
+  Std balanced accuracy  : 0.1211
+  Chance level            : 0.2500
+  Best subject  : 3.0  (acc=0.6302)
+  Worst subject : 5.0 (acc=0.3403)
+  Best-worst spread : 0.2899
+  [FLAG: large inter-subject variance -- consider subject-specific
+   fine-tuning or zero-shot calibration tailored to hard subjects.]
+
+  Full ranking (best -> worst):
+      subject  3.0: bal_acc=0.6302  f1_macro=0.6332
+      subject  9.0: bal_acc=0.6233  f1_macro=0.6236
+      subject  8.0: bal_acc=0.6163  f1_macro=0.6035
+      subject  1.0: bal_acc=0.5955  f1_macro=0.5954
+      subject  7.0: bal_acc=0.4479  f1_macro=0.4407
+      subject  4.0: bal_acc=0.4149  f1_macro=0.4097
+      subject  6.0: bal_acc=0.3837  f1_macro=0.3580
+      subject  2.0: bal_acc=0.3819  f1_macro=0.3816
+      subject  5.0: bal_acc=0.3403  f1_macro=0.3128
+
+----------------------------------------------------------------------
+ABLATION STUDY (design-choice comparison)
+----------------------------------------------------------------------
+  Baseline (best config) mean_bal_acc = 0.4927
+      no_bandpass               mean_bal_acc=0.5490 (+0.0563 vs baseline, n=9 subjects)
+      zscore_per_channel_on     mean_bal_acc=0.4780 (-0.0147 vs baseline, n=9 subjects)
+      zscore_per_epoch_on       mean_bal_acc=0.4653 (-0.0274 vs baseline, n=9 subjects)
+      readout_spk_last          mean_bal_acc=0.4653 (-0.0274 vs baseline, n=9 subjects)
+      readout_spk_sum           mean_bal_acc=0.4412 (-0.0515 vs baseline, n=9 subjects)
+  -> Most harmful change when removed/swapped: readout_spk_sum (-0.0515)
+
+----------------------------------------------------------------------
+CHANNEL IMPORTANCE (top 10 most important)
+----------------------------------------------------------------------
+      POz      mean_drop=0.2151  std=0.1182
+      CP4      mean_drop=0.1649  std=0.1008
+      P1       mean_drop=0.1478  std=0.0966
+      CPz      mean_drop=0.1451  std=0.0971
+      C3       mean_drop=0.1246  std=0.1076
+      P2       mean_drop=0.1244  std=0.1040
+      CP3      mean_drop=0.1242  std=0.0967
+      C5       mean_drop=0.1179  std=0.0843
+      CP2      mean_drop=0.1123  std=0.0896
+      Cz       mean_drop=0.1100  std=0.0902
+
+  Bottom 5 (least important / possibly removable):
+      C1       mean_drop=0.0386  std=0.0419
+      FC2      mean_drop=0.0361  std=0.0278
+      C6       mean_drop=0.0357  std=0.0404
+      CP1      mean_drop=0.0297  std=0.0433
+      C2       mean_drop=0.0293  std=0.0332
+
