@@ -18,18 +18,18 @@ def objective(trial):
     params = dict(
         # --- Optimiser ---
         LR_EXP           = trial.suggest_float("LR_EXP",          -4.5,  -2.0),
-        DROPOUT          = trial.suggest_float("DROPOUT",          0.1,   0.75),
+        DROPOUT          = trial.suggest_float("DROPOUT",          0.01,   0.5),
 
         # --- SNN dynamics ---
-        BETA             = trial.suggest_float("BETA",             0.5,   0.99),
+        BETA             = trial.suggest_float("BETA",             0.75,   0.99),
         SPIKE_GRAD_SLOPE = trial.suggest_float("SPIKE_GRAD_SLOPE", 0.01,  60.0),
 
         # --- Architecture ---
-        TEMPORAL_FILTERS      = trial.suggest_int("TEMPORAL_FILTERS",      4,  32),
+        TEMPORAL_FILTERS      = trial.suggest_int("TEMPORAL_FILTERS",      4,  64),
         DEPTH_MULTIPLIER      = trial.suggest_int("DEPTH_MULTIPLIER",      1,   4),
         POINTWISE_FILTERS     = trial.suggest_int("POINTWISE_FILTERS",     8,  64),
         TEMPORAL_KERNEL_DIV   = trial.suggest_int("TEMPORAL_KERNEL_DIV",   2,   8),
-        SEPARABLE_KERNEL_SIZE = trial.suggest_int("SEPARABLE_KERNEL_SIZE", 4,  32),
+        SEPARABLE_KERNEL_SIZE = trial.suggest_int("SEPARABLE_KERNEL_SIZE", 4,  64),
         POOL1_SIZE            = trial.suggest_int("POOL1_SIZE",            2,   8),
         POOL2_SIZE            = trial.suggest_int("POOL2_SIZE",            2,   8),
 
@@ -40,7 +40,7 @@ def objective(trial):
         # --- Output aggregation ---
         READOUT_MODE     = trial.suggest_categorical(
                                "READOUT_MODE",
-                               ["spk_mean", "spk_last", "spk_sum", "mem_last"]
+                               ["spk_mean", "spk_sum"]
                            ),
     )
 
@@ -77,8 +77,8 @@ def status_callback(study, frozen_trial):
 
 
 if __name__ == "__main__":
-    n_trials = 200
-    tpe_trails = 20
+    n_trials = 400
+    tpe_trails = 40
 
     study = optuna.create_study(
         direction="maximize",
