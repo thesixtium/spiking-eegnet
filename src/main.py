@@ -82,7 +82,7 @@ if __name__ == "__main__":
 
     study = optuna.create_study(
         direction="maximize",
-        study_name=f"snn_eegnet_v3_{n_trials}_{tpe_trails}",
+        study_name=f"snn_eegnet_v4_{n_trials}_{tpe_trails}",
         storage="sqlite:///optuna_study.db",
         load_if_exists=True,
         # n_warmup_steps is now in units of SUBJECTS (since pruning is
