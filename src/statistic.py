@@ -62,8 +62,6 @@ SAVE_KW = dict(dpi=300, bbox_inches="tight")
 # Known search-space bounds (from main.py / spiking_eegnet.py docstrings)
 # ----------------------------------------------------------------------
 SEARCH_SPACE = {
-    "flow":                  (1.0, 40.0),
-    "fhigh":                 (8.0, 120.0),
     "lr_exp":                (-4.5, -2.0),
     "dropout":               (0.1, 0.75),
     "beta":                  (0.5, 0.99),
@@ -78,7 +76,7 @@ SEARCH_SPACE = {
 }
 
 # Columns that are categorical/boolean by construction (not numeric ranges)
-CATEGORICAL_HINTS = {"run_zscore", "run_bandpass", "norm_axis", "readout_mode"}
+CATEGORICAL_HINTS = {"run_zscore", "norm_axis", "readout_mode"}
 
 # ----------------------------------------------------------------------
 # Human-readable names for every variable that can appear in trials.csv.
@@ -90,8 +88,6 @@ PRETTY_NAMES = {
     "mean_bal_acc":          "Mean Balanced Accuracy",
     "acc_loso":              "Leave-One-Subject-Out Accuracy",
     "trial_number":          "Trial Number",
-    "flow":                  "Bandpass Frequency Low (Hz)",
-    "fhigh":                 "Bandpass Frequency High (Hz)",
     "lr":                    "Learning Rate",
     "lr_exp":                "Learning Rate Exponent (log10)",
     "dropout":                "Dropout Rate",
@@ -107,7 +103,6 @@ PRETTY_NAMES = {
     "n_steps_train":         "Number of Training Time Steps",
     "n_steps_eval":          "Number of Evaluation Time Steps",
     "run_zscore":            "Z-Score Normalization Enabled",
-    "run_bandpass":          "Bandpass Filtering Enabled",
     "norm_axis":             "Normalization Axis",
     "readout_mode":          "Readout Mode",
 }
@@ -636,10 +631,10 @@ def write_recommendations(df, df_analysis, target, numeric_cols, categorical_col
     lines.append("-" * 70)
     lines.append("  1. Re-run the HPO study with the narrowed ranges above -- this")
     lines.append("     concentrates the search budget near where good trials already live.")
-    lines.append("  2. If Bandpass Filtering Enabled or Z-Score Normalization Enabled shows a")
+    lines.append("  2. If Z-Score Normalization Enabled shows a")
     lines.append("     clear winner above but was rarely sampled in this run, increase")
-    lines.append("     TPESampler n_startup_trials / prior_weight so both branches (and their")
-    lines.append("     conditional flow/fhigh params) get explored.")
+    lines.append("     TPESampler n_startup_trials / prior_weight so both branches get")
+    lines.append("     explored.")
     lines.append("  3. If Number of Training Time Steps was constant, consider trying more")
     lines.append("     steps for the current best config -- accuracy may not have converged.")
     lines.append("  4. Look at LIF Decay Rate (Beta) and Spike Gradient Slope together")

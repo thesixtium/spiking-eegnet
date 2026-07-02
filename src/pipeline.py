@@ -11,7 +11,6 @@ import optuna
 
 from zscore_normalize import zscore_normalize
 from load_moabb_dataset import load_moabb_dataset
-from bandpass_filter import bandpass_filter
 from experiment_loso import experiment_loso_all
 from make_loader import make_loader
 from evaluate import evaluate
@@ -41,7 +40,7 @@ def _log_trial_to_csv(csv_path, row: dict):
             fcntl.flock(lock_fh, fcntl.LOCK_UN)
 
 
-def plot_results(OUTPUT_DIR, DATASET_KEY, FLOW, FHIGH, histories, accs, meta):
+def plot_results(OUTPUT_DIR, DATASET_KEY, histories, accs, meta):
     chance = 1 / meta["n_classes"]
     subjects = sorted(histories.keys())
 
@@ -54,7 +53,7 @@ def plot_results(OUTPUT_DIR, DATASET_KEY, FLOW, FHIGH, histories, accs, meta):
 
     ax1.set_ylabel("Cross-Entropy Loss")
     ax1.set_title(f"{DATASET_KEY} — True LOSO (all {len(subjects)} subjects) | "
-                  f"{FLOW}–{FHIGH} Hz | mean acc={sum(accs)/len(accs):.3f}")
+                  f"mean acc={sum(accs)/len(accs):.3f}")
     ax1.grid(alpha=0.3)
     ax2.axhline(chance, color="grey", linestyle="--", linewidth=1, label=f"Chance ({chance:.2f})")
     ax2.set_ylabel("Balanced Accuracy")
@@ -70,8 +69,6 @@ def plot_results(OUTPUT_DIR, DATASET_KEY, FLOW, FHIGH, histories, accs, meta):
 
 def pipeline(
     # Continuous Float
-    FLOW=4.0,               # uniform float [1.0, 5.0]
-    FHIGH=40.0,             # uniform float [10.0, 120.0]
     LR_EXP=-3.52,           # uniform float [-4.5, -2.0]
     DROPOUT=0.5,            # uniform float [0.1, 0.75]
     BETA=0.95,              # uniform float [0.5, 0.99]
@@ -92,7 +89,6 @@ def pipeline(
     READOUT_MODE="spk_mean",  # categorical: spk_mean | spk_last | spk_sum | mem_last
     NORM_AXIS=(1, 3),         # fixed to (1,3) — not a search parameter
     RUN_ZSCORE=False,         # always disabled for the Optuna study
-    RUN_BANDPASS=True,        # always enabled for the Optuna study
 
     # Experiment Parameters
     DATASET_KEY="BNCI2014_001",
@@ -136,10 +132,6 @@ def pipeline(
     if RUN_ZSCORE:
         X = zscore_normalize(X, axis=NORM_AXIS)
 
-    if RUN_BANDPASS:
-        print(f"\nApplying bandpass filter: {FLOW}–{FHIGH} Hz")
-        X = bandpass_filter(X, sfreq=meta["sfreq"], flow=FLOW, fhigh=FHIGH)
-
     histories, accs, mean_acc = experiment_loso_all(
         X, y, subject_ids, meta, device, TRAIN_CFG,
         model_kwargs=MODEL_CFG,
@@ -148,7 +140,6 @@ def pipeline(
 
     results = {
         "dataset":   DATASET_KEY,
-        "filter":    {"flow": FLOW, "fhigh": FHIGH},
         "model_cfg": MODEL_CFG,
         "meta":      {k: v for k, v in meta.items() if k != "subject_list"},
         "train_cfg": {k: v for k, v in TRAIN_CFG.items() if k != "trial"},
@@ -174,10 +165,7 @@ def pipeline(
         "n_subjects":           len(accs),
         # Preprocessing
         "run_zscore":           RUN_ZSCORE,
-        "run_bandpass":         RUN_BANDPASS,
         "norm_axis":            str(NORM_AXIS),
-        "flow":                 FLOW,
-        "fhigh":                FHIGH,
         # Training
         "lr_exp":               LR_EXP,
         "lr":                   round(LR, 8),
@@ -202,6 +190,6 @@ def pipeline(
     print(f"Trial logged to {OUTPUT_DIR / 'trials.csv'}")
 
     if save_plots:
-        plot_results(OUTPUT_DIR, DATASET_KEY, FLOW, FHIGH, histories, accs, meta)
+        plot_results(OUTPUT_DIR, DATASET_KEY, histories, accs, meta)
 
     return mean_acc

@@ -5,7 +5,6 @@ import hashlib
 def cache_key(dataset_key: str) -> str:
     """
     Stable MD5 key over paradigm parameters that affect the raw cached arrays.
-    fmin/fmax are excluded — bandpass filtering happens after loading.
     """
     cfg = DATASET_REGISTRY[dataset_key]
     fingerprint = json.dumps({

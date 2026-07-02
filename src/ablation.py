@@ -4,8 +4,8 @@ Two analyses in one script, run back-to-back so the per-subject LOSO models
 trained in Phase 1 can be reused for the channel-importance part of Phase 2
 instead of re-training from scratch.
 
-Lives in src/ alongside the rest of the pipeline (bandpass_filter.py,
-build_model.py, pipeline.py, etc.) and imports them directly, the same way
+Lives in src/ alongside the rest of the pipeline (build_model.py, pipeline.py,
+etc.) and imports them directly, the same way
 experiment_loso.py / pipeline.py do.
 
 By default this reads the best hyperparameters straight out of
@@ -22,7 +22,7 @@ PHASE 1 — Per-subject LOSO breakdown
 
 PHASE 2 — Ablation study
     a) Component ablations: re-run LOSO with one design choice flipped at a
-       time (z-score on/off + axis, bandpass on/off, readout mode) and
+       time (z-score on/off + axis, readout mode) and
        compare mean balanced accuracy against the Phase-1 baseline.
     b) Channel importance: for each subject's Phase-1 model, zero out one
        EEG channel at a time in the held-out test set and measure the drop
@@ -74,7 +74,6 @@ from sklearn.metrics import balanced_accuracy_score, f1_score, confusion_matrix
 
 from load_moabb_dataset import load_moabb_dataset
 from zscore_normalize import zscore_normalize
-from bandpass_filter import bandpass_filter
 from make_loader import make_loader
 from build_model import build_model
 from run_training import run_training
@@ -120,7 +119,6 @@ DEFAULT_FIXED = dict(
     BATCH_SIZE=32,
     NORM_AXIS=(1, 3),
     RUN_ZSCORE=False,
-    RUN_BANDPASS=True,
 )
 
 READOUT_MODES = ["spk_mean", "spk_last", "spk_sum", "mem_last"]
@@ -130,7 +128,7 @@ def pretty(col: str) -> str:
     names = {
         "bal_acc": "Balanced Accuracy", "f1_macro": "Macro F1 Score",
         "subject": "Subject", "run_zscore": "Z-Score Normalization",
-        "run_bandpass": "Bandpass Filtering", "readout_mode": "Readout Mode",
+        "readout_mode": "Readout Mode",
         "norm_axis": "Normalization Axis", "mean_bal_acc": "Mean Balanced Accuracy",
         "std_bal_acc": "Std. Dev. Balanced Accuracy",
     }
@@ -211,18 +209,15 @@ def load_best_params(args):
     return params
 
 
-def prepare_data(params, override_zscore=None, override_bandpass=None, override_norm_axis=None):
+def prepare_data(params, override_zscore=None, override_norm_axis=None):
     """Loads raw data and applies (optionally overridden) preprocessing."""
     X, y, subject_ids, meta = load_moabb_dataset(params["DATASET_KEY"])
 
     run_zscore = params["RUN_ZSCORE"] if override_zscore is None else override_zscore
-    run_bandpass = params["RUN_BANDPASS"] if override_bandpass is None else override_bandpass
     norm_axis = params["NORM_AXIS"] if override_norm_axis is None else override_norm_axis
 
     if run_zscore:
         X = zscore_normalize(X, axis=norm_axis)
-    if run_bandpass:
-        X = bandpass_filter(X, sfreq=meta["sfreq"], flow=params["FLOW"], fhigh=params["FHIGH"])
 
     return X, y, subject_ids, meta
 
@@ -471,16 +466,15 @@ def build_ablation_configs(baseline_params):
     config; everything else stays identical so the comparison isolates that
     one factor's effect."""
     configs = []
-    base_zscore, base_bandpass = baseline_params["RUN_ZSCORE"], baseline_params["RUN_BANDPASS"]
+    base_zscore = baseline_params["RUN_ZSCORE"]
     base_axis, base_readout = baseline_params["NORM_AXIS"], baseline_params["READOUT_MODE"]
 
-    configs.append({"name": "no_bandpass", "run_bandpass": False, "run_zscore": base_zscore, "norm_axis": base_axis, "readout_mode": base_readout})
-    configs.append({"name": "zscore_per_channel_on", "run_bandpass": base_bandpass, "run_zscore": True, "norm_axis": (1, 3), "readout_mode": base_readout})
-    configs.append({"name": "zscore_per_epoch_on", "run_bandpass": base_bandpass, "run_zscore": True, "norm_axis": (1, 2, 3), "readout_mode": base_readout})
+    configs.append({"name": "zscore_per_channel_on", "run_zscore": True, "norm_axis": (1, 3), "readout_mode": base_readout})
+    configs.append({"name": "zscore_per_epoch_on", "run_zscore": True, "norm_axis": (1, 2, 3), "readout_mode": base_readout})
     for mode in READOUT_MODES:
         if mode == base_readout:
             continue
-        configs.append({"name": f"readout_{mode}", "run_bandpass": base_bandpass, "run_zscore": base_zscore, "norm_axis": base_axis, "readout_mode": mode})
+        configs.append({"name": f"readout_{mode}", "run_zscore": base_zscore, "norm_axis": base_axis, "readout_mode": mode})
     return configs
 
 
@@ -491,10 +485,10 @@ def run_ablations(params, ablation_subjects_internal, meta_template, device, bat
 
     for cfg in configs:
         print(f"\n=== Phase 2a: ablation '{cfg['name']}' "
-              f"(zscore={cfg['run_zscore']}, bandpass={cfg['run_bandpass']}, "
+              f"(zscore={cfg['run_zscore']}, "
               f"axis={cfg['norm_axis']}, readout={cfg['readout_mode']}) ===")
         X, y, subject_ids, meta = prepare_data(
-            params, override_zscore=cfg["run_zscore"], override_bandpass=cfg["run_bandpass"],
+            params, override_zscore=cfg["run_zscore"],
             override_norm_axis=cfg["norm_axis"],
         )
         train_cfg = dict(train_cfg_base)

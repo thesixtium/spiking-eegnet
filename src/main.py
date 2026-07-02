@@ -11,16 +11,11 @@ FIXED = dict(
     BATCH_SIZE=32,
     NORM_AXIS=(1, 3),   # fixed — (1,3) consistently outperforms (1,2,3)
     RUN_ZSCORE=False,   # always disabled
-    RUN_BANDPASS=True,  # always enabled
 )
 
 
 def objective(trial):
     params = dict(
-        # --- Bandpass ---
-        FLOW             = trial.suggest_float("FLOW",             1.0,   5.0),   # narrowed from [1,40]
-        FHIGH            = trial.suggest_float("FHIGH",           10.0, 120.0),   # narrowed lower bound
-
         # --- Optimiser ---
         LR_EXP           = trial.suggest_float("LR_EXP",          -4.5,  -2.0),
         DROPOUT          = trial.suggest_float("DROPOUT",          0.1,   0.75),

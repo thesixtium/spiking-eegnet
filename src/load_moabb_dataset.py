@@ -13,11 +13,7 @@ moabb.set_log_level("warning")
 
 def load_moabb_dataset(dataset_key: str, cache_dir: Optional[Path] = None):
     """
-    Load a MOABB dataset and return raw (unfiltered) arrays.
-
-    No bandpass filtering is applied here. Call bandpass_filter() on the
-    returned X before training. This keeps the cache filter-agnostic so
-    fmin/fmax can be searched without re-downloading.
+    Load a MOABB dataset and return raw arrays.
 
     Returns
     -------
@@ -55,7 +51,6 @@ def load_moabb_dataset(dataset_key: str, cache_dir: Optional[Path] = None):
         tmax=cfg.tmax,
         # Wide passband — effectively no filtering at the load stage.
         # All meaningful EEG content (delta through high-gamma) is preserved.
-        # The caller is responsible for applying their own bandpass via bandpass_filter().
         fmin=0.1,
         fmax=120.0,
     )
