@@ -1,0 +1,4 @@
+timestamp,trial_number,mean_bal_acc,n_subjects,run_zscore,norm_axis,lr_exp,lr,epochs,batch_size,n_steps_train,n_steps_eval,readout_mode,temporal_filters,depth_multiplier,pointwise_filters,temporal_kernel_div,separable_kernel_size,pool1_size,pool2_size,dropout,beta,spike_grad_slope
+2026-07-03T07:53:40,1,0.537423,9,False,"(1, 3)",-3.8594621756841883,0.00013821,50,32,8,15,spk_mean,22,4,12,7,37,2,5,0.16159231298709775,0.9800600323775519,37.96701863807679
+2026-07-03T08:19:27,2,0.513117,9,False,"(1, 3)",-3.2926771708541023,0.00050971,50,32,15,8,spk_mean,15,2,15,5,62,5,3,0.15214391021540233,0.9322169090092801,29.113941482486943
+2026-07-03T08:58:09,4,0.450039,9,False,"(1, 3)",-3.5389566533725145,0.0002891,50,32,5,31,spk_sum,8,1,15,8,28,6,5,0.29155663648037217,0.8353818748376483,38.658595267102285

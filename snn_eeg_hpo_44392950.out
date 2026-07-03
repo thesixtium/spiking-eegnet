@@ -1,0 +1,357 @@
+Job ID   : 44392950
+Node     : fg2
+Started  : Fri Jul  3 05:06:32 MDT 2026
+Directory: /home/aleksander.berezowsk/spiking-eegnet
+Requirement already satisfied: setuptools==69.5.1 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (69.5.1)
+Requirement already satisfied: torch==2.4.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (2.4.0)
+Requirement already satisfied: torchvision==0.19.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (0.19.0)
+Requirement already satisfied: torchaudio==2.4.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (2.4.0)
+Requirement already satisfied: torchmetrics in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (1.9.0)
+Requirement already satisfied: filelock in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (3.29.0)
+Requirement already satisfied: typing-extensions>=4.8.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (4.15.0)
+Requirement already satisfied: sympy in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (1.14.0)
+Requirement already satisfied: networkx in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (3.6.1)
+Requirement already satisfied: jinja2 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (3.1.6)
+Requirement already satisfied: fsspec in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (2026.4.0)
+Requirement already satisfied: setuptools in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (69.5.1)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.1.105 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (12.1.105)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.1.105 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (12.1.105)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.1.105 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (12.1.105)
+Requirement already satisfied: nvidia-cudnn-cu12==9.1.0.70 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (9.1.0.70)
+Requirement already satisfied: nvidia-cublas-cu12==12.1.3.1 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (12.1.3.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.0.2.54 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (11.0.2.54)
+Requirement already satisfied: nvidia-curand-cu12==10.3.2.106 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (10.3.2.106)
+Requirement already satisfied: nvidia-cusolver-cu12==11.4.5.107 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (11.4.5.107)
+Requirement already satisfied: nvidia-cusparse-cu12==12.1.0.106 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (12.1.0.106)
+Requirement already satisfied: nvidia-nccl-cu12==2.20.5 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (2.20.5)
+Requirement already satisfied: nvidia-nvtx-cu12==12.1.105 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (12.1.105)
+Requirement already satisfied: triton==3.0.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torch==2.4.0) (3.0.0)
+Requirement already satisfied: numpy in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torchvision==0.19.0) (2.4.6)
+Requirement already satisfied: pillow!=8.3.*,>=5.3.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torchvision==0.19.0) (12.2.0)
+Requirement already satisfied: nvidia-nvjitlink-cu12 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from nvidia-cusolver-cu12==11.4.5.107->torch==2.4.0) (12.9.86)
+Requirement already satisfied: packaging>17.1 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torchmetrics) (26.2)
+Requirement already satisfied: lightning-utilities>=0.15.3 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from torchmetrics) (0.15.3)
+Requirement already satisfied: MarkupSafe>=2.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from jinja2->torch==2.4.0) (3.0.3)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from sympy->torch==2.4.0) (1.3.0)
+Requirement already satisfied: optuna in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (4.9.0)
+Requirement already satisfied: snntorch in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (0.9.4)
+Requirement already satisfied: alembic>=1.5.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (1.18.4)
+Requirement already satisfied: colorlog in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (6.10.1)
+Requirement already satisfied: numpy in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (2.4.6)
+Requirement already satisfied: packaging>=20.0 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (26.2)
+Requirement already satisfied: sqlalchemy>=1.4.2 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (2.0.50)
+Requirement already satisfied: tqdm in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (4.67.3)
+Requirement already satisfied: PyYAML in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from optuna) (6.0.3)
+Requirement already satisfied: Mako in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from alembic>=1.5.0->optuna) (1.3.12)
+Requirement already satisfied: typing-extensions>=4.12 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from alembic>=1.5.0->optuna) (4.15.0)
+Requirement already satisfied: greenlet>=1 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from sqlalchemy>=1.4.2->optuna) (3.5.1)
+Requirement already satisfied: MarkupSafe>=0.9.2 in /home/aleksander.berezowsk/venv/lib/python3.12/site-packages (from Mako->alembic>=1.5.0->optuna) (3.0.3)
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 30,260
+  epoch   1/50  loss=1.2936  bal_acc=0.4653
+  epoch   2/50  loss=1.1505  bal_acc=0.4792
+  epoch   3/50  loss=1.0253  bal_acc=0.5017
+  epoch   4/50  loss=0.9325  bal_acc=0.5451
+  epoch   5/50  loss=0.8884  bal_acc=0.5312
+  epoch   6/50  loss=0.8190  bal_acc=0.5503
+  epoch   7/50  loss=0.7929  bal_acc=0.5625
+  epoch   8/50  loss=0.7576  bal_acc=0.5503
+  epoch   9/50  loss=0.7091  bal_acc=0.5833
+  epoch  10/50  loss=0.6819  bal_acc=0.5538
+  epoch  11/50  loss=0.6642  bal_acc=0.5538
+  epoch  12/50  loss=0.6467  bal_acc=0.5382
+  epoch  13/50  loss=0.6149  bal_acc=0.5347
+  epoch  14/50  loss=0.6120  bal_acc=0.5833
+  epoch  15/50  loss=0.6176  bal_acc=0.5833
+  epoch  16/50  loss=0.5505  bal_acc=0.5156
+  epoch  17/50  loss=0.5709  bal_acc=0.5069
+  epoch  18/50  loss=0.5493  bal_acc=0.5642
+  epoch  19/50  loss=0.5093  bal_acc=0.5104
+  epoch  20/50  loss=0.5088  bal_acc=0.5851
+  epoch  21/50  loss=0.4983  bal_acc=0.5573
+  epoch  22/50  loss=0.4912  bal_acc=0.5573
+  epoch  23/50  loss=0.4861  bal_acc=0.5486
+  epoch  24/50  loss=0.4623  bal_acc=0.5573
+  epoch  25/50  loss=0.4599  bal_acc=0.5451
+  epoch  26/50  loss=0.4477  bal_acc=0.5556
+  epoch  27/50  loss=0.4272  bal_acc=0.5694
+  epoch  28/50  loss=0.4110  bal_acc=0.5417
+  epoch  29/50  loss=0.4357  bal_acc=0.5503
+  epoch  30/50  loss=0.4117  bal_acc=0.6094
+  epoch  31/50  loss=0.4353  bal_acc=0.5087
+  epoch  32/50  loss=0.4184  bal_acc=0.5122
+  epoch  33/50  loss=0.3897  bal_acc=0.6024
+  epoch  34/50  loss=0.3968  bal_acc=0.5260
+  epoch  35/50  loss=0.3782  bal_acc=0.5677
+  epoch  36/50  loss=0.3912  bal_acc=0.5365
+  epoch  37/50  loss=0.3857  bal_acc=0.5399
+  epoch  38/50  loss=0.3727  bal_acc=0.5434
+  epoch  39/50  loss=0.3416  bal_acc=0.5642
+  epoch  40/50  loss=0.3622  bal_acc=0.5451
+  epoch  41/50  loss=0.3336  bal_acc=0.5625
+  epoch  42/50  loss=0.3675  bal_acc=0.5503
+  epoch  43/50  loss=0.3452  bal_acc=0.5938
+  epoch  44/50  loss=0.3403  bal_acc=0.5608
+  epoch  45/50  loss=0.3658  bal_acc=0.5660
+  epoch  46/50  loss=0.3741  bal_acc=0.5833
+  epoch  47/50  loss=0.3520  bal_acc=0.5799
+  epoch  48/50  loss=0.3602  bal_acc=0.5278
+  epoch  49/50  loss=0.3580  bal_acc=0.5174
+  epoch  50/50  loss=0.3430  bal_acc=0.5104
+  [LOSO 1/9] subject 0: acc=0.5104  running_mean=0.5104
+
+=== LOSO (hold out subject 1) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 30,260
+  epoch   1/50  loss=1.2704  bal_acc=0.3663
+  epoch   2/50  loss=1.0738  bal_acc=0.3542
+  epoch   3/50  loss=0.9714  bal_acc=0.3872
+  epoch   4/50  loss=0.8897  bal_acc=0.4444
+  epoch   5/50  loss=0.8241  bal_acc=0.3889
+  epoch   6/50  loss=0.8057  bal_acc=0.3819
+  epoch   7/50  loss=0.7515  bal_acc=0.4340
+  epoch   8/50  loss=0.7207  bal_acc=0.4479
+  epoch   9/50  loss=0.6764  bal_acc=0.3976
+  epoch  10/50  loss=0.6656  bal_acc=0.4271
+  epoch  11/50  loss=0.6315  bal_acc=0.4115
+  epoch  12/50  loss=0.6120  bal_acc=0.3924
+  epoch  13/50  loss=0.5948  bal_acc=0.4670
+  epoch  14/50  loss=0.5573  bal_acc=0.4375
+  epoch  15/50  loss=0.5269  bal_acc=0.4306
+  epoch  16/50  loss=0.5410  bal_acc=0.4080
+  epoch  17/50  loss=0.5016  bal_acc=0.4531
+  epoch  18/50  loss=0.4910  bal_acc=0.4635
+  epoch  19/50  loss=0.4816  bal_acc=0.4306
+  epoch  20/50  loss=0.4546  bal_acc=0.4201
+  epoch  21/50  loss=0.4286  bal_acc=0.4306
+  epoch  22/50  loss=0.4411  bal_acc=0.4184
+  epoch  23/50  loss=0.4400  bal_acc=0.4531
+  epoch  24/50  loss=0.4076  bal_acc=0.4497
+  epoch  25/50  loss=0.3944  bal_acc=0.4323
+  epoch  26/50  loss=0.3645  bal_acc=0.4167
+  epoch  27/50  loss=0.3796  bal_acc=0.4531
+  epoch  28/50  loss=0.3908  bal_acc=0.3941
+  epoch  29/50  loss=0.3910  bal_acc=0.4601
+  epoch  30/50  loss=0.3600  bal_acc=0.4531
+  epoch  31/50  loss=0.3749  bal_acc=0.4375
+  epoch  32/50  loss=0.3754  bal_acc=0.4740
+  epoch  33/50  loss=0.3482  bal_acc=0.4271
+  epoch  34/50  loss=0.3242  bal_acc=0.4583
+  epoch  35/50  loss=0.3504  bal_acc=0.4896
+  epoch  36/50  loss=0.3256  bal_acc=0.4826
+  epoch  37/50  loss=0.3325  bal_acc=0.4514
+  epoch  38/50  loss=0.3225  bal_acc=0.4531
+  epoch  39/50  loss=0.3154  bal_acc=0.4462
+  epoch  40/50  loss=0.3230  bal_acc=0.4705
+  epoch  41/50  loss=0.2981  bal_acc=0.4722
+  epoch  42/50  loss=0.2903  bal_acc=0.4288
+  epoch  43/50  loss=0.3010  bal_acc=0.4358
+  epoch  44/50  loss=0.3133  bal_acc=0.4740
+  epoch  45/50  loss=0.2756  bal_acc=0.4670
+  epoch  46/50  loss=0.3030  bal_acc=0.4514
+  epoch  47/50  loss=0.2832  bal_acc=0.4479
+  epoch  48/50  loss=0.2849  bal_acc=0.4566
+  epoch  49/50  loss=0.2903  bal_acc=0.4410
+  epoch  50/50  loss=0.2757  bal_acc=0.4497
+  [LOSO 2/9] subject 1: acc=0.4497  running_mean=0.4800
+
+=== LOSO (hold out subject 2) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 30,260
+  epoch   1/50  loss=1.2979  bal_acc=0.4549
+  epoch   2/50  loss=1.1364  bal_acc=0.6094
+  epoch   3/50  loss=1.0094  bal_acc=0.5920
+  epoch   4/50  loss=0.9465  bal_acc=0.6319
+  epoch   5/50  loss=0.8841  bal_acc=0.6892
+  epoch   6/50  loss=0.8499  bal_acc=0.6806
+  epoch   7/50  loss=0.7973  bal_acc=0.6406
+  epoch   8/50  loss=0.7698  bal_acc=0.5816
+  epoch   9/50  loss=0.7581  bal_acc=0.6892
+  epoch  10/50  loss=0.7211  bal_acc=0.7153
+  epoch  11/50  loss=0.7010  bal_acc=0.7031
+  epoch  12/50  loss=0.6570  bal_acc=0.6476
+  epoch  13/50  loss=0.6715  bal_acc=0.6875
+  epoch  14/50  loss=0.6270  bal_acc=0.7031
+  epoch  15/50  loss=0.6189  bal_acc=0.6997
+  epoch  16/50  loss=0.5921  bal_acc=0.6997
+  epoch  17/50  loss=0.5975  bal_acc=0.7500
+  epoch  18/50  loss=0.5828  bal_acc=0.7135
+  epoch  19/50  loss=0.5821  bal_acc=0.7170
+  epoch  20/50  loss=0.5472  bal_acc=0.7049
+  epoch  21/50  loss=0.5384  bal_acc=0.6840
+  epoch  22/50  loss=0.5064  bal_acc=0.7188
+  epoch  23/50  loss=0.4979  bal_acc=0.6667
+  epoch  24/50  loss=0.5023  bal_acc=0.6736
+  epoch  25/50  loss=0.4812  bal_acc=0.7049
+  epoch  26/50  loss=0.4613  bal_acc=0.7049
+  epoch  27/50  loss=0.4581  bal_acc=0.7118
+  epoch  28/50  loss=0.4459  bal_acc=0.7101
+  epoch  29/50  loss=0.4469  bal_acc=0.7049
+  epoch  30/50  loss=0.4231  bal_acc=0.6962
+  epoch  31/50  loss=0.4131  bal_acc=0.7378
+  epoch  32/50  loss=0.4137  bal_acc=0.6944
+  epoch  33/50  loss=0.3880  bal_acc=0.7188
+  epoch  34/50  loss=0.3769  bal_acc=0.7222
+  epoch  35/50  loss=0.3901  bal_acc=0.7326
+  epoch  36/50  loss=0.3660  bal_acc=0.7222
+  epoch  37/50  loss=0.3900  bal_acc=0.6858
+  epoch  38/50  loss=0.4147  bal_acc=0.6875
+  epoch  39/50  loss=0.3771  bal_acc=0.7014
+  epoch  40/50  loss=0.3466  bal_acc=0.7083
+  epoch  41/50  loss=0.3496  bal_acc=0.7396
+  epoch  42/50  loss=0.3462  bal_acc=0.6892
+  epoch  43/50  loss=0.3261  bal_acc=0.7309
+  epoch  44/50  loss=0.3449  bal_acc=0.7101
+  epoch  45/50  loss=0.3446  bal_acc=0.6476
+  epoch  46/50  loss=0.3348  bal_acc=0.7153
+  epoch  47/50  loss=0.3226  bal_acc=0.6962
+  epoch  48/50  loss=0.3305  bal_acc=0.6997
+  epoch  49/50  loss=0.3262  bal_acc=0.7205
+  epoch  50/50  loss=0.3105  bal_acc=0.7031
+  [LOSO 3/9] subject 2: acc=0.7031  running_mean=0.5544
+
+=== LOSO (hold out subject 3) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 30,260
+  epoch   1/50  loss=1.2986  bal_acc=0.3767
+  epoch   2/50  loss=1.1339  bal_acc=0.4531
+  epoch   3/50  loss=1.0175  bal_acc=0.3906
+  epoch   4/50  loss=0.9009  bal_acc=0.4306
+  epoch   5/50  loss=0.8619  bal_acc=0.4253
+  epoch   6/50  loss=0.7907  bal_acc=0.4549
+  epoch   7/50  loss=0.7523  bal_acc=0.4132
+  epoch   8/50  loss=0.7106  bal_acc=0.3958
+  epoch   9/50  loss=0.7185  bal_acc=0.4427
+  epoch  10/50  loss=0.6765  bal_acc=0.4375
+  epoch  11/50  loss=0.6433  bal_acc=0.4271
+  epoch  12/50  loss=0.6134  bal_acc=0.4514
+  epoch  13/50  loss=0.6086  bal_acc=0.4201
+  epoch  14/50  loss=0.5612  bal_acc=0.4219
+  epoch  15/50  loss=0.5532  bal_acc=0.4844
+  epoch  16/50  loss=0.5234  bal_acc=0.4271
+  epoch  17/50  loss=0.5274  bal_acc=0.4774
+  epoch  18/50  loss=0.5061  bal_acc=0.4462
+  epoch  19/50  loss=0.4769  bal_acc=0.4392
+  epoch  20/50  loss=0.4779  bal_acc=0.4271
+  epoch  21/50  loss=0.4690  bal_acc=0.4740
+  epoch  22/50  loss=0.4455  bal_acc=0.4774
+  epoch  23/50  loss=0.4417  bal_acc=0.4635
+  epoch  24/50  loss=0.4549  bal_acc=0.4653
+  epoch  25/50  loss=0.4441  bal_acc=0.4722
+  epoch  26/50  loss=0.4233  bal_acc=0.4410
+  epoch  27/50  loss=0.4122  bal_acc=0.4826
+  epoch  28/50  loss=0.4025  bal_acc=0.4618
+  epoch  29/50  loss=0.4166  bal_acc=0.5052
+  epoch  30/50  loss=0.4013  bal_acc=0.4757
+  epoch  31/50  loss=0.3961  bal_acc=0.4462
+  epoch  32/50  loss=0.3994  bal_acc=0.4705
+  epoch  33/50  loss=0.3594  bal_acc=0.4566
+  epoch  34/50  loss=0.3629  bal_acc=0.4566
+  epoch  35/50  loss=0.3670  bal_acc=0.4149
+  epoch  36/50  loss=0.3443  bal_acc=0.4010
+  epoch  37/50  loss=0.3426  bal_acc=0.4132
+  epoch  38/50  loss=0.3226  bal_acc=0.4115
+  epoch  39/50  loss=0.3183  bal_acc=0.4479
+  epoch  40/50  loss=0.3286  bal_acc=0.4444
+  epoch  41/50  loss=0.3443  bal_acc=0.4479
+  epoch  42/50  loss=0.3226  bal_acc=0.4635
+  epoch  43/50  loss=0.3097  bal_acc=0.4601
+  epoch  44/50  loss=0.3109  bal_acc=0.4531
+  epoch  45/50  loss=0.3002  bal_acc=0.4462
+  epoch  46/50  loss=0.3089  bal_acc=0.4618
+  epoch  47/50  loss=0.3480  bal_acc=0.4514
+  epoch  48/50  loss=0.3114  bal_acc=0.4271
+  epoch  49/50  loss=0.3224  bal_acc=0.4444
+  epoch  50/50  loss=0.3281  bal_acc=0.3976
+  [LOSO 4/9] subject 3: acc=0.3976  running_mean=0.5152
+
+=== LOSO (hold out subject 4) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 30,260
+  epoch   1/50  loss=1.3018  bal_acc=0.3021
+  epoch   2/50  loss=1.1418  bal_acc=0.3333
+  epoch   3/50  loss=1.0082  bal_acc=0.3368
+  epoch   4/50  loss=0.9336  bal_acc=0.3160
+  epoch   5/50  loss=0.8713  bal_acc=0.3281
+  epoch   6/50  loss=0.8504  bal_acc=0.4045
+  epoch   7/50  loss=0.7829  bal_acc=0.3663
+  epoch   8/50  loss=0.7546  bal_acc=0.4792
+  epoch   9/50  loss=0.7495  bal_acc=0.4080
+  epoch  10/50  loss=0.6990  bal_acc=0.4931
+  epoch  11/50  loss=0.6794  bal_acc=0.4080
+  epoch  12/50  loss=0.6507  bal_acc=0.4670
+  epoch  13/50  loss=0.6268  bal_acc=0.4306
+  epoch  14/50  loss=0.6157  bal_acc=0.4010
+  epoch  15/50  loss=0.6004  bal_acc=0.4167
+  epoch  16/50  loss=0.5838  bal_acc=0.4201
+  epoch  17/50  loss=0.5732  bal_acc=0.4201
+  epoch  18/50  loss=0.5416  bal_acc=0.4896
+  epoch  19/50  loss=0.5165  bal_acc=0.4635
+  epoch  20/50  loss=0.5291  bal_acc=0.4288
+  epoch  21/50  loss=0.5087  bal_acc=0.4583
+  epoch  22/50  loss=0.5343  bal_acc=0.3958
+  epoch  23/50  loss=0.5125  bal_acc=0.4340
+  epoch  24/50  loss=0.4931  bal_acc=0.4826
+  epoch  25/50  loss=0.4559  bal_acc=0.5226
+  epoch  26/50  loss=0.4756  bal_acc=0.4774
+  epoch  27/50  loss=0.4515  bal_acc=0.4705
+  epoch  28/50  loss=0.4319  bal_acc=0.4323
+  epoch  29/50  loss=0.4233  bal_acc=0.4201
+  epoch  30/50  loss=0.4125  bal_acc=0.4792
+  epoch  31/50  loss=0.3874  bal_acc=0.4635
+  epoch  32/50  loss=0.3900  bal_acc=0.4913
+  epoch  33/50  loss=0.3869  bal_acc=0.4549
+  epoch  34/50  loss=0.3943  bal_acc=0.4063
+  epoch  35/50  loss=0.3724  bal_acc=0.5104
+  epoch  36/50  loss=0.3639  bal_acc=0.5052
+  epoch  37/50  loss=0.3676  bal_acc=0.4514
+  epoch  38/50  loss=0.3737  bal_acc=0.4306
+  epoch  39/50  loss=0.3905  bal_acc=0.4514
+  epoch  40/50  loss=0.3742  bal_acc=0.4323
+  epoch  41/50  loss=0.3662  bal_acc=0.5069
+  epoch  42/50  loss=0.3542  bal_acc=0.4878
+  epoch  43/50  loss=0.3824  bal_acc=0.4566
+  epoch  44/50  loss=0.3593  bal_acc=0.4358
+  epoch  45/50  loss=0.3567  bal_acc=0.4392
+  epoch  46/50  loss=0.3342  bal_acc=0.4444
+  epoch  47/50  loss=0.3538  bal_acc=0.4253
+  epoch  48/50  loss=0.3364  bal_acc=0.4288
+  epoch  49/50  loss=0.3024  bal_acc=0.4149
+  epoch  50/50  loss=0.3118  bal_acc=0.4323
+  [LOSO 5/9] subject 4: acc=0.4323  running_mean=0.4986
+
+=== LOSO (hold out subject 5) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 30,260
+  epoch   1/50  loss=1.2852  bal_acc=0.3872
+  epoch   2/50  loss=1.0817  bal_acc=0.4115
+  epoch   3/50  loss=0.9500  bal_acc=0.4167
+  epoch   4/50  loss=0.8702  bal_acc=0.4115
+  epoch   5/50  loss=0.8085  bal_acc=0.4688
+  epoch   6/50  loss=0.7801  bal_acc=0.3958
+  epoch   7/50  loss=0.7285  bal_acc=0.3785
+  epoch   8/50  loss=0.7138  bal_acc=0.3681
+  epoch   9/50  loss=0.6869  bal_acc=0.4115
+  epoch  10/50  loss=0.6504  bal_acc=0.4306
+  epoch  11/50  loss=0.6284  bal_acc=0.3872
+  epoch  12/50  loss=0.6251  bal_acc=0.3837
+  epoch  13/50  loss=0.6158  bal_acc=0.3906
+  epoch  14/50  loss=0.5722  bal_acc=0.4045
+  epoch  15/50  loss=0.5661  bal_acc=0.3854
+  epoch  16/50  loss=0.5438  bal_acc=0.4115
+  epoch  17/50  loss=0.5330  bal_acc=0.4427
+  epoch  18/50  loss=0.5137  bal_acc=0.3698
+  epoch  19/50  loss=0.5281  bal_acc=0.4132
+  epoch  20/50  loss=0.4929  bal_acc=0.4427
+  epoch  21/50  loss=0.4629  bal_acc=0.3993
+  epoch  22/50  loss=0.4697  bal_acc=0.4271
+  epoch  23/50  loss=0.4586  bal_acc=0.4010
+  epoch  24/50  loss=0.4290  bal_acc=0.4132
+  epoch  25/50  loss=0.4447  bal_acc=0.3872
+  epoch  26/50  loss=0.4340  bal_acc=0.3837

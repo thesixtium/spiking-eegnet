@@ -1,7 +1,7 @@
-last_trial_number : 110
+last_trial_number : 4
 last_trial_state  : COMPLETE
-last_trial_value  : 0.4645061728395061
-trials_completed  : 102
-trials_total      : 115
-best_trial_number : 63
-best_value        : 0.4920910493827161
+last_trial_value  : 0.45003858024691357
+trials_completed  : 3
+trials_total      : 5
+best_trial_number : 1
+best_value        : 0.5374228395061729
