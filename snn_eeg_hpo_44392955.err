@@ -1,0 +1,27 @@
+mkdir: cannot create directory ‘/scratch/mne_data’: Permission denied
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+ERROR: Invalid requirement: 'Binary file requirements.txt matches': Expected end or semicolon (after name and no valid version specifier)
+    Binary file requirements.txt matches
+           ^ (from line 1 of /home/aleksander.berezowsk/requirements_notorch.txt)
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+/home/aleksander.berezowsk/spiking-eegnet/src/main.py:92: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
+/home/aleksander.berezowsk/spiking-eegnet/src/main.py:92: ExperimentalWarning: Argument ``group`` is an experimental feature. The interface can change in the future.
+  sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
+[I 2026-07-04 03:58:59,277] Using an existing study with name 'snn_eegnet_v4_400_40' instead of creating a new one.
+[I 2026-07-04 07:13:21,207] Trial 20 finished with value: 0.5447530864197531 and parameters: {'LR_EXP': -3.9176517176607355, 'DROPOUT': 0.3424564311487018, 'BETA': 0.9074513269594814, 'SPIKE_GRAD_SLOPE': 13.374856913517906, 'TEMPORAL_FILTERS': 29, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 44, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 52, 'POOL1_SIZE': 8, 'POOL2_SIZE': 2, 'N_STEPS_TRAIN': 13, 'N_STEPS_EVAL': 7, 'READOUT_MODE': 'spk_sum'}. Best is trial 10 with value: 0.566550925925926.
+[I 2026-07-04 13:17:02,084] Trial 22 finished with value: 0.5162037037037037 and parameters: {'LR_EXP': -2.2813874919458086, 'DROPOUT': 0.4392763777990559, 'BETA': 0.9387919204961819, 'SPIKE_GRAD_SLOPE': 49.41957735131222, 'TEMPORAL_FILTERS': 39, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 28, 'TEMPORAL_KERNEL_DIV': 3, 'SEPARABLE_KERNEL_SIZE': 19, 'POOL1_SIZE': 6, 'POOL2_SIZE': 7, 'N_STEPS_TRAIN': 13, 'N_STEPS_EVAL': 27, 'READOUT_MODE': 'spk_sum'}. Best is trial 10 with value: 0.566550925925926.
+[I 2026-07-04 14:06:25,569] Trial 26 finished with value: 0.4139660493827161 and parameters: {'LR_EXP': -4.271732845250309, 'DROPOUT': 0.4117133818542093, 'BETA': 0.7950171256977563, 'SPIKE_GRAD_SLOPE': 58.760394118059985, 'TEMPORAL_FILTERS': 4, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 11, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 37, 'POOL1_SIZE': 8, 'POOL2_SIZE': 4, 'N_STEPS_TRAIN': 8, 'N_STEPS_EVAL': 32, 'READOUT_MODE': 'spk_sum'}. Best is trial 10 with value: 0.566550925925926.
+[I 2026-07-04 16:24:38,224] Trial 28 finished with value: 0.51929012345679 and parameters: {'LR_EXP': -2.194621692652884, 'DROPOUT': 0.02439518312555343, 'BETA': 0.8886915790672626, 'SPIKE_GRAD_SLOPE': 15.640893071516738, 'TEMPORAL_FILTERS': 16, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 31, 'TEMPORAL_KERNEL_DIV': 2, 'SEPARABLE_KERNEL_SIZE': 7, 'POOL1_SIZE': 8, 'POOL2_SIZE': 7, 'N_STEPS_TRAIN': 8, 'N_STEPS_EVAL': 32, 'READOUT_MODE': 'spk_sum'}. Best is trial 10 with value: 0.566550925925926.
+[I 2026-07-04 23:52:03,096] Trial 31 finished with value: 0.5308641975308642 and parameters: {'LR_EXP': -2.3561344086674305, 'DROPOUT': 0.03307995809091501, 'BETA': 0.9006539067718169, 'SPIKE_GRAD_SLOPE': 49.03566403476786, 'TEMPORAL_FILTERS': 36, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 11, 'TEMPORAL_KERNEL_DIV': 2, 'SEPARABLE_KERNEL_SIZE': 48, 'POOL1_SIZE': 8, 'POOL2_SIZE': 5, 'N_STEPS_TRAIN': 14, 'N_STEPS_EVAL': 31, 'READOUT_MODE': 'spk_mean'}. Best is trial 10 with value: 0.566550925925926.
+slurmstepd: error: *** JOB 44392955 ON fg6 CANCELLED AT 2026-07-05T03:58:46 DUE TO TIME LIMIT ***

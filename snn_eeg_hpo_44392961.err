@@ -1,0 +1,23 @@
+mkdir: cannot create directory ‘/scratch/mne_data’: Permission denied
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+ERROR: Invalid requirement: 'Binary file requirements.txt matches': Expected end or semicolon (after name and no valid version specifier)
+    Binary file requirements.txt matches
+           ^ (from line 1 of /home/aleksander.berezowsk/requirements_notorch.txt)
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+
+[notice] A new release of pip is available: 24.2 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+/home/aleksander.berezowsk/spiking-eegnet/src/main.py:92: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
+/home/aleksander.berezowsk/spiking-eegnet/src/main.py:92: ExperimentalWarning: Argument ``group`` is an experimental feature. The interface can change in the future.
+  sampler=TPESampler(n_startup_trials=tpe_trails, multivariate=True, group=True)
+[I 2026-07-05 02:25:28,731] Using an existing study with name 'snn_eegnet_v4_400_40' instead of creating a new one.
+[I 2026-07-05 06:54:10,584] Trial 45 finished with value: 0.5497685185185186 and parameters: {'LR_EXP': -3.8942815881696244, 'DROPOUT': 0.12774256456509356, 'BETA': 0.8649383669714866, 'SPIKE_GRAD_SLOPE': 22.894389567935615, 'TEMPORAL_FILTERS': 57, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 27, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 57, 'POOL1_SIZE': 6, 'POOL2_SIZE': 6, 'N_STEPS_TRAIN': 10, 'N_STEPS_EVAL': 32, 'READOUT_MODE': 'spk_sum'}. Best is trial 10 with value: 0.566550925925926.
+[I 2026-07-05 09:47:18,876] Trial 51 finished with value: 0.5596064814814814 and parameters: {'LR_EXP': -2.9908495084640814, 'DROPOUT': 0.4881461537268882, 'BETA': 0.8083193288309404, 'SPIKE_GRAD_SLOPE': 30.965794766973662, 'TEMPORAL_FILTERS': 40, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 60, 'TEMPORAL_KERNEL_DIV': 5, 'SEPARABLE_KERNEL_SIZE': 9, 'POOL1_SIZE': 4, 'POOL2_SIZE': 6, 'N_STEPS_TRAIN': 8, 'N_STEPS_EVAL': 17, 'READOUT_MODE': 'spk_sum'}. Best is trial 46 with value: 0.5719521604938271.
