@@ -1514,3 +1514,2003 @@ Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names
   epoch  14/50  loss=0.3750  bal_acc=0.5278
   epoch  15/50  loss=0.3555  bal_acc=0.5226
   epoch  16/50  loss=0.3170  bal_acc=0.5556
+  epoch  17/50  loss=0.2968  bal_acc=0.5243
+  epoch  18/50  loss=0.2755  bal_acc=0.5278
+  epoch  19/50  loss=0.2525  bal_acc=0.5747
+  epoch  20/50  loss=0.2199  bal_acc=0.5069
+  epoch  21/50  loss=0.2142  bal_acc=0.5243
+  epoch  22/50  loss=0.1873  bal_acc=0.5469
+  epoch  23/50  loss=0.1698  bal_acc=0.5191
+  epoch  24/50  loss=0.1587  bal_acc=0.5469
+  epoch  25/50  loss=0.1501  bal_acc=0.5330
+  epoch  26/50  loss=0.1305  bal_acc=0.5104
+  epoch  27/50  loss=0.1206  bal_acc=0.5365
+  epoch  28/50  loss=0.1072  bal_acc=0.5365
+  epoch  29/50  loss=0.1088  bal_acc=0.5330
+  epoch  30/50  loss=0.1006  bal_acc=0.5330
+  epoch  31/50  loss=0.0933  bal_acc=0.5122
+  epoch  32/50  loss=0.0923  bal_acc=0.5087
+  epoch  33/50  loss=0.0913  bal_acc=0.5556
+  epoch  34/50  loss=0.0786  bal_acc=0.5382
+  epoch  35/50  loss=0.0733  bal_acc=0.5087
+  epoch  36/50  loss=0.0805  bal_acc=0.5156
+  epoch  37/50  loss=0.0711  bal_acc=0.5104
+  epoch  38/50  loss=0.0687  bal_acc=0.4913
+  epoch  39/50  loss=0.0561  bal_acc=0.5469
+  epoch  40/50  loss=0.0571  bal_acc=0.5642
+  epoch  41/50  loss=0.0644  bal_acc=0.5243
+  epoch  42/50  loss=0.0655  bal_acc=0.5278
+  epoch  43/50  loss=0.0498  bal_acc=0.5365
+  epoch  44/50  loss=0.0474  bal_acc=0.5017
+  epoch  45/50  loss=0.0409  bal_acc=0.5208
+  epoch  46/50  loss=0.0495  bal_acc=0.5226
+  epoch  47/50  loss=0.0522  bal_acc=0.5486
+  epoch  48/50  loss=0.0591  bal_acc=0.5139
+  epoch  49/50  loss=0.0628  bal_acc=0.5104
+  epoch  50/50  loss=0.0511  bal_acc=0.5399
+  [LOSO 9/9] subject 8: acc=0.5399  running_mean=0.5340
+Results saved to results/BNCI2014_001/results_trial_56.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 56 done (state=COMPLETE, value=0.5339506172839505) -- 51 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 51,188
+  epoch   1/50  loss=1.3822  bal_acc=0.3681
+  epoch   2/50  loss=1.3440  bal_acc=0.3733
+  epoch   3/50  loss=1.3118  bal_acc=0.3628
+  epoch   4/50  loss=1.2842  bal_acc=0.3802
+  epoch   5/50  loss=1.2582  bal_acc=0.3785
+  epoch   6/50  loss=1.2349  bal_acc=0.3889
+  epoch   7/50  loss=1.2151  bal_acc=0.3906
+  epoch   8/50  loss=1.1908  bal_acc=0.4045
+  epoch   9/50  loss=1.1661  bal_acc=0.3958
+  epoch  10/50  loss=1.1428  bal_acc=0.4132
+  epoch  11/50  loss=1.1150  bal_acc=0.4340
+  epoch  12/50  loss=1.0874  bal_acc=0.4514
+  epoch  13/50  loss=1.0626  bal_acc=0.4514
+  epoch  14/50  loss=1.0360  bal_acc=0.4583
+  epoch  15/50  loss=1.0130  bal_acc=0.4826
+  epoch  16/50  loss=0.9873  bal_acc=0.4774
+  epoch  17/50  loss=0.9651  bal_acc=0.4722
+  epoch  18/50  loss=0.9480  bal_acc=0.5069
+  epoch  19/50  loss=0.9249  bal_acc=0.4983
+  epoch  20/50  loss=0.9092  bal_acc=0.5087
+  epoch  21/50  loss=0.8876  bal_acc=0.4878
+  epoch  22/50  loss=0.8767  bal_acc=0.4913
+  epoch  23/50  loss=0.8567  bal_acc=0.5069
+  epoch  24/50  loss=0.8445  bal_acc=0.5208
+  epoch  25/50  loss=0.8255  bal_acc=0.5087
+  epoch  26/50  loss=0.8139  bal_acc=0.4983
+  epoch  27/50  loss=0.7980  bal_acc=0.5000
+  epoch  28/50  loss=0.7814  bal_acc=0.4983
+  epoch  29/50  loss=0.7698  bal_acc=0.5087
+  epoch  30/50  loss=0.7552  bal_acc=0.5104
+  epoch  31/50  loss=0.7454  bal_acc=0.4965
+  epoch  32/50  loss=0.7248  bal_acc=0.5208
+  epoch  33/50  loss=0.7190  bal_acc=0.5295
+  epoch  34/50  loss=0.7023  bal_acc=0.5087
+  epoch  35/50  loss=0.6966  bal_acc=0.5208
+  epoch  36/50  loss=0.6800  bal_acc=0.5191
+  epoch  37/50  loss=0.6725  bal_acc=0.5243
+  epoch  38/50  loss=0.6627  bal_acc=0.5295
+  epoch  39/50  loss=0.6462  bal_acc=0.5208
+  epoch  40/50  loss=0.6368  bal_acc=0.5208
+  epoch  41/50  loss=0.6315  bal_acc=0.5295
+  epoch  42/50  loss=0.6131  bal_acc=0.5156
+  epoch  43/50  loss=0.6078  bal_acc=0.5347
+  epoch  44/50  loss=0.5957  bal_acc=0.5260
+  epoch  45/50  loss=0.5840  bal_acc=0.5330
+  epoch  46/50  loss=0.5786  bal_acc=0.5417
+  epoch  47/50  loss=0.5693  bal_acc=0.5156
+  epoch  48/50  loss=0.5583  bal_acc=0.5417
+  epoch  49/50  loss=0.5530  bal_acc=0.5573
+  epoch  50/50  loss=0.5415  bal_acc=0.5434
+  [LOSO 1/9] subject 0: acc=0.5434  running_mean=0.5434
+
+=== LOSO (hold out subject 1) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 51,188
+  epoch   1/50  loss=1.3786  bal_acc=0.3056
+  epoch   2/50  loss=1.3458  bal_acc=0.3385
+  epoch   3/50  loss=1.3164  bal_acc=0.3142
+  epoch   4/50  loss=1.2870  bal_acc=0.3490
+  epoch   5/50  loss=1.2599  bal_acc=0.3559
+  epoch   6/50  loss=1.2351  bal_acc=0.3611
+  epoch   7/50  loss=1.2116  bal_acc=0.3785
+  epoch   8/50  loss=1.1829  bal_acc=0.3767
+  epoch   9/50  loss=1.1523  bal_acc=0.3802
+  epoch  10/50  loss=1.1188  bal_acc=0.3785
+  epoch  11/50  loss=1.0858  bal_acc=0.3767
+  epoch  12/50  loss=1.0586  bal_acc=0.3906
+  epoch  13/50  loss=1.0311  bal_acc=0.4062
+  epoch  14/50  loss=1.0085  bal_acc=0.3941
+  epoch  15/50  loss=0.9826  bal_acc=0.4010
+  epoch  16/50  loss=0.9626  bal_acc=0.3958
+  epoch  17/50  loss=0.9427  bal_acc=0.3767
+  epoch  18/50  loss=0.9214  bal_acc=0.3767
+  epoch  19/50  loss=0.9014  bal_acc=0.3854
+  epoch  20/50  loss=0.8840  bal_acc=0.4062
+  epoch  21/50  loss=0.8649  bal_acc=0.3906
+  epoch  22/50  loss=0.8460  bal_acc=0.3837
+  epoch  23/50  loss=0.8276  bal_acc=0.3993
+  epoch  24/50  loss=0.8070  bal_acc=0.4010
+  epoch  25/50  loss=0.7888  bal_acc=0.4028
+  epoch  26/50  loss=0.7738  bal_acc=0.4062
+  epoch  27/50  loss=0.7542  bal_acc=0.4062
+  epoch  28/50  loss=0.7370  bal_acc=0.4010
+  epoch  29/50  loss=0.7221  bal_acc=0.4149
+  epoch  30/50  loss=0.7025  bal_acc=0.4097
+  epoch  31/50  loss=0.6897  bal_acc=0.4219
+  epoch  32/50  loss=0.6766  bal_acc=0.4149
+  epoch  33/50  loss=0.6614  bal_acc=0.4097
+  epoch  34/50  loss=0.6483  bal_acc=0.4219
+  epoch  35/50  loss=0.6328  bal_acc=0.4080
+  epoch  36/50  loss=0.6204  bal_acc=0.4167
+  epoch  37/50  loss=0.6102  bal_acc=0.4358
+  epoch  38/50  loss=0.5981  bal_acc=0.4132
+  epoch  39/50  loss=0.5870  bal_acc=0.4288
+  epoch  40/50  loss=0.5758  bal_acc=0.4410
+  epoch  41/50  loss=0.5614  bal_acc=0.4410
+  epoch  42/50  loss=0.5573  bal_acc=0.4410
+  epoch  43/50  loss=0.5507  bal_acc=0.4201
+  epoch  44/50  loss=0.5391  bal_acc=0.4358
+  epoch  45/50  loss=0.5365  bal_acc=0.4323
+  epoch  46/50  loss=0.5227  bal_acc=0.4375
+  epoch  47/50  loss=0.5099  bal_acc=0.4219
+  epoch  48/50  loss=0.5032  bal_acc=0.4410
+  epoch  49/50  loss=0.4966  bal_acc=0.4410
+  epoch  50/50  loss=0.4885  bal_acc=0.4410
+  [LOSO 2/9] subject 1: acc=0.4410  running_mean=0.4922
+
+=== LOSO (hold out subject 2) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 51,188
+  epoch   1/50  loss=1.3888  bal_acc=0.3090
+  epoch   2/50  loss=1.3531  bal_acc=0.3611
+  epoch   3/50  loss=1.3263  bal_acc=0.3802
+  epoch   4/50  loss=1.2989  bal_acc=0.3976
+  epoch   5/50  loss=1.2732  bal_acc=0.4010
+  epoch   6/50  loss=1.2522  bal_acc=0.4115
+  epoch   7/50  loss=1.2254  bal_acc=0.4236
+  epoch   8/50  loss=1.2007  bal_acc=0.4479
+  epoch   9/50  loss=1.1709  bal_acc=0.4549
+  epoch  10/50  loss=1.1402  bal_acc=0.4514
+  epoch  11/50  loss=1.1071  bal_acc=0.4983
+  epoch  12/50  loss=1.0748  bal_acc=0.5417
+  epoch  13/50  loss=1.0457  bal_acc=0.5260
+  epoch  14/50  loss=1.0192  bal_acc=0.5486
+  epoch  15/50  loss=0.9939  bal_acc=0.5486
+  epoch  16/50  loss=0.9741  bal_acc=0.5156
+  epoch  17/50  loss=0.9500  bal_acc=0.5521
+  epoch  18/50  loss=0.9302  bal_acc=0.5573
+  epoch  19/50  loss=0.9099  bal_acc=0.5625
+  epoch  20/50  loss=0.8961  bal_acc=0.5625
+  epoch  21/50  loss=0.8784  bal_acc=0.5781
+  epoch  22/50  loss=0.8623  bal_acc=0.5573
+  epoch  23/50  loss=0.8518  bal_acc=0.5712
+  epoch  24/50  loss=0.8324  bal_acc=0.5625
+  epoch  25/50  loss=0.8183  bal_acc=0.5885
+  epoch  26/50  loss=0.8072  bal_acc=0.5903
+  epoch  27/50  loss=0.7956  bal_acc=0.5990
+  epoch  28/50  loss=0.7831  bal_acc=0.5816
+  epoch  29/50  loss=0.7702  bal_acc=0.5903
+  epoch  30/50  loss=0.7592  bal_acc=0.6042
+  epoch  31/50  loss=0.7524  bal_acc=0.6302
+  epoch  32/50  loss=0.7387  bal_acc=0.5851
+  epoch  33/50  loss=0.7310  bal_acc=0.6163
+  epoch  34/50  loss=0.7180  bal_acc=0.6250
+  epoch  35/50  loss=0.7069  bal_acc=0.6354
+  epoch  36/50  loss=0.6950  bal_acc=0.6059
+  epoch  37/50  loss=0.6873  bal_acc=0.6094
+  epoch  38/50  loss=0.6761  bal_acc=0.6215
+  epoch  39/50  loss=0.6707  bal_acc=0.6233
+  epoch  40/50  loss=0.6586  bal_acc=0.6406
+  epoch  41/50  loss=0.6519  bal_acc=0.5990
+  epoch  42/50  loss=0.6451  bal_acc=0.6215
+  epoch  43/50  loss=0.6342  bal_acc=0.6267
+  epoch  44/50  loss=0.6266  bal_acc=0.6476
+  epoch  45/50  loss=0.6146  bal_acc=0.6441
+  epoch  46/50  loss=0.6100  bal_acc=0.6372
+  epoch  47/50  loss=0.6028  bal_acc=0.6181
+  epoch  48/50  loss=0.5906  bal_acc=0.6389
+  epoch  49/50  loss=0.5830  bal_acc=0.6372
+  epoch  50/50  loss=0.5750  bal_acc=0.6372
+  [LOSO 3/9] subject 2: acc=0.6372  running_mean=0.5405
+
+=== LOSO (hold out subject 3) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 51,188
+  epoch   1/50  loss=1.3797  bal_acc=0.2934
+  epoch   2/50  loss=1.3475  bal_acc=0.3351
+  epoch   3/50  loss=1.3161  bal_acc=0.3472
+  epoch   4/50  loss=1.2856  bal_acc=0.3733
+  epoch   5/50  loss=1.2594  bal_acc=0.3750
+  epoch   6/50  loss=1.2391  bal_acc=0.3559
+  epoch   7/50  loss=1.2193  bal_acc=0.3490
+  epoch   8/50  loss=1.1978  bal_acc=0.3889
+  epoch   9/50  loss=1.1745  bal_acc=0.4045
+  epoch  10/50  loss=1.1504  bal_acc=0.3889
+  epoch  11/50  loss=1.1241  bal_acc=0.4288
+  epoch  12/50  loss=1.1005  bal_acc=0.4080
+  epoch  13/50  loss=1.0730  bal_acc=0.4288
+  epoch  14/50  loss=1.0495  bal_acc=0.4201
+  epoch  15/50  loss=1.0219  bal_acc=0.4340
+  epoch  16/50  loss=0.9987  bal_acc=0.4392
+  epoch  17/50  loss=0.9780  bal_acc=0.4392
+  epoch  18/50  loss=0.9581  bal_acc=0.4375
+  epoch  19/50  loss=0.9399  bal_acc=0.4410
+  epoch  20/50  loss=0.9241  bal_acc=0.4792
+  epoch  21/50  loss=0.9085  bal_acc=0.4688
+  epoch  22/50  loss=0.8892  bal_acc=0.4688
+  epoch  23/50  loss=0.8705  bal_acc=0.4687
+  epoch  24/50  loss=0.8581  bal_acc=0.4410
+  epoch  25/50  loss=0.8407  bal_acc=0.4635
+  epoch  26/50  loss=0.8302  bal_acc=0.4844
+  epoch  27/50  loss=0.8091  bal_acc=0.4809
+  epoch  28/50  loss=0.7946  bal_acc=0.4635
+  epoch  29/50  loss=0.7822  bal_acc=0.4670
+  epoch  30/50  loss=0.7697  bal_acc=0.4705
+  epoch  31/50  loss=0.7526  bal_acc=0.4722
+  epoch  32/50  loss=0.7393  bal_acc=0.4809
+  epoch  33/50  loss=0.7302  bal_acc=0.4792
+  epoch  34/50  loss=0.7147  bal_acc=0.4705
+  epoch  35/50  loss=0.6997  bal_acc=0.4688
+  epoch  36/50  loss=0.6866  bal_acc=0.4670
+  epoch  37/50  loss=0.6764  bal_acc=0.4670
+  epoch  38/50  loss=0.6622  bal_acc=0.4410
+  epoch  39/50  loss=0.6515  bal_acc=0.4792
+  epoch  40/50  loss=0.6404  bal_acc=0.4583
+  epoch  41/50  loss=0.6309  bal_acc=0.4931
+  epoch  42/50  loss=0.6217  bal_acc=0.4618
+  epoch  43/50  loss=0.6072  bal_acc=0.4635
+  epoch  44/50  loss=0.5961  bal_acc=0.4653
+  epoch  45/50  loss=0.5822  bal_acc=0.4566
+  epoch  46/50  loss=0.5752  bal_acc=0.4601
+  epoch  47/50  loss=0.5676  bal_acc=0.4514
+  epoch  48/50  loss=0.5563  bal_acc=0.4566
+  epoch  49/50  loss=0.5540  bal_acc=0.4497
+  epoch  50/50  loss=0.5378  bal_acc=0.4740
+  [LOSO 4/9] subject 3: acc=0.4740  running_mean=0.5239
+
+=== LOSO (hold out subject 4) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 51,188
+  epoch   1/50  loss=1.3766  bal_acc=0.3420
+  epoch   2/50  loss=1.3364  bal_acc=0.3663
+  epoch   3/50  loss=1.3008  bal_acc=0.3715
+  epoch   4/50  loss=1.2677  bal_acc=0.3819
+  epoch   5/50  loss=1.2441  bal_acc=0.3872
+  epoch   6/50  loss=1.2171  bal_acc=0.4010
+  epoch   7/50  loss=1.1942  bal_acc=0.4063
+  epoch   8/50  loss=1.1708  bal_acc=0.4306
+  epoch   9/50  loss=1.1447  bal_acc=0.4444
+  epoch  10/50  loss=1.1218  bal_acc=0.4427
+  epoch  11/50  loss=1.0956  bal_acc=0.4618
+  epoch  12/50  loss=1.0735  bal_acc=0.4740
+  epoch  13/50  loss=1.0522  bal_acc=0.4792
+  epoch  14/50  loss=1.0285  bal_acc=0.5278
+  epoch  15/50  loss=1.0014  bal_acc=0.5243
+  epoch  16/50  loss=0.9773  bal_acc=0.5156
+  epoch  17/50  loss=0.9613  bal_acc=0.5052
+  epoch  18/50  loss=0.9406  bal_acc=0.5399
+  epoch  19/50  loss=0.9250  bal_acc=0.5382
+  epoch  20/50  loss=0.9032  bal_acc=0.5347
+  epoch  21/50  loss=0.8891  bal_acc=0.5312
+  epoch  22/50  loss=0.8734  bal_acc=0.5174
+  epoch  23/50  loss=0.8542  bal_acc=0.5625
+  epoch  24/50  loss=0.8385  bal_acc=0.5556
+  epoch  25/50  loss=0.8246  bal_acc=0.5469
+  epoch  26/50  loss=0.8126  bal_acc=0.5486
+  epoch  27/50  loss=0.8001  bal_acc=0.5382
+  epoch  28/50  loss=0.7846  bal_acc=0.5399
+  epoch  29/50  loss=0.7739  bal_acc=0.5642
+  epoch  30/50  loss=0.7599  bal_acc=0.5469
+  epoch  31/50  loss=0.7473  bal_acc=0.5521
+  epoch  32/50  loss=0.7331  bal_acc=0.5747
+  epoch  33/50  loss=0.7239  bal_acc=0.5469
+  epoch  34/50  loss=0.7119  bal_acc=0.5677
+  epoch  35/50  loss=0.7003  bal_acc=0.5573
+  epoch  36/50  loss=0.6873  bal_acc=0.5642
+  epoch  37/50  loss=0.6749  bal_acc=0.5677
+  epoch  38/50  loss=0.6657  bal_acc=0.5382
+  epoch  39/50  loss=0.6520  bal_acc=0.5608
+  epoch  40/50  loss=0.6445  bal_acc=0.5503
+  epoch  41/50  loss=0.6268  bal_acc=0.5764
+  epoch  42/50  loss=0.6234  bal_acc=0.5486
+  epoch  43/50  loss=0.6092  bal_acc=0.5608
+  epoch  44/50  loss=0.6045  bal_acc=0.5399
+  epoch  45/50  loss=0.5942  bal_acc=0.5347
+  epoch  46/50  loss=0.5878  bal_acc=0.5451
+  epoch  47/50  loss=0.5751  bal_acc=0.5295
+  epoch  48/50  loss=0.5653  bal_acc=0.5226
+  epoch  49/50  loss=0.5582  bal_acc=0.5052
+  epoch  50/50  loss=0.5539  bal_acc=0.5122
+  [LOSO 5/9] subject 4: acc=0.5122  running_mean=0.5215
+
+=== LOSO (hold out subject 5) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 51,188
+  epoch   1/50  loss=1.3852  bal_acc=0.2552
+  epoch   2/50  loss=1.3532  bal_acc=0.3420
+  epoch   3/50  loss=1.3219  bal_acc=0.3628
+  epoch   4/50  loss=1.2929  bal_acc=0.3819
+  epoch   5/50  loss=1.2647  bal_acc=0.3594
+  epoch   6/50  loss=1.2397  bal_acc=0.3802
+  epoch   7/50  loss=1.2191  bal_acc=0.3872
+  epoch   8/50  loss=1.1974  bal_acc=0.3924
+  epoch   9/50  loss=1.1716  bal_acc=0.3924
+  epoch  10/50  loss=1.1467  bal_acc=0.3924
+  epoch  11/50  loss=1.1226  bal_acc=0.3924
+  epoch  12/50  loss=1.0967  bal_acc=0.3889
+  epoch  13/50  loss=1.0713  bal_acc=0.4010
+  epoch  14/50  loss=1.0434  bal_acc=0.4340
+  epoch  15/50  loss=1.0172  bal_acc=0.4479
+  epoch  16/50  loss=0.9913  bal_acc=0.4306
+  epoch  17/50  loss=0.9623  bal_acc=0.4323
+  epoch  18/50  loss=0.9397  bal_acc=0.4444
+  epoch  19/50  loss=0.9173  bal_acc=0.4340
+  epoch  20/50  loss=0.8923  bal_acc=0.4635
+  epoch  21/50  loss=0.8712  bal_acc=0.4531
+  epoch  22/50  loss=0.8575  bal_acc=0.4549
+  epoch  23/50  loss=0.8324  bal_acc=0.4479
+  epoch  24/50  loss=0.8167  bal_acc=0.4288
+  epoch  25/50  loss=0.7983  bal_acc=0.4358
+  epoch  26/50  loss=0.7823  bal_acc=0.4392
+  epoch  27/50  loss=0.7645  bal_acc=0.4410
+  epoch  28/50  loss=0.7503  bal_acc=0.4340
+  epoch  29/50  loss=0.7358  bal_acc=0.4358
+  epoch  30/50  loss=0.7188  bal_acc=0.4392
+  epoch  31/50  loss=0.7092  bal_acc=0.4323
+  epoch  32/50  loss=0.6967  bal_acc=0.4167
+  epoch  33/50  loss=0.6862  bal_acc=0.4444
+  epoch  34/50  loss=0.6711  bal_acc=0.4392
+  epoch  35/50  loss=0.6581  bal_acc=0.4306
+  epoch  36/50  loss=0.6484  bal_acc=0.4201
+  epoch  37/50  loss=0.6402  bal_acc=0.4358
+  epoch  38/50  loss=0.6299  bal_acc=0.4340
+  epoch  39/50  loss=0.6200  bal_acc=0.4392
+  epoch  40/50  loss=0.6120  bal_acc=0.4392
+  epoch  41/50  loss=0.5959  bal_acc=0.4410
+  epoch  42/50  loss=0.5898  bal_acc=0.4479
+  epoch  43/50  loss=0.5861  bal_acc=0.4410
+  epoch  44/50  loss=0.5730  bal_acc=0.4323
+  epoch  45/50  loss=0.5669  bal_acc=0.4410
+  epoch  46/50  loss=0.5584  bal_acc=0.4444
+  epoch  47/50  loss=0.5504  bal_acc=0.4288
+  epoch  48/50  loss=0.5414  bal_acc=0.4410
+  epoch  49/50  loss=0.5412  bal_acc=0.4427
+  epoch  50/50  loss=0.5251  bal_acc=0.4444
+  [LOSO 6/9] subject 5: acc=0.4444  running_mean=0.5087
+
+=== LOSO (hold out subject 6) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 51,188
+  epoch   1/50  loss=1.3883  bal_acc=0.2847
+  epoch   2/50  loss=1.3555  bal_acc=0.3646
+  epoch   3/50  loss=1.3292  bal_acc=0.4080
+  epoch   4/50  loss=1.3013  bal_acc=0.3785
+  epoch   5/50  loss=1.2787  bal_acc=0.3993
+  epoch   6/50  loss=1.2555  bal_acc=0.4236
+  epoch   7/50  loss=1.2366  bal_acc=0.4340
+  epoch   8/50  loss=1.2152  bal_acc=0.4497
+  epoch   9/50  loss=1.1897  bal_acc=0.4670
+  epoch  10/50  loss=1.1687  bal_acc=0.4826
+  epoch  11/50  loss=1.1451  bal_acc=0.4931
+  epoch  12/50  loss=1.1176  bal_acc=0.4878
+  epoch  13/50  loss=1.0958  bal_acc=0.5260
+  epoch  14/50  loss=1.0672  bal_acc=0.5312
+  epoch  15/50  loss=1.0438  bal_acc=0.5556
+  epoch  16/50  loss=1.0206  bal_acc=0.5608
+  epoch  17/50  loss=1.0002  bal_acc=0.5677
+  epoch  18/50  loss=0.9789  bal_acc=0.5729
+  epoch  19/50  loss=0.9604  bal_acc=0.5799
+  epoch  20/50  loss=0.9444  bal_acc=0.5851
+  epoch  21/50  loss=0.9262  bal_acc=0.5938
+  epoch  22/50  loss=0.9061  bal_acc=0.6076
+  epoch  23/50  loss=0.8903  bal_acc=0.6024
+  epoch  24/50  loss=0.8736  bal_acc=0.6042
+  epoch  25/50  loss=0.8599  bal_acc=0.5990
+  epoch  26/50  loss=0.8471  bal_acc=0.6094
+  epoch  27/50  loss=0.8304  bal_acc=0.6094
+  epoch  28/50  loss=0.8156  bal_acc=0.6250
+  epoch  29/50  loss=0.8004  bal_acc=0.6076
+  epoch  30/50  loss=0.7885  bal_acc=0.6250
+  epoch  31/50  loss=0.7713  bal_acc=0.6128
+  epoch  32/50  loss=0.7611  bal_acc=0.6198
+  epoch  33/50  loss=0.7483  bal_acc=0.6372
+  epoch  34/50  loss=0.7332  bal_acc=0.6250
+  epoch  35/50  loss=0.7163  bal_acc=0.6128
+  epoch  36/50  loss=0.7052  bal_acc=0.6215
+  epoch  37/50  loss=0.6945  bal_acc=0.6250
+  epoch  38/50  loss=0.6828  bal_acc=0.6146
+  epoch  39/50  loss=0.6709  bal_acc=0.6181
+  epoch  40/50  loss=0.6615  bal_acc=0.6233
+  epoch  41/50  loss=0.6476  bal_acc=0.6319
+  epoch  42/50  loss=0.6423  bal_acc=0.6285
+  epoch  43/50  loss=0.6253  bal_acc=0.6285
+  epoch  44/50  loss=0.6184  bal_acc=0.6424
+  epoch  45/50  loss=0.6020  bal_acc=0.6406
+  epoch  46/50  loss=0.5943  bal_acc=0.6441
+  epoch  47/50  loss=0.5859  bal_acc=0.6424
+  epoch  48/50  loss=0.5713  bal_acc=0.6493
+  epoch  49/50  loss=0.5652  bal_acc=0.6528
+  epoch  50/50  loss=0.5604  bal_acc=0.6372
+  [LOSO 7/9] subject 6: acc=0.6372  running_mean=0.5270
+
+=== LOSO (hold out subject 7) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 51,188
+  epoch   1/50  loss=1.3797  bal_acc=0.3142
+  epoch   2/50  loss=1.3510  bal_acc=0.3559
+  epoch   3/50  loss=1.3224  bal_acc=0.3663
+  epoch   4/50  loss=1.2967  bal_acc=0.3854
+  epoch   5/50  loss=1.2671  bal_acc=0.3993
+  epoch   6/50  loss=1.2399  bal_acc=0.3941
+  epoch   7/50  loss=1.2156  bal_acc=0.4201
+  epoch   8/50  loss=1.1882  bal_acc=0.4288
+  epoch   9/50  loss=1.1605  bal_acc=0.4375
+  epoch  10/50  loss=1.1297  bal_acc=0.4722
+  epoch  11/50  loss=1.0958  bal_acc=0.4861
+  epoch  12/50  loss=1.0671  bal_acc=0.5035
+  epoch  13/50  loss=1.0419  bal_acc=0.5069
+  epoch  14/50  loss=1.0149  bal_acc=0.5174
+  epoch  15/50  loss=0.9947  bal_acc=0.5122
+  epoch  16/50  loss=0.9722  bal_acc=0.5156
+  epoch  17/50  loss=0.9491  bal_acc=0.5347
+  epoch  18/50  loss=0.9355  bal_acc=0.5278
+  epoch  19/50  loss=0.9212  bal_acc=0.5399
+  epoch  20/50  loss=0.9020  bal_acc=0.5399
+  epoch  21/50  loss=0.8852  bal_acc=0.5330
+  epoch  22/50  loss=0.8702  bal_acc=0.5295
+  epoch  23/50  loss=0.8574  bal_acc=0.5417
+  epoch  24/50  loss=0.8399  bal_acc=0.5816
+  epoch  25/50  loss=0.8245  bal_acc=0.5538
+  epoch  26/50  loss=0.8123  bal_acc=0.5799
+  epoch  27/50  loss=0.7979  bal_acc=0.5833
+  epoch  28/50  loss=0.7874  bal_acc=0.5677
+  epoch  29/50  loss=0.7712  bal_acc=0.5781
+  epoch  30/50  loss=0.7638  bal_acc=0.5816
+  epoch  31/50  loss=0.7475  bal_acc=0.5712
+  epoch  32/50  loss=0.7372  bal_acc=0.6198
+  epoch  33/50  loss=0.7264  bal_acc=0.6059
+  epoch  34/50  loss=0.7122  bal_acc=0.5990
+  epoch  35/50  loss=0.7018  bal_acc=0.5990
+  epoch  36/50  loss=0.6885  bal_acc=0.6094
+  epoch  37/50  loss=0.6780  bal_acc=0.5903
+  epoch  38/50  loss=0.6663  bal_acc=0.5972
+  epoch  39/50  loss=0.6601  bal_acc=0.6059
+  epoch  40/50  loss=0.6425  bal_acc=0.5972
+  epoch  41/50  loss=0.6398  bal_acc=0.6146
+  epoch  42/50  loss=0.6278  bal_acc=0.6076
+  epoch  43/50  loss=0.6197  bal_acc=0.6319
+  epoch  44/50  loss=0.6084  bal_acc=0.6146
+  epoch  45/50  loss=0.6045  bal_acc=0.6163
+  epoch  46/50  loss=0.5938  bal_acc=0.6111
+  epoch  47/50  loss=0.5825  bal_acc=0.6146
+  epoch  48/50  loss=0.5750  bal_acc=0.6233
+  epoch  49/50  loss=0.5643  bal_acc=0.6354
+  epoch  50/50  loss=0.5613  bal_acc=0.6198
+  [LOSO 8/9] subject 7: acc=0.6198  running_mean=0.5386
+
+=== LOSO (hold out subject 8) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 51,188
+  epoch   1/50  loss=1.3796  bal_acc=0.3056
+  epoch   2/50  loss=1.3488  bal_acc=0.3160
+  epoch   3/50  loss=1.3225  bal_acc=0.3420
+  epoch   4/50  loss=1.2909  bal_acc=0.3333
+  epoch   5/50  loss=1.2668  bal_acc=0.3229
+  epoch   6/50  loss=1.2422  bal_acc=0.3351
+  epoch   7/50  loss=1.2198  bal_acc=0.3507
+  epoch   8/50  loss=1.1943  bal_acc=0.3854
+  epoch   9/50  loss=1.1713  bal_acc=0.3837
+  epoch  10/50  loss=1.1402  bal_acc=0.3681
+  epoch  11/50  loss=1.1117  bal_acc=0.4010
+  epoch  12/50  loss=1.0850  bal_acc=0.4097
+  epoch  13/50  loss=1.0525  bal_acc=0.4340
+  epoch  14/50  loss=1.0313  bal_acc=0.4410
+  epoch  15/50  loss=1.0095  bal_acc=0.4462
+  epoch  16/50  loss=0.9921  bal_acc=0.4531
+  epoch  17/50  loss=0.9709  bal_acc=0.4531
+  epoch  18/50  loss=0.9511  bal_acc=0.4566
+  epoch  19/50  loss=0.9371  bal_acc=0.4549
+  epoch  20/50  loss=0.9203  bal_acc=0.4757
+  epoch  21/50  loss=0.9031  bal_acc=0.4601
+  epoch  22/50  loss=0.8906  bal_acc=0.4514
+  epoch  23/50  loss=0.8755  bal_acc=0.4497
+  epoch  24/50  loss=0.8623  bal_acc=0.4618
+  epoch  25/50  loss=0.8440  bal_acc=0.4462
+  epoch  26/50  loss=0.8339  bal_acc=0.4514
+  epoch  27/50  loss=0.8160  bal_acc=0.4340
+  epoch  28/50  loss=0.8099  bal_acc=0.4497
+  epoch  29/50  loss=0.7924  bal_acc=0.4601
+  epoch  30/50  loss=0.7783  bal_acc=0.4514
+  epoch  31/50  loss=0.7687  bal_acc=0.4514
+  epoch  32/50  loss=0.7613  bal_acc=0.4531
+  epoch  33/50  loss=0.7462  bal_acc=0.4670
+  epoch  34/50  loss=0.7299  bal_acc=0.4740
+  epoch  35/50  loss=0.7235  bal_acc=0.4566
+  epoch  36/50  loss=0.7153  bal_acc=0.4688
+  epoch  37/50  loss=0.6990  bal_acc=0.4635
+  epoch  38/50  loss=0.6929  bal_acc=0.4583
+  epoch  39/50  loss=0.6814  bal_acc=0.4774
+  epoch  40/50  loss=0.6720  bal_acc=0.4722
+  epoch  41/50  loss=0.6605  bal_acc=0.4670
+  epoch  42/50  loss=0.6518  bal_acc=0.4618
+  epoch  43/50  loss=0.6432  bal_acc=0.4670
+  epoch  44/50  loss=0.6314  bal_acc=0.4688
+  epoch  45/50  loss=0.6225  bal_acc=0.4844
+  epoch  46/50  loss=0.6152  bal_acc=0.4792
+  epoch  47/50  loss=0.6083  bal_acc=0.4792
+  epoch  48/50  loss=0.5967  bal_acc=0.4809
+  epoch  49/50  loss=0.5900  bal_acc=0.4809
+  epoch  50/50  loss=0.5887  bal_acc=0.4792
+  [LOSO 9/9] subject 8: acc=0.4792  running_mean=0.5320
+Results saved to results/BNCI2014_001/results_trial_60.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 60 done (state=COMPLETE, value=0.5320216049382717) -- 56 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 10,192
+  epoch   1/50  loss=1.3298  bal_acc=0.4497
+  epoch   2/50  loss=1.1084  bal_acc=0.4878
+  epoch   3/50  loss=1.0001  bal_acc=0.5434
+  epoch   4/50  loss=0.8993  bal_acc=0.5295
+  epoch   5/50  loss=0.7993  bal_acc=0.5260
+  epoch   6/50  loss=0.7493  bal_acc=0.5226
+  epoch   7/50  loss=0.7041  bal_acc=0.5677
+  epoch   8/50  loss=0.6686  bal_acc=0.5312
+  epoch   9/50  loss=0.6362  bal_acc=0.5399
+  epoch  10/50  loss=0.5858  bal_acc=0.5642
+  epoch  11/50  loss=0.5677  bal_acc=0.5677
+  epoch  12/50  loss=0.5280  bal_acc=0.5608
+  epoch  13/50  loss=0.5312  bal_acc=0.5434
+  epoch  14/50  loss=0.4928  bal_acc=0.5417
+  epoch  15/50  loss=0.4873  bal_acc=0.5660
+  epoch  16/50  loss=0.4712  bal_acc=0.5972
+  epoch  17/50  loss=0.4642  bal_acc=0.5712
+  epoch  18/50  loss=0.4473  bal_acc=0.5642
+  epoch  19/50  loss=0.4084  bal_acc=0.5295
+  epoch  20/50  loss=0.4040  bal_acc=0.5382
+  epoch  21/50  loss=0.4071  bal_acc=0.5573
+  epoch  22/50  loss=0.3923  bal_acc=0.5608
+  epoch  23/50  loss=0.3870  bal_acc=0.5260
+  epoch  24/50  loss=0.3635  bal_acc=0.5573
+  epoch  25/50  loss=0.3480  bal_acc=0.5538
+  epoch  26/50  loss=0.3689  bal_acc=0.5625
+  epoch  27/50  loss=0.3738  bal_acc=0.5573
+  epoch  28/50  loss=0.3434  bal_acc=0.5174
+  epoch  29/50  loss=0.3427  bal_acc=0.5174
+  epoch  30/50  loss=0.3195  bal_acc=0.5503
+  epoch  31/50  loss=0.3470  bal_acc=0.5191
+  epoch  32/50  loss=0.3070  bal_acc=0.5608
+  epoch  33/50  loss=0.3060  bal_acc=0.5538
+  epoch  34/50  loss=0.2879  bal_acc=0.5556
+  epoch  35/50  loss=0.2837  bal_acc=0.5469
+  epoch  36/50  loss=0.2878  bal_acc=0.5365
+  epoch  37/50  loss=0.2821  bal_acc=0.5729
+  epoch  38/50  loss=0.2859  bal_acc=0.5538
+  epoch  39/50  loss=0.2871  bal_acc=0.5278
+  epoch  40/50  loss=0.2663  bal_acc=0.5312
+  epoch  41/50  loss=0.2695  bal_acc=0.5521
+  epoch  42/50  loss=0.2858  bal_acc=0.5556
+  epoch  43/50  loss=0.2516  bal_acc=0.5764
+  epoch  44/50  loss=0.2602  bal_acc=0.5208
+  epoch  45/50  loss=0.2687  bal_acc=0.5312
+  epoch  46/50  loss=0.2934  bal_acc=0.5156
+  epoch  47/50  loss=0.2413  bal_acc=0.5608
+  epoch  48/50  loss=0.2532  bal_acc=0.5538
+  epoch  49/50  loss=0.2546  bal_acc=0.5191
+  epoch  50/50  loss=0.2423  bal_acc=0.5365
+  [LOSO 1/9] subject 0: acc=0.5365  running_mean=0.5365
+
+=== LOSO (hold out subject 1) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 10,192
+  epoch   1/50  loss=1.2948  bal_acc=0.3906
+  epoch   2/50  loss=1.0501  bal_acc=0.4184
+  epoch   3/50  loss=0.9087  bal_acc=0.3993
+  epoch   4/50  loss=0.8381  bal_acc=0.4410
+  epoch   5/50  loss=0.7637  bal_acc=0.4271
+  epoch   6/50  loss=0.7237  bal_acc=0.4358
+  epoch   7/50  loss=0.6604  bal_acc=0.4306
+  epoch   8/50  loss=0.6153  bal_acc=0.4253
+  epoch   9/50  loss=0.5796  bal_acc=0.4809
+  epoch  10/50  loss=0.5400  bal_acc=0.4062
+  epoch  11/50  loss=0.5329  bal_acc=0.4201
+  epoch  12/50  loss=0.5082  bal_acc=0.4219
+  epoch  13/50  loss=0.4907  bal_acc=0.4497
+  epoch  14/50  loss=0.4611  bal_acc=0.4497
+  epoch  15/50  loss=0.4606  bal_acc=0.4705
+  epoch  16/50  loss=0.4405  bal_acc=0.4444
+  epoch  17/50  loss=0.4141  bal_acc=0.4462
+  epoch  18/50  loss=0.3977  bal_acc=0.4462
+  epoch  19/50  loss=0.3714  bal_acc=0.4219
+  epoch  20/50  loss=0.3804  bal_acc=0.4722
+  epoch  21/50  loss=0.3592  bal_acc=0.4306
+  epoch  22/50  loss=0.3766  bal_acc=0.4462
+  epoch  23/50  loss=0.3537  bal_acc=0.4010
+  epoch  24/50  loss=0.3518  bal_acc=0.4010
+  epoch  25/50  loss=0.3181  bal_acc=0.4392
+  epoch  26/50  loss=0.3135  bal_acc=0.4531
+  epoch  27/50  loss=0.2925  bal_acc=0.4097
+  epoch  28/50  loss=0.3086  bal_acc=0.4549
+  epoch  29/50  loss=0.2994  bal_acc=0.4201
+  epoch  30/50  loss=0.3082  bal_acc=0.4288
+  epoch  31/50  loss=0.2736  bal_acc=0.4514
+  epoch  32/50  loss=0.2695  bal_acc=0.4392
+  epoch  33/50  loss=0.2671  bal_acc=0.4253
+  epoch  34/50  loss=0.2880  bal_acc=0.4410
+  epoch  35/50  loss=0.2604  bal_acc=0.4410
+  epoch  36/50  loss=0.2583  bal_acc=0.4479
+  epoch  37/50  loss=0.2608  bal_acc=0.4497
+  epoch  38/50  loss=0.2700  bal_acc=0.4097
+  epoch  39/50  loss=0.2297  bal_acc=0.4392
+  epoch  40/50  loss=0.2508  bal_acc=0.4375
+  epoch  41/50  loss=0.2511  bal_acc=0.4479
+  epoch  42/50  loss=0.2614  bal_acc=0.4149
+  epoch  43/50  loss=0.2623  bal_acc=0.4236
+  epoch  44/50  loss=0.2392  bal_acc=0.4167
+  epoch  45/50  loss=0.2169  bal_acc=0.4375
+  epoch  46/50  loss=0.2203  bal_acc=0.4323
+  epoch  47/50  loss=0.2300  bal_acc=0.4149
+  epoch  48/50  loss=0.2254  bal_acc=0.4479
+  epoch  49/50  loss=0.2317  bal_acc=0.4288
+  epoch  50/50  loss=0.2302  bal_acc=0.4549
+  [LOSO 2/9] subject 1: acc=0.4549  running_mean=0.4957
+
+=== LOSO (hold out subject 2) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 10,192
+  epoch   1/50  loss=1.3314  bal_acc=0.4618
+  epoch   2/50  loss=1.1331  bal_acc=0.5660
+  epoch   3/50  loss=1.0029  bal_acc=0.5885
+  epoch   4/50  loss=0.9297  bal_acc=0.5781
+  epoch   5/50  loss=0.8567  bal_acc=0.6858
+  epoch   6/50  loss=0.7929  bal_acc=0.6562
+  epoch   7/50  loss=0.7486  bal_acc=0.6424
+  epoch   8/50  loss=0.7072  bal_acc=0.6493
+  epoch   9/50  loss=0.6748  bal_acc=0.6892
+  epoch  10/50  loss=0.6610  bal_acc=0.6493
+  epoch  11/50  loss=0.6133  bal_acc=0.5955
+  epoch  12/50  loss=0.5975  bal_acc=0.6528
+  epoch  13/50  loss=0.5712  bal_acc=0.6649
+  epoch  14/50  loss=0.5524  bal_acc=0.6684
+  epoch  15/50  loss=0.5148  bal_acc=0.6476
+  epoch  16/50  loss=0.5221  bal_acc=0.6215
+  epoch  17/50  loss=0.5007  bal_acc=0.6215
+  epoch  18/50  loss=0.4641  bal_acc=0.6806
+  epoch  19/50  loss=0.4670  bal_acc=0.6667
+  epoch  20/50  loss=0.4442  bal_acc=0.6354
+  epoch  21/50  loss=0.4222  bal_acc=0.6788
+  epoch  22/50  loss=0.4400  bal_acc=0.6944
+  epoch  23/50  loss=0.4349  bal_acc=0.7031
+  epoch  24/50  loss=0.4269  bal_acc=0.6267
+  epoch  25/50  loss=0.4034  bal_acc=0.6840
+  epoch  26/50  loss=0.3832  bal_acc=0.6771
+  epoch  27/50  loss=0.3982  bal_acc=0.6458
+  epoch  28/50  loss=0.3486  bal_acc=0.6267
+  epoch  29/50  loss=0.3695  bal_acc=0.6858
+  epoch  30/50  loss=0.3624  bal_acc=0.6667
+  epoch  31/50  loss=0.3516  bal_acc=0.6632
+  epoch  32/50  loss=0.3432  bal_acc=0.6632
+  epoch  33/50  loss=0.3428  bal_acc=0.6753
+  epoch  34/50  loss=0.3569  bal_acc=0.6545
+  epoch  35/50  loss=0.3628  bal_acc=0.6580
+  epoch  36/50  loss=0.3441  bal_acc=0.6337
+  epoch  37/50  loss=0.3244  bal_acc=0.6424
+  epoch  38/50  loss=0.3290  bal_acc=0.6840
+  epoch  39/50  loss=0.3147  bal_acc=0.6580
+  epoch  40/50  loss=0.2947  bal_acc=0.6562
+  epoch  41/50  loss=0.2767  bal_acc=0.6215
+  epoch  42/50  loss=0.2943  bal_acc=0.6302
+  epoch  43/50  loss=0.2996  bal_acc=0.6701
+  epoch  44/50  loss=0.2854  bal_acc=0.6146
+  epoch  45/50  loss=0.3054  bal_acc=0.6840
+  epoch  46/50  loss=0.3066  bal_acc=0.6510
+  epoch  47/50  loss=0.2936  bal_acc=0.6823
+  epoch  48/50  loss=0.2923  bal_acc=0.6632
+  epoch  49/50  loss=0.2921  bal_acc=0.6562
+  epoch  50/50  loss=0.2690  bal_acc=0.6528
+  [LOSO 3/9] subject 2: acc=0.6528  running_mean=0.5480
+
+=== LOSO (hold out subject 3) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 10,192
+  epoch   1/50  loss=1.3254  bal_acc=0.3663
+  epoch   2/50  loss=1.1195  bal_acc=0.4306
+  epoch   3/50  loss=0.9845  bal_acc=0.3854
+  epoch   4/50  loss=0.8667  bal_acc=0.3993
+  epoch   5/50  loss=0.7811  bal_acc=0.3767
+  epoch   6/50  loss=0.7232  bal_acc=0.4583
+  epoch   7/50  loss=0.6971  bal_acc=0.4271
+  epoch   8/50  loss=0.6444  bal_acc=0.4306
+  epoch   9/50  loss=0.6030  bal_acc=0.4392
+  epoch  10/50  loss=0.5819  bal_acc=0.4618
+  epoch  11/50  loss=0.5664  bal_acc=0.4653
+  epoch  12/50  loss=0.5317  bal_acc=0.4375
+  epoch  13/50  loss=0.5205  bal_acc=0.4323
+  epoch  14/50  loss=0.4826  bal_acc=0.3889
+  epoch  15/50  loss=0.4626  bal_acc=0.4132
+  epoch  16/50  loss=0.4656  bal_acc=0.3941
+  epoch  17/50  loss=0.4376  bal_acc=0.4462
+  epoch  18/50  loss=0.4112  bal_acc=0.4358
+  epoch  19/50  loss=0.3888  bal_acc=0.4358
+  epoch  20/50  loss=0.3882  bal_acc=0.4410
+  epoch  21/50  loss=0.3777  bal_acc=0.4444
+  epoch  22/50  loss=0.3816  bal_acc=0.4219
+  epoch  23/50  loss=0.3627  bal_acc=0.4462
+  epoch  24/50  loss=0.3556  bal_acc=0.4253
+  epoch  25/50  loss=0.3514  bal_acc=0.3854
+  epoch  26/50  loss=0.3429  bal_acc=0.4184
+  epoch  27/50  loss=0.3135  bal_acc=0.4271
+  epoch  28/50  loss=0.3448  bal_acc=0.4115
+  epoch  29/50  loss=0.3213  bal_acc=0.3941
+  epoch  30/50  loss=0.3238  bal_acc=0.3924
+  epoch  31/50  loss=0.3244  bal_acc=0.4184
+  epoch  32/50  loss=0.3059  bal_acc=0.4427
+  epoch  33/50  loss=0.2883  bal_acc=0.4358
+  epoch  34/50  loss=0.2887  bal_acc=0.4132
+  epoch  35/50  loss=0.2878  bal_acc=0.3750
+  epoch  36/50  loss=0.2592  bal_acc=0.4063
+  epoch  37/50  loss=0.3116  bal_acc=0.4497
+  epoch  38/50  loss=0.2583  bal_acc=0.4080
+  epoch  39/50  loss=0.2711  bal_acc=0.4184
+  epoch  40/50  loss=0.2545  bal_acc=0.3958
+  epoch  41/50  loss=0.2662  bal_acc=0.4236
+  epoch  42/50  loss=0.2927  bal_acc=0.3819
+  epoch  43/50  loss=0.2722  bal_acc=0.4201
+  epoch  44/50  loss=0.2739  bal_acc=0.4253
+  epoch  45/50  loss=0.2602  bal_acc=0.4288
+  epoch  46/50  loss=0.2542  bal_acc=0.4549
+  epoch  47/50  loss=0.2578  bal_acc=0.3819
+  epoch  48/50  loss=0.2569  bal_acc=0.4201
+  epoch  49/50  loss=0.2598  bal_acc=0.3889
+  epoch  50/50  loss=0.2401  bal_acc=0.3802
+  [LOSO 4/9] subject 3: acc=0.3802  running_mean=0.5061
+
+=== LOSO (hold out subject 4) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 10,192
+  epoch   1/50  loss=1.2994  bal_acc=0.3247
+  epoch   2/50  loss=1.1019  bal_acc=0.3785
+  epoch   3/50  loss=0.9532  bal_acc=0.4549
+  epoch   4/50  loss=0.8405  bal_acc=0.4462
+  epoch   5/50  loss=0.7841  bal_acc=0.4514
+  epoch   6/50  loss=0.7126  bal_acc=0.4288
+  epoch   7/50  loss=0.6629  bal_acc=0.4375
+  epoch   8/50  loss=0.6263  bal_acc=0.4635
+  epoch   9/50  loss=0.6042  bal_acc=0.4566
+  epoch  10/50  loss=0.5860  bal_acc=0.4358
+  epoch  11/50  loss=0.5338  bal_acc=0.4219
+  epoch  12/50  loss=0.5137  bal_acc=0.4514
+  epoch  13/50  loss=0.4925  bal_acc=0.3889
+  epoch  14/50  loss=0.4926  bal_acc=0.5069
+  epoch  15/50  loss=0.4469  bal_acc=0.4861
+  epoch  16/50  loss=0.4576  bal_acc=0.4670
+  epoch  17/50  loss=0.4234  bal_acc=0.4479
+  epoch  18/50  loss=0.3975  bal_acc=0.4566
+  epoch  19/50  loss=0.4123  bal_acc=0.4514
+  epoch  20/50  loss=0.3643  bal_acc=0.5087
+  epoch  21/50  loss=0.3767  bal_acc=0.4462
+  epoch  22/50  loss=0.3820  bal_acc=0.4514
+  epoch  23/50  loss=0.3550  bal_acc=0.4965
+  epoch  24/50  loss=0.3570  bal_acc=0.4670
+  epoch  25/50  loss=0.3524  bal_acc=0.4462
+  epoch  26/50  loss=0.3210  bal_acc=0.4861
+  epoch  27/50  loss=0.3346  bal_acc=0.5052
+  epoch  28/50  loss=0.3367  bal_acc=0.4427
+  epoch  29/50  loss=0.3084  bal_acc=0.4601
+  epoch  30/50  loss=0.3043  bal_acc=0.5139
+  epoch  31/50  loss=0.2846  bal_acc=0.4931
+  epoch  32/50  loss=0.2925  bal_acc=0.5035
+  epoch  33/50  loss=0.2911  bal_acc=0.4774
+  epoch  34/50  loss=0.2938  bal_acc=0.4896
+  epoch  35/50  loss=0.2903  bal_acc=0.5226
+  epoch  36/50  loss=0.2857  bal_acc=0.4635
+  epoch  37/50  loss=0.2671  bal_acc=0.4410
+  epoch  38/50  loss=0.2809  bal_acc=0.4774
+  epoch  39/50  loss=0.2617  bal_acc=0.4844
+  epoch  40/50  loss=0.2723  bal_acc=0.4965
+  epoch  41/50  loss=0.2319  bal_acc=0.4497
+  epoch  42/50  loss=0.2691  bal_acc=0.4826
+  epoch  43/50  loss=0.2407  bal_acc=0.4896
+  epoch  44/50  loss=0.2481  bal_acc=0.4774
+  epoch  45/50  loss=0.2474  bal_acc=0.4531
+  epoch  46/50  loss=0.2361  bal_acc=0.4497
+  epoch  47/50  loss=0.2643  bal_acc=0.4271
+  epoch  48/50  loss=0.2486  bal_acc=0.4931
+  epoch  49/50  loss=0.2591  bal_acc=0.4705
+  epoch  50/50  loss=0.2490  bal_acc=0.4740
+  [LOSO 5/9] subject 4: acc=0.4740  running_mean=0.4997
+
+=== LOSO (hold out subject 5) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 10,192
+  epoch   1/50  loss=1.2779  bal_acc=0.4167
+  epoch   2/50  loss=1.0472  bal_acc=0.4740
+  epoch   3/50  loss=0.9328  bal_acc=0.3958
+  epoch   4/50  loss=0.8438  bal_acc=0.4514
+  epoch   5/50  loss=0.7615  bal_acc=0.4253
+  epoch   6/50  loss=0.7276  bal_acc=0.3924
+  epoch   7/50  loss=0.6710  bal_acc=0.4132
+  epoch   8/50  loss=0.6320  bal_acc=0.4010
+  epoch   9/50  loss=0.5932  bal_acc=0.4462
+  epoch  10/50  loss=0.5595  bal_acc=0.4497
+  epoch  11/50  loss=0.5456  bal_acc=0.4201
+  epoch  12/50  loss=0.5136  bal_acc=0.4497
+  epoch  13/50  loss=0.4963  bal_acc=0.4653
+  epoch  14/50  loss=0.4800  bal_acc=0.5226
+  epoch  15/50  loss=0.4526  bal_acc=0.3802
+  epoch  16/50  loss=0.4507  bal_acc=0.4167
+  epoch  17/50  loss=0.4360  bal_acc=0.4236
+  epoch  18/50  loss=0.4150  bal_acc=0.4549
+  epoch  19/50  loss=0.3971  bal_acc=0.3993
+  epoch  20/50  loss=0.3911  bal_acc=0.4427
+  epoch  21/50  loss=0.3734  bal_acc=0.4340
+  epoch  22/50  loss=0.3644  bal_acc=0.4392
+  epoch  23/50  loss=0.3388  bal_acc=0.4444
+  epoch  24/50  loss=0.3257  bal_acc=0.4688
+  epoch  25/50  loss=0.3192  bal_acc=0.4080
+  epoch  26/50  loss=0.3268  bal_acc=0.3872
+  epoch  27/50  loss=0.3154  bal_acc=0.4444
+  epoch  28/50  loss=0.3319  bal_acc=0.4028
+  epoch  29/50  loss=0.2784  bal_acc=0.4358
+  epoch  30/50  loss=0.2905  bal_acc=0.4653
+  epoch  31/50  loss=0.3116  bal_acc=0.4323
+  epoch  32/50  loss=0.2806  bal_acc=0.4444
+  epoch  33/50  loss=0.2742  bal_acc=0.4410
+  epoch  34/50  loss=0.3176  bal_acc=0.4219
+  epoch  35/50  loss=0.2880  bal_acc=0.4323
+  epoch  36/50  loss=0.2686  bal_acc=0.4184
+  epoch  37/50  loss=0.2661  bal_acc=0.4306
+  epoch  38/50  loss=0.2800  bal_acc=0.3976
+  epoch  39/50  loss=0.2806  bal_acc=0.3872
+  epoch  40/50  loss=0.2521  bal_acc=0.4410
+  epoch  41/50  loss=0.2592  bal_acc=0.4323
+  epoch  42/50  loss=0.2421  bal_acc=0.4410
+  epoch  43/50  loss=0.2516  bal_acc=0.4340
+  epoch  44/50  loss=0.2208  bal_acc=0.4149
+  epoch  45/50  loss=0.2272  bal_acc=0.4323
+  epoch  46/50  loss=0.2194  bal_acc=0.4497
+  epoch  47/50  loss=0.2536  bal_acc=0.4375
+  epoch  48/50  loss=0.2283  bal_acc=0.4132
+  epoch  49/50  loss=0.2244  bal_acc=0.4253
+  epoch  50/50  loss=0.2175  bal_acc=0.4097
+  [LOSO 6/9] subject 5: acc=0.4097  running_mean=0.4847
+
+=== LOSO (hold out subject 6) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 10,192
+  epoch   1/50  loss=1.3481  bal_acc=0.4132
+  epoch   2/50  loss=1.0986  bal_acc=0.5434
+  epoch   3/50  loss=0.9460  bal_acc=0.5243
+  epoch   4/50  loss=0.8539  bal_acc=0.6128
+  epoch   5/50  loss=0.7706  bal_acc=0.6181
+  epoch   6/50  loss=0.7274  bal_acc=0.5938
+  epoch   7/50  loss=0.6850  bal_acc=0.6128
+  epoch   8/50  loss=0.6614  bal_acc=0.5868
+  epoch   9/50  loss=0.6172  bal_acc=0.6042
+  epoch  10/50  loss=0.5990  bal_acc=0.6372
+  epoch  11/50  loss=0.5747  bal_acc=0.5799
+  epoch  12/50  loss=0.5346  bal_acc=0.5903
+  epoch  13/50  loss=0.5394  bal_acc=0.5538
+  epoch  14/50  loss=0.5163  bal_acc=0.5938
+  epoch  15/50  loss=0.4858  bal_acc=0.5556
+  epoch  16/50  loss=0.4802  bal_acc=0.5938
+  epoch  17/50  loss=0.4591  bal_acc=0.5885
+  epoch  18/50  loss=0.4502  bal_acc=0.5781
+  epoch  19/50  loss=0.4334  bal_acc=0.5781
+  epoch  20/50  loss=0.4210  bal_acc=0.5712
+  epoch  21/50  loss=0.4195  bal_acc=0.6007
+  epoch  22/50  loss=0.4145  bal_acc=0.5781
+  epoch  23/50  loss=0.4121  bal_acc=0.6007
+  epoch  24/50  loss=0.3956  bal_acc=0.5955
+  epoch  25/50  loss=0.3636  bal_acc=0.6233
+  epoch  26/50  loss=0.3415  bal_acc=0.6198
+  epoch  27/50  loss=0.3535  bal_acc=0.5990
+  epoch  28/50  loss=0.3493  bal_acc=0.6059
+  epoch  29/50  loss=0.3420  bal_acc=0.5851
+  epoch  30/50  loss=0.3785  bal_acc=0.5903
+  epoch  31/50  loss=0.3326  bal_acc=0.5833
+  epoch  32/50  loss=0.3249  bal_acc=0.5920
+  epoch  33/50  loss=0.3158  bal_acc=0.5851
+  epoch  34/50  loss=0.3261  bal_acc=0.5851
+  epoch  35/50  loss=0.3120  bal_acc=0.5816
+  epoch  36/50  loss=0.3012  bal_acc=0.5990
+  epoch  37/50  loss=0.3116  bal_acc=0.5642
+  epoch  38/50  loss=0.3036  bal_acc=0.6215
+  epoch  39/50  loss=0.2909  bal_acc=0.5729
+  epoch  40/50  loss=0.2822  bal_acc=0.5278
+  epoch  41/50  loss=0.3056  bal_acc=0.6059
+  epoch  42/50  loss=0.2843  bal_acc=0.6024
+  epoch  43/50  loss=0.2832  bal_acc=0.5868
+  epoch  44/50  loss=0.2879  bal_acc=0.6094
+  epoch  45/50  loss=0.2621  bal_acc=0.6111
+  epoch  46/50  loss=0.2494  bal_acc=0.6007
+  epoch  47/50  loss=0.2939  bal_acc=0.6024
+  epoch  48/50  loss=0.2663  bal_acc=0.5990
+  epoch  49/50  loss=0.2653  bal_acc=0.5851
+  epoch  50/50  loss=0.2641  bal_acc=0.5885
+  [LOSO 7/9] subject 6: acc=0.5885  running_mean=0.4995
+
+=== LOSO (hold out subject 7) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 10,192
+  epoch   1/50  loss=1.3018  bal_acc=0.4653
+  epoch   2/50  loss=1.1259  bal_acc=0.4809
+  epoch   3/50  loss=1.0110  bal_acc=0.5330
+  epoch   4/50  loss=0.9100  bal_acc=0.5816
+  epoch   5/50  loss=0.8438  bal_acc=0.5938
+  epoch   6/50  loss=0.7902  bal_acc=0.5747
+  epoch   7/50  loss=0.7411  bal_acc=0.5868
+  epoch   8/50  loss=0.6972  bal_acc=0.6354
+  epoch   9/50  loss=0.6519  bal_acc=0.5833
+  epoch  10/50  loss=0.6482  bal_acc=0.6181
+  epoch  11/50  loss=0.6039  bal_acc=0.6181
+  epoch  12/50  loss=0.5686  bal_acc=0.6163
+  epoch  13/50  loss=0.5646  bal_acc=0.6094
+  epoch  14/50  loss=0.5249  bal_acc=0.6319
+  epoch  15/50  loss=0.5091  bal_acc=0.6111
+  epoch  16/50  loss=0.5104  bal_acc=0.6146
+  epoch  17/50  loss=0.4713  bal_acc=0.6007
+  epoch  18/50  loss=0.4837  bal_acc=0.6163
+  epoch  19/50  loss=0.4423  bal_acc=0.6163
+  epoch  20/50  loss=0.4190  bal_acc=0.6076
+  epoch  21/50  loss=0.4368  bal_acc=0.6458
+  epoch  22/50  loss=0.4241  bal_acc=0.6250
+  epoch  23/50  loss=0.4180  bal_acc=0.6042
+  epoch  24/50  loss=0.4002  bal_acc=0.6302
+  epoch  25/50  loss=0.3987  bal_acc=0.5938
+  epoch  26/50  loss=0.3769  bal_acc=0.6215
+  epoch  27/50  loss=0.3759  bal_acc=0.6562
+  epoch  28/50  loss=0.3510  bal_acc=0.6215
+  epoch  29/50  loss=0.3568  bal_acc=0.6163
+  epoch  30/50  loss=0.3499  bal_acc=0.6319
+  epoch  31/50  loss=0.3364  bal_acc=0.6424
+  epoch  32/50  loss=0.3435  bal_acc=0.6146
+  epoch  33/50  loss=0.3348  bal_acc=0.6285
+  epoch  34/50  loss=0.3217  bal_acc=0.6215
+  epoch  35/50  loss=0.3222  bal_acc=0.6250
+  epoch  36/50  loss=0.3088  bal_acc=0.6215
+  epoch  37/50  loss=0.3057  bal_acc=0.6250
+  epoch  38/50  loss=0.3059  bal_acc=0.5903
+  epoch  39/50  loss=0.2922  bal_acc=0.6337
+  epoch  40/50  loss=0.3162  bal_acc=0.6372
+  epoch  41/50  loss=0.2932  bal_acc=0.6302
+  epoch  42/50  loss=0.2735  bal_acc=0.6389
+  epoch  43/50  loss=0.2688  bal_acc=0.6128
+  epoch  44/50  loss=0.2892  bal_acc=0.6285
+  epoch  45/50  loss=0.2899  bal_acc=0.5816
+  epoch  46/50  loss=0.3003  bal_acc=0.6059
+  epoch  47/50  loss=0.2528  bal_acc=0.6389
+  epoch  48/50  loss=0.2700  bal_acc=0.5799
+  epoch  49/50  loss=0.3096  bal_acc=0.6285
+  epoch  50/50  loss=0.2799  bal_acc=0.6163
+  [LOSO 8/9] subject 7: acc=0.6163  running_mean=0.5141
+
+=== LOSO (hold out subject 8) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 10,192
+  epoch   1/50  loss=1.2756  bal_acc=0.4514
+  epoch   2/50  loss=1.0534  bal_acc=0.5226
+  epoch   3/50  loss=0.9266  bal_acc=0.5538
+  epoch   4/50  loss=0.8415  bal_acc=0.5972
+  epoch   5/50  loss=0.7885  bal_acc=0.6146
+  epoch   6/50  loss=0.7462  bal_acc=0.5052
+  epoch   7/50  loss=0.6893  bal_acc=0.5764
+  epoch   8/50  loss=0.6726  bal_acc=0.5417
+  epoch   9/50  loss=0.6205  bal_acc=0.5642
+  epoch  10/50  loss=0.5923  bal_acc=0.5243
+  epoch  11/50  loss=0.5733  bal_acc=0.5104
+  epoch  12/50  loss=0.5575  bal_acc=0.5139
+  epoch  13/50  loss=0.5058  bal_acc=0.5677
+  epoch  14/50  loss=0.4978  bal_acc=0.5191
+  epoch  15/50  loss=0.5027  bal_acc=0.5938
+  epoch  16/50  loss=0.4676  bal_acc=0.5469
+  epoch  17/50  loss=0.4693  bal_acc=0.5278
+  epoch  18/50  loss=0.4413  bal_acc=0.5677
+  epoch  19/50  loss=0.4379  bal_acc=0.5365
+  epoch  20/50  loss=0.4125  bal_acc=0.5347
+  epoch  21/50  loss=0.3957  bal_acc=0.5642
+  epoch  22/50  loss=0.3761  bal_acc=0.5486
+  epoch  23/50  loss=0.3765  bal_acc=0.5556
+  epoch  24/50  loss=0.3533  bal_acc=0.5608
+  epoch  25/50  loss=0.3543  bal_acc=0.5868
+  epoch  26/50  loss=0.3476  bal_acc=0.5399
+  epoch  27/50  loss=0.3436  bal_acc=0.5382
+  epoch  28/50  loss=0.3279  bal_acc=0.5625
+  epoch  29/50  loss=0.3452  bal_acc=0.5694
+  epoch  30/50  loss=0.3510  bal_acc=0.5382
+  epoch  31/50  loss=0.3203  bal_acc=0.5677
+  epoch  32/50  loss=0.2999  bal_acc=0.5799
+  epoch  33/50  loss=0.2752  bal_acc=0.5538
+  epoch  34/50  loss=0.2875  bal_acc=0.5451
+  epoch  35/50  loss=0.2827  bal_acc=0.5990
+  epoch  36/50  loss=0.3105  bal_acc=0.5885
+  epoch  37/50  loss=0.3145  bal_acc=0.5417
+  epoch  38/50  loss=0.2955  bal_acc=0.5503
+  epoch  39/50  loss=0.2745  bal_acc=0.5590
+  epoch  40/50  loss=0.2559  bal_acc=0.5625
+  epoch  41/50  loss=0.2706  bal_acc=0.5434
+  epoch  42/50  loss=0.2625  bal_acc=0.5347
+  epoch  43/50  loss=0.2751  bal_acc=0.5590
+  epoch  44/50  loss=0.2590  bal_acc=0.5694
+  epoch  45/50  loss=0.2641  bal_acc=0.5521
+  epoch  46/50  loss=0.2650  bal_acc=0.5399
+  epoch  47/50  loss=0.2622  bal_acc=0.5434
+  epoch  48/50  loss=0.2453  bal_acc=0.5538
+  epoch  49/50  loss=0.2467  bal_acc=0.5833
+  epoch  50/50  loss=0.2407  bal_acc=0.5260
+  [LOSO 9/9] subject 8: acc=0.5260  running_mean=0.5154
+Results saved to results/BNCI2014_001/results_trial_66.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 66 done (state=COMPLETE, value=0.5154320987654322) -- 59 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 9,388
+  epoch   1/50  loss=1.3319  bal_acc=0.3628
+  epoch   2/50  loss=1.1287  bal_acc=0.5417
+  epoch   3/50  loss=0.9806  bal_acc=0.5608
+  epoch   4/50  loss=0.8767  bal_acc=0.6128
+  epoch   5/50  loss=0.8071  bal_acc=0.5851
+  epoch   6/50  loss=0.7489  bal_acc=0.5503
+  epoch   7/50  loss=0.7145  bal_acc=0.6024
+  epoch   8/50  loss=0.6731  bal_acc=0.6007
+  epoch   9/50  loss=0.6399  bal_acc=0.6389
+  epoch  10/50  loss=0.6159  bal_acc=0.6267
+  epoch  11/50  loss=0.5855  bal_acc=0.6337
+  epoch  12/50  loss=0.5749  bal_acc=0.5955
+  epoch  13/50  loss=0.5544  bal_acc=0.6372
+  epoch  14/50  loss=0.5259  bal_acc=0.6302
+  epoch  15/50  loss=0.5108  bal_acc=0.5990
+  epoch  16/50  loss=0.4892  bal_acc=0.6337
+  epoch  17/50  loss=0.4818  bal_acc=0.6024
+  epoch  18/50  loss=0.4727  bal_acc=0.6128
+  epoch  19/50  loss=0.4600  bal_acc=0.6389
+  epoch  20/50  loss=0.4523  bal_acc=0.6111
+  epoch  21/50  loss=0.4283  bal_acc=0.6250
+  epoch  22/50  loss=0.4194  bal_acc=0.6094
+  epoch  23/50  loss=0.4036  bal_acc=0.6285
+  epoch  24/50  loss=0.3989  bal_acc=0.6146
+  epoch  25/50  loss=0.3918  bal_acc=0.6285
+  epoch  26/50  loss=0.3722  bal_acc=0.6042
+  epoch  27/50  loss=0.3749  bal_acc=0.6111
+  epoch  28/50  loss=0.3542  bal_acc=0.5955
+  epoch  29/50  loss=0.3555  bal_acc=0.6267
+  epoch  30/50  loss=0.3561  bal_acc=0.6111
+  epoch  31/50  loss=0.3468  bal_acc=0.6250
+  epoch  32/50  loss=0.3442  bal_acc=0.6267
+  epoch  33/50  loss=0.3415  bal_acc=0.6042
+  epoch  34/50  loss=0.3211  bal_acc=0.6198
+  epoch  35/50  loss=0.3080  bal_acc=0.6094
+  epoch  36/50  loss=0.3011  bal_acc=0.6163
+  epoch  37/50  loss=0.3036  bal_acc=0.6059
+  epoch  38/50  loss=0.2902  bal_acc=0.5990
+  epoch  39/50  loss=0.2786  bal_acc=0.5938
+  epoch  40/50  loss=0.2827  bal_acc=0.6059
+  epoch  41/50  loss=0.2718  bal_acc=0.6007
+  epoch  42/50  loss=0.2652  bal_acc=0.6094
+  epoch  43/50  loss=0.2589  bal_acc=0.6111
+  epoch  44/50  loss=0.2624  bal_acc=0.5955
+  epoch  45/50  loss=0.2441  bal_acc=0.6128
+  epoch  46/50  loss=0.2497  bal_acc=0.6024
+  epoch  47/50  loss=0.2578  bal_acc=0.6198
+  epoch  48/50  loss=0.2424  bal_acc=0.5990
+  epoch  49/50  loss=0.2308  bal_acc=0.5712
+  epoch  50/50  loss=0.2289  bal_acc=0.6042
+  [LOSO 1/9] subject 0: acc=0.6042  running_mean=0.6042
+
+=== LOSO (hold out subject 1) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 9,388
+  epoch   1/50  loss=1.3245  bal_acc=0.3542
+  epoch   2/50  loss=1.1244  bal_acc=0.3819
+  epoch   3/50  loss=0.9781  bal_acc=0.3837
+  epoch   4/50  loss=0.8625  bal_acc=0.4253
+  epoch   5/50  loss=0.7779  bal_acc=0.4444
+  epoch   6/50  loss=0.7197  bal_acc=0.4444
+  epoch   7/50  loss=0.6653  bal_acc=0.4288
+  epoch   8/50  loss=0.6210  bal_acc=0.4045
+  epoch   9/50  loss=0.5864  bal_acc=0.4444
+  epoch  10/50  loss=0.5612  bal_acc=0.4271
+  epoch  11/50  loss=0.5369  bal_acc=0.4358
+  epoch  12/50  loss=0.5230  bal_acc=0.4410
+  epoch  13/50  loss=0.4849  bal_acc=0.4618
+  epoch  14/50  loss=0.4674  bal_acc=0.4757
+  epoch  15/50  loss=0.4561  bal_acc=0.4392
+  epoch  16/50  loss=0.4439  bal_acc=0.4201
+  epoch  17/50  loss=0.4293  bal_acc=0.4497
+  epoch  18/50  loss=0.4210  bal_acc=0.4392
+  epoch  19/50  loss=0.4054  bal_acc=0.4826
+  epoch  20/50  loss=0.3837  bal_acc=0.4618
+  epoch  21/50  loss=0.3662  bal_acc=0.4896
+  epoch  22/50  loss=0.3702  bal_acc=0.4149
+  epoch  23/50  loss=0.3610  bal_acc=0.4566
+  epoch  24/50  loss=0.3416  bal_acc=0.4444
+  epoch  25/50  loss=0.3363  bal_acc=0.4427
+  epoch  26/50  loss=0.3265  bal_acc=0.4097
+  epoch  27/50  loss=0.3163  bal_acc=0.4479
+  epoch  28/50  loss=0.3067  bal_acc=0.4531
+  epoch  29/50  loss=0.3009  bal_acc=0.4288
+  epoch  30/50  loss=0.2923  bal_acc=0.4410
+  epoch  31/50  loss=0.2876  bal_acc=0.4271
+  epoch  32/50  loss=0.2828  bal_acc=0.4549
+  epoch  33/50  loss=0.2846  bal_acc=0.4201
+  epoch  34/50  loss=0.2681  bal_acc=0.4583
+  epoch  35/50  loss=0.2632  bal_acc=0.4549
+  epoch  36/50  loss=0.2604  bal_acc=0.4566
+  epoch  37/50  loss=0.2559  bal_acc=0.4392
+  epoch  38/50  loss=0.2467  bal_acc=0.4410
+  epoch  39/50  loss=0.2460  bal_acc=0.4392
+  epoch  40/50  loss=0.2371  bal_acc=0.4062
+  epoch  41/50  loss=0.2392  bal_acc=0.4427
+  epoch  42/50  loss=0.2203  bal_acc=0.4809
+  epoch  43/50  loss=0.2235  bal_acc=0.4410
+  epoch  44/50  loss=0.2083  bal_acc=0.4601
+  epoch  45/50  loss=0.2138  bal_acc=0.4444
+  epoch  46/50  loss=0.2146  bal_acc=0.4340
+  epoch  47/50  loss=0.2148  bal_acc=0.4514
+  epoch  48/50  loss=0.1913  bal_acc=0.4462
+  epoch  49/50  loss=0.1962  bal_acc=0.4375
+  epoch  50/50  loss=0.1959  bal_acc=0.4375
+  [LOSO 2/9] subject 1: acc=0.4375  running_mean=0.5208
+
+=== LOSO (hold out subject 2) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 9,388
+  epoch   1/50  loss=1.3198  bal_acc=0.4653
+  epoch   2/50  loss=1.1440  bal_acc=0.5069
+  epoch   3/50  loss=1.0303  bal_acc=0.5191
+  epoch   4/50  loss=0.9491  bal_acc=0.5938
+  epoch   5/50  loss=0.8824  bal_acc=0.5868
+  epoch   6/50  loss=0.8197  bal_acc=0.6076
+  epoch   7/50  loss=0.7717  bal_acc=0.6476
+  epoch   8/50  loss=0.7338  bal_acc=0.6667
+  epoch   9/50  loss=0.6992  bal_acc=0.6823
+  epoch  10/50  loss=0.6682  bal_acc=0.6684
+  epoch  11/50  loss=0.6396  bal_acc=0.6510
+  epoch  12/50  loss=0.6166  bal_acc=0.6962
+  epoch  13/50  loss=0.5930  bal_acc=0.6910
+  epoch  14/50  loss=0.5764  bal_acc=0.6944
+  epoch  15/50  loss=0.5527  bal_acc=0.6580
+  epoch  16/50  loss=0.5330  bal_acc=0.6944
+  epoch  17/50  loss=0.5181  bal_acc=0.7188
+  epoch  18/50  loss=0.5096  bal_acc=0.6910
+  epoch  19/50  loss=0.4869  bal_acc=0.7014
+  epoch  20/50  loss=0.4686  bal_acc=0.7118
+  epoch  21/50  loss=0.4633  bal_acc=0.6806
+  epoch  22/50  loss=0.4485  bal_acc=0.6406
+  epoch  23/50  loss=0.4315  bal_acc=0.7431
+  epoch  24/50  loss=0.4135  bal_acc=0.6458
+  epoch  25/50  loss=0.4135  bal_acc=0.7049
+  epoch  26/50  loss=0.4142  bal_acc=0.7049
+  epoch  27/50  loss=0.3877  bal_acc=0.7396
+  epoch  28/50  loss=0.3736  bal_acc=0.7205
+  epoch  29/50  loss=0.3684  bal_acc=0.7049
+  epoch  30/50  loss=0.3571  bal_acc=0.7101
+  epoch  31/50  loss=0.3587  bal_acc=0.7083
+  epoch  32/50  loss=0.3577  bal_acc=0.7292
+  epoch  33/50  loss=0.3576  bal_acc=0.7396
+  epoch  34/50  loss=0.3349  bal_acc=0.7153
+  epoch  35/50  loss=0.3335  bal_acc=0.7066
+  epoch  36/50  loss=0.3292  bal_acc=0.6979
+  epoch  37/50  loss=0.3083  bal_acc=0.7153
+  epoch  38/50  loss=0.3029  bal_acc=0.6910
+  epoch  39/50  loss=0.3009  bal_acc=0.6840
+  epoch  40/50  loss=0.3020  bal_acc=0.6944
+  epoch  41/50  loss=0.2954  bal_acc=0.6510
+  epoch  42/50  loss=0.2969  bal_acc=0.7031
+  epoch  43/50  loss=0.2791  bal_acc=0.7083
+  epoch  44/50  loss=0.2924  bal_acc=0.7188
+  epoch  45/50  loss=0.2850  bal_acc=0.6528
+  epoch  46/50  loss=0.2710  bal_acc=0.7049
+  epoch  47/50  loss=0.2638  bal_acc=0.6806
+  epoch  48/50  loss=0.2612  bal_acc=0.6858
+  epoch  49/50  loss=0.2650  bal_acc=0.7014
+  epoch  50/50  loss=0.2554  bal_acc=0.6649
+  [LOSO 3/9] subject 2: acc=0.6649  running_mean=0.5689
+
+=== LOSO (hold out subject 3) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 9,388
+  epoch   1/50  loss=1.3161  bal_acc=0.4010
+  epoch   2/50  loss=1.1344  bal_acc=0.4618
+  epoch   3/50  loss=1.0044  bal_acc=0.4601
+  epoch   4/50  loss=0.8914  bal_acc=0.4757
+  epoch   5/50  loss=0.8005  bal_acc=0.4931
+  epoch   6/50  loss=0.7431  bal_acc=0.4097
+  epoch   7/50  loss=0.7002  bal_acc=0.4479
+  epoch   8/50  loss=0.6580  bal_acc=0.5052
+  epoch   9/50  loss=0.6303  bal_acc=0.4462
+  epoch  10/50  loss=0.5959  bal_acc=0.4670
+  epoch  11/50  loss=0.5626  bal_acc=0.4705
+  epoch  12/50  loss=0.5417  bal_acc=0.4722
+  epoch  13/50  loss=0.5238  bal_acc=0.4635
+  epoch  14/50  loss=0.5119  bal_acc=0.4705
+  epoch  15/50  loss=0.4858  bal_acc=0.4583
+  epoch  16/50  loss=0.4650  bal_acc=0.4635
+  epoch  17/50  loss=0.4495  bal_acc=0.4983
+  epoch  18/50  loss=0.4356  bal_acc=0.4740
+  epoch  19/50  loss=0.4181  bal_acc=0.5035
+  epoch  20/50  loss=0.4048  bal_acc=0.5000
+  epoch  21/50  loss=0.4042  bal_acc=0.4948
+  epoch  22/50  loss=0.3854  bal_acc=0.4896
+  epoch  23/50  loss=0.3758  bal_acc=0.5035
+  epoch  24/50  loss=0.3678  bal_acc=0.4653
+  epoch  25/50  loss=0.3510  bal_acc=0.5052
+  epoch  26/50  loss=0.3384  bal_acc=0.5104
+  epoch  27/50  loss=0.3275  bal_acc=0.5035
+  epoch  28/50  loss=0.3220  bal_acc=0.4861
+  epoch  29/50  loss=0.3060  bal_acc=0.5122
+  epoch  30/50  loss=0.3123  bal_acc=0.5139
+  epoch  31/50  loss=0.2909  bal_acc=0.4931
+  epoch  32/50  loss=0.2961  bal_acc=0.4688
+  epoch  33/50  loss=0.2821  bal_acc=0.4948
+  epoch  34/50  loss=0.2806  bal_acc=0.5035
+  epoch  35/50  loss=0.2652  bal_acc=0.5191
+  epoch  36/50  loss=0.2560  bal_acc=0.4774
+  epoch  37/50  loss=0.2621  bal_acc=0.4722
+  epoch  38/50  loss=0.2569  bal_acc=0.5000
+  epoch  39/50  loss=0.2498  bal_acc=0.4792
+  epoch  40/50  loss=0.2365  bal_acc=0.4913
+  epoch  41/50  loss=0.2372  bal_acc=0.5069
+  epoch  42/50  loss=0.2329  bal_acc=0.4844
+  epoch  43/50  loss=0.2367  bal_acc=0.4861
+  epoch  44/50  loss=0.2272  bal_acc=0.4931
+  epoch  45/50  loss=0.2147  bal_acc=0.5087
+  epoch  46/50  loss=0.2185  bal_acc=0.5087
+  epoch  47/50  loss=0.2205  bal_acc=0.4809
+  epoch  48/50  loss=0.2075  bal_acc=0.4844
+  epoch  49/50  loss=0.2061  bal_acc=0.5000
+  epoch  50/50  loss=0.1992  bal_acc=0.4983
+  [LOSO 4/9] subject 3: acc=0.4983  running_mean=0.5512
+
+=== LOSO (hold out subject 4) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 9,388
+  epoch   1/50  loss=1.3157  bal_acc=0.2917
+  epoch   2/50  loss=1.1160  bal_acc=0.3212
+  epoch   3/50  loss=0.9799  bal_acc=0.4201
+  epoch   4/50  loss=0.8795  bal_acc=0.4253
+  epoch   5/50  loss=0.8194  bal_acc=0.4618
+  epoch   6/50  loss=0.7645  bal_acc=0.4722
+  epoch   7/50  loss=0.7177  bal_acc=0.4913
+  epoch   8/50  loss=0.6816  bal_acc=0.4965
+  epoch   9/50  loss=0.6394  bal_acc=0.4948
+  epoch  10/50  loss=0.6035  bal_acc=0.4861
+  epoch  11/50  loss=0.5778  bal_acc=0.4948
+  epoch  12/50  loss=0.5654  bal_acc=0.5000
+  epoch  13/50  loss=0.5315  bal_acc=0.4931
+  epoch  14/50  loss=0.5222  bal_acc=0.4826
+  epoch  15/50  loss=0.5058  bal_acc=0.5208
+  epoch  16/50  loss=0.4814  bal_acc=0.4792
+  epoch  17/50  loss=0.4764  bal_acc=0.4844
+  epoch  18/50  loss=0.4556  bal_acc=0.5347
+  epoch  19/50  loss=0.4468  bal_acc=0.4340
+  epoch  20/50  loss=0.4222  bal_acc=0.5069
+  epoch  21/50  loss=0.4213  bal_acc=0.4861
+  epoch  22/50  loss=0.3951  bal_acc=0.5104
+  epoch  23/50  loss=0.3941  bal_acc=0.5000
+  epoch  24/50  loss=0.3852  bal_acc=0.4479
+  epoch  25/50  loss=0.3885  bal_acc=0.5000
+  epoch  26/50  loss=0.3637  bal_acc=0.5208
+  epoch  27/50  loss=0.3697  bal_acc=0.4809
+  epoch  28/50  loss=0.3428  bal_acc=0.4826
+  epoch  29/50  loss=0.3377  bal_acc=0.5330
+  epoch  30/50  loss=0.3368  bal_acc=0.4757
+  epoch  31/50  loss=0.3228  bal_acc=0.4948
+  epoch  32/50  loss=0.3083  bal_acc=0.5174
+  epoch  33/50  loss=0.3089  bal_acc=0.4861
+  epoch  34/50  loss=0.3037  bal_acc=0.4184
+  epoch  35/50  loss=0.2923  bal_acc=0.5278
+  epoch  36/50  loss=0.2829  bal_acc=0.5191
+  epoch  37/50  loss=0.2865  bal_acc=0.5017
+  epoch  38/50  loss=0.2774  bal_acc=0.4878
+  epoch  39/50  loss=0.2688  bal_acc=0.4861
+  epoch  40/50  loss=0.2631  bal_acc=0.5122
+  epoch  41/50  loss=0.2554  bal_acc=0.5087
+  epoch  42/50  loss=0.2541  bal_acc=0.4983
+  epoch  43/50  loss=0.2604  bal_acc=0.5208
+  epoch  44/50  loss=0.2555  bal_acc=0.5278
+  epoch  45/50  loss=0.2562  bal_acc=0.5156
+  epoch  46/50  loss=0.2475  bal_acc=0.5295
+  epoch  47/50  loss=0.2285  bal_acc=0.4965
+  epoch  48/50  loss=0.2310  bal_acc=0.4965
+  epoch  49/50  loss=0.2338  bal_acc=0.5035
+  epoch  50/50  loss=0.2113  bal_acc=0.5104
+  [LOSO 5/9] subject 4: acc=0.5104  running_mean=0.5431
+
+=== LOSO (hold out subject 5) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 9,388
+  epoch   1/50  loss=1.3215  bal_acc=0.3785
+  epoch   2/50  loss=1.1149  bal_acc=0.3767
+  epoch   3/50  loss=0.9753  bal_acc=0.3889
+  epoch   4/50  loss=0.8785  bal_acc=0.3698
+  epoch   5/50  loss=0.7994  bal_acc=0.3941
+  epoch   6/50  loss=0.7415  bal_acc=0.4184
+  epoch   7/50  loss=0.6906  bal_acc=0.4253
+  epoch   8/50  loss=0.6489  bal_acc=0.4132
+  epoch   9/50  loss=0.6210  bal_acc=0.4236
+  epoch  10/50  loss=0.5894  bal_acc=0.4392
+  epoch  11/50  loss=0.5621  bal_acc=0.4253
+  epoch  12/50  loss=0.5381  bal_acc=0.4757
+  epoch  13/50  loss=0.5188  bal_acc=0.4271
+  epoch  14/50  loss=0.4949  bal_acc=0.4375
+  epoch  15/50  loss=0.4678  bal_acc=0.4115
+  epoch  16/50  loss=0.4580  bal_acc=0.4323
+  epoch  17/50  loss=0.4387  bal_acc=0.4080
+  epoch  18/50  loss=0.4283  bal_acc=0.4097
+  epoch  19/50  loss=0.4166  bal_acc=0.4219
+  epoch  20/50  loss=0.3983  bal_acc=0.4219
+  epoch  21/50  loss=0.3946  bal_acc=0.4115
+  epoch  22/50  loss=0.3761  bal_acc=0.4497
+  epoch  23/50  loss=0.3542  bal_acc=0.4115
+  epoch  24/50  loss=0.3526  bal_acc=0.4514
+  epoch  25/50  loss=0.3429  bal_acc=0.4427
+  epoch  26/50  loss=0.3414  bal_acc=0.4375
+  epoch  27/50  loss=0.3231  bal_acc=0.4201
+  epoch  28/50  loss=0.3150  bal_acc=0.4288
+  epoch  29/50  loss=0.3066  bal_acc=0.4184
+  epoch  30/50  loss=0.3057  bal_acc=0.4410
+  epoch  31/50  loss=0.2980  bal_acc=0.4184
+  epoch  32/50  loss=0.2785  bal_acc=0.4097
+  epoch  33/50  loss=0.2664  bal_acc=0.4045
+  epoch  34/50  loss=0.2733  bal_acc=0.4201
+  epoch  35/50  loss=0.2713  bal_acc=0.4080
+  epoch  36/50  loss=0.2678  bal_acc=0.4514
+  epoch  37/50  loss=0.2561  bal_acc=0.4097
+  epoch  38/50  loss=0.2504  bal_acc=0.4149
+  epoch  39/50  loss=0.2581  bal_acc=0.3889
+  epoch  40/50  loss=0.2396  bal_acc=0.4132
+  epoch  41/50  loss=0.2412  bal_acc=0.3906
+  epoch  42/50  loss=0.2361  bal_acc=0.4010
+  epoch  43/50  loss=0.2343  bal_acc=0.4271
+  epoch  44/50  loss=0.2234  bal_acc=0.4201
+  epoch  45/50  loss=0.2268  bal_acc=0.4219
+  epoch  46/50  loss=0.2189  bal_acc=0.4427
+  epoch  47/50  loss=0.2089  bal_acc=0.4184
+  epoch  48/50  loss=0.2073  bal_acc=0.4045
+  epoch  49/50  loss=0.2121  bal_acc=0.4392
+  epoch  50/50  loss=0.2006  bal_acc=0.3941
+  [LOSO 6/9] subject 5: acc=0.3941  running_mean=0.5182
+
+=== LOSO (hold out subject 6) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 9,388
+  epoch   1/50  loss=1.3233  bal_acc=0.4861
+  epoch   2/50  loss=1.1410  bal_acc=0.5521
+  epoch   3/50  loss=1.0104  bal_acc=0.5729
+  epoch   4/50  loss=0.9082  bal_acc=0.6215
+  epoch   5/50  loss=0.8279  bal_acc=0.6337
+  epoch   6/50  loss=0.7568  bal_acc=0.6042
+  epoch   7/50  loss=0.7203  bal_acc=0.6233
+  epoch   8/50  loss=0.6774  bal_acc=0.6094
+  epoch   9/50  loss=0.6505  bal_acc=0.6389
+  epoch  10/50  loss=0.6024  bal_acc=0.6406
+  epoch  11/50  loss=0.5753  bal_acc=0.6406
+  epoch  12/50  loss=0.5590  bal_acc=0.5295
+  epoch  13/50  loss=0.5281  bal_acc=0.6562
+  epoch  14/50  loss=0.5059  bal_acc=0.6007
+  epoch  15/50  loss=0.4979  bal_acc=0.6111
+  epoch  16/50  loss=0.4850  bal_acc=0.5885
+  epoch  17/50  loss=0.4642  bal_acc=0.6389
+  epoch  18/50  loss=0.4630  bal_acc=0.6458
+  epoch  19/50  loss=0.4489  bal_acc=0.6389
+  epoch  20/50  loss=0.4256  bal_acc=0.6545
+  epoch  21/50  loss=0.4228  bal_acc=0.6337
+  epoch  22/50  loss=0.4037  bal_acc=0.6319
+  epoch  23/50  loss=0.4012  bal_acc=0.6007
+  epoch  24/50  loss=0.3809  bal_acc=0.6042
+  epoch  25/50  loss=0.3779  bal_acc=0.6406
+  epoch  26/50  loss=0.3591  bal_acc=0.6267
+  epoch  27/50  loss=0.3478  bal_acc=0.6458
+  epoch  28/50  loss=0.3454  bal_acc=0.6233
+  epoch  29/50  loss=0.3338  bal_acc=0.6094
+  epoch  30/50  loss=0.3347  bal_acc=0.6007
+  epoch  31/50  loss=0.3248  bal_acc=0.6250
+  epoch  32/50  loss=0.3185  bal_acc=0.6181
+  epoch  33/50  loss=0.3167  bal_acc=0.6076
+  epoch  34/50  loss=0.3024  bal_acc=0.6493
+  epoch  35/50  loss=0.2943  bal_acc=0.6458
+  epoch  36/50  loss=0.2961  bal_acc=0.6285
+  epoch  37/50  loss=0.2899  bal_acc=0.6111
+  epoch  38/50  loss=0.2790  bal_acc=0.5781
+  epoch  39/50  loss=0.2820  bal_acc=0.6233
+  epoch  40/50  loss=0.2661  bal_acc=0.6094
+  epoch  41/50  loss=0.2640  bal_acc=0.5816
+  epoch  42/50  loss=0.2521  bal_acc=0.5955
+  epoch  43/50  loss=0.2491  bal_acc=0.6111
+  epoch  44/50  loss=0.2523  bal_acc=0.5990
+  epoch  45/50  loss=0.2511  bal_acc=0.6233
+  epoch  46/50  loss=0.2460  bal_acc=0.6250
+  epoch  47/50  loss=0.2379  bal_acc=0.6059
+  epoch  48/50  loss=0.2310  bal_acc=0.5833
+  epoch  49/50  loss=0.2405  bal_acc=0.6024
+  epoch  50/50  loss=0.2225  bal_acc=0.6354
+  [LOSO 7/9] subject 6: acc=0.6354  running_mean=0.5350
+
+=== LOSO (hold out subject 7) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 9,388
+  epoch   1/50  loss=1.3246  bal_acc=0.4219
+  epoch   2/50  loss=1.1785  bal_acc=0.4740
+  epoch   3/50  loss=1.0636  bal_acc=0.5278
+  epoch   4/50  loss=0.9513  bal_acc=0.5885
+  epoch   5/50  loss=0.8761  bal_acc=0.6146
+  epoch   6/50  loss=0.8069  bal_acc=0.6198
+  epoch   7/50  loss=0.7558  bal_acc=0.6250
+  epoch   8/50  loss=0.7104  bal_acc=0.6510
+  epoch   9/50  loss=0.6806  bal_acc=0.6545
+  epoch  10/50  loss=0.6479  bal_acc=0.6250
+  epoch  11/50  loss=0.6231  bal_acc=0.6753
+  epoch  12/50  loss=0.6054  bal_acc=0.6701
+  epoch  13/50  loss=0.5670  bal_acc=0.6424
+  epoch  14/50  loss=0.5535  bal_acc=0.6441
+  epoch  15/50  loss=0.5335  bal_acc=0.6649
+  epoch  16/50  loss=0.5208  bal_acc=0.6858
+  epoch  17/50  loss=0.4933  bal_acc=0.6875
+  epoch  18/50  loss=0.4856  bal_acc=0.6684
+  epoch  19/50  loss=0.4620  bal_acc=0.6406
+  epoch  20/50  loss=0.4557  bal_acc=0.6545
+  epoch  21/50  loss=0.4430  bal_acc=0.6632
+  epoch  22/50  loss=0.4286  bal_acc=0.6823
+  epoch  23/50  loss=0.4209  bal_acc=0.6684
+  epoch  24/50  loss=0.4046  bal_acc=0.6910
+  epoch  25/50  loss=0.3991  bal_acc=0.6701
+  epoch  26/50  loss=0.3879  bal_acc=0.6823
+  epoch  27/50  loss=0.3740  bal_acc=0.6684
+  epoch  28/50  loss=0.3613  bal_acc=0.6528
+  epoch  29/50  loss=0.3590  bal_acc=0.6632
+  epoch  30/50  loss=0.3533  bal_acc=0.6892
+  epoch  31/50  loss=0.3510  bal_acc=0.6684
+  epoch  32/50  loss=0.3338  bal_acc=0.6719
+  epoch  33/50  loss=0.3284  bal_acc=0.6840
+  epoch  34/50  loss=0.3191  bal_acc=0.6684
+  epoch  35/50  loss=0.3261  bal_acc=0.6701
+  epoch  36/50  loss=0.3087  bal_acc=0.6649
+  epoch  37/50  loss=0.3008  bal_acc=0.6597
+  epoch  38/50  loss=0.3049  bal_acc=0.6771
+  epoch  39/50  loss=0.2963  bal_acc=0.6771
+  epoch  40/50  loss=0.3003  bal_acc=0.6771
+  epoch  41/50  loss=0.2790  bal_acc=0.6615
+  epoch  42/50  loss=0.2685  bal_acc=0.6840
+  epoch  43/50  loss=0.2829  bal_acc=0.6545
+  epoch  44/50  loss=0.2773  bal_acc=0.6545
+  epoch  45/50  loss=0.2603  bal_acc=0.6597
+  epoch  46/50  loss=0.2569  bal_acc=0.6528
+  epoch  47/50  loss=0.2487  bal_acc=0.6615
+  epoch  48/50  loss=0.2458  bal_acc=0.6719
+  epoch  49/50  loss=0.2449  bal_acc=0.6302
+  epoch  50/50  loss=0.2474  bal_acc=0.6597
+  [LOSO 8/9] subject 7: acc=0.6597  running_mean=0.5506
+
+=== LOSO (hold out subject 8) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 9,388
+  epoch   1/50  loss=1.3140  bal_acc=0.4010
+  epoch   2/50  loss=1.1362  bal_acc=0.4653
+  epoch   3/50  loss=0.9928  bal_acc=0.5069
+  epoch   4/50  loss=0.8932  bal_acc=0.5521
+  epoch   5/50  loss=0.8185  bal_acc=0.5156
+  epoch   6/50  loss=0.7582  bal_acc=0.4965
+  epoch   7/50  loss=0.7155  bal_acc=0.5625
+  epoch   8/50  loss=0.6708  bal_acc=0.5955
+  epoch   9/50  loss=0.6435  bal_acc=0.5625
+  epoch  10/50  loss=0.6148  bal_acc=0.5642
+  epoch  11/50  loss=0.5908  bal_acc=0.5885
+  epoch  12/50  loss=0.5740  bal_acc=0.5677
+  epoch  13/50  loss=0.5472  bal_acc=0.5556
+  epoch  14/50  loss=0.5345  bal_acc=0.5000
+  epoch  15/50  loss=0.5169  bal_acc=0.5747
+  epoch  16/50  loss=0.4977  bal_acc=0.5573
+  epoch  17/50  loss=0.4841  bal_acc=0.5503
+  epoch  18/50  loss=0.4618  bal_acc=0.5069
+  epoch  19/50  loss=0.4703  bal_acc=0.5469
+  epoch  20/50  loss=0.4502  bal_acc=0.5330
+  epoch  21/50  loss=0.4267  bal_acc=0.5417
+  epoch  22/50  loss=0.4149  bal_acc=0.5260
+  epoch  23/50  loss=0.4028  bal_acc=0.5243
+  epoch  24/50  loss=0.4106  bal_acc=0.5035
+  epoch  25/50  loss=0.3927  bal_acc=0.5260
+  epoch  26/50  loss=0.3787  bal_acc=0.5556
+  epoch  27/50  loss=0.3649  bal_acc=0.5486
+  epoch  28/50  loss=0.3701  bal_acc=0.5260
+  epoch  29/50  loss=0.3520  bal_acc=0.5434
+  epoch  30/50  loss=0.3452  bal_acc=0.5330
+  epoch  31/50  loss=0.3461  bal_acc=0.5382
+  epoch  32/50  loss=0.3437  bal_acc=0.5451
+  epoch  33/50  loss=0.3171  bal_acc=0.5382
+  epoch  34/50  loss=0.3131  bal_acc=0.5642
+  epoch  35/50  loss=0.3072  bal_acc=0.5451
+  epoch  36/50  loss=0.3060  bal_acc=0.5191
+  epoch  37/50  loss=0.3032  bal_acc=0.5625
+  epoch  38/50  loss=0.2893  bal_acc=0.5382
+  epoch  39/50  loss=0.2846  bal_acc=0.5486
+  epoch  40/50  loss=0.2891  bal_acc=0.5556
+  epoch  41/50  loss=0.2797  bal_acc=0.5608
+  epoch  42/50  loss=0.2810  bal_acc=0.5434
+  epoch  43/50  loss=0.2818  bal_acc=0.5000
+  epoch  44/50  loss=0.2637  bal_acc=0.5590
+  epoch  45/50  loss=0.2609  bal_acc=0.5538
+  epoch  46/50  loss=0.2604  bal_acc=0.5191
+  epoch  47/50  loss=0.2622  bal_acc=0.5417
+  epoch  48/50  loss=0.2506  bal_acc=0.5521
+  epoch  49/50  loss=0.2308  bal_acc=0.5399
+  epoch  50/50  loss=0.2378  bal_acc=0.5625
+  [LOSO 9/9] subject 8: acc=0.5625  running_mean=0.5519
+Results saved to results/BNCI2014_001/results_trial_70.json
+Trial logged to results/BNCI2014_001/trials.csv
+[status] trial 70 done (state=COMPLETE, value=0.5518904320987654) -- 62 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 13,280
+  epoch   1/50  loss=1.2905  bal_acc=0.4184
+  epoch   2/50  loss=1.0950  bal_acc=0.4410
+  epoch   3/50  loss=1.0092  bal_acc=0.4271
+  epoch   4/50  loss=0.9276  bal_acc=0.4826
+  epoch   5/50  loss=0.8645  bal_acc=0.5625
+  epoch   6/50  loss=0.8178  bal_acc=0.5052
+  epoch   7/50  loss=0.7814  bal_acc=0.4757
+  epoch   8/50  loss=0.7303  bal_acc=0.5260
+  epoch   9/50  loss=0.6919  bal_acc=0.5347
+  epoch  10/50  loss=0.6565  bal_acc=0.4913
+  epoch  11/50  loss=0.6322  bal_acc=0.5556
+  epoch  12/50  loss=0.6241  bal_acc=0.5521
+  epoch  13/50  loss=0.5924  bal_acc=0.4896
+  epoch  14/50  loss=0.5793  bal_acc=0.5312
+  epoch  15/50  loss=0.5560  bal_acc=0.5122
+  epoch  16/50  loss=0.5280  bal_acc=0.5573
+  epoch  17/50  loss=0.5201  bal_acc=0.5035
+  epoch  18/50  loss=0.5219  bal_acc=0.5677
+  epoch  19/50  loss=0.5178  bal_acc=0.5503
+  epoch  20/50  loss=0.4826  bal_acc=0.5573
+  epoch  21/50  loss=0.4928  bal_acc=0.5590
+  epoch  22/50  loss=0.4526  bal_acc=0.5469
+  epoch  23/50  loss=0.4612  bal_acc=0.4878
+  epoch  24/50  loss=0.4555  bal_acc=0.5104
+  epoch  25/50  loss=0.4534  bal_acc=0.5035
+  epoch  26/50  loss=0.4266  bal_acc=0.5139
+  epoch  27/50  loss=0.4222  bal_acc=0.5295
+  epoch  28/50  loss=0.4290  bal_acc=0.5243
+  epoch  29/50  loss=0.4146  bal_acc=0.5243
+  epoch  30/50  loss=0.4143  bal_acc=0.5764
+  epoch  31/50  loss=0.4186  bal_acc=0.5469
+  epoch  32/50  loss=0.3990  bal_acc=0.5694
+  epoch  33/50  loss=0.3981  bal_acc=0.5486
+  epoch  34/50  loss=0.3691  bal_acc=0.5243
+  epoch  35/50  loss=0.3825  bal_acc=0.5538
+  epoch  36/50  loss=0.3826  bal_acc=0.5295
+  epoch  37/50  loss=0.3524  bal_acc=0.5573
+  epoch  38/50  loss=0.3638  bal_acc=0.5347
+  epoch  39/50  loss=0.3614  bal_acc=0.5625
+  epoch  40/50  loss=0.3562  bal_acc=0.5451
+  epoch  41/50  loss=0.3608  bal_acc=0.5417
+  epoch  42/50  loss=0.3474  bal_acc=0.5122
+  epoch  43/50  loss=0.3244  bal_acc=0.5295
+  epoch  44/50  loss=0.3687  bal_acc=0.4965
+  epoch  45/50  loss=0.3711  bal_acc=0.5556
+  epoch  46/50  loss=0.3630  bal_acc=0.5243
+  epoch  47/50  loss=0.3188  bal_acc=0.5590
+  epoch  48/50  loss=0.3332  bal_acc=0.5694
+  epoch  49/50  loss=0.3206  bal_acc=0.5469
+  epoch  50/50  loss=0.3268  bal_acc=0.5330
+  [LOSO 1/9] subject 0: acc=0.5330  running_mean=0.5330
+
+=== LOSO (hold out subject 1) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 13,280
+  epoch   1/50  loss=1.2927  bal_acc=0.3455
+  epoch   2/50  loss=1.0930  bal_acc=0.3872
+  epoch   3/50  loss=0.9516  bal_acc=0.4115
+  epoch   4/50  loss=0.8541  bal_acc=0.4340
+  epoch   5/50  loss=0.7986  bal_acc=0.4306
+  epoch   6/50  loss=0.7494  bal_acc=0.4115
+  epoch   7/50  loss=0.6894  bal_acc=0.4080
+  epoch   8/50  loss=0.6625  bal_acc=0.4132
+  epoch   9/50  loss=0.6225  bal_acc=0.4653
+  epoch  10/50  loss=0.5991  bal_acc=0.4062
+  epoch  11/50  loss=0.5798  bal_acc=0.4062
+  epoch  12/50  loss=0.5538  bal_acc=0.4271
+  epoch  13/50  loss=0.5491  bal_acc=0.4392
+  epoch  14/50  loss=0.5275  bal_acc=0.3993
+  epoch  15/50  loss=0.4826  bal_acc=0.4514
+  epoch  16/50  loss=0.4873  bal_acc=0.3993
+  epoch  17/50  loss=0.4805  bal_acc=0.3837
+  epoch  18/50  loss=0.4605  bal_acc=0.4392
+  epoch  19/50  loss=0.4441  bal_acc=0.4253
+  epoch  20/50  loss=0.4408  bal_acc=0.4601
+  epoch  21/50  loss=0.4235  bal_acc=0.4253
+  epoch  22/50  loss=0.4069  bal_acc=0.4358
+  epoch  23/50  loss=0.3994  bal_acc=0.4462
+  epoch  24/50  loss=0.4004  bal_acc=0.4306
+  epoch  25/50  loss=0.3824  bal_acc=0.4392
+  epoch  26/50  loss=0.3757  bal_acc=0.4080
+  epoch  27/50  loss=0.3960  bal_acc=0.4323
+  epoch  28/50  loss=0.3876  bal_acc=0.4410
+  epoch  29/50  loss=0.3908  bal_acc=0.4323
+  epoch  30/50  loss=0.3779  bal_acc=0.4340
+  epoch  31/50  loss=0.3799  bal_acc=0.4271
+  epoch  32/50  loss=0.3457  bal_acc=0.4115
+  epoch  33/50  loss=0.3249  bal_acc=0.4375
+  epoch  34/50  loss=0.3345  bal_acc=0.4219
+  epoch  35/50  loss=0.3396  bal_acc=0.4201
+  epoch  36/50  loss=0.3208  bal_acc=0.4375
+  epoch  37/50  loss=0.3228  bal_acc=0.4080
+  epoch  38/50  loss=0.3052  bal_acc=0.4358
+  epoch  39/50  loss=0.3133  bal_acc=0.4253
+  epoch  40/50  loss=0.3320  bal_acc=0.4375
+  epoch  41/50  loss=0.3340  bal_acc=0.4306
+  epoch  42/50  loss=0.2896  bal_acc=0.4167
+  epoch  43/50  loss=0.2956  bal_acc=0.4080
+  epoch  44/50  loss=0.3071  bal_acc=0.4323
+  epoch  45/50  loss=0.2966  bal_acc=0.4427
+  epoch  46/50  loss=0.3075  bal_acc=0.4253
+  epoch  47/50  loss=0.3189  bal_acc=0.4323
+  epoch  48/50  loss=0.3090  bal_acc=0.4288
+  epoch  49/50  loss=0.2721  bal_acc=0.4288
+  epoch  50/50  loss=0.2707  bal_acc=0.3906
+  [LOSO 2/9] subject 1: acc=0.3906  running_mean=0.4618
+
+=== LOSO (hold out subject 2) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 13,280
+  epoch   1/50  loss=1.3043  bal_acc=0.4705
+  epoch   2/50  loss=1.1309  bal_acc=0.5174
+  epoch   3/50  loss=1.0401  bal_acc=0.5833
+  epoch   4/50  loss=0.9664  bal_acc=0.5972
+  epoch   5/50  loss=0.9213  bal_acc=0.5556
+  epoch   6/50  loss=0.8484  bal_acc=0.5590
+  epoch   7/50  loss=0.8183  bal_acc=0.5781
+  epoch   8/50  loss=0.7835  bal_acc=0.6094
+  epoch   9/50  loss=0.7661  bal_acc=0.5625
+  epoch  10/50  loss=0.7367  bal_acc=0.5972
+  epoch  11/50  loss=0.7228  bal_acc=0.6510
+  epoch  12/50  loss=0.6728  bal_acc=0.5851
+  epoch  13/50  loss=0.6717  bal_acc=0.5955
+  epoch  14/50  loss=0.6476  bal_acc=0.5990
+  epoch  15/50  loss=0.6163  bal_acc=0.5417
+  epoch  16/50  loss=0.6208  bal_acc=0.6510
+  epoch  17/50  loss=0.5806  bal_acc=0.5938
+  epoch  18/50  loss=0.5779  bal_acc=0.6354
+  epoch  19/50  loss=0.5562  bal_acc=0.6094
+  epoch  20/50  loss=0.5554  bal_acc=0.6302
+  epoch  21/50  loss=0.5148  bal_acc=0.6250
+  epoch  22/50  loss=0.5160  bal_acc=0.6354
+  epoch  23/50  loss=0.5274  bal_acc=0.6267
+  epoch  24/50  loss=0.5259  bal_acc=0.6233
+  epoch  25/50  loss=0.5006  bal_acc=0.6146
+  epoch  26/50  loss=0.4948  bal_acc=0.5938
+  epoch  27/50  loss=0.4966  bal_acc=0.5990
+  epoch  28/50  loss=0.4584  bal_acc=0.6250
+  epoch  29/50  loss=0.4577  bal_acc=0.6007
+  epoch  30/50  loss=0.4593  bal_acc=0.6215
+  epoch  31/50  loss=0.4525  bal_acc=0.6389
+  epoch  32/50  loss=0.4530  bal_acc=0.5816
+  epoch  33/50  loss=0.4597  bal_acc=0.6267
+  epoch  34/50  loss=0.4238  bal_acc=0.6267
+  epoch  35/50  loss=0.4511  bal_acc=0.5955
+  epoch  36/50  loss=0.4420  bal_acc=0.5868
+  epoch  37/50  loss=0.4279  bal_acc=0.5903
+  epoch  38/50  loss=0.3910  bal_acc=0.6285
+  epoch  39/50  loss=0.3999  bal_acc=0.6302
+  epoch  40/50  loss=0.3989  bal_acc=0.5642
+  epoch  41/50  loss=0.4104  bal_acc=0.6024
+  epoch  42/50  loss=0.3937  bal_acc=0.6354
+  epoch  43/50  loss=0.3802  bal_acc=0.5972
+  epoch  44/50  loss=0.3961  bal_acc=0.6042
+  epoch  45/50  loss=0.3657  bal_acc=0.5729
+  epoch  46/50  loss=0.3706  bal_acc=0.6163
+  epoch  47/50  loss=0.3918  bal_acc=0.6198
+  epoch  48/50  loss=0.3607  bal_acc=0.6458
+  epoch  49/50  loss=0.3711  bal_acc=0.6319
+  epoch  50/50  loss=0.3653  bal_acc=0.6233
+  [LOSO 3/9] subject 2: acc=0.6233  running_mean=0.5156
+
+=== LOSO (hold out subject 3) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 13,280
+  epoch   1/50  loss=1.2968  bal_acc=0.4045
+  epoch   2/50  loss=1.0831  bal_acc=0.3976
+  epoch   3/50  loss=0.9443  bal_acc=0.3524
+  epoch   4/50  loss=0.8588  bal_acc=0.4462
+  epoch   5/50  loss=0.7816  bal_acc=0.4618
+  epoch   6/50  loss=0.7426  bal_acc=0.4288
+  epoch   7/50  loss=0.7015  bal_acc=0.4497
+  epoch   8/50  loss=0.6564  bal_acc=0.4531
+  epoch   9/50  loss=0.6444  bal_acc=0.4323
+  epoch  10/50  loss=0.5995  bal_acc=0.4028
+  epoch  11/50  loss=0.5711  bal_acc=0.4635
+  epoch  12/50  loss=0.5623  bal_acc=0.4965
+  epoch  13/50  loss=0.5428  bal_acc=0.4392
+  epoch  14/50  loss=0.5381  bal_acc=0.4497
+  epoch  15/50  loss=0.5070  bal_acc=0.4462
+  epoch  16/50  loss=0.4991  bal_acc=0.4931
+  epoch  17/50  loss=0.4674  bal_acc=0.4913
+  epoch  18/50  loss=0.4561  bal_acc=0.4826
+  epoch  19/50  loss=0.4433  bal_acc=0.4201
+  epoch  20/50  loss=0.4336  bal_acc=0.4479
+  epoch  21/50  loss=0.4017  bal_acc=0.4635
+  epoch  22/50  loss=0.3808  bal_acc=0.4792
+  epoch  23/50  loss=0.3976  bal_acc=0.4792
+  epoch  24/50  loss=0.3911  bal_acc=0.4427
+  epoch  25/50  loss=0.3663  bal_acc=0.4844
+  epoch  26/50  loss=0.3772  bal_acc=0.4826
+  epoch  27/50  loss=0.3632  bal_acc=0.4826
+  epoch  28/50  loss=0.3519  bal_acc=0.5243
+  epoch  29/50  loss=0.3553  bal_acc=0.4340
+  epoch  30/50  loss=0.3536  bal_acc=0.4583
+  epoch  31/50  loss=0.3349  bal_acc=0.4618
+  epoch  32/50  loss=0.3272  bal_acc=0.4635
+  epoch  33/50  loss=0.3236  bal_acc=0.4479
+  epoch  34/50  loss=0.3295  bal_acc=0.4826
+  epoch  35/50  loss=0.2965  bal_acc=0.4479
+  epoch  36/50  loss=0.3357  bal_acc=0.4167
+  epoch  37/50  loss=0.3323  bal_acc=0.4462
+  epoch  38/50  loss=0.3253  bal_acc=0.4497
+  epoch  39/50  loss=0.2934  bal_acc=0.4566
+  epoch  40/50  loss=0.2932  bal_acc=0.4826
+  epoch  41/50  loss=0.2987  bal_acc=0.4757
+  epoch  42/50  loss=0.2876  bal_acc=0.4583
+  epoch  43/50  loss=0.2912  bal_acc=0.4618
+  epoch  44/50  loss=0.2917  bal_acc=0.4826
+  epoch  45/50  loss=0.2644  bal_acc=0.4410
+  epoch  46/50  loss=0.2705  bal_acc=0.4479
+  epoch  47/50  loss=0.2689  bal_acc=0.4549
+  epoch  48/50  loss=0.2848  bal_acc=0.4497
+  epoch  49/50  loss=0.2847  bal_acc=0.4635
+  epoch  50/50  loss=0.2808  bal_acc=0.4566
+  [LOSO 4/9] subject 3: acc=0.4566  running_mean=0.5009
+
+=== LOSO (hold out subject 4) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 13,280
+  epoch   1/50  loss=1.3030  bal_acc=0.3698
+  epoch   2/50  loss=1.1343  bal_acc=0.3802
+  epoch   3/50  loss=1.0193  bal_acc=0.4514
+  epoch   4/50  loss=0.9061  bal_acc=0.4618
+  epoch   5/50  loss=0.8380  bal_acc=0.4618
+  epoch   6/50  loss=0.7881  bal_acc=0.4062
+  epoch   7/50  loss=0.7388  bal_acc=0.4549
+  epoch   8/50  loss=0.7181  bal_acc=0.4601
+  epoch   9/50  loss=0.6600  bal_acc=0.4653
+  epoch  10/50  loss=0.6393  bal_acc=0.5069
+  epoch  11/50  loss=0.6371  bal_acc=0.4948
+  epoch  12/50  loss=0.5986  bal_acc=0.4774
+  epoch  13/50  loss=0.5835  bal_acc=0.4983
+  epoch  14/50  loss=0.5631  bal_acc=0.4792
+  epoch  15/50  loss=0.5513  bal_acc=0.5104
+  epoch  16/50  loss=0.5238  bal_acc=0.5052
+  epoch  17/50  loss=0.5136  bal_acc=0.5503
+  epoch  18/50  loss=0.4833  bal_acc=0.5069
+  epoch  19/50  loss=0.4859  bal_acc=0.4913
+  epoch  20/50  loss=0.4849  bal_acc=0.4670
+  epoch  21/50  loss=0.4570  bal_acc=0.4861
+  epoch  22/50  loss=0.4402  bal_acc=0.4826
+  epoch  23/50  loss=0.4361  bal_acc=0.4670
+  epoch  24/50  loss=0.4495  bal_acc=0.4878
+  epoch  25/50  loss=0.4182  bal_acc=0.5139
+  epoch  26/50  loss=0.4110  bal_acc=0.4531
+  epoch  27/50  loss=0.4043  bal_acc=0.5052
+  epoch  28/50  loss=0.3947  bal_acc=0.4722
+  epoch  29/50  loss=0.3861  bal_acc=0.4722
+  epoch  30/50  loss=0.3949  bal_acc=0.5035
+  epoch  31/50  loss=0.3732  bal_acc=0.4774
+  epoch  32/50  loss=0.3664  bal_acc=0.4618
+  epoch  33/50  loss=0.3733  bal_acc=0.5104
+  epoch  34/50  loss=0.3664  bal_acc=0.4792
+  epoch  35/50  loss=0.3617  bal_acc=0.4826
+  epoch  36/50  loss=0.3387  bal_acc=0.5278
+  epoch  37/50  loss=0.3563  bal_acc=0.4931
+  epoch  38/50  loss=0.3410  bal_acc=0.4618
+  epoch  39/50  loss=0.3280  bal_acc=0.5469
+  epoch  40/50  loss=0.3270  bal_acc=0.5156
+  epoch  41/50  loss=0.3434  bal_acc=0.4774
+  epoch  42/50  loss=0.3237  bal_acc=0.5156
+  epoch  43/50  loss=0.3424  bal_acc=0.4705
+  epoch  44/50  loss=0.2986  bal_acc=0.4635
+  epoch  45/50  loss=0.3262  bal_acc=0.5347
+  epoch  46/50  loss=0.3093  bal_acc=0.4913
+  epoch  47/50  loss=0.3040  bal_acc=0.5104
+  epoch  48/50  loss=0.2861  bal_acc=0.5139
+  epoch  49/50  loss=0.3056  bal_acc=0.5399
+  epoch  50/50  loss=0.2845  bal_acc=0.4444
+  [LOSO 5/9] subject 4: acc=0.4444  running_mean=0.4896
+
+=== LOSO (hold out subject 5) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 13,280
+  epoch   1/50  loss=1.2760  bal_acc=0.4167
+  epoch   2/50  loss=1.0179  bal_acc=0.4479
+  epoch   3/50  loss=0.9124  bal_acc=0.4045
+  epoch   4/50  loss=0.8461  bal_acc=0.4410
+  epoch   5/50  loss=0.7784  bal_acc=0.4497
+  epoch   6/50  loss=0.7344  bal_acc=0.3924
+  epoch   7/50  loss=0.6944  bal_acc=0.4392
+  epoch   8/50  loss=0.6770  bal_acc=0.3854
+  epoch   9/50  loss=0.6539  bal_acc=0.4375
+  epoch  10/50  loss=0.6283  bal_acc=0.4201
+  epoch  11/50  loss=0.6034  bal_acc=0.4115
+  epoch  12/50  loss=0.5863  bal_acc=0.3872
+  epoch  13/50  loss=0.5766  bal_acc=0.3698
+  epoch  14/50  loss=0.5205  bal_acc=0.3906
+  epoch  15/50  loss=0.5257  bal_acc=0.3958
+  epoch  16/50  loss=0.5071  bal_acc=0.3941
+  epoch  17/50  loss=0.5035  bal_acc=0.3941
+  epoch  18/50  loss=0.4645  bal_acc=0.3733
+  epoch  19/50  loss=0.4634  bal_acc=0.3351
+  epoch  20/50  loss=0.4698  bal_acc=0.3941
+  epoch  21/50  loss=0.4561  bal_acc=0.4462
+  epoch  22/50  loss=0.4424  bal_acc=0.4358
+  epoch  23/50  loss=0.4333  bal_acc=0.3472
+  epoch  24/50  loss=0.3961  bal_acc=0.4080
+  epoch  25/50  loss=0.3757  bal_acc=0.4253
+  epoch  26/50  loss=0.4087  bal_acc=0.3785
+  epoch  27/50  loss=0.3884  bal_acc=0.3958
+  epoch  28/50  loss=0.3822  bal_acc=0.3872
+  epoch  29/50  loss=0.3767  bal_acc=0.3958
+  epoch  30/50  loss=0.3800  bal_acc=0.3854
+  epoch  31/50  loss=0.3717  bal_acc=0.3941
+  epoch  32/50  loss=0.3619  bal_acc=0.4132
+  epoch  33/50  loss=0.3709  bal_acc=0.4010
+  epoch  34/50  loss=0.3405  bal_acc=0.3472
+  epoch  35/50  loss=0.3399  bal_acc=0.3837
+  epoch  36/50  loss=0.3381  bal_acc=0.3819
+  epoch  37/50  loss=0.3168  bal_acc=0.3993
+  epoch  38/50  loss=0.3452  bal_acc=0.3542
+  epoch  39/50  loss=0.3311  bal_acc=0.4132
+  epoch  40/50  loss=0.2934  bal_acc=0.3715
+  epoch  41/50  loss=0.3257  bal_acc=0.3524
+  epoch  42/50  loss=0.3106  bal_acc=0.4236
+  epoch  43/50  loss=0.3180  bal_acc=0.4184
+  epoch  44/50  loss=0.3002  bal_acc=0.4045
+  epoch  45/50  loss=0.2998  bal_acc=0.4080
+  epoch  46/50  loss=0.2802  bal_acc=0.4288
+  epoch  47/50  loss=0.2856  bal_acc=0.3785
+  epoch  48/50  loss=0.2947  bal_acc=0.3646
+  epoch  49/50  loss=0.2664  bal_acc=0.3889
+  epoch  50/50  loss=0.2803  bal_acc=0.3767
+  [LOSO 6/9] subject 5: acc=0.3767  running_mean=0.4708
+
+=== LOSO (hold out subject 6) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 13,280
+  epoch   1/50  loss=1.3136  bal_acc=0.5035
+  epoch   2/50  loss=1.1395  bal_acc=0.5451
+  epoch   3/50  loss=1.0081  bal_acc=0.5052
+  epoch   4/50  loss=0.9095  bal_acc=0.5677
+  epoch   5/50  loss=0.8347  bal_acc=0.5799
+  epoch   6/50  loss=0.7908  bal_acc=0.5469
+  epoch   7/50  loss=0.7516  bal_acc=0.5156
+  epoch   8/50  loss=0.7246  bal_acc=0.5556
+  epoch   9/50  loss=0.6997  bal_acc=0.5903
+  epoch  10/50  loss=0.6695  bal_acc=0.5903
+  epoch  11/50  loss=0.6526  bal_acc=0.5660
+  epoch  12/50  loss=0.5984  bal_acc=0.5712
+  epoch  13/50  loss=0.5821  bal_acc=0.6111
+  epoch  14/50  loss=0.5670  bal_acc=0.6059
+  epoch  15/50  loss=0.5614  bal_acc=0.5486
+  epoch  16/50  loss=0.5309  bal_acc=0.5625
+  epoch  17/50  loss=0.5462  bal_acc=0.5920
+  epoch  18/50  loss=0.4971  bal_acc=0.5764
+  epoch  19/50  loss=0.4982  bal_acc=0.5764
+  epoch  20/50  loss=0.4746  bal_acc=0.6163
+  epoch  21/50  loss=0.4861  bal_acc=0.6024
+  epoch  22/50  loss=0.4579  bal_acc=0.5885
+  epoch  23/50  loss=0.4656  bal_acc=0.6059
+  epoch  24/50  loss=0.4359  bal_acc=0.5920
+  epoch  25/50  loss=0.4452  bal_acc=0.5903
+  epoch  26/50  loss=0.4128  bal_acc=0.6007
+  epoch  27/50  loss=0.4379  bal_acc=0.5799
+  epoch  28/50  loss=0.4088  bal_acc=0.6059
+  epoch  29/50  loss=0.3886  bal_acc=0.5868
+  epoch  30/50  loss=0.4063  bal_acc=0.6094
+  epoch  31/50  loss=0.3926  bal_acc=0.5781
+  epoch  32/50  loss=0.3814  bal_acc=0.5938
+  epoch  33/50  loss=0.3652  bal_acc=0.6128
+  epoch  34/50  loss=0.3653  bal_acc=0.5972
+  epoch  35/50  loss=0.3623  bal_acc=0.6128
+  epoch  36/50  loss=0.3808  bal_acc=0.5781
+  epoch  37/50  loss=0.3555  bal_acc=0.5764
+  epoch  38/50  loss=0.3366  bal_acc=0.5816
+  epoch  39/50  loss=0.3520  bal_acc=0.5486
+  epoch  40/50  loss=0.3355  bal_acc=0.5747
+  epoch  41/50  loss=0.3407  bal_acc=0.6042
+  epoch  42/50  loss=0.3258  bal_acc=0.5764
+  epoch  43/50  loss=0.3115  bal_acc=0.5573
+  epoch  44/50  loss=0.3254  bal_acc=0.6146
+  epoch  45/50  loss=0.3020  bal_acc=0.5747
+  epoch  46/50  loss=0.3254  bal_acc=0.6076
+  epoch  47/50  loss=0.2955  bal_acc=0.5972
+  epoch  48/50  loss=0.3066  bal_acc=0.5521
+  epoch  49/50  loss=0.3063  bal_acc=0.5694
+  epoch  50/50  loss=0.2959  bal_acc=0.5920
+  [LOSO 7/9] subject 6: acc=0.5920  running_mean=0.4881
+
+=== LOSO (hold out subject 7) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 13,280
+  epoch   1/50  loss=1.3186  bal_acc=0.4306
+  epoch   2/50  loss=1.1242  bal_acc=0.4757
+  epoch   3/50  loss=0.9994  bal_acc=0.6111
+  epoch   4/50  loss=0.9008  bal_acc=0.6597
+  epoch   5/50  loss=0.8342  bal_acc=0.6493
+  epoch   6/50  loss=0.8123  bal_acc=0.6215
+  epoch   7/50  loss=0.7597  bal_acc=0.6389
+  epoch   8/50  loss=0.7315  bal_acc=0.6181
+  epoch   9/50  loss=0.6730  bal_acc=0.5833
+  epoch  10/50  loss=0.6616  bal_acc=0.6285
+  epoch  11/50  loss=0.6406  bal_acc=0.6198
+  epoch  12/50  loss=0.6274  bal_acc=0.6684
+  epoch  13/50  loss=0.6098  bal_acc=0.6389
+  epoch  14/50  loss=0.5879  bal_acc=0.6684
+  epoch  15/50  loss=0.6051  bal_acc=0.6441
+  epoch  16/50  loss=0.5412  bal_acc=0.6267
+  epoch  17/50  loss=0.5283  bal_acc=0.6632
+  epoch  18/50  loss=0.5084  bal_acc=0.6458
+  epoch  19/50  loss=0.5125  bal_acc=0.6458
+  epoch  20/50  loss=0.4798  bal_acc=0.6181
+  epoch  21/50  loss=0.4905  bal_acc=0.6233
+  epoch  22/50  loss=0.4708  bal_acc=0.6493
+  epoch  23/50  loss=0.4817  bal_acc=0.6406
+  epoch  24/50  loss=0.4481  bal_acc=0.5990
+  epoch  25/50  loss=0.4548  bal_acc=0.6319
+  epoch  26/50  loss=0.4426  bal_acc=0.6406
+  epoch  27/50  loss=0.4382  bal_acc=0.6233
+  epoch  28/50  loss=0.4086  bal_acc=0.6128
+  epoch  29/50  loss=0.4295  bal_acc=0.6250
+  epoch  30/50  loss=0.4108  bal_acc=0.6337
+  epoch  31/50  loss=0.4284  bal_acc=0.6111
+  epoch  32/50  loss=0.3951  bal_acc=0.6285
+  epoch  33/50  loss=0.3837  bal_acc=0.6042
+  epoch  34/50  loss=0.3829  bal_acc=0.6250
+  epoch  35/50  loss=0.3774  bal_acc=0.6163
+  epoch  36/50  loss=0.3752  bal_acc=0.6163
+  epoch  37/50  loss=0.3716  bal_acc=0.6545
+  epoch  38/50  loss=0.3738  bal_acc=0.6215
+  epoch  39/50  loss=0.3571  bal_acc=0.6406
+  epoch  40/50  loss=0.3508  bal_acc=0.6198
+  epoch  41/50  loss=0.3553  bal_acc=0.6337
+  epoch  42/50  loss=0.3365  bal_acc=0.6198
+  epoch  43/50  loss=0.3505  bal_acc=0.6250
+  epoch  44/50  loss=0.3243  bal_acc=0.6250
+  epoch  45/50  loss=0.3421  bal_acc=0.5938
+  epoch  46/50  loss=0.3404  bal_acc=0.6476
+  epoch  47/50  loss=0.3219  bal_acc=0.6354
+  epoch  48/50  loss=0.3059  bal_acc=0.5990
+  epoch  49/50  loss=0.3081  bal_acc=0.6111
+  epoch  50/50  loss=0.3086  bal_acc=0.6146
+  [LOSO 8/9] subject 7: acc=0.6146  running_mean=0.5039
+  [pruned by Optuna after subject 7 (8/9 subjects), running_mean=0.5039]
+[status] trial 73 done (state=PRUNED, value=0.50390625) -- 66 completed total
+Device: cuda
+[BNCI2014_001] loading from cache: /home/aleksander.berezowsk/.cache/spiking_eegnet/BNCI2014_001_af1ccf3e92f684d8a93c057082b654d7.npz
+[BNCI2014_001] cache hit: (5184, 1, 22, 1001), classes=['feet', 'left_hand', 'right_hand', 'tongue'], subjects=9
+Dataset meta: {'n_classes': 4, 'n_channels': 22, 'n_samples': 1001, 'class_names': ['feet', 'left_hand', 'right_hand', 'tongue'], 'subject_list': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'n_subjects': 9, 'sfreq': 250.0}
+
+=== LOSO (hold out subject 0) ===
+  Train: 4608 trials  |  Test: 576 trials
+  Model params: 8,526
+Finished : Mon Jul  6 00:09:25 MDT 2026
+Exit code: 0

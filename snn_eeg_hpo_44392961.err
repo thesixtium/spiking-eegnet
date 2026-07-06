@@ -21,3 +21,109 @@ ERROR: Invalid requirement: 'Binary file requirements.txt matches': Expected end
 [I 2026-07-05 02:25:28,731] Using an existing study with name 'snn_eegnet_v4_400_40' instead of creating a new one.
 [I 2026-07-05 06:54:10,584] Trial 45 finished with value: 0.5497685185185186 and parameters: {'LR_EXP': -3.8942815881696244, 'DROPOUT': 0.12774256456509356, 'BETA': 0.8649383669714866, 'SPIKE_GRAD_SLOPE': 22.894389567935615, 'TEMPORAL_FILTERS': 57, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 27, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 57, 'POOL1_SIZE': 6, 'POOL2_SIZE': 6, 'N_STEPS_TRAIN': 10, 'N_STEPS_EVAL': 32, 'READOUT_MODE': 'spk_sum'}. Best is trial 10 with value: 0.566550925925926.
 [I 2026-07-05 09:47:18,876] Trial 51 finished with value: 0.5596064814814814 and parameters: {'LR_EXP': -2.9908495084640814, 'DROPOUT': 0.4881461537268882, 'BETA': 0.8083193288309404, 'SPIKE_GRAD_SLOPE': 30.965794766973662, 'TEMPORAL_FILTERS': 40, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 60, 'TEMPORAL_KERNEL_DIV': 5, 'SEPARABLE_KERNEL_SIZE': 9, 'POOL1_SIZE': 4, 'POOL2_SIZE': 6, 'N_STEPS_TRAIN': 8, 'N_STEPS_EVAL': 17, 'READOUT_MODE': 'spk_sum'}. Best is trial 46 with value: 0.5719521604938271.
+[I 2026-07-05 14:10:16,226] Trial 56 finished with value: 0.5339506172839505 and parameters: {'LR_EXP': -3.0928527086176834, 'DROPOUT': 0.026723984661457617, 'BETA': 0.9700595891744598, 'SPIKE_GRAD_SLOPE': 23.892817972403662, 'TEMPORAL_FILTERS': 46, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 48, 'TEMPORAL_KERNEL_DIV': 2, 'SEPARABLE_KERNEL_SIZE': 29, 'POOL1_SIZE': 7, 'POOL2_SIZE': 6, 'N_STEPS_TRAIN': 9, 'N_STEPS_EVAL': 8, 'READOUT_MODE': 'spk_sum'}. Best is trial 46 with value: 0.5719521604938271.
+[I 2026-07-05 18:04:21,447] Trial 60 finished with value: 0.5320216049382717 and parameters: {'LR_EXP': -4.410875179667429, 'DROPOUT': 0.416510295363462, 'BETA': 0.989263773916964, 'SPIKE_GRAD_SLOPE': 14.003246748422606, 'TEMPORAL_FILTERS': 37, 'DEPTH_MULTIPLIER': 4, 'POINTWISE_FILTERS': 64, 'TEMPORAL_KERNEL_DIV': 6, 'SEPARABLE_KERNEL_SIZE': 42, 'POOL1_SIZE': 2, 'POOL2_SIZE': 5, 'N_STEPS_TRAIN': 9, 'N_STEPS_EVAL': 23, 'READOUT_MODE': 'spk_mean'}. Best is trial 46 with value: 0.5719521604938271.
+[I 2026-07-05 20:30:42,442] Trial 66 finished with value: 0.5154320987654322 and parameters: {'LR_EXP': -2.0929673058457325, 'DROPOUT': 0.4296087045484647, 'BETA': 0.8074605833944037, 'SPIKE_GRAD_SLOPE': 6.921727848326311, 'TEMPORAL_FILTERS': 22, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 23, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 5, 'POOL1_SIZE': 6, 'POOL2_SIZE': 3, 'N_STEPS_TRAIN': 13, 'N_STEPS_EVAL': 22, 'READOUT_MODE': 'spk_mean'}. Best is trial 46 with value: 0.5719521604938271.
+[I 2026-07-05 22:45:27,073] Trial 70 finished with value: 0.5518904320987654 and parameters: {'LR_EXP': -2.939231954451255, 'DROPOUT': 0.2521186461805148, 'BETA': 0.7679423587819848, 'SPIKE_GRAD_SLOPE': 4.830409502886009, 'TEMPORAL_FILTERS': 28, 'DEPTH_MULTIPLIER': 2, 'POINTWISE_FILTERS': 12, 'TEMPORAL_KERNEL_DIV': 6, 'SEPARABLE_KERNEL_SIZE': 6, 'POOL1_SIZE': 7, 'POOL2_SIZE': 3, 'N_STEPS_TRAIN': 10, 'N_STEPS_EVAL': 9, 'READOUT_MODE': 'spk_mean'}. Best is trial 46 with value: 0.5719521604938271.
+[I 2026-07-06 00:09:20,531] Trial 73 pruned. 
+[W 2026-07-06 00:09:24,175] Trial 78 failed with parameters: {'LR_EXP': -2.5352204449044793, 'DROPOUT': 0.4644898956845102, 'BETA': 0.8426581650934124, 'SPIKE_GRAD_SLOPE': 6.77333071726183, 'TEMPORAL_FILTERS': 22, 'DEPTH_MULTIPLIER': 3, 'POINTWISE_FILTERS': 23, 'TEMPORAL_KERNEL_DIV': 8, 'SEPARABLE_KERNEL_SIZE': 14, 'POOL1_SIZE': 8, 'POOL2_SIZE': 7, 'N_STEPS_TRAIN': 16, 'N_STEPS_EVAL': 15, 'READOUT_MODE': 'spk_sum'} because of the following error: OutOfMemoryError('CUDA out of memory. Tried to allocate 60.00 MiB. GPU 0 has a total capacity of 15.77 GiB of which 26.19 MiB is free. Including non-PyTorch memory, this process has 15.74 GiB memory in use. Of the allocated memory 14.36 GiB is allocated by PyTorch, and 1022.27 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)').
+Traceback (most recent call last):
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/optuna/study/_optimize.py", line 206, in _run_trial
+    value_or_values = func(trial)
+                      ^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/main.py", line 47, in objective
+    return pipeline(**params, **FIXED, trial=trial, save_plots=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/pipeline.py", line 135, in pipeline
+    histories, accs, mean_acc = experiment_loso_all(
+                                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/experiment_loso.py", line 71, in experiment_loso_all
+    history, final_acc, _model = experiment_loso(
+                                 ^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/experiment_loso.py", line 30, in experiment_loso
+    history = run_training(
+              ^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/run_training.py", line 50, in run_training
+    loss = train_one_epoch(model, train_loader, optimizer, criterion, device,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/train_one_epoch.py", line 53, in train_one_epoch
+    spk, mem = model(xb, num_steps=n_steps)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/spiking_eegnet.py", line 233, in forward
+    spk1, mem1 = self.lif1(cur, mem1)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/snntorch/_neurons/leaky.py", line 220, in forward
+    spk = self.fire(self.mem)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/snntorch/_neurons/neurons.py", line 83, in fire
+    spk = spk * self.graded_spikes_factor
+          ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 60.00 MiB. GPU 0 has a total capacity of 15.77 GiB of which 26.19 MiB is free. Including non-PyTorch memory, this process has 15.74 GiB memory in use. Of the allocated memory 14.36 GiB is allocated by PyTorch, and 1022.27 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[W 2026-07-06 00:09:24,207] Trial 78 failed with value None.
+Traceback (most recent call last):
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/main.py", line 98, in <module>
+    study.optimize(objective, n_trials=n_trials, n_jobs=1,
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/optuna/study/study.py", line 516, in optimize
+    _optimize(
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/optuna/study/_optimize.py", line 68, in _optimize
+    _optimize_sequential(
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/optuna/study/_optimize.py", line 165, in _optimize_sequential
+    frozen_trial_id = _run_trial(study, func, catch)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/optuna/study/_optimize.py", line 263, in _run_trial
+    raise func_err
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/optuna/study/_optimize.py", line 206, in _run_trial
+    value_or_values = func(trial)
+                      ^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/main.py", line 47, in objective
+    return pipeline(**params, **FIXED, trial=trial, save_plots=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/pipeline.py", line 135, in pipeline
+    histories, accs, mean_acc = experiment_loso_all(
+                                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/experiment_loso.py", line 71, in experiment_loso_all
+    history, final_acc, _model = experiment_loso(
+                                 ^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/experiment_loso.py", line 30, in experiment_loso
+    history = run_training(
+              ^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/run_training.py", line 50, in run_training
+    loss = train_one_epoch(model, train_loader, optimizer, criterion, device,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/train_one_epoch.py", line 53, in train_one_epoch
+    spk, mem = model(xb, num_steps=n_steps)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/spiking-eegnet/src/spiking_eegnet.py", line 233, in forward
+    spk1, mem1 = self.lif1(cur, mem1)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/snntorch/_neurons/leaky.py", line 220, in forward
+    spk = self.fire(self.mem)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/aleksander.berezowsk/venv/lib/python3.12/site-packages/snntorch/_neurons/neurons.py", line 83, in fire
+    spk = spk * self.graded_spikes_factor
+          ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 60.00 MiB. GPU 0 has a total capacity of 15.77 GiB of which 26.19 MiB is free. Including non-PyTorch memory, this process has 15.74 GiB memory in use. Of the allocated memory 14.36 GiB is allocated by PyTorch, and 1022.27 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
