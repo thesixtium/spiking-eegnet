@@ -19,12 +19,21 @@ Outputs:
   9. summary_stats.csv                  - describe() of all columns
  10. recommendations.txt                - plain-text written summary
 
+If a `results_baseline.json` file is found alongside the trials csv, four
+additional baseline-comparison figures are produced:
+ 11. baseline_vs_trials_summary.png      - NEW: baseline vs median/mean/top-N/best
+ 12. baseline_vs_trials_distribution.png - NEW: target histogram with baseline marked,
+                                            % of trials that beat the baseline
+ 13. top_trials_vs_baseline.png          - NEW: each top-N trial vs baseline, %-delta labels
+ 14. baseline_vs_best_param_diff.png     - NEW: baseline vs best-trial hyperparameters
+
 Usage:
     python statistic.py [csv_path] [out_dir] [top_n]
 """
 
 import sys
 import os
+import json
 import pandas as pd
 import numpy as np
 import matplotlib
@@ -516,8 +525,236 @@ def plot_importance_vs_correlation(importance, target_corr, target, out_dir):
     print(f"Saved importance-vs-correlation plot -> {path}")
 
 
+# ----------------------------------------------------------------------
+# Baseline comparison (results_baseline.json)
+# ----------------------------------------------------------------------
+def load_baseline(csv_path, target):
+    """Look for `results_baseline.json` in the same folder as trials.csv
+    (i.e. alongside the other per-trial result files) and pull out its
+    target metric plus any recognized hyperparameters.
+
+    The JSON's exact shape isn't assumed -- this searches recursively for
+    a key matching `target`, falling back to a few common alias names
+    (value/score/result/accuracy/...) if `target` itself isn't present.
+    Returns None (and prints why) if no baseline file / no numeric metric
+    is found, so downstream plotting functions can just no-op.
+    """
+    baseline_dir = os.path.dirname(os.path.abspath(csv_path)) or "."
+    baseline_path = os.path.join(baseline_dir, "results_baseline.json")
+    if not os.path.exists(baseline_path):
+        print(f"No baseline file found at {baseline_path} -- skipping baseline comparison plots.")
+        return None
+
+    with open(baseline_path, "r") as f:
+        data = json.load(f)
+
+    def find_value(d, key):
+        if isinstance(d, dict):
+            if key in d and isinstance(d[key], (int, float)) and not isinstance(d[key], bool):
+                return d[key]
+            for v in d.values():
+                found = find_value(v, key)
+                if found is not None:
+                    return found
+        return None
+
+    value = find_value(data, target)
+    if value is None:
+        for alt in ("value", "score", "objective_value", "result", "acc", "accuracy", "mean_bal_acc"):
+            value = find_value(data, alt)
+            if value is not None:
+                break
+
+    if value is None:
+        print(f"Could not find a numeric '{target}' (or common alias) in {baseline_path} -- "
+              f"skipping baseline comparison plots.")
+        return None
+
+    # Best-effort: also collect any recognized search-space hyperparameters
+    # so we can plot a baseline-vs-best parameter diff.
+    params = {}
+    def collect_params(d):
+        if isinstance(d, dict):
+            for k, v in d.items():
+                if k in SEARCH_SPACE and isinstance(v, (int, float)) and not isinstance(v, bool):
+                    params.setdefault(k, v)
+                elif isinstance(v, dict):
+                    collect_params(v)
+    collect_params(data)
+
+    print(f"Loaded baseline from {baseline_path}: {pretty(target)} = {value:.4f}"
+          + (f" (+{len(params)} recognized hyperparameters)" if params else ""))
+    return {"path": baseline_path, "value": value, "params": params, "raw": data}
+
+
+def plot_baseline_summary(df_analysis, target, baseline, top_n, out_dir):
+    """NEW: single bar chart -- baseline vs. median/mean/top-N-avg/best trial,
+    each bar labeled with its absolute value and its %-change vs baseline."""
+    if baseline is None:
+        return
+    y = pd.to_numeric(df_analysis[target], errors="coerce").dropna()
+    if y.empty:
+        return
+
+    base_val = baseline["value"]
+    n_top = min(top_n, len(y))
+    top_avg = y.nlargest(n_top).mean()
+
+    labels = ["Baseline", "Median\nTrial", "Mean\nTrial", f"Top-{n_top}\nAvg", "Best\nTrial"]
+    values = [base_val, y.median(), y.mean(), top_avg, y.max()]
+    colors = ["#7f7f7f", "#4C72B0", "#4C72B0", "#DD8452", "#C44E52"]
+
+    fig, ax = plt.subplots(figsize=(8, 5.5))
+    bars = ax.bar(labels, values, color=colors, edgecolor="black", linewidth=0.6)
+    ax.axhline(base_val, color="#7f7f7f", linestyle="--", linewidth=1, alpha=0.7, zorder=0)
+
+    for bar, val, label in zip(bars, values, labels):
+        text = f"{val:.4f}"
+        if label != "Baseline" and base_val != 0:
+            pct = 100 * (val - base_val) / base_val
+            text += f"\n({pct:+.1f}%)"
+        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height(), text,
+                ha="center", va="bottom", fontsize=8.5)
+
+    ax.set_ylabel(pretty(target))
+    ax.set_title(f"{pretty(target)}: Baseline vs. HPO Trial Summary")
+    ax.set_ylim(0, max(values) * 1.2)
+    plt.tight_layout()
+    path = os.path.join(out_dir, "baseline_vs_trials_summary.png")
+    plt.savefig(path, **SAVE_KW)
+    plt.close()
+    print(f"Saved baseline summary comparison -> {path}")
+
+
+def plot_baseline_distribution(df_analysis, target, baseline, out_dir):
+    """NEW: target histogram/KDE across all trials with the baseline marked,
+    reporting what fraction of trials actually beat it."""
+    if baseline is None:
+        return
+    y = pd.to_numeric(df_analysis[target], errors="coerce").dropna()
+    if y.empty:
+        return
+
+    base_val = baseline["value"]
+    n_beat = int((y > base_val).sum())
+    pct_beat = 100 * n_beat / len(y)
+
+    fig, ax = plt.subplots(figsize=(8, 5.5))
+    sns.histplot(y, bins=15, kde=True, color="steelblue", ax=ax, edgecolor="white")
+    ax.axvline(base_val, color="black", linewidth=2.2, label=f"Baseline = {base_val:.4f}")
+    ax.axvline(y.mean(), color="darkorange", linestyle="--", linewidth=1.6, label=f"Trial Mean = {y.mean():.4f}")
+    ax.axvline(y.max(), color="firebrick", linestyle=":", linewidth=1.6, label=f"Best Trial = {y.max():.4f}")
+
+    ax.set_xlabel(pretty(target))
+    ax.set_ylabel("Count")
+    ax.set_title(f"{pretty(target)} Distribution vs. Baseline\n"
+                 f"({n_beat}/{len(y)} trials = {pct_beat:.1f}% outperformed the baseline)")
+    ax.legend()
+    plt.tight_layout()
+    path = os.path.join(out_dir, "baseline_vs_trials_distribution.png")
+    plt.savefig(path, **SAVE_KW)
+    plt.close()
+    print(f"Saved baseline distribution comparison -> {path}")
+
+
+def plot_top_trials_vs_baseline(df, target, baseline, top_idx, out_dir):
+    """NEW: per-trial bar chart of the top-N trials against the baseline,
+    with a %-delta label on every bar so gains (or shortfalls) per trial
+    are immediately visible."""
+    if baseline is None:
+        return
+    base_val = baseline["value"]
+
+    top = df.loc[top_idx].copy()
+    top[target] = pd.to_numeric(top[target], errors="coerce")
+    top = top.sort_values(target, ascending=False)
+
+    if "trial_number" in top.columns:
+        xlabels = [f"Trial {int(t)}" for t in top["trial_number"]]
+    else:
+        xlabels = [f"Trial {i}" for i in top.index]
+
+    vals = top[target].values
+    colors = ["seagreen" if v > base_val else "firebrick" for v in vals]
+
+    fig, ax = plt.subplots(figsize=(max(8, 0.65 * len(vals)), 5.5))
+    bars = ax.bar(xlabels, vals, color=colors, edgecolor="black", linewidth=0.5, alpha=0.85)
+    ax.axhline(base_val, color="black", linestyle="--", linewidth=2, label=f"Baseline = {base_val:.4f}")
+
+    for bar, v in zip(bars, vals):
+        pct = 100 * (v - base_val) / base_val if base_val != 0 else np.nan
+        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height(),
+                f"{pct:+.1f}%", ha="center", va="bottom", fontsize=8)
+
+    ax.set_ylabel(pretty(target))
+    ax.set_title(f"Top {len(vals)} Trials vs. Baseline ({pretty(target)})")
+    ax.legend()
+    plt.xticks(rotation=45, ha="right")
+    plt.tight_layout()
+    path = os.path.join(out_dir, "top_trials_vs_baseline.png")
+    plt.savefig(path, **SAVE_KW)
+    plt.close()
+    print(f"Saved top-trials-vs-baseline plot -> {path}")
+
+
+def plot_baseline_param_diff(df_analysis, numeric_cols, target, baseline, out_dir):
+    """NEW: baseline vs. best-trial hyperparameters, normalized to each
+    parameter's search-space range so differing units/scales sit on one
+    comparable [0, 1] axis. Highlights exactly which settings the best
+    trial changed relative to the baseline (and by how much)."""
+    if baseline is None or not baseline.get("params"):
+        if baseline is not None:
+            print("Baseline JSON has no recognized hyperparameters -- skipping param-diff plot.")
+        return
+
+    base_params = baseline["params"]
+    plot_cols = [c for c in numeric_cols if c in SEARCH_SPACE and c in base_params]
+    if not plot_cols:
+        print("No overlap between baseline hyperparameters and trial columns -- skipping param-diff plot.")
+        return
+
+    y = pd.to_numeric(df_analysis[target], errors="coerce")
+    best_idx = y.idxmax()
+
+    x = np.arange(len(plot_cols))
+    width = 0.35
+    base_norm, best_norm, base_raw, best_raw = [], [], [], []
+    for c in plot_cols:
+        lo, hi = SEARCH_SPACE[c]
+        rng = (hi - lo) if hi != lo else 1
+        b_val = base_params[c]
+        t_val = pd.to_numeric(pd.Series([df_analysis.loc[best_idx, c]]), errors="coerce").iloc[0]
+        base_raw.append(b_val)
+        best_raw.append(t_val)
+        base_norm.append((b_val - lo) / rng)
+        best_norm.append((t_val - lo) / rng)
+
+    fig, ax = plt.subplots(figsize=(max(8, 0.9 * len(plot_cols)), 5.5))
+    bars_b = ax.bar(x - width / 2, base_norm, width, label="Baseline", color="#7f7f7f", edgecolor="black")
+    bars_t = ax.bar(x + width / 2, best_norm, width, label="Best Trial", color="#C44E52", edgecolor="black")
+
+    for bar, raw in zip(bars_b, base_raw):
+        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height(), f"{raw:.3g}",
+                ha="center", va="bottom", fontsize=7.5)
+    for bar, raw in zip(bars_t, best_raw):
+        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height(), f"{raw:.3g}",
+                ha="center", va="bottom", fontsize=7.5)
+
+    ax.set_xticks(x)
+    ax.set_xticklabels([pretty(c) for c in plot_cols], rotation=45, ha="right")
+    ax.set_ylabel("Normalized Position in Search Range [0, 1]")
+    ax.set_title("Baseline vs. Best Trial: Key Hyperparameter Differences")
+    ax.legend()
+    ax.set_ylim(-0.05, 1.2)
+    plt.tight_layout()
+    path = os.path.join(out_dir, "baseline_vs_best_param_diff.png")
+    plt.savefig(path, **SAVE_KW)
+    plt.close()
+    print(f"Saved baseline-vs-best parameter diff plot -> {path}")
+
+
 def write_recommendations(df, df_analysis, target, numeric_cols, categorical_cols, constant_cols,
-                          target_corr, importance, top_idx, out_dir, top_n):
+                          target_corr, importance, top_idx, out_dir, top_n, baseline=None):
     lines = []
     y = pd.to_numeric(df_analysis[target], errors="coerce")
 
@@ -530,6 +767,29 @@ def write_recommendations(df, df_analysis, target, numeric_cols, categorical_col
     lines.append(f"Median {pretty(target)}: {y.median():.4f}")
     lines.append(f"Worst {pretty(target)}: {y.min():.4f}")
     lines.append("")
+
+    if baseline is not None:
+        base_val = baseline["value"]
+        n_beat = int((y > base_val).sum())
+        lines.append("-" * 70)
+        lines.append("BASELINE COMPARISON (results_baseline.json)")
+        lines.append("-" * 70)
+        lines.append(f"Baseline {pretty(target)}: {base_val:.4f}  (source: {baseline['path']})")
+        lines.append(f"Best trial vs. baseline:   {y.max():.4f}  "
+                      f"({100 * (y.max() - base_val) / base_val:+.1f}%)")
+        lines.append(f"Median trial vs. baseline: {y.median():.4f}  "
+                      f"({100 * (y.median() - base_val) / base_val:+.1f}%)")
+        lines.append(f"Trials that beat the baseline: {n_beat}/{len(y)} ({100 * n_beat / len(y):.1f}%)")
+        if baseline.get("params"):
+            best_idx_local = y.idxmax()
+            lines.append("Baseline vs. best-trial hyperparameters that differ:")
+            for col, b_val in baseline["params"].items():
+                if col not in df_analysis.columns:
+                    continue
+                t_val = pd.to_numeric(pd.Series([df_analysis.loc[best_idx_local, col]]), errors="coerce").iloc[0]
+                if pd.notna(t_val) and t_val != b_val:
+                    lines.append(f"    {pretty(col):35s} baseline={b_val:g}  best_trial={t_val:g}")
+        lines.append("")
 
     lines.append("-" * 70)
     lines.append(f"TOP {min(top_n, len(df))} TRIALS")
@@ -659,7 +919,7 @@ def write_recommendations(df, df_analysis, target, numeric_cols, categorical_col
 
 
 def main():
-    csv_path = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\ajrbe\Documents\Git\spiking-eegnet\results_FinalTest\BNCI2014_001\trials.csv"
+    csv_path = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\ajrbe\Documents\Git\spiking-eegnet\results\BNCI2014_001\trials.csv"
     out_dir = sys.argv[2] if len(sys.argv) > 2 else "trial_analysis_output"
     top_n = int(sys.argv[3]) if len(sys.argv) > 3 else 10
     os.makedirs(out_dir, exist_ok=True)
@@ -715,6 +975,13 @@ def main():
     # 8. NEW: importance vs correlation
     plot_importance_vs_correlation(importance, target_corr, target, out_dir)
 
+    # NEW: baseline comparison (results_baseline.json, if present alongside the csv)
+    baseline = load_baseline(csv_path, target)
+    plot_baseline_summary(df_analysis, target, baseline, top_n, out_dir)
+    plot_baseline_distribution(df_analysis, target, baseline, out_dir)
+    plot_top_trials_vs_baseline(df_analysis, target, baseline, top_idx, out_dir)
+    plot_baseline_param_diff(df_analysis, numeric_cols, target, baseline, out_dir)
+
     # 9. Summary stats
     summary_path = os.path.join(out_dir, "summary_stats.csv")
     df_analysis.describe(include="all").to_csv(summary_path)
@@ -729,7 +996,7 @@ def main():
 
     # 10. Recommendations
     write_recommendations(df, df_analysis, target, numeric_cols, categorical_cols, constant_cols,
-                          target_corr, importance, top_idx, out_dir, top_n)
+                          target_corr, importance, top_idx, out_dir, top_n, baseline=baseline)
 
 
 if __name__ == "__main__":
