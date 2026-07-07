@@ -21,9 +21,10 @@ PHASE 1 — Per-subject LOSO breakdown
     in the same publication-style format as statistic.py.
 
 PHASE 2 — Ablation study
-    a) Component ablations: re-run LOSO with one design choice flipped at a
-       time (z-score on/off + axis, readout mode) and
-       compare mean balanced accuracy against the Phase-1 baseline.
+    a) Component ablations: re-run LOSO with the alternate readout mode and
+       compare mean balanced accuracy against the Phase-1 baseline. (Z-score
+       normalization ablations were removed along with RUN_ZSCORE/NORM_AXIS,
+       since that preprocessing path is no longer part of the pipeline.)
     b) Channel importance: for each subject's Phase-1 model, zero out one
        EEG channel at a time in the held-out test set and measure the drop
        in balanced accuracy (occlusion importance). No re-training needed —
@@ -73,7 +74,6 @@ import seaborn as sns
 from sklearn.metrics import balanced_accuracy_score, f1_score, confusion_matrix
 
 from load_moabb_dataset import load_moabb_dataset
-from zscore_normalize import zscore_normalize
 from make_loader import make_loader
 from build_model import build_model
 from run_training import run_training
@@ -112,24 +112,28 @@ CHANNEL_NAMES = {
 
 # FIXED params held constant during the Optuna study (main.py FIXED dict).
 # These don't live in best_params.json (search space only), so we supply
-# sensible defaults here, overridable via CLI.
+# sensible defaults here, overridable via CLI. Z-score normalization
+# (RUN_ZSCORE / NORM_AXIS) has been removed from the pipeline entirely, so
+# it's no longer part of this config.
 DEFAULT_FIXED = dict(
     DATASET_KEY="BNCI2014_001",
     EPOCHS=50,
     BATCH_SIZE=32,
-    NORM_AXIS=(1, 3),
-    RUN_ZSCORE=False,
 )
 
-READOUT_MODES = ["spk_mean", "spk_last", "spk_sum", "mem_last"]
+# main.py's HPO search space now only searches READOUT_MODE over
+# ["spk_mean", "spk_sum"] (spk_last and mem_last were dropped -- mem_last
+# had a known shape-mismatch bug, spk_last added little on top of spk_mean).
+# Ablation configs mirror that same restricted set so we don't burn compute
+# re-testing readout modes the actual HPO study can no longer select.
+READOUT_MODES = ["spk_mean", "spk_sum"]
 
 
 def pretty(col: str) -> str:
     names = {
         "bal_acc": "Balanced Accuracy", "f1_macro": "Macro F1 Score",
-        "subject": "Subject", "run_zscore": "Z-Score Normalization",
-        "readout_mode": "Readout Mode",
-        "norm_axis": "Normalization Axis", "mean_bal_acc": "Mean Balanced Accuracy",
+        "subject": "Subject", "readout_mode": "Readout Mode",
+        "mean_bal_acc": "Mean Balanced Accuracy",
         "std_bal_acc": "Std. Dev. Balanced Accuracy",
     }
     return names.get(col, col.replace("_", " ").title())
@@ -209,32 +213,28 @@ def load_best_params(args):
     return params
 
 
-def prepare_data(params, override_zscore=None, override_norm_axis=None):
-    """Loads raw data and applies (optionally overridden) preprocessing."""
-    X, y, subject_ids, meta = load_moabb_dataset(params["DATASET_KEY"])
-
-    run_zscore = params["RUN_ZSCORE"] if override_zscore is None else override_zscore
-    norm_axis = params["NORM_AXIS"] if override_norm_axis is None else override_norm_axis
-
-    if run_zscore:
-        X = zscore_normalize(X, axis=norm_axis)
-
-    return X, y, subject_ids, meta
+def prepare_data(params):
+    """Loads the dataset. Preprocessing is now just what load_moabb_dataset
+    itself does -- z-score normalization has been removed from the pipeline,
+    so there's no longer any override/branch to handle here."""
+    return load_moabb_dataset(params["DATASET_KEY"])
 
 
 @torch.no_grad()
 def predict_all(model, loader, device, n_steps, readout_mode):
     """Like evaluate(), but returns raw predictions/labels for confusion
-    matrices and per-class breakdowns instead of just a scalar accuracy."""
+    matrices and per-class breakdowns instead of just a scalar accuracy.
+
+    Only spk_mean / spk_sum readout modes are supported now (matching
+    main.py's search space) -- aggregate_logits() handles both directly, so
+    no special-casing is needed here anymore.
+    """
     model.eval()
     all_preds, all_labels = [], []
     for xb, yb in loader:
         xb = xb.to(device)
         spk, mem = model(xb, num_steps=n_steps)
-        if readout_mode == "mem_last":
-            logits = model.classifier(mem[-1].flatten(1))
-        else:
-            logits = aggregate_logits(spk, mem, readout_mode)
+        logits = aggregate_logits(spk, mem, readout_mode)
         all_preds.append(logits.argmax(1).cpu().numpy())
         all_labels.append(yb.numpy())
     return np.concatenate(all_preds), np.concatenate(all_labels)
@@ -464,33 +464,30 @@ def write_per_subject_csv(per_subject, out_dir):
 def build_ablation_configs(baseline_params):
     """Each ablation flips ONE design choice relative to the baseline best
     config; everything else stays identical so the comparison isolates that
-    one factor's effect."""
+    one factor's effect. Z-score normalization ablations (RUN_ZSCORE /
+    NORM_AXIS) have been removed along with the rest of that preprocessing
+    path -- readout mode is now the only ablation dimension."""
     configs = []
-    base_zscore = baseline_params["RUN_ZSCORE"]
-    base_axis, base_readout = baseline_params["NORM_AXIS"], baseline_params["READOUT_MODE"]
-
-    configs.append({"name": "zscore_per_channel_on", "run_zscore": True, "norm_axis": (1, 3), "readout_mode": base_readout})
-    configs.append({"name": "zscore_per_epoch_on", "run_zscore": True, "norm_axis": (1, 2, 3), "readout_mode": base_readout})
+    base_readout = baseline_params["READOUT_MODE"]
     for mode in READOUT_MODES:
         if mode == base_readout:
             continue
-        configs.append({"name": f"readout_{mode}", "run_zscore": base_zscore, "norm_axis": base_axis, "readout_mode": mode})
+        configs.append({"name": f"readout_{mode}", "readout_mode": mode})
     return configs
 
 
-def run_ablations(params, ablation_subjects_internal, meta_template, device, batch_size_override=None):
+def run_ablations(params, ablation_subjects_internal, meta, device, X, y, subject_ids):
+    """Re-runs LOSO training with an alternate readout mode for each
+    non-baseline config in build_ablation_configs(). Reuses the dataset
+    already loaded in main() -- there's no per-config preprocessing to
+    reload anymore, so this only differs from Phase 1's training loop in
+    which readout_mode it passes through."""
     results = []
     configs = build_ablation_configs(params)
     train_cfg_base, model_cfg = make_cfgs(params)
 
     for cfg in configs:
-        print(f"\n=== Phase 2a: ablation '{cfg['name']}' "
-              f"(zscore={cfg['run_zscore']}, "
-              f"axis={cfg['norm_axis']}, readout={cfg['readout_mode']}) ===")
-        X, y, subject_ids, meta = prepare_data(
-            params, override_zscore=cfg["run_zscore"],
-            override_norm_axis=cfg["norm_axis"],
-        )
+        print(f"\n=== Phase 2a: ablation '{cfg['name']}' (readout={cfg['readout_mode']}) ===")
         train_cfg = dict(train_cfg_base)
         train_cfg["readout_mode"] = cfg["readout_mode"]
 
@@ -691,8 +688,8 @@ def parse_args():
     p.add_argument("--skip-channels", action="store_true", help="Skip Phase 2b channel-importance analysis")
     p.add_argument("--ablation-subjects", type=str, default=None,
                   help="Comma-separated internal subject indices to use for Phase 2a "
-                       "(default: all subjects -- expensive, ~7x extra LOSO runs since "
-                       "there are 7 non-baseline ablation configs)")
+                       "(default: all subjects -- there's only 1 non-baseline ablation "
+                       "config now: the alternate readout mode)")
     return p.parse_args()
 
 
@@ -742,7 +739,7 @@ def main():
             ablation_subjects = [int(s) for s in args.ablation_subjects.split(",")]
         else:
             ablation_subjects = internal_subjects
-        ablation_results = run_ablations(params, ablation_subjects, meta, device)
+        ablation_results = run_ablations(params, ablation_subjects, meta, device, X, y, subject_ids)
         plot_ablation_comparison(baseline_mean, baseline_std, ablation_results, out_dir)
         pd.DataFrame(
             [{"name": "baseline", "mean_bal_acc": baseline_mean, "std_bal_acc": baseline_std,
