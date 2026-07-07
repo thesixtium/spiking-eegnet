@@ -73,6 +73,7 @@ export PYTHONPATH=$(pwd)/src:$PYTHONPATH
 python3 src/ablation.py \
     --out-dir results_FinalTest/BNCI2014_001/ablation_study \
     --epochs 50
+    --study-name snn_eegnet_v4_400_40
 
 # To restrict the (expensive) Phase 2a ablation sweep to a few representative
 # subjects instead of all 9, add e.g.:
