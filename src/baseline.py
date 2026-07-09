@@ -627,7 +627,7 @@ LITERAL_EEGNET_SNN_CFG = {
     "pool1_size": 4,                # 128Hz -> 32Hz
     "pool2_size": 8,
     "dropout": 0.25,                # cross-subject value (LOSO = cross-subject)
-    "num_steps": 25,                # default timestep count; override with --num-steps
+    "num_steps": 1,                # default timestep count; override with --num-steps
     "readout_mode": "spk_mean",     # this study's preferred readout mode
 }
 
