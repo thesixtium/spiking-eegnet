@@ -17,6 +17,12 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
 
+# Prevent any stray tensor from ever being printed in full (e.g. if a
+# warning, assertion, or debug print anywhere in the stack happens to
+# include a tensor repr) -- this is what was spamming the console with
+# giant blocks of numbers like "Columns 1 to 8 ... [ torch.FloatTensor{...} ]".
+torch.set_printoptions(threshold=100, edgeitems=3, linewidth=120)
+
 from spiking_eegnet import SpikingEEGNet
 from train_one_epoch import aggregate_logits, train_one_epoch
 
@@ -173,7 +179,8 @@ def convert_to_c(onnx_path: str, c_path: str):
 
     Path(c_path).write_text(result.stdout)
     print(f"Wrote generated C to {c_path}\n")
-    print(result.stdout)
+    # (Not dumping the full generated C source here -- it's already saved
+    # to disk at c_path above; open that file to inspect it.)
 
 
 # --------------------------------------------------------------------------- #
@@ -184,6 +191,12 @@ def main():
     ONNX_OUT = "spiking_eegnet.onnx"
     C_OUT = "spiking_eegnet.c"
     # -------------------------------------------------- #
+
+    # Resolve to absolute paths up front so we can report exactly where
+    # everything landed, regardless of what the current working directory
+    # happens to be when this script is invoked.
+    onnx_out_abs = str(Path(ONNX_OUT).resolve())
+    c_out_abs = str(Path(C_OUT).resolve())
 
     if True:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -217,10 +230,18 @@ def main():
             model, num_channels, num_samples,
             num_steps=run_cfg.get("n_steps_eval", run_cfg.get("n_steps_train", 20)),
             readout_mode=run_cfg.get("readout_mode", "spk_mean"),
-            onnx_path=ONNX_OUT,
+            onnx_path=onnx_out_abs,
         )
 
-    convert_to_c(ONNX_OUT, C_OUT)
+    convert_to_c(onnx_out_abs, c_out_abs)
+
+    # -------------------- summary -------------------- #
+    print("\n" + "=" * 60)
+    print("DONE. Output files were saved to:")
+    print(f"  ONNX model : {onnx_out_abs}")
+    print(f"  C source   : {c_out_abs}")
+    print(f"  (current working directory was: {Path.cwd()})")
+    print("=" * 60)
 
 
 if __name__ == "__main__":
