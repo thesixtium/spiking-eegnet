@@ -174,10 +174,10 @@ def convert_to_c(onnx_path: str, c_path: str):
 # --------------------------------------------------------------------------- #
 def main():
     # -------------------- config -------------------- #
+    EPOCHS = 1  # <-- change this to set how many epochs to train for
     BEST_PARAMS_PATH = "best_params.json"
     ONNX_OUT = "spiking_eegnet.onnx"
     C_OUT = "spiking_eegnet.c"
-    EPOCHS_OVERRIDE = None  # set to an int to override epochs from best_params.json
     # -------------------------------------------------- #
 
     if True:
@@ -186,11 +186,10 @@ def main():
         params = load_best_params(BEST_PARAMS_PATH)
         model_kwargs, run_cfg = split_params(
             params,
-            extra_defaults={"epochs": 2, "batch_size": 32, "lr": 1e-3,
+            extra_defaults={"epochs": EPOCHS, "batch_size": 32, "lr": 1e-3,
                              "n_steps_train": 20, "readout_mode": "spk_mean"},
         )
-        if EPOCHS_OVERRIDE is not None:
-            run_cfg["epochs"] = EPOCHS_OVERRIDE
+        run_cfg["epochs"] = EPOCHS
 
         print("Model kwargs:", model_kwargs)
         print("Run config:  ", run_cfg)
