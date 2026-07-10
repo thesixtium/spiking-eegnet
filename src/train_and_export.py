@@ -132,6 +132,7 @@ def export_onnx(model, num_channels, num_samples, num_steps, readout_mode,
     # torch.onnx.export's tracer unrolls it into a static graph -- no
     # dynamic control-flow (Loop/If) ops end up in the exported model,
     # which is what lets onnx2c handle it at all.
+    wrapper.eval()
     torch.onnx.export(
         wrapper,
         dummy,
@@ -140,6 +141,10 @@ def export_onnx(model, num_channels, num_samples, num_steps, readout_mode,
         output_names=["logits"],
         opset_version=13,
         do_constant_folding=True,
+        dynamo=False,  # legacy TorchScript-based exporter -- the newer
+                        # dynamo exporter emits axes-as-input ops that fail
+                        # to downconvert to opset 13 and produce a malformed
+                        # graph onnx2c can't parse
     )
     print(f"Exported ONNX model to {onnx_path}")
 
