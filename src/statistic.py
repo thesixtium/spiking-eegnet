@@ -19,8 +19,12 @@ Outputs:
   9. summary_stats.csv                  - describe() of all columns
  10. recommendations.txt                - plain-text written summary
 
-If a `results_baseline.json` file is found alongside the trials csv, four
-additional baseline-comparison figures are produced:
+If a `results_baseline.json` and/or `results_snn.json` file is found
+alongside the trials csv, four additional baseline-comparison figures are
+produced (each baseline found is overlaid on the same figures --
+`results_baseline.json` is treated as the primary "Baseline" and
+`results_snn.json`, if present, is plotted alongside it as an "Untuned SNN"
+baseline, i.e. a plain SpikingEEGNet run without the Optuna study):
  11. baseline_vs_trials_summary.png      - NEW: baseline vs median/mean/top-N/best
  12. baseline_vs_trials_distribution.png - NEW: target histogram with baseline marked,
                                             % of trials that beat the baseline
@@ -526,12 +530,21 @@ def plot_importance_vs_correlation(importance, target_corr, target, out_dir):
 
 
 # ----------------------------------------------------------------------
-# Baseline comparison (results_baseline.json)
+# Baseline comparison (results_baseline.json, results_snn.json)
 # ----------------------------------------------------------------------
-def load_baseline(csv_path, target):
-    """Look for `results_baseline.json` in the same folder as trials.csv
-    (i.e. alongside the other per-trial result files) and pull out its
-    target metric plus any recognized hyperparameters.
+
+# Every baseline JSON we know how to look for, in the same folder as
+# trials.csv, paired with the label it should carry in plots/reports.
+BASELINE_SPECS = [
+    ("results_baseline.json", "Baseline"),
+    ("results_snn.json",      "Untuned SNN"),
+]
+
+
+def load_baseline(csv_path, target, filename="results_baseline.json", label="Baseline"):
+    """Look for `filename` in the same folder as trials.csv (i.e. alongside
+    the other per-trial result files) and pull out its target metric plus
+    any recognized hyperparameters.
 
     The JSON's exact shape isn't assumed -- this searches recursively for
     a key matching `target`, falling back to a few common alias names
@@ -540,9 +553,9 @@ def load_baseline(csv_path, target):
     is found, so downstream plotting functions can just no-op.
     """
     baseline_dir = os.path.dirname(os.path.abspath(csv_path)) or "."
-    baseline_path = os.path.join(baseline_dir, "results_baseline.json")
+    baseline_path = os.path.join(baseline_dir, filename)
     if not os.path.exists(baseline_path):
-        print(f"No baseline file found at {baseline_path} -- skipping baseline comparison plots.")
+        print(f"No baseline file found at {baseline_path} -- skipping '{label}' baseline comparison.")
         return None
 
     with open(baseline_path, "r") as f:
@@ -567,7 +580,7 @@ def load_baseline(csv_path, target):
 
     if value is None:
         print(f"Could not find a numeric '{target}' (or common alias) in {baseline_path} -- "
-              f"skipping baseline comparison plots.")
+              f"skipping '{label}' baseline comparison.")
         return None
 
     # Best-effort: also collect any recognized search-space hyperparameters
@@ -582,37 +595,63 @@ def load_baseline(csv_path, target):
                     collect_params(v)
     collect_params(data)
 
-    print(f"Loaded baseline from {baseline_path}: {pretty(target)} = {value:.4f}"
+    print(f"Loaded '{label}' baseline from {baseline_path}: {pretty(target)} = {value:.4f}"
           + (f" (+{len(params)} recognized hyperparameters)" if params else ""))
-    return {"path": baseline_path, "value": value, "params": params, "raw": data}
+    return {"path": baseline_path, "value": value, "params": params, "raw": data, "label": label}
 
 
-def plot_baseline_summary(df_analysis, target, baseline, top_n, out_dir):
-    """NEW: single bar chart -- baseline vs. median/mean/top-N-avg/best trial,
-    each bar labeled with its absolute value and its %-change vs baseline."""
-    if baseline is None:
+def load_all_baselines(csv_path, target):
+    """Load every baseline JSON listed in BASELINE_SPECS that's present
+    alongside trials.csv (e.g. `results_baseline.json` and, if present,
+    `results_snn.json` for an untuned/no-Optuna SNN run). Returns a list
+    (possibly empty) so all baseline plots can iterate over however many
+    baselines were actually found.
+    """
+    baselines = []
+    for filename, label in BASELINE_SPECS:
+        b = load_baseline(csv_path, target, filename=filename, label=label)
+        if b is not None:
+            baselines.append(b)
+    return baselines
+
+
+def plot_baseline_summary(df_analysis, target, baselines, top_n, out_dir):
+    """NEW: single bar chart -- every known baseline (e.g. the non-spiking
+    baseline plus an untuned/no-Optuna SNN baseline, if present) vs.
+    median/mean/top-N/best trial. Trial-summary bars show their %-change
+    vs. the primary (first) baseline."""
+    if not baselines:
         return
     y = pd.to_numeric(df_analysis[target], errors="coerce").dropna()
     if y.empty:
         return
 
-    base_val = baseline["value"]
+    primary_val = baselines[0]["value"]
     n_top = min(top_n, len(y))
     top_avg = y.nlargest(n_top).mean()
 
-    labels = ["Baseline", "Median\nTrial", "Mean\nTrial", f"Top-{n_top}\nAvg", "Best\nTrial"]
-    values = [base_val, y.median(), y.mean(), top_avg, y.max()]
-    colors = ["#7f7f7f", "#4C72B0", "#4C72B0", "#DD8452", "#C44E52"]
+    baseline_labels = [b.get("label", "Baseline") for b in baselines]
+    baseline_values = [b["value"] for b in baselines]
+    baseline_palette = ["#7f7f7f", "#9467bd", "#8c564b", "#e377c2"]
+    baseline_colors = [baseline_palette[i % len(baseline_palette)] for i in range(len(baselines))]
 
-    fig, ax = plt.subplots(figsize=(8, 5.5))
+    labels = baseline_labels + ["Median\nTrial", "Mean\nTrial", f"Top-{n_top}\nAvg", "Best\nTrial"]
+    values = baseline_values + [y.median(), y.mean(), top_avg, y.max()]
+    colors = baseline_colors + ["#4C72B0", "#4C72B0", "#DD8452", "#C44E52"]
+
+    fig, ax = plt.subplots(figsize=(max(8, 1.3 * len(labels)), 5.5))
     bars = ax.bar(labels, values, color=colors, edgecolor="black", linewidth=0.6)
-    ax.axhline(base_val, color="#7f7f7f", linestyle="--", linewidth=1, alpha=0.7, zorder=0)
+    ax.axhline(primary_val, color="#7f7f7f", linestyle="--", linewidth=1, alpha=0.7, zorder=0)
 
     for bar, val, label in zip(bars, values, labels):
         text = f"{val:.4f}"
-        if label != "Baseline" and base_val != 0:
-            pct = 100 * (val - base_val) / base_val
-            text += f"\n({pct:+.1f}%)"
+        if primary_val != 0:
+            if label not in baseline_labels:
+                pct = 100 * (val - primary_val) / primary_val
+                text += f"\n({pct:+.1f}%)"
+            elif label != baseline_labels[0]:
+                pct = 100 * (val - primary_val) / primary_val
+                text += f"\n({pct:+.1f}% vs {baseline_labels[0]})"
         ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height(), text,
                 ha="center", va="bottom", fontsize=8.5)
 
@@ -626,29 +665,35 @@ def plot_baseline_summary(df_analysis, target, baseline, top_n, out_dir):
     print(f"Saved baseline summary comparison -> {path}")
 
 
-def plot_baseline_distribution(df_analysis, target, baseline, out_dir):
-    """NEW: target histogram/KDE across all trials with the baseline marked,
-    reporting what fraction of trials actually beat it."""
-    if baseline is None:
+def plot_baseline_distribution(df_analysis, target, baselines, out_dir):
+    """NEW: target histogram/KDE across all trials with every known baseline
+    marked, reporting what fraction of trials actually beat each one."""
+    if not baselines:
         return
     y = pd.to_numeric(df_analysis[target], errors="coerce").dropna()
     if y.empty:
         return
 
-    base_val = baseline["value"]
-    n_beat = int((y > base_val).sum())
-    pct_beat = 100 * n_beat / len(y)
-
     fig, ax = plt.subplots(figsize=(8, 5.5))
     sns.histplot(y, bins=15, kde=True, color="steelblue", ax=ax, edgecolor="white")
-    ax.axvline(base_val, color="black", linewidth=2.2, label=f"Baseline = {base_val:.4f}")
+
+    baseline_palette = ["black", "#9467bd", "#8c564b", "#e377c2"]
+    beat_summaries = []
+    for i, b in enumerate(baselines):
+        base_val = b["value"]
+        label = b.get("label", "Baseline")
+        color = baseline_palette[i % len(baseline_palette)]
+        n_beat = int((y > base_val).sum())
+        pct_beat = 100 * n_beat / len(y)
+        ax.axvline(base_val, color=color, linewidth=2.2, label=f"{label} = {base_val:.4f}")
+        beat_summaries.append(f"{n_beat}/{len(y)} ({pct_beat:.1f}%) beat {label}")
+
     ax.axvline(y.mean(), color="darkorange", linestyle="--", linewidth=1.6, label=f"Trial Mean = {y.mean():.4f}")
     ax.axvline(y.max(), color="firebrick", linestyle=":", linewidth=1.6, label=f"Best Trial = {y.max():.4f}")
 
     ax.set_xlabel(pretty(target))
     ax.set_ylabel("Count")
-    ax.set_title(f"{pretty(target)} Distribution vs. Baseline\n"
-                 f"({n_beat}/{len(y)} trials = {pct_beat:.1f}% outperformed the baseline)")
+    ax.set_title(f"{pretty(target)} Distribution vs. Baseline(s)\n" + "; ".join(beat_summaries))
     ax.legend()
     plt.tight_layout()
     path = os.path.join(out_dir, "baseline_vs_trials_distribution.png")
@@ -657,13 +702,16 @@ def plot_baseline_distribution(df_analysis, target, baseline, out_dir):
     print(f"Saved baseline distribution comparison -> {path}")
 
 
-def plot_top_trials_vs_baseline(df, target, baseline, top_idx, out_dir):
-    """NEW: per-trial bar chart of the top-N trials against the baseline,
-    with a %-delta label on every bar so gains (or shortfalls) per trial
-    are immediately visible."""
-    if baseline is None:
+def plot_top_trials_vs_baseline(df, target, baselines, top_idx, out_dir):
+    """NEW: per-trial bar chart of the top-N trials against the primary
+    baseline (bar color/%-delta), with every other known baseline (e.g.
+    an untuned/no-Optuna SNN baseline) drawn as an additional reference
+    line so all baselines are visible on the same figure."""
+    if not baselines:
         return
-    base_val = baseline["value"]
+    primary = baselines[0]
+    base_val = primary["value"]
+    primary_label = primary.get("label", "Baseline")
 
     top = df.loc[top_idx].copy()
     top[target] = pd.to_numeric(top[target], errors="coerce")
@@ -679,7 +727,12 @@ def plot_top_trials_vs_baseline(df, target, baseline, top_idx, out_dir):
 
     fig, ax = plt.subplots(figsize=(max(8, 0.65 * len(vals)), 5.5))
     bars = ax.bar(xlabels, vals, color=colors, edgecolor="black", linewidth=0.5, alpha=0.85)
-    ax.axhline(base_val, color="black", linestyle="--", linewidth=2, label=f"Baseline = {base_val:.4f}")
+    ax.axhline(base_val, color="black", linestyle="--", linewidth=2, label=f"{primary_label} = {base_val:.4f}")
+
+    extra_palette = ["#9467bd", "#8c564b", "#e377c2"]
+    for i, b in enumerate(baselines[1:]):
+        ax.axhline(b["value"], color=extra_palette[i % len(extra_palette)], linestyle=":",
+                   linewidth=2, label=f"{b.get('label', 'Baseline')} = {b['value']:.4f}")
 
     for bar, v in zip(bars, vals):
         pct = 100 * (v - base_val) / base_val if base_val != 0 else np.nan
@@ -697,18 +750,19 @@ def plot_top_trials_vs_baseline(df, target, baseline, top_idx, out_dir):
     print(f"Saved top-trials-vs-baseline plot -> {path}")
 
 
-def plot_baseline_param_diff(df_analysis, numeric_cols, target, baseline, out_dir):
-    """NEW: baseline vs. best-trial hyperparameters, normalized to each
-    parameter's search-space range so differing units/scales sit on one
-    comparable [0, 1] axis. Highlights exactly which settings the best
-    trial changed relative to the baseline (and by how much)."""
-    if baseline is None or not baseline.get("params"):
-        if baseline is not None:
-            print("Baseline JSON has no recognized hyperparameters -- skipping param-diff plot.")
+def plot_baseline_param_diff(df_analysis, numeric_cols, target, baselines, out_dir):
+    """NEW: every baseline's hyperparameters vs. the best-trial's, normalized
+    to each parameter's search-space range so differing units/scales sit on
+    one comparable [0, 1] axis. Highlights exactly which settings the best
+    trial changed relative to each baseline (and by how much)."""
+    baselines_with_params = [b for b in (baselines or []) if b.get("params")]
+    if not baselines_with_params:
+        if baselines:
+            print("No baseline JSON has recognized hyperparameters -- skipping param-diff plot.")
         return
 
-    base_params = baseline["params"]
-    plot_cols = [c for c in numeric_cols if c in SEARCH_SPACE and c in base_params]
+    plot_cols = [c for c in numeric_cols if c in SEARCH_SPACE
+                 and any(c in b["params"] for b in baselines_with_params)]
     if not plot_cols:
         print("No overlap between baseline hyperparameters and trial columns -- skipping param-diff plot.")
         return
@@ -717,33 +771,52 @@ def plot_baseline_param_diff(df_analysis, numeric_cols, target, baseline, out_di
     best_idx = y.idxmax()
 
     x = np.arange(len(plot_cols))
-    width = 0.35
-    base_norm, best_norm, base_raw, best_raw = [], [], [], []
-    for c in plot_cols:
-        lo, hi = SEARCH_SPACE[c]
-        rng = (hi - lo) if hi != lo else 1
-        b_val = base_params[c]
-        t_val = pd.to_numeric(pd.Series([df_analysis.loc[best_idx, c]]), errors="coerce").iloc[0]
-        base_raw.append(b_val)
-        best_raw.append(t_val)
-        base_norm.append((b_val - lo) / rng)
-        best_norm.append((t_val - lo) / rng)
+    n_groups = len(baselines_with_params) + 1  # one bar per baseline, plus Best Trial
+    width = 0.8 / n_groups
+    palette = ["#7f7f7f", "#9467bd", "#8c564b", "#e377c2"]
 
     fig, ax = plt.subplots(figsize=(max(8, 0.9 * len(plot_cols)), 5.5))
-    bars_b = ax.bar(x - width / 2, base_norm, width, label="Baseline", color="#7f7f7f", edgecolor="black")
-    bars_t = ax.bar(x + width / 2, best_norm, width, label="Best Trial", color="#C44E52", edgecolor="black")
 
-    for bar, raw in zip(bars_b, base_raw):
-        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height(), f"{raw:.3g}",
-                ha="center", va="bottom", fontsize=7.5)
-    for bar, raw in zip(bars_t, best_raw):
+    def group_offset(group_idx):
+        return (group_idx - (n_groups - 1) / 2) * width
+
+    for i, b in enumerate(baselines_with_params):
+        offset = group_offset(i)
+        positions, norms, raws = [], [], []
+        for j, c in enumerate(plot_cols):
+            if c not in b["params"]:
+                continue
+            lo, hi = SEARCH_SPACE[c]
+            rng = (hi - lo) if hi != lo else 1
+            val = b["params"][c]
+            positions.append(x[j] + offset)
+            norms.append((val - lo) / rng)
+            raws.append(val)
+        bars = ax.bar(positions, norms, width, label=b.get("label", f"Baseline {i + 1}"),
+                       color=palette[i % len(palette)], edgecolor="black")
+        for bar, raw in zip(bars, raws):
+            ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height(), f"{raw:.3g}",
+                    ha="center", va="bottom", fontsize=7.5)
+
+    # Best-trial bar group (always the last group)
+    offset = group_offset(n_groups - 1)
+    best_positions, best_norms, best_raws = [], [], []
+    for j, c in enumerate(plot_cols):
+        lo, hi = SEARCH_SPACE[c]
+        rng = (hi - lo) if hi != lo else 1
+        t_val = pd.to_numeric(pd.Series([df_analysis.loc[best_idx, c]]), errors="coerce").iloc[0]
+        best_positions.append(x[j] + offset)
+        best_norms.append((t_val - lo) / rng)
+        best_raws.append(t_val)
+    bars_t = ax.bar(best_positions, best_norms, width, label="Best Trial", color="#C44E52", edgecolor="black")
+    for bar, raw in zip(bars_t, best_raws):
         ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height(), f"{raw:.3g}",
                 ha="center", va="bottom", fontsize=7.5)
 
     ax.set_xticks(x)
     ax.set_xticklabels([pretty(c) for c in plot_cols], rotation=45, ha="right")
     ax.set_ylabel("Normalized Position in Search Range [0, 1]")
-    ax.set_title("Baseline vs. Best Trial: Key Hyperparameter Differences")
+    ax.set_title("Baseline(s) vs. Best Trial: Key Hyperparameter Differences")
     ax.legend()
     ax.set_ylim(-0.05, 1.2)
     plt.tight_layout()
@@ -754,7 +827,7 @@ def plot_baseline_param_diff(df_analysis, numeric_cols, target, baseline, out_di
 
 
 def write_recommendations(df, df_analysis, target, numeric_cols, categorical_cols, constant_cols,
-                          target_corr, importance, top_idx, out_dir, top_n, baseline=None):
+                          target_corr, importance, top_idx, out_dir, top_n, baselines=None):
     lines = []
     y = pd.to_numeric(df_analysis[target], errors="coerce")
 
@@ -768,28 +841,42 @@ def write_recommendations(df, df_analysis, target, numeric_cols, categorical_col
     lines.append(f"Worst {pretty(target)}: {y.min():.4f}")
     lines.append("")
 
-    if baseline is not None:
-        base_val = baseline["value"]
-        n_beat = int((y > base_val).sum())
+    if baselines:
         lines.append("-" * 70)
-        lines.append("BASELINE COMPARISON (results_baseline.json)")
+        lines.append("BASELINE COMPARISON")
         lines.append("-" * 70)
-        lines.append(f"Baseline {pretty(target)}: {base_val:.4f}  (source: {baseline['path']})")
-        lines.append(f"Best trial vs. baseline:   {y.max():.4f}  "
-                      f"({100 * (y.max() - base_val) / base_val:+.1f}%)")
-        lines.append(f"Median trial vs. baseline: {y.median():.4f}  "
-                      f"({100 * (y.median() - base_val) / base_val:+.1f}%)")
-        lines.append(f"Trials that beat the baseline: {n_beat}/{len(y)} ({100 * n_beat / len(y):.1f}%)")
-        if baseline.get("params"):
-            best_idx_local = y.idxmax()
-            lines.append("Baseline vs. best-trial hyperparameters that differ:")
-            for col, b_val in baseline["params"].items():
-                if col not in df_analysis.columns:
-                    continue
-                t_val = pd.to_numeric(pd.Series([df_analysis.loc[best_idx_local, col]]), errors="coerce").iloc[0]
-                if pd.notna(t_val) and t_val != b_val:
-                    lines.append(f"    {pretty(col):35s} baseline={b_val:g}  best_trial={t_val:g}")
-        lines.append("")
+        for baseline in baselines:
+            base_val = baseline["value"]
+            label = baseline.get("label", "Baseline")
+            n_beat = int((y > base_val).sum())
+            lines.append(f"[{label}]  (source: {baseline['path']})")
+            lines.append(f"  {label} {pretty(target)}: {base_val:.4f}")
+            lines.append(f"  Best trial vs. {label}:   {y.max():.4f}  "
+                          f"({100 * (y.max() - base_val) / base_val:+.1f}%)")
+            lines.append(f"  Median trial vs. {label}: {y.median():.4f}  "
+                          f"({100 * (y.median() - base_val) / base_val:+.1f}%)")
+            lines.append(f"  Trials that beat {label}: {n_beat}/{len(y)} ({100 * n_beat / len(y):.1f}%)")
+            if baseline.get("params"):
+                best_idx_local = y.idxmax()
+                lines.append(f"  {label} vs. best-trial hyperparameters that differ:")
+                for col, b_val in baseline["params"].items():
+                    if col not in df_analysis.columns:
+                        continue
+                    t_val = pd.to_numeric(pd.Series([df_analysis.loc[best_idx_local, col]]), errors="coerce").iloc[0]
+                    if pd.notna(t_val) and t_val != b_val:
+                        lines.append(f"      {pretty(col):35s} {label}={b_val:g}  best_trial={t_val:g}")
+            lines.append("")
+
+        if len(baselines) > 1:
+            primary = baselines[0]
+            primary_label = primary.get("label", "Baseline")
+            lines.append(f"Baseline-to-baseline comparison (vs. {primary_label}):")
+            for b in baselines[1:]:
+                delta = (100 * (b["value"] - primary["value"]) / primary["value"]
+                         if primary["value"] != 0 else float("nan"))
+                lines.append(f"  {b.get('label', 'Baseline')}: {b['value']:.4f}  "
+                              f"vs. {primary_label}: {primary['value']:.4f}  ({delta:+.1f}%)")
+            lines.append("")
 
     lines.append("-" * 70)
     lines.append(f"TOP {min(top_n, len(df))} TRIALS")
@@ -975,12 +1062,13 @@ def main():
     # 8. NEW: importance vs correlation
     plot_importance_vs_correlation(importance, target_corr, target, out_dir)
 
-    # NEW: baseline comparison (results_baseline.json, if present alongside the csv)
-    baseline = load_baseline(csv_path, target)
-    plot_baseline_summary(df_analysis, target, baseline, top_n, out_dir)
-    plot_baseline_distribution(df_analysis, target, baseline, out_dir)
-    plot_top_trials_vs_baseline(df_analysis, target, baseline, top_idx, out_dir)
-    plot_baseline_param_diff(df_analysis, numeric_cols, target, baseline, out_dir)
+    # NEW: baseline comparison (results_baseline.json and, if present,
+    # results_snn.json for an untuned/no-Optuna SNN baseline), alongside the csv
+    baselines = load_all_baselines(csv_path, target)
+    plot_baseline_summary(df_analysis, target, baselines, top_n, out_dir)
+    plot_baseline_distribution(df_analysis, target, baselines, out_dir)
+    plot_top_trials_vs_baseline(df_analysis, target, baselines, top_idx, out_dir)
+    plot_baseline_param_diff(df_analysis, numeric_cols, target, baselines, out_dir)
 
     # 9. Summary stats
     summary_path = os.path.join(out_dir, "summary_stats.csv")
@@ -996,7 +1084,7 @@ def main():
 
     # 10. Recommendations
     write_recommendations(df, df_analysis, target, numeric_cols, categorical_cols, constant_cols,
-                          target_corr, importance, top_idx, out_dir, top_n, baseline=baseline)
+                          target_corr, importance, top_idx, out_dir, top_n, baselines=baselines)
 
 
 if __name__ == "__main__":

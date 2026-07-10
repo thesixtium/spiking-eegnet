@@ -2,25 +2,42 @@
 HYPERPARAMETER TRIAL ANALYSIS - RECOMMENDATIONS
 ======================================================================
 
-Total trials analyzed: 100
+Total trials analyzed: 101
 Best Mean Balanced Accuracy: 0.5725  (trial index 94)
-Median Mean Balanced Accuracy: 0.5381
+Median Mean Balanced Accuracy: 0.5388
 Worst Mean Balanced Accuracy: 0.4140
 
 ----------------------------------------------------------------------
-BASELINE COMPARISON (results_baseline.json)
+BASELINE COMPARISON
 ----------------------------------------------------------------------
-Baseline Mean Balanced Accuracy: 0.5006  (source: C:\Users\ajrbe\Documents\Git\spiking-eegnet\results\BNCI2014_001\results_baseline.json)
-Best trial vs. baseline:   0.5725  (+14.4%)
-Median trial vs. baseline: 0.5381  (+7.5%)
-Trials that beat the baseline: 90/100 (90.0%)
-Baseline vs. best-trial hyperparameters that differ:
-    Number of Temporal Filters          baseline=8  best_trial=37
-    Number of Pointwise Filters         baseline=16  best_trial=58
-    Separable Kernel Size               baseline=16  best_trial=12
-    Pooling Layer 1 Size                baseline=4  best_trial=5
-    Pooling Layer 2 Size                baseline=8  best_trial=5
-    Dropout Rate                        baseline=0.25  best_trial=0.410204
+[Baseline]  (source: C:\Users\ajrbe\Documents\Git\spiking-eegnet\results\BNCI2014_001\results_baseline.json)
+  Baseline Mean Balanced Accuracy: 0.5602
+  Best trial vs. Baseline:   0.5725  (+2.2%)
+  Median trial vs. Baseline: 0.5388  (-3.8%)
+  Trials that beat Baseline: 11/101 (10.9%)
+  Baseline vs. best-trial hyperparameters that differ:
+      Number of Temporal Filters          Baseline=8  best_trial=37
+      Number of Pointwise Filters         Baseline=16  best_trial=58
+      Separable Kernel Size               Baseline=16  best_trial=12
+      Pooling Layer 1 Size                Baseline=4  best_trial=5
+      Pooling Layer 2 Size                Baseline=8  best_trial=5
+      Dropout Rate                        Baseline=0.25  best_trial=0.410204
+
+[Untuned SNN]  (source: C:\Users\ajrbe\Documents\Git\spiking-eegnet\results\BNCI2014_001\results_snn.json)
+  Untuned SNN Mean Balanced Accuracy: 0.4774
+  Best trial vs. Untuned SNN:   0.5725  (+19.9%)
+  Median trial vs. Untuned SNN: 0.5388  (+12.8%)
+  Trials that beat Untuned SNN: 95/101 (94.1%)
+  Untuned SNN vs. best-trial hyperparameters that differ:
+      Number of Temporal Filters          Untuned SNN=8  best_trial=37
+      Number of Pointwise Filters         Untuned SNN=16  best_trial=58
+      Separable Kernel Size               Untuned SNN=16  best_trial=12
+      Pooling Layer 1 Size                Untuned SNN=4  best_trial=5
+      Pooling Layer 2 Size                Untuned SNN=8  best_trial=5
+      Dropout Rate                        Untuned SNN=0.25  best_trial=0.410204
+
+Baseline-to-baseline comparison (vs. Baseline):
+  Untuned SNN: 0.4774  vs. Baseline: 0.5602  (-14.8%)
 
 ----------------------------------------------------------------------
 TOP 10 TRIALS
@@ -40,33 +57,33 @@ TOP 10 TRIALS
 ----------------------------------------------------------------------
 CORRELATION WITH Mean Balanced Accuracy (sorted by |r|)
 ----------------------------------------------------------------------
-  Number of Temporal Filters          r = +0.363  (moderate, higher is better)
-  Depth Multiplier                    r = +0.237  (moderate, higher is better)
-  Spike Gradient Slope                r = -0.234  (moderate, lower is better)
-  Number of Pointwise Filters         r = +0.184  (weak, higher is better)
-  Dropout Rate                        r = +0.169  (weak, higher is better)
-  Pooling Layer 1 Size                r = -0.166  (weak, lower is better)
-  Number of Evaluation Time Steps     r = -0.133  (weak, lower is better)
-  Separable Kernel Size               r = -0.112  (weak, lower is better)
-  LIF Decay Rate (Beta)               r = -0.109  (weak, lower is better)
+  Number of Temporal Filters          r = +0.364  (moderate, higher is better)
+  Depth Multiplier                    r = +0.234  (moderate, higher is better)
+  Spike Gradient Slope                r = -0.227  (moderate, lower is better)
+  Number of Pointwise Filters         r = +0.186  (weak, higher is better)
+  Dropout Rate                        r = +0.171  (weak, higher is better)
+  Pooling Layer 1 Size                r = -0.162  (weak, lower is better)
+  Number of Evaluation Time Steps     r = -0.135  (weak, lower is better)
+  Separable Kernel Size               r = -0.115  (weak, lower is better)
+  Pooling Layer 2 Size                r = -0.109  (weak, lower is better)
   Temporal Kernel Divisor             r = +0.108  (weak, higher is better)
-  Pooling Layer 2 Size                r = -0.108  (weak, lower is better)
-  Number of Training Time Steps       r = +0.075  (weak, higher is better)
-  Learning Rate                       r = -0.062  (weak, lower is better)
+  LIF Decay Rate (Beta)               r = -0.104  (weak, lower is better)
+  Number of Training Time Steps       r = +0.074  (weak, higher is better)
+  Learning Rate                       r = -0.064  (weak, lower is better)
 
 ----------------------------------------------------------------------
 RANDOM FOREST PERMUTATION IMPORTANCE (non-linear effects)
 ----------------------------------------------------------------------
-  Number of Temporal Filters          importance = +0.3396
-  Learning Rate                       importance = +0.3022
-  Depth Multiplier                    importance = +0.1514
-  Number of Training Time Steps       importance = +0.0588
-  Number of Evaluation Time Steps     importance = +0.0467
-  Spike Gradient Slope                importance = +0.0434
-  Temporal Kernel Divisor             importance = +0.0390
-  Number of Pointwise Filters         importance = +0.0313
-  Dropout Rate                        importance = +0.0262
-  LIF Decay Rate (Beta)               importance = +0.0224
+  Number of Temporal Filters          importance = +0.3346
+  Learning Rate                       importance = +0.3122
+  Depth Multiplier                    importance = +0.1554
+  Number of Training Time Steps       importance = +0.0569
+  Number of Evaluation Time Steps     importance = +0.0506
+  Spike Gradient Slope                importance = +0.0483
+  Temporal Kernel Divisor             importance = +0.0415
+  Number of Pointwise Filters         importance = +0.0308
+  Dropout Rate                        importance = +0.0248
+  LIF Decay Rate (Beta)               importance = +0.0235
 
 Note: importance can pick up non-linear / interaction effects that
 the linear correlation above misses. Compare both rankings -- params
@@ -92,16 +109,16 @@ SUGGESTED SEARCH SPACE FOR A FOLLOW-UP STUDY
 CATEGORICAL / BOOLEAN PARAMETERS
 ----------------------------------------------------------------------
   Z-Score Normalization Enabled:
-      False                mean=0.5312  median=0.5381  n=100
+      False                mean=0.5313  median=0.5388  n=101
       -> best on average: Z-Score Normalization Enabled = False
 
   Normalization Axis:
-      (1, 3)               mean=0.5312  median=0.5381  n=100
+      (1, 3)               mean=0.5313  median=0.5388  n=101
       -> best on average: Normalization Axis = (1, 3)
 
   Readout Mode:
       Spike (Mean)         mean=0.5357  median=0.5388  n=53
-      Spike (Sum)          mean=0.5263  median=0.5340  n=47
+      Spike (Sum)          mean=0.5265  median=0.5364  n=48
       -> best on average: Readout Mode = Spike (Mean)
 
 ----------------------------------------------------------------------
