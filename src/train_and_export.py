@@ -3,6 +3,8 @@
 source ~/venvs/spiking-eegnet/bin/activate
 cd /mnt/c/Users/ajrbe/Documents/Git/spiking-eegnet/src
 python3 train_and_export.py
+
+python3 train_and_export.py 2>&1 | tee output.log
 """
 
 import inspect
