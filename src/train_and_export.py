@@ -9,6 +9,8 @@ python3 train_and_export.py 2>&1 | tee output.log
 
 import inspect
 import json
+import os
+import re
 import shutil
 import subprocess
 import sys
@@ -63,11 +65,28 @@ def load_data(dataset_name: str = "BNCI2014_001"):
     process, so we never resolve stale SLURM scratch paths."""
     import numpy as np
     import mne
+    import moabb
     from moabb.datasets import BNCI2014_001
     from moabb.paradigms import MotorImagery
 
     scratch = tempfile.mkdtemp(prefix="moabb_")
-    mne.set_config("MNE_DATA", scratch, set_env=False)
+
+    # moabb's get_dataset_path() only ever copies MNE_DATA into the
+    # dataset-specific MNE_DATASETS_BNCI_PATH key the first time that key is
+    # unset, then freezes it permanently in ~/.mne/mne-python.json -- every
+    # later call reads straight from that frozen key regardless of MNE_DATA.
+    # moabb.set_download_dir() (and mne.set_config("MNE_DATA", ...)) only
+    # ever touch the generic MNE_DATA key, so neither can override a
+    # MNE_DATASETS_BNCI_PATH that's already stuck pointing at a deleted
+    # scratch dir from an earlier session. Set both explicitly so this run's
+    # fresh dir always wins.
+    stale_bnci_path = mne.get_config("MNE_DATASETS_BNCI_PATH")
+    if stale_bnci_path:
+        print(f"Overriding frozen MNE_DATASETS_BNCI_PATH: {stale_bnci_path!r}")
+    mne.set_config("MNE_DATA", scratch)
+    mne.set_config("MNE_DATASETS_BNCI_PATH", scratch)
+    moabb.set_download_dir(scratch)
+    print(f"Using scratch data dir: {scratch}")
 
     dataset = BNCI2014_001()
     paradigm = MotorImagery(n_classes=4)
@@ -192,6 +211,66 @@ def export_onnx(model, num_channels, num_samples, num_steps, readout_mode,
 # --------------------------------------------------------------------------- #
 # 5. onnx2c
 # --------------------------------------------------------------------------- #
+def patch_onnx2c_bugs(c_path: str) -> dict:
+    """Post-process onnx2c-generated C to work around known onnx2c codegen
+    bugs that surface on deeply unrolled graphs (e.g. LIF neurons unrolled
+    over many timesteps, as here). Safe to run on every export -- each regex
+    is a no-op once its pattern no longer appears (e.g. if onnx2c fixes these
+    upstream)."""
+    path = Path(c_path)
+    src = path.read_text()
+    original = src
+
+    # --- Bug 1: malformed address-of on union-temp members -----------------
+    # onnx2c emits `structvar.&member` instead of `&structvar.member` when
+    # taking the address of a tensor living inside a tuN union temp.
+    # Invalid C -> "expected identifier before '&' token" and a cascade of
+    # "too few arguments" errors at every call site.
+    n_addr = [0]
+
+    def _fix_addr(m: re.Match) -> str:
+        n_addr[0] += 1
+        return f"&{m.group(1)}.{m.group(2)}"
+
+    src = re.sub(r'([A-Za-z_]\w*)\.&([A-Za-z_]\w*)', _fix_addr, src)
+
+    # --- Bug 2: un-dereferenced pointer in the Clip macro -------------------
+    # In node__*_Clip functions, onnx2c dereferences min_val/max_val into
+    # local scalars (minv/maxv) but leaves `input` as the raw pointer param,
+    # then uses it directly in MIN(input, maxv) -> "invalid operands to
+    # binary < (have 'const float *' and 'float')".
+    src, n_clip = re.subn(
+        r'MIN\(\s*input\s*,\s*maxv\s*\)',
+        'MIN( *input, maxv)',
+        src,
+    )
+
+    path.write_text(src)
+
+    counts = {"address_of_fixes": n_addr[0], "clip_deref_fixes": n_clip}
+    print(f"patch_onnx2c_bugs: {counts} in {c_path}")
+    if src == original:
+        print("  no changes made -- already patched, or onnx2c fixed these upstream")
+    return counts
+
+
+def find_reduce_mean_context(c_path: str, context_lines: int = 15) -> None:
+    """A third onnx2c bug ('subscripted value is neither array nor pointer
+    nor vector' in a ReduceMean node) needs a look at the actual declaration
+    of the output tensor before it can be auto-patched -- the fix depends on
+    how many dims onnx2c actually gave it. This just prints the surrounding
+    context so it can be diagnosed/patched by hand."""
+    lines = Path(c_path).read_text().splitlines()
+    for i, line in enumerate(lines):
+        if "node__ReduceMean" in line and ("FUNC_PREFIX" in line or "{" in line):
+            start = max(0, i - 2)
+            end = min(len(lines), i + context_lines)
+            print(f"\n--- context around line {i + 1} in {c_path} ---")
+            for j in range(start, end):
+                print(f"{j + 1:6}\t{lines[j]}")
+            print("--- end context ---\n")
+
+
 def convert_to_c(onnx_path: str, c_path: str):
     exe = shutil.which("onnx2c")
     if exe is None:
@@ -215,6 +294,9 @@ def convert_to_c(onnx_path: str, c_path: str):
     print(f"Wrote generated C to {c_path}\n")
     # (Not dumping the full generated C source here -- it's already saved
     # to disk at c_path above; open that file to inspect it.)
+
+    patch_onnx2c_bugs(c_path)
+    find_reduce_mean_context(c_path)
 
 
 # --------------------------------------------------------------------------- #
