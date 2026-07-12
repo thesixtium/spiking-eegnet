@@ -130,9 +130,40 @@ class InferenceWrapper(nn.Module):
         return aggregate_logits(spk, mem, self.readout_mode)
 
 
+def reset_snn_state(model: nn.Module):
+    """Detach stale membrane/synaptic state left over from training.
+
+    snntorch neurons (Leaky, Synaptic, etc.) keep their hidden state as a
+    plain instance attribute (e.g. `mem`, `syn`) that persists across
+    forward calls. reset_mem() unconditionally assumes that attribute is
+    already a real tensor (it calls `torch.zeros_like(self.mem, ...)`
+    directly, with no None/isinstance check), so we can't just null it out
+    -- that raises `AttributeError: 'NoneType' object has no attribute
+    'device'` on the next forward call.
+
+    The actual problem is that after training, `self.mem` is still
+    attached to the training-time autograd graph (requires_grad=True).
+    During ONNX tracing, `zeros_like` captures that stale, grad-requiring
+    tensor as a closure variable and fails with:
+        "Cannot insert a Tensor that requires grad as a constant."
+
+    Detaching (and cloning, to fully drop the graph reference) keeps the
+    attribute a real tensor -- same shape/dtype/device -- but removes it
+    from the autograd graph and sets requires_grad=False, which is all
+    reset_mem() needs to build a fresh state on the next call.
+    """
+    for module in model.modules():
+        for state_attr in ("mem", "syn", "spk"):
+            if hasattr(module, state_attr):
+                val = getattr(module, state_attr)
+                if isinstance(val, torch.Tensor):
+                    setattr(module, state_attr, val.detach().clone())
+
+
 def export_onnx(model, num_channels, num_samples, num_steps, readout_mode,
                  onnx_path: str):
     model.eval()
+    reset_snn_state(model)
     wrapper = InferenceWrapper(model, num_steps=num_steps, readout_mode=readout_mode)
     dummy = torch.zeros(1, 1, num_channels, num_samples)
 
@@ -141,19 +172,20 @@ def export_onnx(model, num_channels, num_samples, num_steps, readout_mode,
     # dynamic control-flow (Loop/If) ops end up in the exported model,
     # which is what lets onnx2c handle it at all.
     wrapper.eval()
-    torch.onnx.export(
-        wrapper,
-        dummy,
-        onnx_path,
-        input_names=["eeg"],
-        output_names=["logits"],
-        opset_version=13,
-        do_constant_folding=True,
-        dynamo=False,  # legacy TorchScript-based exporter -- the newer
-                        # dynamo exporter emits axes-as-input ops that fail
-                        # to downconvert to opset 13 and produce a malformed
-                        # graph onnx2c can't parse
-    )
+    with torch.no_grad():
+        torch.onnx.export(
+            wrapper,
+            dummy,
+            onnx_path,
+            input_names=["eeg"],
+            output_names=["logits"],
+            opset_version=13,
+            do_constant_folding=True,
+            dynamo=False,  # legacy TorchScript-based exporter -- the newer
+                            # dynamo exporter emits axes-as-input ops that fail
+                            # to downconvert to opset 13 and produce a malformed
+                            # graph onnx2c can't parse
+        )
     print(f"Exported ONNX model to {onnx_path}")
 
 
