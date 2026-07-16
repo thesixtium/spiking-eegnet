@@ -2,9 +2,37 @@
 """
 source ~/venvs/spiking-eegnet/bin/activate
 cd /mnt/c/Users/ajrbe/Documents/Git/spiking-eegnet/src
-python3 train_and_export.py
+python3 baseline_train_and_export.py
 
-python3 train_and_export.py 2>&1 | tee output.log
+python3 baseline_train_and_export.py 2>&1 | tee output_baseline.log
+
+This is the non-spiking counterpart of train_and_export.py. It follows the
+EXACT SAME steps (load params -> load data -> train -> export to ONNX ->
+convert to C via onnx2c -> patch known onnx2c bugs), but trains and exports
+EEGNetReLU (the literal, continuous-activation EEGNet from baseline.py)
+instead of SpikingEEGNet. The goal is to give the C-code characterization
+tool a "normal" (non-spiking) EEGNet baseline to compare against, produced
+by a conversion pipeline that's as close to identical as possible to the
+spiking one -- same ONNX export settings, same onnx2c invocation, same
+post-generation patching.
+
+Differences vs. train_and_export.py (all necessary, not stylistic):
+  - Model is EEGNetReLU (baseline.py), not SpikingEEGNet.
+  - No num_steps forward loop -- one standard forward pass per batch.
+  - No readout_mode / InferenceWrapper / reset_snn_state -- EEGNetReLU's
+    forward() already returns a single (batch, num_classes) logits tensor,
+    so it can be torch.onnx.export'd directly with no wrapping.
+  - split_params() matches against EEGNetReLU's constructor signature
+    instead of SpikingEEGNet's. In practice best_params.json was tuned for
+    SpikingEEGNet's search space (e.g. `temporal_kernel_div`, `beta`,
+    `spike_grad_slope`), so none of those keys match EEGNetReLU's
+    signature (e.g. `temporal_kernel_size`) -- model_kwargs ends up empty
+    and EEGNetReLU falls back to its own constructor defaults, which ARE
+    the literal EEGNet paper architecture (see baseline.py's
+    LITERAL_EEGNET_SMR_CFG / EEGNetReLU docstring). Only the
+    architecture-irrelevant training hyperparameters (epochs, batch_size,
+    lr) carry over from best_params.json, exactly like baseline.py does
+    for its own ANN baseline.
 """
 
 import inspect
@@ -27,8 +55,7 @@ from torch.utils.data import DataLoader, TensorDataset
 # giant blocks of numbers like "Columns 1 to 8 ... [ torch.FloatTensor{...} ]".
 torch.set_printoptions(threshold=100, edgeitems=3, linewidth=120)
 
-from spiking_eegnet import SpikingEEGNet
-from train_one_epoch import aggregate_logits, train_one_epoch
+from baseline import EEGNetReLU
 
 
 # --------------------------------------------------------------------------- #
@@ -44,9 +71,18 @@ def load_best_params(path: str) -> dict:
 
 def split_params(params: dict, extra_defaults: dict):
     """Split the flat Optuna params dict into (model_kwargs, run_cfg) by
-    matching against SpikingEEGNet's actual constructor signature -- so this
-    doesn't silently break if you add/rename search params later."""
-    model_sig = inspect.signature(SpikingEEGNet.__init__)
+    matching against EEGNetReLU's actual constructor signature -- so this
+    doesn't silently break if you add/rename search params later.
+
+    Note: best_params.json is tuned for SpikingEEGNet's search space, so
+    most (likely all) of its keys won't match EEGNetReLU's signature. Any
+    key that DOES match (e.g. `dropout`) is passed through; everything else
+    -- including all SNN-only keys -- lands in run_cfg and is simply
+    ignored by train_model/export_onnx below, exactly like train_cfg in
+    baseline.py only pulls lr/epochs/batch_size out of params regardless of
+    what else is in there.
+    """
+    model_sig = inspect.signature(EEGNetReLU.__init__)
     model_arg_names = set(model_sig.parameters) - {
         "self", "num_classes", "num_channels", "num_samples"
     }
@@ -58,7 +94,7 @@ def split_params(params: dict, extra_defaults: dict):
 
 
 # --------------------------------------------------------------------------- #
-# 2. Data -- swap this out for your existing MOABB loading code if preferred
+# 2. Data -- identical to train_and_export.py's load_data()
 # --------------------------------------------------------------------------- #
 def load_data(dataset_name: str = "BNCI2014_001"):
     """Loads BNCI2014_001 via MOABB using a fresh tempfile.mkdtemp() per
@@ -103,8 +139,22 @@ def load_data(dataset_name: str = "BNCI2014_001"):
 
 
 # --------------------------------------------------------------------------- #
-# 3. Train
+# 3. Train (single forward pass per batch -- no num_steps / readout_mode)
 # --------------------------------------------------------------------------- #
+def train_one_epoch_baseline(model, loader, optimizer, criterion, device):
+    model.train()
+    total_loss = 0.0
+    for xb, yb in loader:
+        xb, yb = xb.to(device), yb.to(device)
+        optimizer.zero_grad()
+        logits = model(xb)
+        loss = criterion(logits, yb)
+        loss.backward()
+        optimizer.step()
+        total_loss += loss.item()
+    return total_loss / len(loader)
+
+
 def train_model(model, X, y, run_cfg, device):
     dataset = TensorDataset(
         torch.from_numpy(X).unsqueeze(1),  # (N, 1, C, T)
@@ -117,13 +167,10 @@ def train_model(model, X, y, run_cfg, device):
     criterion = nn.CrossEntropyLoss()
 
     epochs = run_cfg.get("epochs", 50)
-    n_steps_train = run_cfg.get("n_steps_train", run_cfg.get("n_steps", 20))
-    readout_mode = run_cfg.get("readout_mode", "spk_mean")
 
     model.to(device)
     for epoch in range(epochs):
-        avg_loss = train_one_epoch(model, loader, optimizer, criterion, device,
-                                    n_steps=n_steps_train, readout_mode=readout_mode)
+        avg_loss = train_one_epoch_baseline(model, loader, optimizer, criterion, device)
         print(f"  epoch {epoch + 1}/{epochs}  loss={avg_loss:.4f}")
     return model
 
@@ -131,92 +178,41 @@ def train_model(model, X, y, run_cfg, device):
 # --------------------------------------------------------------------------- #
 # 4. ONNX export
 # --------------------------------------------------------------------------- #
-class InferenceWrapper(nn.Module):
-    """Wraps SpikingEEGNet so forward() returns a single logits tensor.
-    This is what makes the exported graph -- and the C onnx2c generates
-    from it -- directly comparable to your non-spiking model's export."""
-
-    def __init__(self, model: SpikingEEGNet, num_steps: int, readout_mode: str):
-        super().__init__()
-        self.model = model
-        self.num_steps = num_steps
-        self.readout_mode = readout_mode
-
-    def forward(self, x):
-        spk, mem = self.model(x, num_steps=self.num_steps)
-        if self.readout_mode == "mem_last":
-            return self.model.classifier(mem[-1].flatten(1))
-        return aggregate_logits(spk, mem, self.readout_mode)
-
-
-def reset_snn_state(model: nn.Module):
-    """Detach stale membrane/synaptic state left over from training.
-
-    snntorch neurons (Leaky, Synaptic, etc.) keep their hidden state as a
-    plain instance attribute (e.g. `mem`, `syn`) that persists across
-    forward calls. reset_mem() unconditionally assumes that attribute is
-    already a real tensor (it calls `torch.zeros_like(self.mem, ...)`
-    directly, with no None/isinstance check), so we can't just null it out
-    -- that raises `AttributeError: 'NoneType' object has no attribute
-    'device'` on the next forward call.
-
-    The actual problem is that after training, `self.mem` is still
-    attached to the training-time autograd graph (requires_grad=True).
-    During ONNX tracing, `zeros_like` captures that stale, grad-requiring
-    tensor as a closure variable and fails with:
-        "Cannot insert a Tensor that requires grad as a constant."
-
-    Detaching (and cloning, to fully drop the graph reference) keeps the
-    attribute a real tensor -- same shape/dtype/device -- but removes it
-    from the autograd graph and sets requires_grad=False, which is all
-    reset_mem() needs to build a fresh state on the next call.
-    """
-    for module in model.modules():
-        for state_attr in ("mem", "syn", "spk"):
-            if hasattr(module, state_attr):
-                val = getattr(module, state_attr)
-                if isinstance(val, torch.Tensor):
-                    setattr(module, state_attr, val.detach().clone())
-
-
-def export_onnx(model, num_channels, num_samples, num_steps, readout_mode,
-                 onnx_path: str):
+# No InferenceWrapper / reset_snn_state needed here: EEGNetReLU has no
+# snntorch hidden state (mem/syn/spk) to detach, and forward() already
+# returns a single (batch, num_classes) logits tensor directly, so the
+# model can be traced by torch.onnx.export as-is.
+def export_onnx(model, num_channels, num_samples, onnx_path: str):
     model.eval()
-    reset_snn_state(model)
-    wrapper = InferenceWrapper(model, num_steps=num_steps, readout_mode=readout_mode)
     dummy = torch.zeros(1, 1, num_channels, num_samples)
 
-    # model.forward() uses a plain Python `for` loop over num_steps, so
-    # torch.onnx.export's tracer unrolls it into a static graph -- no
-    # dynamic control-flow (Loop/If) ops end up in the exported model,
-    # which is what lets onnx2c handle it at all.
-    wrapper.eval()
+    # Same exporter settings as train_and_export.py's export_onnx, so the
+    # resulting graph (and the onnx2c-generated C) is as directly
+    # comparable as possible to the spiking export.
     with torch.no_grad():
         torch.onnx.export(
-            wrapper,
+            model,
             dummy,
             onnx_path,
             input_names=["eeg"],
             output_names=["logits"],
             opset_version=13,
             do_constant_folding=True,
-            dynamo=False,  # legacy TorchScript-based exporter -- the newer
-                            # dynamo exporter emits axes-as-input ops that fail
-                            # to downconvert to opset 13 and produce a malformed
-                            # graph onnx2c can't parse
+            dynamo=False,  # legacy TorchScript-based exporter, matching the
+                            # spiking export -- keeps both conversion
+                            # pipelines on the same exporter path
         )
     print(f"Exported ONNX model to {onnx_path}")
 
 
 # --------------------------------------------------------------------------- #
-# 5. onnx2c
+# 5. onnx2c -- identical to train_and_export.py (unchanged bug patches)
 # --------------------------------------------------------------------------- #
 def patch_onnx2c_bugs(c_path: str) -> dict:
     """Post-process onnx2c-generated C to work around known onnx2c codegen
-    bugs that surface on deeply unrolled graphs (e.g. LIF neurons unrolled
-    over many timesteps, as here). Safe to run on every export -- each regex
-    is a no-op once its pattern no longer appears (e.g. if onnx2c fixes these
-    upstream)."""
+    bugs. Safe to run on every export -- each regex is a no-op once its
+    pattern no longer appears (e.g. if onnx2c fixes these upstream, or if
+    this particular graph never triggers them in the first place)."""
     path = Path(c_path)
     src = path.read_text()
     original = src
@@ -268,6 +264,11 @@ def patch_reducemean_bug(c_path: str) -> dict:
     where `i1` only ever ranges over 1 value. That's a rank mismatch against
     the 1-D declaration -> "subscripted value is neither array nor pointer
     nor vector".
+
+    EEGNetReLU's graph has no ReduceMean node (that op only comes from
+    SpikingEEGNet's spk_mean readout), so this is expected to be a no-op
+    here -- kept in place unchanged so both conversion pipelines run the
+    exact same patch steps, in case that ever changes.
 
     Fix: for each node__ReduceMean function, parse the declared output rank
     from the signature, find which loop indices have bound 1 (i.e. were the
@@ -411,8 +412,8 @@ def main():
     # -------------------- config -------------------- #
     EPOCHS = 1  # <-- change this to set how many epochs to train for
     BEST_PARAMS_PATH = "best_params.json"
-    ONNX_OUT = "spiking_eegnet.onnx"
-    C_OUT = "spiking_eegnet.c"
+    ONNX_OUT = "baseline_eegnet.onnx"
+    C_OUT = "baseline_eegnet.c"
     # -------------------------------------------------- #
 
     # Resolve to absolute paths up front so we can report exactly where
@@ -427,8 +428,7 @@ def main():
         params = load_best_params(BEST_PARAMS_PATH)
         model_kwargs, run_cfg = split_params(
             params,
-            extra_defaults={"epochs": EPOCHS, "batch_size": 32, "lr": 1e-3,
-                             "n_steps_train": 20, "readout_mode": "spk_mean"},
+            extra_defaults={"epochs": EPOCHS, "batch_size": 32, "lr": 1e-3},
         )
         run_cfg["epochs"] = EPOCHS
 
@@ -439,7 +439,7 @@ def main():
         print(f"Data: X={X.shape} y={y.shape} "
               f"channels={num_channels} samples={num_samples} classes={num_classes}")
 
-        model = SpikingEEGNet(
+        model = EEGNetReLU(
             num_classes=num_classes,
             num_channels=num_channels,
             num_samples=num_samples,
@@ -451,8 +451,6 @@ def main():
         model.cpu()
         export_onnx(
             model, num_channels, num_samples,
-            num_steps=run_cfg.get("n_steps_eval", run_cfg.get("n_steps_train", 20)),
-            readout_mode=run_cfg.get("readout_mode", "spk_mean"),
             onnx_path=onnx_out_abs,
         )
 
