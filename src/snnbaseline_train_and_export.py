@@ -50,6 +50,7 @@ that every knob here (architecture AND training) comes from fixed/paper
 defaults instead of Optuna.
 """
 
+import inspect
 import re
 import shutil
 import subprocess
@@ -73,7 +74,58 @@ from baseline import LITERAL_EEGNET_SMR_CFG
 
 
 # --------------------------------------------------------------------------- #
-# 1. Data -- identical to train_and_export.py's load_data()
+# 1. Build SpikingEEGNet's kwargs from the literal EEGNet-paper config
+# --------------------------------------------------------------------------- #
+def build_snn_model_kwargs(literal_cfg: dict) -> dict:
+    """Filter LITERAL_EEGNET_SMR_CFG down to only the keys SpikingEEGNet's
+    constructor actually accepts.
+
+    baseline_train_and_export.py's docstring claims LITERAL_EEGNET_SMR_CFG's
+    field names are shared between EEGNetReLU's and SpikingEEGNet's
+    constructor signatures -- in practice that's only a partial overlap
+    (e.g. EEGNetReLU takes temporal_kernel_size but SpikingEEGNet doesn't),
+    so passing the dict straight through raises a TypeError for any key
+    SpikingEEGNet's __init__ doesn't recognize.
+
+    This inspects SpikingEEGNet.__init__'s actual signature and drops
+    whatever doesn't match, falling back to SpikingEEGNet's own default for
+    anything dropped -- and prints exactly what was dropped/kept so it's
+    obvious if that's a problem (e.g. if SpikingEEGNet uses a differently
+    named arg for the same concept, or a required arg with no default is
+    left unset).
+    """
+    sig = inspect.signature(SpikingEEGNet.__init__)
+    accepted = set(sig.parameters) - {"self", "num_classes", "num_channels", "num_samples"}
+
+    kwargs = {k: v for k, v in literal_cfg.items() if k in accepted}
+    dropped = sorted(set(literal_cfg) - accepted)
+
+    missing_required = [
+        name for name, p in sig.parameters.items()
+        if name in accepted and p.default is inspect.Parameter.empty
+        and name not in kwargs
+    ]
+
+    print(f"SpikingEEGNet accepted kwargs from literal config: {sorted(kwargs)}")
+    if dropped:
+        print(
+            f"NOTE: literal EEGNet-paper config has keys SpikingEEGNet's "
+            f"constructor doesn't accept -- dropped, SpikingEEGNet will use "
+            f"its own default for these instead: {dropped}"
+        )
+    if missing_required:
+        print(
+            f"WARNING: SpikingEEGNet has required constructor arg(s) with no "
+            f"default that the literal config doesn't supply: "
+            f"{missing_required}. Check spiking_eegnet.py's signature and add "
+            f"these to LITERAL_EEGNET_SMR_CFG (or set a default) if this "
+            f"raises a TypeError below."
+        )
+    return kwargs
+
+
+# --------------------------------------------------------------------------- #
+# 2. Data -- identical to train_and_export.py's load_data()
 # --------------------------------------------------------------------------- #
 def load_data(dataset_name: str = "BNCI2014_001"):
     """Loads BNCI2014_001 via MOABB using a fresh tempfile.mkdtemp() per
@@ -118,7 +170,7 @@ def load_data(dataset_name: str = "BNCI2014_001"):
 
 
 # --------------------------------------------------------------------------- #
-# 2. Train -- identical to train_and_export.py's train_model()
+# 3. Train -- identical to train_and_export.py's train_model()
 # --------------------------------------------------------------------------- #
 def train_model(model, X, y, run_cfg, device):
     dataset = TensorDataset(
@@ -144,7 +196,7 @@ def train_model(model, X, y, run_cfg, device):
 
 
 # --------------------------------------------------------------------------- #
-# 3. ONNX export -- identical to train_and_export.py (SpikingEEGNet still
+# 4. ONNX export -- identical to train_and_export.py (SpikingEEGNet still
 #    needs InferenceWrapper / reset_snn_state, unlike the EEGNetReLU
 #    baseline, since it still carries snntorch hidden state and returns
 #    (spk, mem) instead of a single logits tensor)
@@ -227,7 +279,7 @@ def export_onnx(model, num_channels, num_samples, num_steps, readout_mode,
 
 
 # --------------------------------------------------------------------------- #
-# 4. onnx2c -- identical to train_and_export.py (unchanged bug patches)
+# 5. onnx2c -- identical to train_and_export.py (unchanged bug patches)
 # --------------------------------------------------------------------------- #
 def patch_onnx2c_bugs(c_path: str) -> dict:
     """Post-process onnx2c-generated C to work around known onnx2c codegen
@@ -435,9 +487,11 @@ def main():
     ONNX_OUT = "snnbaseline_eegnet.onnx"
     C_OUT = "snnbaseline_eegnet.c"
 
-    # model_kwargs is always the literal paper config, unchanged from
-    # baseline.py -- never derived from a tuned params file.
-    model_kwargs = dict(LITERAL_EEGNET_SMR_CFG)
+    # model_kwargs is always derived from the literal paper config, unchanged
+    # from baseline.py -- never from a tuned params file. Filtered down to
+    # what SpikingEEGNet's constructor actually accepts (see
+    # build_snn_model_kwargs's docstring for why the filter is needed).
+    model_kwargs = build_snn_model_kwargs(LITERAL_EEGNET_SMR_CFG)
 
     # run_cfg: fixed, untuned training hyperparameters. n_steps_train /
     # readout_mode have no EEGNet-paper equivalent (the paper's EEGNet isn't
@@ -494,6 +548,41 @@ def main():
     print(f"  C source   : {c_out_abs}")
     print(f"  (current working directory was: {Path.cwd()})")
     print("=" * 60)
+
+    import onnx
+
+    report_path = Path("snn_baseline.txt").resolve()
+    with open(report_path, "w") as f:
+        f.write("=== model_kwargs used to construct SpikingEEGNet ===\n")
+        for k, v in model_kwargs.items():
+            f.write(f"  {k} = {v!r}\n")
+
+        f.write("\n=== model architecture (str(model)) ===\n")
+        f.write(str(model) + "\n")
+
+        f.write("\n=== parameter shapes ===\n")
+        total_params = 0
+        for name, p in model.named_parameters():
+            f.write(f"  {name:50s} {tuple(p.shape)}  numel={p.numel()}\n")
+            total_params += p.numel()
+        f.write(f"\nTotal parameters: {total_params}\n")
+
+        f.write("\n=== ONNX graph ===\n")
+        onnx_model = onnx.load(onnx_out_abs)
+        f.write(onnx.helper.printable_graph(onnx_model.graph))
+        f.write("\n")
+
+        f.write("\n=== ONNX input/output shapes ===\n")
+        for inp in onnx_model.graph.input:
+            dims = [d.dim_value if d.dim_value else d.dim_param
+                     for d in inp.type.tensor_type.shape.dim]
+            f.write(f"  input  {inp.name}: {dims}\n")
+        for out in onnx_model.graph.output:
+            dims = [d.dim_value if d.dim_value else d.dim_param
+                     for d in out.type.tensor_type.shape.dim]
+            f.write(f"  output {out.name}: {dims}\n")
+
+    print(f"Wrote architecture/kwargs/onnx-graph report to {report_path}")
 
 
 if __name__ == "__main__":

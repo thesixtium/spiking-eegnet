@@ -43,15 +43,21 @@ def load_best_params(path: str) -> dict:
 
 
 def split_params(params: dict, extra_defaults: dict):
-    """Split the flat Optuna params dict into (model_kwargs, run_cfg) by
-    matching against SpikingEEGNet's actual constructor signature -- so this
-    doesn't silently break if you add/rename search params later."""
     model_sig = inspect.signature(SpikingEEGNet.__init__)
     model_arg_names = set(model_sig.parameters) - {
         "self", "num_classes", "num_channels", "num_samples"
     }
-    model_kwargs = {k: v for k, v in params.items() if k in model_arg_names}
-    run_cfg = {k: v for k, v in params.items() if k not in model_arg_names}
+    # case-insensitive match: best_params.json keys are SCREAMING_SNAKE_CASE,
+    # SpikingEEGNet's constructor args are lower_snake_case
+    lower_to_real = {name.lower(): name for name in model_arg_names}
+    model_kwargs = {}
+    run_cfg = {}
+    for k, v in params.items():
+        real_name = lower_to_real.get(k.lower())
+        if real_name is not None:
+            model_kwargs[real_name] = v
+        else:
+            run_cfg[k] = v
     for k, v in extra_defaults.items():
         run_cfg.setdefault(k, v)
     return model_kwargs, run_cfg
@@ -465,6 +471,41 @@ def main():
     print(f"  C source   : {c_out_abs}")
     print(f"  (current working directory was: {Path.cwd()})")
     print("=" * 60)
+
+    import onnx
+
+    report_path = Path("snn.txt").resolve()
+    with open(report_path, "w") as f:
+        f.write("=== model_kwargs used to construct SpikingEEGNet ===\n")
+        for k, v in model_kwargs.items():
+            f.write(f"  {k} = {v!r}\n")
+
+        f.write("\n=== model architecture (str(model)) ===\n")
+        f.write(str(model) + "\n")
+
+        f.write("\n=== parameter shapes ===\n")
+        total_params = 0
+        for name, p in model.named_parameters():
+            f.write(f"  {name:50s} {tuple(p.shape)}  numel={p.numel()}\n")
+            total_params += p.numel()
+        f.write(f"\nTotal parameters: {total_params}\n")
+
+        f.write("\n=== ONNX graph ===\n")
+        onnx_model = onnx.load(onnx_out_abs)
+        f.write(onnx.helper.printable_graph(onnx_model.graph))
+        f.write("\n")
+
+        f.write("\n=== ONNX input/output shapes ===\n")
+        for inp in onnx_model.graph.input:
+            dims = [d.dim_value if d.dim_value else d.dim_param
+                     for d in inp.type.tensor_type.shape.dim]
+            f.write(f"  input  {inp.name}: {dims}\n")
+        for out in onnx_model.graph.output:
+            dims = [d.dim_value if d.dim_value else d.dim_param
+                     for d in out.type.tensor_type.shape.dim]
+            f.write(f"  output {out.name}: {dims}\n")
+
+    print(f"Wrote architecture/kwargs/onnx-graph report to {report_path}")
 
 
 if __name__ == "__main__":
