@@ -4,4 +4,3 @@
 /src/quantization_testing/__pycache__
 src/output.log
 src/spiking_eegnet.onnx
-src/spiking_eegnet.c
