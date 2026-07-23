@@ -1,0 +1,362 @@
+{
+  "0": {
+    "per_layer": {
+      "lif1": {
+        "firing_rate": 0.14244019277755074,
+        "total_spikes": 14454457,
+        "total_elements": 101477376,
+        "per_timestep_rate": [
+          0.14244019277755074
+        ],
+        "worst_timestep_rate": 0.14244019277755074,
+        "dead_neuron_frac": 2.8380709409248084e-05
+      },
+      "lif2": {
+        "firing_rate": 0.07061558233433234,
+        "total_spikes": 651444,
+        "total_elements": 9225216,
+        "per_timestep_rate": [
+          0.07061558233433234
+        ],
+        "worst_timestep_rate": 0.07061558233433234,
+        "dead_neuron_frac": 0.00031218782532960176
+      },
+      "lif3": {
+        "firing_rate": 0.16144493207724656,
+        "total_spikes": 373457,
+        "total_elements": 2313216,
+        "per_timestep_rate": [
+          0.16144493207724656
+        ],
+        "worst_timestep_rate": 0.16144493207724656,
+        "dead_neuron_frac": 0.0
+      }
+    },
+    "overall_firing_rate": 0.13696630828848297,
+    "overall_sparsity": 0.863033691711517,
+    "overall_per_timestep_rate": [
+      0.13696630828848297
+    ],
+    "overall_worst_timestep_rate": 0.13696630828848297
+  },
+  "1": {
+    "per_layer": {
+      "lif1": {
+        "firing_rate": 0.12185440230539663,
+        "total_spikes": 12365465,
+        "total_elements": 101477376,
+        "per_timestep_rate": [
+          0.12185440230539663
+        ],
+        "worst_timestep_rate": 0.12185440230539663,
+        "dead_neuron_frac": 1.702842564554885e-05
+      },
+      "lif2": {
+        "firing_rate": 0.05396068774975025,
+        "total_spikes": 497799,
+        "total_elements": 9225216,
+        "per_timestep_rate": [
+          0.05396068774975025
+        ],
+        "worst_timestep_rate": 0.05396068774975025,
+        "dead_neuron_frac": 0.003496503457427025
+      },
+      "lif3": {
+        "firing_rate": 0.124667994687915,
+        "total_spikes": 288384,
+        "total_elements": 2313216,
+        "per_timestep_rate": [
+          0.124667994687915
+        ],
+        "worst_timestep_rate": 0.124667994687915,
+        "dead_neuron_frac": 0.011454183608293533
+      }
+    },
+    "overall_firing_rate": 0.11636998604655377,
+    "overall_sparsity": 0.8836300139534462,
+    "overall_per_timestep_rate": [
+      0.11636998604655377
+    ],
+    "overall_worst_timestep_rate": 0.11636998604655377
+  },
+  "2": {
+    "per_layer": {
+      "lif1": {
+        "firing_rate": 0.1504185425527755,
+        "total_spikes": 15264079,
+        "total_elements": 101477376,
+        "per_timestep_rate": [
+          0.1504185425527755
+        ],
+        "worst_timestep_rate": 0.1504185425527755,
+        "dead_neuron_frac": 0.00022704567527398467
+      },
+      "lif2": {
+        "firing_rate": 0.08995084776334776,
+        "total_spikes": 829816,
+        "total_elements": 9225216,
+        "per_timestep_rate": [
+          0.08995084776334776
+        ],
+        "worst_timestep_rate": 0.08995084776334776,
+        "dead_neuron_frac": 0.0011238760780543089
+      },
+      "lif3": {
+        "firing_rate": 0.15896180901394422,
+        "total_spikes": 367713,
+        "total_elements": 2313216,
+        "per_timestep_rate": [
+          0.15896180901394422
+        ],
+        "worst_timestep_rate": 0.15896180901394422,
+        "dead_neuron_frac": 0.0039840638637542725
+      }
+    },
+    "overall_firing_rate": 0.1456575703108719,
+    "overall_sparsity": 0.8543424296891281,
+    "overall_per_timestep_rate": [
+      0.1456575703108719
+    ],
+    "overall_worst_timestep_rate": 0.1456575703108719
+  },
+  "3": {
+    "per_layer": {
+      "lif1": {
+        "firing_rate": 0.10194693051582256,
+        "total_spikes": 10345307,
+        "total_elements": 101477376,
+        "per_timestep_rate": [
+          0.10194693051582256
+        ],
+        "worst_timestep_rate": 0.10194693051582256,
+        "dead_neuron_frac": 0.0016574334586039186
+      },
+      "lif2": {
+        "firing_rate": 0.0704543936965812,
+        "total_spikes": 649957,
+        "total_elements": 9225216,
+        "per_timestep_rate": [
+          0.0704543936965812
+        ],
+        "worst_timestep_rate": 0.0704543936965812,
+        "dead_neuron_frac": 0.004183316603302956
+      },
+      "lif3": {
+        "firing_rate": 0.15066037931606907,
+        "total_spikes": 348510,
+        "total_elements": 2313216,
+        "per_timestep_rate": [
+          0.15066037931606907
+        ],
+        "worst_timestep_rate": 0.15066037931606907,
+        "dead_neuron_frac": 0.005976095795631409
+      }
+    },
+    "overall_firing_rate": 0.10037333892263992,
+    "overall_sparsity": 0.8996266610773601,
+    "overall_per_timestep_rate": [
+      0.10037333892263992
+    ],
+    "overall_worst_timestep_rate": 0.10037333892263992
+  },
+  "4": {
+    "per_layer": {
+      "lif1": {
+        "firing_rate": 0.0721043969445958,
+        "total_spikes": 7316965,
+        "total_elements": 101477376,
+        "per_timestep_rate": [
+          0.0721043969445958
+        ],
+        "worst_timestep_rate": 0.0721043969445958,
+        "dead_neuron_frac": 0.004234401974827051
+      },
+      "lif2": {
+        "firing_rate": 0.044816078019203016,
+        "total_spikes": 413438,
+        "total_elements": 9225216,
+        "per_timestep_rate": [
+          0.044816078019203016
+        ],
+        "worst_timestep_rate": 0.044816078019203016,
+        "dead_neuron_frac": 0.08678821474313736
+      },
+      "lif3": {
+        "firing_rate": 0.12510072556994245,
+        "total_spikes": 289385,
+        "total_elements": 2313216,
+        "per_timestep_rate": [
+          0.12510072556994245
+        ],
+        "worst_timestep_rate": 0.12510072556994245,
+        "dead_neuron_frac": 0.0044820718467235565
+      }
+    },
+    "overall_firing_rate": 0.07096164812625151,
+    "overall_sparsity": 0.9290383518737485,
+    "overall_per_timestep_rate": [
+      0.07096164812625151
+    ],
+    "overall_worst_timestep_rate": 0.07096164812625151
+  },
+  "5": {
+    "per_layer": {
+      "lif1": {
+        "firing_rate": 0.19192051241056923,
+        "total_spikes": 19475590,
+        "total_elements": 101477376,
+        "per_timestep_rate": [
+          0.19192051241056923
+        ],
+        "worst_timestep_rate": 0.19192051241056923,
+        "dead_neuron_frac": 3.973299317294732e-05
+      },
+      "lif2": {
+        "firing_rate": 0.13727559333028083,
+        "total_spikes": 1266397,
+        "total_elements": 9225216,
+        "per_timestep_rate": [
+          0.13727559333028083
+        ],
+        "worst_timestep_rate": 0.13727559333028083,
+        "dead_neuron_frac": 6.243756070034578e-05
+      },
+      "lif3": {
+        "firing_rate": 0.21040231435369633,
+        "total_spikes": 486706,
+        "total_elements": 2313216,
+        "per_timestep_rate": [
+          0.21040231435369633
+        ],
+        "worst_timestep_rate": 0.21040231435369633,
+        "dead_neuron_frac": 0.00024900399148464203
+      }
+    },
+    "overall_firing_rate": 0.18783826241369703,
+    "overall_sparsity": 0.812161737586303,
+    "overall_per_timestep_rate": [
+      0.18783826241369703
+    ],
+    "overall_worst_timestep_rate": 0.18783826241369703
+  },
+  "6": {
+    "per_layer": {
+      "lif1": {
+        "firing_rate": 0.11420232229891321,
+        "total_spikes": 11588952,
+        "total_elements": 101477376,
+        "per_timestep_rate": [
+          0.11420232229891321
+        ],
+        "worst_timestep_rate": 0.11420232229891321,
+        "dead_neuron_frac": 0.0022477521561086178
+      },
+      "lif2": {
+        "firing_rate": 0.08498857912920413,
+        "total_spikes": 784038,
+        "total_elements": 9225216,
+        "per_timestep_rate": [
+          0.08498857912920413
+        ],
+        "worst_timestep_rate": 0.08498857912920413,
+        "dead_neuron_frac": 0.0005619380390271544
+      },
+      "lif3": {
+        "firing_rate": 0.1620190245960602,
+        "total_spikes": 374785,
+        "total_elements": 2313216,
+        "per_timestep_rate": [
+          0.1620190245960602
+        ],
+        "worst_timestep_rate": 0.1620190245960602,
+        "dead_neuron_frac": 0.0024900399148464203
+      }
+    },
+    "overall_firing_rate": 0.11279638862556289,
+    "overall_sparsity": 0.8872036113744372,
+    "overall_per_timestep_rate": [
+      0.11279638862556289
+    ],
+    "overall_worst_timestep_rate": 0.11279638862556289
+  },
+  "7": {
+    "per_layer": {
+      "lif1": {
+        "firing_rate": 0.15683096693394988,
+        "total_spikes": 15914795,
+        "total_elements": 101477376,
+        "per_timestep_rate": [
+          0.15683096693394988
+        ],
+        "worst_timestep_rate": 0.15683096693394988,
+        "dead_neuron_frac": 5.676141881849617e-06
+      },
+      "lif2": {
+        "firing_rate": 0.11550634695165946,
+        "total_spikes": 1065571,
+        "total_elements": 9225216,
+        "per_timestep_rate": [
+          0.11550634695165946
+        ],
+        "worst_timestep_rate": 0.11550634695165946,
+        "dead_neuron_frac": 0.0
+      },
+      "lif3": {
+        "firing_rate": 0.14584457309650287,
+        "total_spikes": 337370,
+        "total_elements": 2313216,
+        "per_timestep_rate": [
+          0.14584457309650287
+        ],
+        "worst_timestep_rate": 0.14584457309650287,
+        "dead_neuron_frac": 0.0009960159659385681
+      }
+    },
+    "overall_firing_rate": 0.15323286455643445,
+    "overall_sparsity": 0.8467671354435655,
+    "overall_per_timestep_rate": [
+      0.15323286455643445
+    ],
+    "overall_worst_timestep_rate": 0.15323286455643445
+  },
+  "8": {
+    "per_layer": {
+      "lif1": {
+        "firing_rate": 0.23433909051806778,
+        "total_spikes": 23780116,
+        "total_elements": 101477376,
+        "per_timestep_rate": [
+          0.23433909051806778
+        ],
+        "worst_timestep_rate": 0.23433909051806778,
+        "dead_neuron_frac": 0.0
+      },
+      "lif2": {
+        "firing_rate": 0.12135390651015651,
+        "total_spikes": 1119516,
+        "total_elements": 9225216,
+        "per_timestep_rate": [
+          0.12135390651015651
+        ],
+        "worst_timestep_rate": 0.12135390651015651,
+        "dead_neuron_frac": 0.010177322663366795
+      },
+      "lif3": {
+        "firing_rate": 0.26905139857237714,
+        "total_spikes": 622374,
+        "total_elements": 2313216,
+        "per_timestep_rate": [
+          0.26905139857237714
+        ],
+        "worst_timestep_rate": 0.26905139857237714,
+        "dead_neuron_frac": 0.0
+      }
+    },
+    "overall_firing_rate": 0.22582686839702992,
+    "overall_sparsity": 0.7741731316029701,
+    "overall_per_timestep_rate": [
+      0.22582686839702992
+    ],
+    "overall_worst_timestep_rate": 0.22582686839702992
+  }
+}
