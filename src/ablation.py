@@ -21,14 +21,44 @@ PHASE 1 — Per-subject LOSO breakdown
     in the same publication-style format as statistic.py.
 
 PHASE 2 — Ablation study
-    a) Component ablations: re-run LOSO with the alternate readout mode and
-       compare mean balanced accuracy against the Phase-1 baseline. (Z-score
-       normalization ablations were removed along with RUN_ZSCORE/NORM_AXIS,
-       since that preprocessing path is no longer part of the pipeline.)
-    b) Channel importance: for each subject's Phase-1 model, zero out one
-       EEG channel at a time in the held-out test set and measure the drop
-       in balanced accuracy (occlusion importance). No re-training needed —
-       this reuses the already-trained Phase-1 models, so it's cheap.
+    This is a genuine ablation study: each analysis below removes or degrades
+    one specific part of the model or the input and measures the resulting
+    drop in balanced accuracy, isolating that one part's contribution.
+
+    a) Model-component ablations (re-trained): each config strips out ONE
+       architectural/dynamical piece of the tuned model, holding everything
+       else fixed, then re-runs LOSO:
+         - no_depthwise      : depth_multiplier -> 1 (removes the depthwise
+                                spatial-filter expansion)
+         - no_separable      : pointwise_filters -> 1 (collapses the
+                                separable/pointwise conv's capacity)
+         - no_dropout        : dropout -> 0.0 (removes regularization)
+         - single_timestep   : n_steps_train = n_steps_eval -> 1 (removes the
+                                spiking model's multi-step temporal dynamics)
+         - no_leak           : beta -> ~1.0 (removes the leaky-integrate
+                                decay of the LIF neuron)
+         - readout_<mode>    : swap READOUT_MODE (kept from before; now one
+                                genuine ablation among several)
+       Configs that would be a no-op against the baseline (e.g. the baseline
+       already has depth_multiplier=1) are skipped automatically.
+    b) Single-channel occlusion importance: for each subject's Phase-1 model,
+       zero out one EEG channel at a time in the held-out test set and
+       measure the drop in balanced accuracy. No re-training needed.
+    c) Progressive channel removal: using the per-subject importance ranking
+       from (b), cumulatively zero channels out most-important-first and
+       least-important-first, tracing two accuracy-vs-channels-removed
+       curves. Shows how quickly the model collapses when it loses the
+       channels it relies on most, versus how many "useless" channels could
+       be dropped for free.
+    d) Channel-group (scalp-region) ablation: zero out whole anatomical
+       regions (frontal / central / centro-parietal / parietal, from the
+       known 10-20 layout; falls back to index-quartiles for unknown
+       datasets) at once, to see which broad regions matter.
+    e) Temporal-window ablation: zero out one quarter of the trial's time
+       axis at a time, to see which part of the trial timeline carries the
+       discriminative signal.
+    (c)-(e) all reuse the already-trained Phase-1 models, so they're cheap;
+    only (a) requires re-training.
 
 Outputs (all under --out-dir):
   Phase 1:
@@ -42,8 +72,14 @@ Outputs (all under --out-dir):
     06_channel_importance.png
     07_channel_importance_heatmap.png
     08_ablation_comparison.png
+    09_progressive_channel_removal.png
+    10_channel_group_importance.png
+    11_temporal_window_importance.png
     ablation_summary.csv
     channel_importance.csv
+    progressive_channel_removal.csv
+    channel_group_importance.csv
+    temporal_window_importance.csv
   recommendations.txt   (combined write-up, same style as statistic.py)
 
 Usage (run from the repo root, e.g. inside ablation.slurm):
@@ -110,6 +146,18 @@ CHANNEL_NAMES = {
     ],
 }
 
+# Anatomical scalp-region groupings used for the channel-group ablation
+# (Phase 2d). Falls back to index-quartiles (get_channel_groups) for any
+# dataset not listed here.
+CHANNEL_GROUPS = {
+    "BNCI2014_001": {
+        "Frontal": ["Fz", "FC3", "FC1", "FCz", "FC2", "FC4"],
+        "Central": ["C5", "C3", "C1", "Cz", "C2", "C4", "C6"],
+        "Centro-parietal": ["CP3", "CP1", "CPz", "CP2", "CP4"],
+        "Parietal/Occipital": ["P1", "Pz", "P2", "POz"],
+    },
+}
+
 # FIXED params held constant during the Optuna study (main.py FIXED dict).
 # These don't live in best_params.json (search space only), so we supply
 # sensible defaults here, overridable via CLI. Z-score normalization
@@ -144,6 +192,23 @@ def get_channel_names(dataset_key, n_channels):
     if names and len(names) == n_channels:
         return names
     return [f"Ch{i}" for i in range(n_channels)]
+
+
+def get_channel_groups(dataset_key, channel_names):
+    """Anatomical scalp regions for the channel-group ablation. Falls back to
+    four index-quartiles (labelled generically) when the dataset isn't in
+    CHANNEL_GROUPS or the known layout doesn't match the actual channel
+    names (e.g. generic "Ch0".."ChN-1" names from get_channel_names)."""
+    groups = CHANNEL_GROUPS.get(dataset_key)
+    if groups and all(c in channel_names for cs in groups.values() for c in cs):
+        return groups
+    n = len(channel_names)
+    n_groups = min(4, n) if n > 0 else 0
+    fallback = {}
+    edges = np.linspace(0, n, n_groups + 1).astype(int)
+    for i in range(n_groups):
+        fallback[f"Group {i + 1}"] = channel_names[edges[i]:edges[i + 1]]
+    return fallback
 
 
 # ----------------------------------------------------------------------
@@ -244,16 +309,94 @@ def channel_importance_for_model(model, X_test, y_test, device, n_steps, readout
                                   batch_size, channel_names, baseline_acc):
     """Occlusion-based channel importance: zero one channel at a time in the
     held-out test set and measure the balanced-accuracy drop vs. baseline.
-    Larger drop = more important channel. No re-training required."""
+    Larger drop = more important channel. No re-training required.
+
+    Returns (importances_by_name, order_desc) where order_desc is an array
+    of channel *indices* sorted most-important-first, used downstream by
+    progressive_channel_removal_for_model."""
     n_channels = X_test.shape[2]
     importances = {}
+    drops = np.zeros(n_channels)
     for ch in range(n_channels):
         X_ablated = X_test.copy()
         X_ablated[:, :, ch, :] = 0.0
         loader = make_loader(X_ablated, y_test, batch_size, shuffle=False)
         preds, labels = predict_all(model, loader, device, n_steps, readout_mode)
         acc = balanced_accuracy_score(labels, preds)
-        importances[channel_names[ch]] = baseline_acc - acc
+        drop = baseline_acc - acc
+        importances[channel_names[ch]] = drop
+        drops[ch] = drop
+    order_desc = np.argsort(drops)[::-1]
+    return importances, order_desc
+
+
+def progressive_channel_removal_for_model(model, X_test, y_test, device, n_steps, readout_mode,
+                                           batch_size, order_desc):
+    """Cumulative ablation curve: zero channels out one at a time, in order
+    of importance, tracing how balanced accuracy degrades as more channels
+    are removed. Run in both directions:
+      - most_important_first : removes the channels the model relies on most
+                                first -- shows how fast it collapses.
+      - least_important_first : removes the "least useful" channels first --
+                                 shows how many channels could be dropped
+                                 for free before accuracy suffers.
+    Index 0 in each curve corresponds to zero channels removed (i.e. the
+    unmodified baseline test accuracy)."""
+    n_channels = X_test.shape[2]
+    results = {}
+    for order_name, order in [
+        ("most_important_first", order_desc),
+        ("least_important_first", order_desc[::-1]),
+    ]:
+        accs = []
+        X_ablated = X_test.copy()
+        for k in range(n_channels + 1):
+            if k > 0:
+                X_ablated[:, :, order[k - 1], :] = 0.0
+            loader = make_loader(X_ablated, y_test, batch_size, shuffle=False)
+            preds, labels = predict_all(model, loader, device, n_steps, readout_mode)
+            accs.append(balanced_accuracy_score(labels, preds))
+        results[order_name] = accs
+    return results
+
+
+def channel_group_importance_for_model(model, X_test, y_test, device, n_steps, readout_mode,
+                                        batch_size, channel_names, baseline_acc, groups):
+    """Zero out an entire anatomical group of channels at once (e.g. all
+    frontal electrodes together) to measure how much the model relies on
+    that broad scalp region, rather than any single electrode."""
+    name_to_idx = {name: i for i, name in enumerate(channel_names)}
+    importances = {}
+    for group_name, group_channels in groups.items():
+        idxs = [name_to_idx[c] for c in group_channels if c in name_to_idx]
+        if not idxs:
+            continue
+        X_ablated = X_test.copy()
+        X_ablated[:, :, idxs, :] = 0.0
+        loader = make_loader(X_ablated, y_test, batch_size, shuffle=False)
+        preds, labels = predict_all(model, loader, device, n_steps, readout_mode)
+        acc = balanced_accuracy_score(labels, preds)
+        importances[group_name] = baseline_acc - acc
+    return importances
+
+
+def temporal_window_importance_for_model(model, X_test, y_test, device, n_steps, readout_mode,
+                                          batch_size, baseline_acc, n_windows=4):
+    """Zero out one time-window (e.g. one quarter of the trial) at a time to
+    see which part of the trial's timeline the model actually needs."""
+    T = X_test.shape[3]
+    edges = np.linspace(0, T, n_windows + 1).astype(int)
+    importances = {}
+    for w in range(n_windows):
+        lo, hi = edges[w], edges[w + 1]
+        if hi <= lo:
+            continue
+        X_ablated = X_test.copy()
+        X_ablated[:, :, :, lo:hi] = 0.0
+        loader = make_loader(X_ablated, y_test, batch_size, shuffle=False)
+        preds, labels = predict_all(model, loader, device, n_steps, readout_mode)
+        acc = balanced_accuracy_score(labels, preds)
+        importances[f"window_{w + 1}_of_{n_windows}"] = baseline_acc - acc
     return importances
 
 
@@ -261,12 +404,17 @@ def channel_importance_for_model(model, X_test, y_test, device, n_steps, readout
 # PHASE 1 — per-subject true LOSO
 # ----------------------------------------------------------------------
 def run_phase1(X, y, subject_ids, meta, device, train_cfg, model_cfg,
-               channel_names, do_channels, batch_size, n_steps_eval, readout_mode):
+               channel_names, do_channels, do_progressive, do_groups, do_temporal,
+               batch_size, n_steps_eval, readout_mode, dataset_key, n_temporal_windows=4):
     subjects_internal = sorted(set(int(s) for s in subject_ids))
     subject_labels = meta.get("subject_list", subjects_internal)
+    channel_groups = get_channel_groups(dataset_key, channel_names)
 
     per_subject = {}
     channel_importance_rows = []
+    progressive_rows = []
+    channel_group_rows = []
+    temporal_window_rows = []
 
     for i, subj in enumerate(subjects_internal):
         real_id = subject_labels[i] if i < len(subject_labels) else subj
@@ -308,9 +456,10 @@ def run_phase1(X, y, subject_ids, meta, device, train_cfg, model_cfg,
         )
         print(f"  -> bal_acc={bal_acc:.4f}  f1_macro={f1_macro:.4f}")
 
-        if do_channels:
+        order_desc = None
+        if do_channels or do_progressive:
             try:
-                imp = channel_importance_for_model(
+                imp, order_desc = channel_importance_for_model(
                     model, X_te, y_te, device, n_steps_eval, readout_mode,
                     batch_size, channel_names, bal_acc,
                 )
@@ -319,11 +468,48 @@ def run_phase1(X, y, subject_ids, meta, device, train_cfg, model_cfg,
             except Exception as e:
                 print(f"  [channel importance skipped for subject {real_id}] {e}")
 
+        if do_progressive and order_desc is not None:
+            try:
+                prog = progressive_channel_removal_for_model(
+                    model, X_te, y_te, device, n_steps_eval, readout_mode,
+                    batch_size, order_desc,
+                )
+                for order_name, accs in prog.items():
+                    for k, acc in enumerate(accs):
+                        progressive_rows.append({
+                            "subject": real_id, "order": order_name,
+                            "k_removed": k, "accuracy": acc,
+                        })
+            except Exception as e:
+                print(f"  [progressive channel removal skipped for subject {real_id}] {e}")
+
+        if do_groups:
+            try:
+                grp = channel_group_importance_for_model(
+                    model, X_te, y_te, device, n_steps_eval, readout_mode,
+                    batch_size, channel_names, bal_acc, channel_groups,
+                )
+                for group_name, drop in grp.items():
+                    channel_group_rows.append({"subject": real_id, "group": group_name, "importance": drop})
+            except Exception as e:
+                print(f"  [channel group importance skipped for subject {real_id}] {e}")
+
+        if do_temporal:
+            try:
+                twin = temporal_window_importance_for_model(
+                    model, X_te, y_te, device, n_steps_eval, readout_mode,
+                    batch_size, bal_acc, n_windows=n_temporal_windows,
+                )
+                for window_name, drop in twin.items():
+                    temporal_window_rows.append({"subject": real_id, "window": window_name, "importance": drop})
+            except Exception as e:
+                print(f"  [temporal window importance skipped for subject {real_id}] {e}")
+
         del model
         if device.type == "cuda":
             torch.cuda.empty_cache()
 
-    return per_subject, channel_importance_rows
+    return per_subject, channel_importance_rows, progressive_rows, channel_group_rows, temporal_window_rows
 
 
 # ----------------------------------------------------------------------
@@ -461,35 +647,68 @@ def write_per_subject_csv(per_subject, out_dir):
 # ----------------------------------------------------------------------
 # PHASE 2a — component ablations
 # ----------------------------------------------------------------------
-def build_ablation_configs(baseline_params):
-    """Each ablation flips ONE design choice relative to the baseline best
-    config; everything else stays identical so the comparison isolates that
-    one factor's effect. Z-score normalization ablations (RUN_ZSCORE /
-    NORM_AXIS) have been removed along with the rest of that preprocessing
-    path -- readout mode is now the only ablation dimension."""
+def build_ablation_configs(train_cfg_base, model_cfg_base):
+    """Each config removes or degrades ONE architectural/dynamical part of
+    the tuned model relative to the baseline, holding everything else fixed,
+    so the resulting accuracy delta isolates that one component's
+    contribution. This is a genuine component-ablation set (not just a
+    hyperparameter swap):
+
+      no_depthwise     : depth_multiplier -> 1 (removes the depthwise
+                         spatial-filter expansion)
+      no_separable     : pointwise_filters -> 1 (collapses the separable/
+                         pointwise conv down to minimal capacity)
+      no_dropout       : dropout -> 0.0 (removes regularization)
+      single_timestep  : n_steps_train = n_steps_eval -> 1 (removes the
+                         spiking model's multi-step temporal dynamics)
+      no_leak          : beta -> 0.999 (removes the leaky-integrate decay
+                         of the LIF neuron, i.e. "no leak")
+      readout_<mode>   : swap READOUT_MODE (kept from before as one
+                         ablation among several)
+
+    A config is skipped if the baseline is already at that value (e.g. the
+    tuned model already has depth_multiplier=1), since that wouldn't be a
+    meaningful ablation."""
     configs = []
-    base_readout = baseline_params["READOUT_MODE"]
+
+    def maybe_add(name, key_section, overrides):
+        base_dict = model_cfg_base if key_section == "model_overrides" else train_cfg_base
+        if all(base_dict.get(k) == v for k, v in overrides.items()):
+            print(f"  [skipping ablation '{name}': baseline already matches {overrides}]")
+            return
+        configs.append({"name": name, key_section: overrides})
+
+    maybe_add("no_depthwise", "model_overrides", {"depth_multiplier": 1})
+    maybe_add("no_separable", "model_overrides", {"pointwise_filters": 1})
+    maybe_add("no_dropout", "model_overrides", {"dropout": 0.0})
+    maybe_add("single_timestep", "train_overrides", {"n_steps_train": 1, "n_steps_eval": 1})
+    maybe_add("no_leak", "model_overrides", {"beta": 0.999})
+
+    base_readout = train_cfg_base["readout_mode"]
     for mode in READOUT_MODES:
         if mode == base_readout:
             continue
-        configs.append({"name": f"readout_{mode}", "readout_mode": mode})
+        maybe_add(f"readout_{mode}", "train_overrides", {"readout_mode": mode})
+
     return configs
 
 
 def run_ablations(params, ablation_subjects_internal, meta, device, X, y, subject_ids):
-    """Re-runs LOSO training with an alternate readout mode for each
-    non-baseline config in build_ablation_configs(). Reuses the dataset
-    already loaded in main() -- there's no per-config preprocessing to
-    reload anymore, so this only differs from Phase 1's training loop in
-    which readout_mode it passes through."""
+    """Re-runs LOSO training once per config in build_ablation_configs(),
+    each config stripping out one model component or dynamical piece (or,
+    for readout_<mode>, swapping the readout hyperparameter). Reuses the
+    dataset already loaded in main()."""
     results = []
-    configs = build_ablation_configs(params)
-    train_cfg_base, model_cfg = make_cfgs(params)
+    train_cfg_base, model_cfg_base = make_cfgs(params)
+    configs = build_ablation_configs(train_cfg_base, model_cfg_base)
 
     for cfg in configs:
-        print(f"\n=== Phase 2a: ablation '{cfg['name']}' (readout={cfg['readout_mode']}) ===")
         train_cfg = dict(train_cfg_base)
-        train_cfg["readout_mode"] = cfg["readout_mode"]
+        train_cfg.update(cfg.get("train_overrides", {}))
+        model_cfg = dict(model_cfg_base)
+        model_cfg.update(cfg.get("model_overrides", {}))
+        overrides_desc = {**cfg.get("model_overrides", {}), **cfg.get("train_overrides", {})}
+        print(f"\n=== Phase 2a: ablation '{cfg['name']}' (overrides={overrides_desc}) ===")
 
         accs = []
         for subj in ablation_subjects_internal:
@@ -594,9 +813,110 @@ def plot_channel_importance(channel_rows, out_dir):
 
 
 # ----------------------------------------------------------------------
+# PHASE 2c — progressive (cumulative) channel-removal curve
+# ----------------------------------------------------------------------
+def plot_progressive_channel_removal(progressive_rows, meta, out_dir):
+    df = pd.DataFrame(progressive_rows)
+    if df.empty:
+        print("No progressive channel-removal data to plot (use --skip-progressive to disable).")
+        return df
+
+    chance = 1 / meta["n_classes"]
+    colors = {"most_important_first": "#b3492e", "least_important_first": "#4C72B0"}
+    labels = {
+        "most_important_first": "Remove most-important channels first",
+        "least_important_first": "Remove least-important channels first",
+    }
+
+    fig, ax = plt.subplots(figsize=(8, 5.5))
+    for order_name, sub in df.groupby("order"):
+        agg = sub.groupby("k_removed")["accuracy"].agg(["mean", "std"]).sort_index()
+        std = agg["std"].fillna(0.0)
+        ax.plot(agg.index, agg["mean"], color=colors.get(order_name, "black"),
+                label=labels.get(order_name, order_name), linewidth=2)
+        ax.fill_between(agg.index, agg["mean"] - std, agg["mean"] + std,
+                         color=colors.get(order_name, "black"), alpha=0.15)
+    ax.axhline(chance, color="grey", linestyle=":", linewidth=1.2, label=f"Chance = {chance:.3f}")
+    ax.set_xlabel("Number of Channels Zeroed Out")
+    ax.set_ylabel("Balanced Accuracy (mean ± std across subjects)")
+    ax.set_title("Progressive Channel Removal (Cumulative Ablation Curve)")
+    ax.set_ylim(0, 1)
+    ax.legend()
+    fig.tight_layout()
+    fig.savefig(out_dir / "09_progressive_channel_removal.png", **SAVE_KW)
+    plt.close(fig)
+    print(f"Saved -> {out_dir / '09_progressive_channel_removal.png'}")
+
+    path = out_dir / "progressive_channel_removal.csv"
+    df.to_csv(path, index=False)
+    print(f"Saved -> {path}")
+    return df
+
+
+# ----------------------------------------------------------------------
+# PHASE 2d — channel-group (scalp-region) ablation
+# ----------------------------------------------------------------------
+def plot_channel_group_importance(channel_group_rows, out_dir):
+    df = pd.DataFrame(channel_group_rows)
+    if df.empty:
+        print("No channel-group importance data to plot (use --skip-groups to disable).")
+        return df
+    agg = df.groupby("group")["importance"].agg(["mean", "std"]).sort_values("mean", ascending=False)
+
+    fig, ax = plt.subplots(figsize=(7, max(4, 0.6 * len(agg))))
+    colors = ["#b3492e" if v > 0 else "#4C72B0" for v in agg["mean"]]
+    ax.barh(agg.index[::-1], agg["mean"][::-1], xerr=agg["std"].fillna(0)[::-1],
+            color=colors[::-1], capsize=4, edgecolor="white")
+    ax.axvline(0, color="black", linewidth=0.8)
+    ax.set_xlabel("Mean Accuracy Drop When Entire Region Is Zeroed Out (across subjects)")
+    ax.set_title("Channel-Group (Scalp-Region) Ablation")
+    fig.tight_layout()
+    fig.savefig(out_dir / "10_channel_group_importance.png", **SAVE_KW)
+    plt.close(fig)
+    print(f"Saved -> {out_dir / '10_channel_group_importance.png'}")
+
+    path = out_dir / "channel_group_importance.csv"
+    df.to_csv(path, index=False)
+    print(f"Saved -> {path}")
+    return agg
+
+
+# ----------------------------------------------------------------------
+# PHASE 2e — temporal-window ablation
+# ----------------------------------------------------------------------
+def plot_temporal_window_importance(temporal_window_rows, out_dir):
+    df = pd.DataFrame(temporal_window_rows)
+    if df.empty:
+        print("No temporal-window importance data to plot (use --skip-temporal to disable).")
+        return df
+    # keep windows in chronological order rather than sorted by importance
+    order = sorted(df["window"].unique(), key=lambda w: int(w.split("_")[1]))
+    agg = df.groupby("window")["importance"].agg(["mean", "std"]).reindex(order)
+
+    fig, ax = plt.subplots(figsize=(7, 4.5))
+    colors = ["#b3492e" if v > 0 else "#4C72B0" for v in agg["mean"]]
+    ax.bar(agg.index, agg["mean"], yerr=agg["std"].fillna(0), color=colors, capsize=4, edgecolor="white")
+    ax.axhline(0, color="black", linewidth=0.8)
+    ax.set_xlabel("Trial Time Window (chronological order)")
+    ax.set_ylabel("Mean Accuracy Drop When Window Is Zeroed Out (across subjects)")
+    ax.set_title("Temporal-Window Ablation")
+    plt.xticks(rotation=20, ha="right")
+    fig.tight_layout()
+    fig.savefig(out_dir / "11_temporal_window_importance.png", **SAVE_KW)
+    plt.close(fig)
+    print(f"Saved -> {out_dir / '11_temporal_window_importance.png'}")
+
+    path = out_dir / "temporal_window_importance.csv"
+    df.to_csv(path, index=False)
+    print(f"Saved -> {path}")
+    return agg
+
+
+# ----------------------------------------------------------------------
 # Recommendations write-up
 # ----------------------------------------------------------------------
-def write_recommendations(subject_df, ablation_results, baseline_mean, channel_agg, out_dir, meta):
+def write_recommendations(subject_df, ablation_results, baseline_mean, channel_agg,
+                           progressive_df, group_agg, window_agg, out_dir, meta):
     lines = []
     lines.append("=" * 70)
     lines.append("PER-SUBJECT + ABLATION STUDY — SUMMARY")
@@ -658,6 +978,58 @@ def write_recommendations(subject_df, ablation_results, baseline_mean, channel_a
             lines.append("   candidates for a reduced-channel-count edge deployment.]")
         lines.append("")
 
+    if progressive_df is not None and not progressive_df.empty:
+        lines.append("-" * 70)
+        lines.append("PROGRESSIVE CHANNEL REMOVAL (cumulative ablation curve)")
+        lines.append("-" * 70)
+        mif = progressive_df[progressive_df["order"] == "most_important_first"]
+        lif = progressive_df[progressive_df["order"] == "least_important_first"]
+        n_channels = int(progressive_df["k_removed"].max())
+        if not mif.empty:
+            mif_curve = mif.groupby("k_removed")["accuracy"].mean()
+            below_chance = mif_curve[mif_curve <= chance]
+            if not below_chance.empty:
+                k_collapse = int(below_chance.index.min())
+                lines.append(f"  Removing the {k_collapse} most-important channel(s) brings mean "
+                             f"accuracy down to chance ({chance:.3f}).")
+            else:
+                lines.append(f"  Even after removing all {n_channels} channels most-important-first, "
+                             f"mean accuracy stayed above chance ({mif_curve.iloc[-1]:.4f}).")
+        if not lif.empty:
+            lif_curve = lif.groupby("k_removed")["accuracy"].mean()
+            baseline_curve = lif_curve.iloc[0]
+            drop_10pct = lif_curve[lif_curve < baseline_curve - 0.05]
+            if not drop_10pct.empty:
+                k_safe = int(drop_10pct.index.min()) - 1
+                lines.append(f"  Up to {max(k_safe, 0)} of the least-important channel(s) could be "
+                             f"dropped before mean accuracy fell more than 0.05 below baseline "
+                             f"-- candidates for a reduced-channel edge deployment.")
+            else:
+                lines.append("  Removing least-important channels one by one never dropped mean "
+                             "accuracy by more than 0.05 -- the model is fairly robust to losing "
+                             "its weakest channels.")
+        lines.append("")
+
+    if group_agg is not None and not group_agg.empty:
+        lines.append("-" * 70)
+        lines.append("CHANNEL-GROUP (SCALP-REGION) ABLATION")
+        lines.append("-" * 70)
+        for grp, row in group_agg.iterrows():
+            lines.append(f"      {grp:22s} mean_drop={row['mean']:.4f}  std={row['std']:.4f}")
+        most_important_group = group_agg.index[0]
+        lines.append(f"  -> Most relied-upon scalp region: {most_important_group}")
+        lines.append("")
+
+    if window_agg is not None and not window_agg.empty:
+        lines.append("-" * 70)
+        lines.append("TEMPORAL-WINDOW ABLATION")
+        lines.append("-" * 70)
+        for win, row in window_agg.iterrows():
+            lines.append(f"      {win:22s} mean_drop={row['mean']:.4f}  std={row['std']:.4f}")
+        most_important_window = window_agg["mean"].idxmax()
+        lines.append(f"  -> Most information-carrying time window: {most_important_window}")
+        lines.append("")
+
     path = out_dir / "recommendations.txt"
     with open(path, "w") as f:
         f.write("\n".join(lines))
@@ -684,12 +1056,17 @@ def parse_args():
     p.add_argument("--batch-size", type=int, default=None, help="Override BATCH_SIZE")
     p.add_argument("--out-dir", type=str, default=None,
                   help="Output directory (default: results/<DATASET_KEY>/ablation_study)")
-    p.add_argument("--skip-ablation", action="store_true", help="Skip Phase 2a component ablations")
-    p.add_argument("--skip-channels", action="store_true", help="Skip Phase 2b channel-importance analysis")
+    p.add_argument("--skip-ablation", action="store_true", help="Skip Phase 2a model-component ablations")
+    p.add_argument("--skip-channels", action="store_true", help="Skip Phase 2b single-channel occlusion importance")
+    p.add_argument("--skip-progressive", action="store_true",
+                  help="Skip Phase 2c progressive (cumulative) channel-removal curve")
+    p.add_argument("--skip-groups", action="store_true", help="Skip Phase 2d channel-group (scalp-region) ablation")
+    p.add_argument("--skip-temporal", action="store_true", help="Skip Phase 2e temporal-window ablation")
+    p.add_argument("--temporal-windows", type=int, default=4,
+                  help="Number of equal-length time windows to ablate in Phase 2e (default: 4)")
     p.add_argument("--ablation-subjects", type=str, default=None,
                   help="Comma-separated internal subject indices to use for Phase 2a "
-                       "(default: all subjects -- there's only 1 non-baseline ablation "
-                       "config now: the alternate readout mode)")
+                       "(default: all subjects)")
     return p.parse_args()
 
 
@@ -714,11 +1091,15 @@ def main():
     train_cfg, model_cfg = make_cfgs(params)
 
     # ── Phase 1 ──────────────────────────────────────────────────────────
-    per_subject, channel_rows = run_phase1(
+    per_subject, channel_rows, progressive_rows, channel_group_rows, temporal_window_rows = run_phase1(
         X, y, subject_ids, meta, device, train_cfg, model_cfg,
         channel_names, do_channels=not args.skip_channels,
+        do_progressive=not args.skip_progressive,
+        do_groups=not args.skip_groups,
+        do_temporal=not args.skip_temporal,
         batch_size=train_cfg["batch_size"], n_steps_eval=train_cfg["n_steps_eval"],
-        readout_mode=train_cfg["readout_mode"],
+        readout_mode=train_cfg["readout_mode"], dataset_key=params["DATASET_KEY"],
+        n_temporal_windows=args.temporal_windows,
     )
 
     plot_per_subject_accuracy(per_subject, meta, out_dir)
@@ -747,12 +1128,28 @@ def main():
         ).to_csv(out_dir / "ablation_summary.csv", index=False)
         print(f"Saved -> {out_dir / 'ablation_summary.csv'}")
 
-    # ── Phase 2b: channel importance ────────────────────────────────────
+    # ── Phase 2b: single-channel occlusion importance ───────────────────
     channel_agg = None
     if not args.skip_channels:
         channel_agg = plot_channel_importance(channel_rows, out_dir)
 
-    write_recommendations(subject_df, ablation_results, baseline_mean, channel_agg, out_dir, meta)
+    # ── Phase 2c: progressive (cumulative) channel-removal curve ────────
+    progressive_df = None
+    if not args.skip_progressive:
+        progressive_df = plot_progressive_channel_removal(progressive_rows, meta, out_dir)
+
+    # ── Phase 2d: channel-group (scalp-region) ablation ──────────────────
+    group_agg = None
+    if not args.skip_groups:
+        group_agg = plot_channel_group_importance(channel_group_rows, out_dir)
+
+    # ── Phase 2e: temporal-window ablation ───────────────────────────────
+    window_agg = None
+    if not args.skip_temporal:
+        window_agg = plot_temporal_window_importance(temporal_window_rows, out_dir)
+
+    write_recommendations(subject_df, ablation_results, baseline_mean, channel_agg,
+                           progressive_df, group_agg, window_agg, out_dir, meta)
 
     print("\nDone. All outputs written to:", out_dir.resolve())
 
