@@ -1,0 +1,82 @@
+======================================================================
+PER-SUBJECT + ABLATION STUDY — SUMMARY
+======================================================================
+
+----------------------------------------------------------------------
+PER-SUBJECT PERFORMANCE
+----------------------------------------------------------------------
+  Mean balanced accuracy : 0.5280
+  Std balanced accuracy  : 0.0763
+  Chance level            : 0.2500
+  Best subject  : 3.0  (acc=0.6615)
+  Worst subject : 2.0 (acc=0.4219)
+  Best-worst spread : 0.2396
+
+  Full ranking (best -> worst):
+      subject  3.0: bal_acc=0.6615  f1_macro=0.6408
+      subject  8.0: bal_acc=0.6042  f1_macro=0.5999
+      subject  7.0: bal_acc=0.5799  f1_macro=0.5752
+      subject  1.0: bal_acc=0.5278  f1_macro=0.5303
+      subject  9.0: bal_acc=0.5208  f1_macro=0.5158
+      subject  5.0: bal_acc=0.5104  f1_macro=0.4933
+      subject  6.0: bal_acc=0.4705  f1_macro=0.4429
+      subject  4.0: bal_acc=0.4549  f1_macro=0.4458
+      subject  2.0: bal_acc=0.4219  f1_macro=0.4075
+
+----------------------------------------------------------------------
+ABLATION STUDY (design-choice comparison)
+----------------------------------------------------------------------
+  Baseline (best config) mean_bal_acc = 0.5280
+      readout_spk_mean          mean_bal_acc=0.5365 (+0.0085 vs baseline, n=2 subjects)
+      no_depthwise              mean_bal_acc=0.5324 (+0.0044 vs baseline, n=9 subjects)
+      no_leak                   mean_bal_acc=0.5214 (-0.0066 vs baseline, n=9 subjects)
+      no_dropout                mean_bal_acc=0.5181 (-0.0098 vs baseline, n=9 subjects)
+      single_timestep           mean_bal_acc=0.5012 (-0.0268 vs baseline, n=9 subjects)
+      no_separable              mean_bal_acc=0.4373 (-0.0907 vs baseline, n=9 subjects)
+  -> Most harmful change when removed/swapped: no_separable (-0.0907)
+
+----------------------------------------------------------------------
+CHANNEL IMPORTANCE (top 10 most important)
+----------------------------------------------------------------------
+      CP3      mean_drop=0.1456  std=0.0919
+      POz      mean_drop=0.1244  std=0.0691
+      P1       mean_drop=0.0828  std=0.0582
+      CP4      mean_drop=0.0783  std=0.0817
+      Cz       mean_drop=0.0639  std=0.0555
+      FC4      mean_drop=0.0623  std=0.0542
+      P2       mean_drop=0.0615  std=0.0339
+      C3       mean_drop=0.0598  std=0.0430
+      C4       mean_drop=0.0494  std=0.0453
+      Fz       mean_drop=0.0492  std=0.0520
+
+  Bottom 5 (least important / possibly removable):
+      C5       mean_drop=0.0262  std=0.0347
+      FC3      mean_drop=0.0228  std=0.0304
+      C6       mean_drop=0.0220  std=0.0357
+      FC1      mean_drop=0.0172  std=0.0278
+      CP2      mean_drop=0.0127  std=0.0228
+
+
+----------------------------------------------------------------------
+PROGRESSIVE CHANNEL REMOVAL (cumulative ablation curve)
+----------------------------------------------------------------------
+  Removing the 19 most-important channel(s) brings mean accuracy down to chance (0.250).
+  Up to 2 of the least-important channel(s) could be dropped before mean accuracy fell more than 0.05 below baseline -- candidates for a reduced-channel edge deployment.
+
+----------------------------------------------------------------------
+CHANNEL-GROUP (SCALP-REGION) ABLATION
+----------------------------------------------------------------------
+      Centro-parietal        mean_drop=0.1821  std=0.0687
+      Frontal                mean_drop=0.1671  std=0.0497
+      Central                mean_drop=0.1412  std=0.0687
+      Parietal/Occipital     mean_drop=0.1084  std=0.0647
+  -> Most relied-upon scalp region: Centro-parietal
+
+----------------------------------------------------------------------
+TEMPORAL-WINDOW ABLATION
+----------------------------------------------------------------------
+      window_1_of_4          mean_drop=0.1730  std=0.0411
+      window_2_of_4          mean_drop=0.0658  std=0.0165
+      window_3_of_4          mean_drop=0.0087  std=0.0305
+      window_4_of_4          mean_drop=0.0243  std=0.0323
+  -> Most information-carrying time window: window_1_of_4
